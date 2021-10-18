@@ -11,6 +11,6 @@ namespace DalObject
     {
         internal static List<Customer> customers = new List<Customer>();
         internal static List<BaseStation> station = new List<BaseStation>();
-        internal static List<>
+        internal static List<Drone>
     }
 }
