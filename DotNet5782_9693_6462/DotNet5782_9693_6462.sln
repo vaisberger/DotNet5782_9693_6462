@@ -10,10 +10,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\mini project\README.md = ..\..\..\mini project\README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C25E84C1-68CC-4974-B620-90DBB617012F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items (2)", "Solution Items (2)", "{C25E84C1-68CC-4974-B620-90DBB617012F}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\..\Documents\DotNet5782_9693_6462\README.md = ..\..\..\..\Documents\DotNet5782_9693_6462\README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUI", "ConsoleUI\ConsoleUI.csproj", "{0F19F302-736F-4BAD-986D-DAF0946342F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{8C3BC252-D681-4153-BB4D-6D026C838819}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +29,14 @@ Global
 		{078BC993-DDC0-4DE6-9DE5-4B003998135B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{078BC993-DDC0-4DE6-9DE5-4B003998135B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{078BC993-DDC0-4DE6-9DE5-4B003998135B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F19F302-736F-4BAD-986D-DAF0946342F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F19F302-736F-4BAD-986D-DAF0946342F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F19F302-736F-4BAD-986D-DAF0946342F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F19F302-736F-4BAD-986D-DAF0946342F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C3BC252-D681-4153-BB4D-6D026C838819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C3BC252-D681-4153-BB4D-6D026C838819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C3BC252-D681-4153-BB4D-6D026C838819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C3BC252-D681-4153-BB4D-6D026C838819}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
