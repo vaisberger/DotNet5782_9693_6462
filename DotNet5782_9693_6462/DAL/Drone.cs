@@ -13,7 +13,7 @@ namespace IDAL
         {
             public int Id { get; set; }
             public String Model { get; set; }
-            public Weight  { get; set; }
+            public Weight weight  { get; set; }
             public DroneStatus   {get; set; }
             public double Battery { get; set; }
     }
