@@ -8,13 +8,13 @@ namespace IDAL
 {
     namespace DO
     {
-        class Parcel
+        public struct Parcel
         {
             public int Id { set; get; }
             public int Senderld { set; get; }
             public int Targetld { set; get; }
 
-            public Weight weight  { set; get; }
+            public Weight weight { set; get; }
             public Priorty priorty { set; get; }
             public DateTime Requsted { set; get; }
             public int Droneld { set; get; }
