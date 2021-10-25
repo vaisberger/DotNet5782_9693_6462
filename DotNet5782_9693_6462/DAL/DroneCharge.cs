@@ -12,7 +12,10 @@ namespace IDAL
         {
             public int Droneld { set; get; }
             public int StatioId{set; get; }
-
+            public static void Topstring(int Droneld,int StationId)
+            {
+                Console.WriteLine("Droneld: {0} Statioin ID: {1} ", Droneld,StationId);
+            }
         }
     }
 }
