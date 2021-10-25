@@ -9,12 +9,16 @@ namespace IDAL
 {
     namespace DO
     {
-        public class Drone
+        public struct Drone
         {
             public int Id { get; set; }
             public String Model { get; set; }
-            public Weight weight { set; get; }
-            public DroneStatus   {set; get; }
+            public  Weight getWeight { get; set; }
+            public DroneStatus status { get; set; }
             public double Battery { get; set; }
-    }
+            public static void Topstring(int Id, string Model, Weights weight, DroneStatus status) {
+                Console.WriteLine("Id: {0} Model: {1} Weight: {2} Status: {3}", Id, Model, weight, status);
+                    }
+        }  
+   }
 }
