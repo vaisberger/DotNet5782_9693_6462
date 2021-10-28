@@ -20,7 +20,15 @@ namespace DalObject
             internal static int ParcelSerial = 0;
             internal static int NumberId;
         }
-        internal static void Initialize(){
+        internal static void Initialize()
+        {
+            Random r = new Random();
+            drones.Add(new Drone { Id = r.Next(1111111,10000000), Model = "x400", status = 0, Battery = 0 });
+            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x401", status = 0, Battery = 0 });
+            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x402", status = 0, Battery = 0 });
+            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x403", status = 0, Battery = 0 });
+            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x404", status = 0, Battery = 0 });
+
 
         }
     }
