@@ -15,8 +15,12 @@ namespace DalObject
         internal static List<Parcel> parcels = new List<Parcel>();
         internal static List<DroneCharge> droneCharges = new List<DroneCharge>();
         public static Random r = new Random();
-        internal struct Config
+        internal class Config
         {
+            internal static int ParcelSerial = 0;
+            internal static int NumberId;
+        }
+        internal static void Initialize(){
 
         }
     }
