@@ -4,6 +4,6 @@ namespace DalObject
 {
     public class DalObject
     {
-        public int addCo
+       
     }
 }
