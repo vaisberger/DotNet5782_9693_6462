@@ -13,8 +13,8 @@ namespace IDAL
         {
             public int Id { get; set; }
             public String Model { get; set; }
-            public  Weight getWeight { get; set; }
-            public DroneStatus status { get; set; }
+            public Weight GetWeight { get; set; }
+            public DroneStatus Status { get; set; }
             public double Battery { get; set; }
             public static void Topstring(int Id, string Model, Weights weight, DroneStatus status) {
                 Console.WriteLine("Id: {0} Model: {1} Weight: {2} Status: {3}", Id, Model, weight, status);
