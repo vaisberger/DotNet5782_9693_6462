@@ -15,9 +15,9 @@ namespace IDAL
             public double Longitude { get; set; }
             public double Latitude { get; set; }
             public int ChargeSlots { get; set; }
-            public static void Tostring(int Id, int Name,)
+            public static void Tostring(int Id, int Name, double Longitude, double Latitude, int ChargeSlots)
             {
-                Console.WriteLine("Droneld: {0} Statioin ID: {1} ", Droneld, StationId);
+                Console.WriteLine("ID: {0} Name: {1} Longitude: {2} Latitude: {3} ChargeSlots: {4} ",  Id,  Name,  Longitude,  Latitude,  ChargeSlots);
             }
 
         }
