@@ -16,10 +16,7 @@ namespace IDAL
         {
             Available, Maitenance, Shipment
         }
-        public enum BatteryStatus
-        {
-            Empty, Full
-        }
+
         public enum Priorities
         {
             Normal, Fast, Urgent

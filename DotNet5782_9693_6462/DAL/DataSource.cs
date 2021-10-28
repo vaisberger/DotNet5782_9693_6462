@@ -23,11 +23,11 @@ namespace DalObject
         internal static void Initialize()
         {
             Random r = new Random();
-            drones.Add(new Drone { Id = r.Next(1111111,10000000), Model = "x400", status = 0, Battery = 0 });
-            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x401", status = 0, Battery = 0 });
-            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x402", status = 0, Battery = 0 });
-            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x403", status = 0, Battery = 0 });
-            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x404", status = 0, Battery = 0 });
+            drones.Add(new Drone { Id = r.Next(1111111,10000000), Model = "x400", status = DroneStatus.Available , Battery = r.Next(5,100),weight=Weights.Heavy });
+            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x401", status = DroneStatus.Maitenance, Battery = r.Next(5, 100), weight= Weights.Light });
+            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x402", status = DroneStatus.Shipment, Battery = r.Next(5, 100), weight= Weights.Medium });
+            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x403", status = DroneStatus.Available, Battery = r.Next(5, 100), weight= Weights.Heavy });
+            drones.Add(new Drone { Id = r.Next(1111111, 10000000), Model = "x404", status = DroneStatus.Maitenance, Battery = r.Next(5, 100), weight= Weights.Light });
 
 
         }
