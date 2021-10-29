@@ -33,18 +33,16 @@ namespace DalObject
             station.Add(new BaseStation { Id = r.Next(1000, 10000), Name = 1313, Longitude = r.Next(10000, 100000), Latitude = r.Next(10000, 100000), ChargeSlots = r.Next(0, 6) });
 
             parcels.Add(new Parcel { Id =1+ r.Next(100, 10000)});
-            customers.Add(new Customer { Id =0000000, Name = "aaaa", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude= r.Next(0, 25), Latitude = r.Next(0,61) });
-            customers.Add(new Customer { Id = 00000000, Name = "bbbb", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
-            customers.Add(new Customer { Id =0000000, Name = "gggg", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
-            customers.Add(new Customer { Id = 0000000, Name = "dddd", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
-            customers.Add(new Customer { Id = 0000000, Name = "eeee", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
-            customers.Add(new Customer { Id = 0000000, Name = "ffff", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
-            customers.Add(new Customer { Id = 0000000, Name = "gggg", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
-            customers.Add(new Customer { Id = 0000000, Name = "hhhh", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
-            customers.Add(new Customer { Id = 0000000, Name = "iiii", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
-            customers.Add(new Customer { Id = 0000000, Name = "jjjj", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
-
-        }
+            customers.Add(new Customer { Id =0, Name = "aaaa", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude= r.Next(0, 25), Latitude = r.Next(0,61) });
+            customers.Add(new Customer { Id = 0, Name = "bbbb", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
+            customers.Add(new Customer { Id =0, Name = "gggg", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
+            customers.Add(new Customer { Id = 0, Name = "dddd", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
+            customers.Add(new Customer { Id = 0, Name = "eeee", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
+            customers.Add(new Customer { Id = 0, Name = "ffff", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
+            customers.Add(new Customer { Id = 0, Name = "gggg", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
+            customers.Add(new Customer { Id = 0, Name = "hhhh", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
+            customers.Add(new Customer { Id = 0, Name = "iiii", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
+            customers.Add(new Customer { Id = 0, Name = "jjjj", Phone = "$0{r.Next(51,58)}{r.Next(1000000,9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });
 
             parcels.Add(new Parcel { Id = r.Next(100, 10000), Senderld = 0, Targetld = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, Droneld = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });
             parcels.Add(new Parcel { Id = r.Next(100, 10000), Senderld = 0, Targetld = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, Droneld = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });
