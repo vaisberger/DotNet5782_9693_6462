@@ -6,6 +6,11 @@ namespace DalObject
 {
     public class DalObject
     {
+        
+
+
+
+        public static void DisplayStation(int Id)
         public static void AddCustomer(Customer c)
         {
             DataSource.customers.Add(c);
