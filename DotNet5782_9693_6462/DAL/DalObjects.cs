@@ -1,6 +1,7 @@
 ﻿using IDAL.DO;
 using System;
 
+
 namespace DalObject
 {
     public class DalObject
