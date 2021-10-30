@@ -5,14 +5,7 @@ namespace DalObject
 {
     public class DalObject
     {
-        public static void AddCustomer(IDAL.DO.Customer c)
-        {
-            DataSource.customers.Add(c);
-        }
-        public static void AddStation(IDAL.DO.BaseStation b)
-        {
-            DataSource.station.Add(b);
-        }
+        
 
 
 
