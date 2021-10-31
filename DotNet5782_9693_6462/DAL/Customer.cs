@@ -15,7 +15,7 @@ namespace IDAL
             public String Phone { get; set; }
             public double Longitude { get; set; }
             public double Latitude { get; set; }
-            public static void ToString(int Id, string Name, String Phone, double Longitude, double Latitude)
+            public static void ToString(int Id, string Name, String Phone, double Longitude, double Latitude)//print
             {
                 Console.WriteLine("Id: {0} Model: {1} Name: {2} Phone: {3} Longitude:{4} Latitude:{5} ", Id,Name, Phone,Longitude, Latitude);
             }

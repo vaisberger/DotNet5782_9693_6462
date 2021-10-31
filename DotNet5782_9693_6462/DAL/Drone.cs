@@ -17,7 +17,7 @@ namespace IDAL
             public Weights MaxWeight { get; set; }
             public DroneStatus status { get; set; }
             public double Battery { get; set; }
-            public static void ToString(int Id, string Model, Weights weight, DroneStatus status)
+            public static void ToString(int Id, string Model, Weights weight, DroneStatus status)//print
             {
                 Console.WriteLine("Id: {0} Model: {1} Weight: {2} Status: {3}", Id, Model, weight, status);
             }

@@ -16,11 +16,13 @@ namespace IDAL
             public double Latitude { get; set; }
             public int ChargeSlots { get; set; }
          
-            public static void Tostring(int Id, int Name, double Longitude, double Latitude, int ChargeSlots)
+            public static void Tostring(int Id, int Name, double Longitude, double Latitude, int ChargeSlots)//print
             {
                 Console.WriteLine("ID: {0} Name: {1} Longitude: {2} Latitude: {3} ChargeSlots: {4} ",  Id,  Name,  Longitude,  Latitude,  ChargeSlots);
             }
 
         }
+        
     }
+
 }
