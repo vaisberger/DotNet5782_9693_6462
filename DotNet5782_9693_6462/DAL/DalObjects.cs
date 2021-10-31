@@ -21,7 +21,10 @@ namespace DalObject
         public static void AddParcel(Parcel p)
         {
             DataSource.parcels.Add(p);
-        }      
+        }
+
+
+
         public static void DisplayStation(int Id)
         {
             DataSource.station.Find(x => x.Id == Id).ToString();
@@ -30,14 +33,13 @@ namespace DalObject
         {
             DataSource.drones.Find(x => x.Id == Id).ToString();
         }
-        public static void DisplayCostomer(int Id)
+        public static void DisplayCustomer(int Id)
         {
             DataSource.customers.Find(x => x.Id == Id).ToString();
         }
         public static void DisplayParcel(int Id)
         {
             DataSource.parcels.Find(x => x.Id == Id).ToString();
-
         }
        
         public static void DisplayDroneList()
@@ -69,15 +71,15 @@ namespace DalObject
                 Console.WriteLine(p.ToString());
             }
         }
-        public static void DisplayDroneNot()
+        public static void DisplayParcelUnmatched()
         {
-            foreach(Drone d in DataSource.drones)
+           /* foreach(Drone d in DataSource.drones)
             {
                 if (d.status==0)
                 {
                     Console.WriteLine(d.ToString());
                 }
-            }
+            }*/
         }
         public static void DisplayAvailableStation()
         {
@@ -90,28 +92,5 @@ namespace DalObject
             }
         }
 
-
-        public static void MatchDrone(Parcel p)
-        {
-            DataSource.drones.Find(x => x.Id == p.Droneld);
-            
-        }
-
-        public static void ParcelCollection(Drone d)
-        {
-
-        }
-        public static void ParcelDelivery(Parcel p)
-        {
-
-        }
-        public static void ChargeDrone(Drone d)
-        {
-
-        }
-        public static void DischargeDrone(Drone d)
-        {
-
-        }
     }
 }
