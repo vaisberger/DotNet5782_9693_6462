@@ -61,6 +61,13 @@ namespace ConsoleUI
                                 DalObject.DalObject.AddDrone(NewDrone);
                                 break;
                             case 2:// add customer
+                                String name;
+                                String Phone;
+                                Console.WriteLine("please insert id, name, phone, longitude, latitude");
+                                ID= Convert.ToInt32(Console.ReadLine());
+                                name = Console.ReadLine();
+                                Phone= Console.ReadLine();
+
                                 break;
                             case 3:// add parcel
                                 break;
