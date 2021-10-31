@@ -47,7 +47,7 @@ namespace ConsoleUI
                                 Weights weights;
                                 DroneStatus status;
                                 double battery;
-                                Console.WriteLine("please enter id, model, weight,status, battery");
+                                Console.WriteLine("please enter id, model, Max weight,status, battery");
                                 ID = Convert.ToInt32(Console.ReadLine());
                                 Model = Console.ReadLine();
                                 Weights.TryParse(Console.ReadLine(), out weights);
@@ -55,7 +55,7 @@ namespace ConsoleUI
                                 battery = Convert.ToDouble(Console.ReadLine());
                                 NewDrone.Id = ID;
                                 NewDrone.Model = Model;
-                                NewDrone.weight = weights;
+                                NewDrone.MaxWeight = weights;
                                 NewDrone.status = status;
                                 NewDrone.Battery = battery;
                                 DalObject.DalObject.AddDrone(NewDrone);
@@ -119,6 +119,8 @@ namespace ConsoleUI
                         switch (u)
                         {
                             case 0://Match drone to parcel
+                                Console.WriteLine("please enter the ID of the parcel to match");
+
                                 break;
                             case 1://Parcel collection
                                 break;
