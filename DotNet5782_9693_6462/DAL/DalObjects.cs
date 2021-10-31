@@ -42,10 +42,7 @@ namespace DalObject
             DataSource.parcels.Find(x => x.Id == Id).ToString();
 
         }
-        public static void MatchDrone(Parcel p)
-        {
-
-        }
+       
         public static void DisplayDroneList()
         {
             foreach(Drone d in DataSource.drones)
