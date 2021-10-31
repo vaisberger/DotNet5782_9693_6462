@@ -6,14 +6,24 @@ namespace DalObject
 {
     public class DalObject
     {
+        //constructor
         public DalObject()
         {
             DataSource.Initialize();
         }
+        //Add a parcel  to the list of  parcel
+        public int AddParcel(Parcel p)
+        {
+            DataSource.parcels.Add(p);
+            DataSource.Config.ParcelSerial += 1;
+            return DataSource.Config.ParcelSerial;
+        }
+        //Add customer to the list of customer
         public void AddCustomer(Customer c)
         {
             DataSource.customers.Add(c);
         }
+
         //Add a base station to the list of stations
         public void AddStation(BaseStation s)
         {
@@ -24,12 +34,25 @@ namespace DalObject
         {
             DataSource.drones.Add(d);
         }
-        public int AddParcel(Parcel p)
+        //Update parcel  to a drone
+        public void UpdateParcelToDrone(int droneId, int parcleId)
         {
-            DataSource.parcels.Add(p);
-            DataSource.Config.ParcelSerial += 1;
-            return DataSource.Config.ParcelSerial;
+            for (int i = 0; i < DataSource.parcels.Count; i++)
+            {
+                if (DataSource.parcels[i].Id == parcleId)
+                {
+                    Parcel P = new Parcel();
+                    P = DataSource.parcels[i];
+                    P.DroneId = droneId;
+                    P.Scheduled = DateTime.Now;
+                    DataSource.parcels[i] = P;
+
+
+                }
+            }
         }
+
+        //Parcel collection drone
         public void Parcelcollection(Parcel p, Drone d)
         {
             p.DroneId = d.Id;
@@ -37,7 +60,39 @@ namespace DalObject
             p.PickedUp = DateTime.Now;
 
         }
+        //Delivery of a parcel to the customer
+        public void ParcelDelivery(Parcel p, Customer c)
+        {
+            p.SenderId = c.Id;
+            p.TargetId = c.Id;
+            p.Delivered = DateTime.Now;
+        }
+        //Sending drone for charging at a base station
+        public void ChargeDrone(Drone d, BaseStation s)
+        {
+            d.status = DroneStatus.Maitenance;
+            DroneCharge dc = new DroneCharge();
+            dc.DroneId = d.Id;
+            dc.StatioId = s.Id;
+            DataSource.droneCharges.Add(dc);
 
+        }
+        //Discharge drone from charging at base station
+        public void DischargeDrone(Drone d)
+        {
+            DroneCharge dc;
+            d.status = DroneStatus.Available;
+            for (int i = 0; i < DataSource.droneCharges.Count; i++)
+            {
+                if (DataSource.droneCharges[i].DroneId == d.Id)
+                {
+                    dc = DataSource.droneCharges[i];
+                    DataSource.droneCharges.Remove(dc);
+                }
+            }
+        }
+
+        ////Drone display by ID
         public void DisplayStation(int Id)
         {
             DataSource.station.Find(x => x.Id == Id).ToString();
@@ -112,53 +167,8 @@ namespace DalObject
                 }
             }
         }
-        //Update parcel  to a drone
-        public void UpdateParcelToDrone(int droneId, int parcleId)
-        {
-            for (int i = 0; i < DataSource.parcels.Count; i++)
-            {
-                if (DataSource.parcels[i].Id == parcleId)
-                {
-                    Parcel P = new Parcel();
-                    P = DataSource.parcels[i];
-                    P.DroneId = droneId;
-                    P.Scheduled = DateTime.Now;
-                    DataSource.parcels[i] = P;
-
-
-                }
-            }
-        }
-        // public static void SendDroneTOCharging(int DronId)
-        public void ParcelDelivery(Parcel p, Customer c)
-        {
-            p.SenderId = c.Id;
-            p.TargetId = c.Id;
-            p.Delivered = DateTime.Now;
-        }
-
-        public void ChargeDrone(Drone d,BaseStation s)
-        {
-            d.status = DroneStatus.Maitenance;
-            DroneCharge dc = new DroneCharge();
-            dc.DroneId = d.Id;
-            dc.StatioId = s.Id;
-            DataSource.droneCharges.Add(dc);
-
-        }
-        public void DischargeDrone(Drone d)
-        {
-            DroneCharge dc;
-            d.status = DroneStatus.Available;
-            for (int i = 0; i < DataSource.droneCharges.Count; i++)
-            {
-                if (DataSource.droneCharges[i].DroneId ==d.Id)
-                {
-                    dc = DataSource.droneCharges[i];
-                    DataSource.droneCharges.Remove(dc);
-                }
-            }
-        }
-
+       
+       
+       
     }
 }
