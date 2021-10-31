@@ -14,7 +14,7 @@ namespace IDAL
         {
             public int Id { get; set; }
             public String Model { get; set; }
-            public Weights weight { get; set; }
+            public Weights MaxWeight { get; set; }
             public DroneStatus status { get; set; }
             public double Battery { get; set; }
             public static void ToString(int Id, string Model, Weights weight, DroneStatus status)

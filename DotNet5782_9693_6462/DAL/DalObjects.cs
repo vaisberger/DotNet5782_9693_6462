@@ -73,13 +73,13 @@ namespace DalObject
         }
         public static void DisplayParcelUnmatched()
         {
-           /* foreach(Drone d in DataSource.drones)
+            foreach(Parcel p in DataSource.parcels)
             {
-                if (d.status==0)
+                if (p.DroneId==0)
                 {
-                    Console.WriteLine(d.ToString());
+                    Console.WriteLine(p.ToString());
                 }
-            }*/
+            }
         }
         public static void DisplayAvailableStation()
         {
