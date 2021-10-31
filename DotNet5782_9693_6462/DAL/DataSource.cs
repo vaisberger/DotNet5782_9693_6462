@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace DalObject
 {
+
     public struct DataSource
     {
         internal static List<Customer> customers = new List<Customer>();

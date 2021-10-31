@@ -1,4 +1,6 @@
-﻿using System;
+﻿//course mini project in windows
+// by moria mizrachi and yael vaisberger
+using System;
 using System.Collections.Generic;
 using IDAL.DO;
 using DalObject;
@@ -6,13 +8,14 @@ namespace ConsoleUI
 {
     class Program
     {
-        
-        public  void Main(string[] args)
+        static void Main(string[] args)
         {
-            
+
+
             int c;
             do
             {
+                DalObject.DalObject data = new DalObject.DalObject();
                 Console.WriteLine("Please select an action from options below:");
                 Console.WriteLine(" 0-Add\n 1-Update\n 2-Display item\n 3-Display list\n 4-Exit ");
                 c = Convert.ToInt32(Console.ReadLine());
@@ -61,24 +64,24 @@ namespace ConsoleUI
                                 NewDrone.MaxWeight = weights;
                                 NewDrone.status = status;
                                 NewDrone.Battery = battery;
-                                DalObject.AddDrone(NewDrone);
+                                data.AddDrone(NewDrone);
                                 break;
                             case 2:// add customer
                                 Customer NewCustomer = new Customer();
                                 String name;
                                 String Phone;
                                 Console.WriteLine("please enter id, name, phone, longitude, latitude");
-                                ID= Convert.ToInt32(Console.ReadLine());
+                                ID = Convert.ToInt32(Console.ReadLine());
                                 name = Console.ReadLine();
-                                Phone= Console.ReadLine();
+                                Phone = Console.ReadLine();
                                 Longitued = Convert.ToDouble(Console.ReadLine());
                                 Latitude = Convert.ToDouble(Console.ReadLine());
                                 NewCustomer.Id = ID;
-                                NewCustomer.Name =name;
+                                NewCustomer.Name = name;
                                 NewCustomer.Phone = Phone;
                                 NewCustomer.Longitude = Longitued;
                                 NewCustomer.Latitude = Latitude;
-                                DalObject.DalObject.AddCustomer(NewCustomer);
+                                data.AddCustomer(NewCustomer);
                                 break;
                             case 3:// add parcel
                                 Parcel NewParcel = new Parcel();
@@ -94,16 +97,16 @@ namespace ConsoleUI
                                 DateTime.TryParse(Console.ReadLine(), out PickedUp);
                                 DateTime.TryParse(Console.ReadLine(), out Delivered);
                                 NewParcel.Id = ID;
-                                NewParcel.SenderId=0;
-                                NewParcel.TargetId=0;
+                                NewParcel.SenderId = 0;
+                                NewParcel.TargetId = 0;
                                 NewParcel.weight = weights;
                                 NewParcel.priorty = priorty;
-                                NewParcel.Requsted =DateTime.Now;
+                                NewParcel.Requsted = DateTime.Now;
                                 NewParcel.DroneId = 0;
                                 NewParcel.Scheduled = Scheduled;
                                 NewParcel.PickedUp = PickedUp;
                                 NewParcel.Delivered = Delivered;
-                                DalObject.DalObject.AddParcel(NewParcel);
+                                data.AddParcel(NewParcel);
                                 break;
                         }
                         break;
@@ -114,17 +117,35 @@ namespace ConsoleUI
                         switch (u)
                         {
                             case 0://Match drone to parcel
-                                Console.WriteLine("please enter the ID of the parcel to match");
-                                int pID= Convert.ToInt32(Console.ReadLine());
-                                
+                                Console.WriteLine("please enter the ID of the parcel and drone to match");
+                                int pID = Convert.ToInt32(Console.ReadLine());
+                                int dID = Convert.ToInt32(Console.ReadLine());
+                                data.UpdateParcelToDrone(pID, dID);
                                 break;
                             case 1://Parcel collection
+                                Console.WriteLine("please enter the ID of the parcel and drone to collect");
+                                pID = Convert.ToInt32(Console.ReadLine());
+                                dID = Convert.ToInt32(Console.ReadLine());
+                                data.Parcelcollection(pID, dID);
                                 break;
                             case 2://Parcel delivery
+                                Console.WriteLine("please enter the ID of the parcel and customer to deliver to");
+                                pID = Convert.ToInt32(Console.ReadLine());
+                                int cID = Convert.ToInt32(Console.ReadLine());
+                                data.ParcelDelivery(pID, cID);
                                 break;
                             case 3://Charge Drone
+                                Console.WriteLine("All the available station:");
+                                data.DisplayAvailableStation();
+                                Console.WriteLine("please enter the ID of the drone and staition to charge");
+                                dID = Convert.ToInt32(Console.ReadLine());
+                                int sID = Convert.ToInt32(Console.ReadLine());
+                                data.ChargeDrone(dID, sID);
                                 break;
                             case 4://Discharge Drone
+                                Console.WriteLine("please enter the ID of the drone to discharge");
+                                dID = Convert.ToInt32(Console.ReadLine());
+                                data.DischargeDrone(dID);
                                 break;
                         }
                         break;
@@ -136,23 +157,23 @@ namespace ConsoleUI
                         {
                             case 0:// display station
                                 Console.WriteLine("enter the ID of the station you would like to display");
-                                int IDs= Convert.ToInt32(Console.ReadLine());
-                                DalObject.DalObject.DisplayStation(IDs);
+                                int IDs = Convert.ToInt32(Console.ReadLine());
+                                data.DisplayStation(IDs);
                                 break;
                             case 1:// display drone
                                 Console.WriteLine("enter the ID of the drone you would like to display");
                                 int IDd = Convert.ToInt32(Console.ReadLine());
-                                DalObject.DalObject.DispalyDrone(IDd);
+                                data.DispalyDrone(IDd);
                                 break;
                             case 2:// display customer
                                 Console.WriteLine("enter the ID of the customer you would like to display");
                                 int IDc = Convert.ToInt32(Console.ReadLine());
-                                DalObject.DalObject.DisplayCustomer(IDc);
+                                data.DisplayCustomer(IDc);
                                 break;
                             case 3:// display parcel
                                 Console.WriteLine("enter the ID of the parcel you would like to display");
                                 int IDp = Convert.ToInt32(Console.ReadLine());
-                                DalObject.DalObject.DisplayParcel(IDp);
+                                data.DisplayParcel(IDp);
                                 break;
                         }
                         break;
@@ -163,22 +184,22 @@ namespace ConsoleUI
                         switch (dl)
                         {
                             case 0:// display list of stations
-                                DalObject.DalObject.DisplayStationList();
+                                data.DisplayStationList();
                                 break;
                             case 1:// display list of drones
-                                DalObject.DalObject.DisplayDroneList();
+                                data.DisplayDroneList();
                                 break;
                             case 2:// display list of customers
-                                DalObject.DalObject.DisplayCustomerList();
+                                data.DisplayCustomerList();
                                 break;
                             case 3:// display list of parcels
-                                DalObject.DalObject.DisplayParcelList();
+                                data.DisplayParcelList();
                                 break;
                             case 4: // display list of parcels unmatched
-                                DalObject.DalObject.DisplayParcelUnmatched();
+                                data.DisplayParcelUnmatched();
                                 break;
                             case 5: // display list of available charging station
-                                DalObject.DalObject.DisplayAvailableStation();
+                                data.DisplayAvailableStation();
                                 break;
                         }
 
