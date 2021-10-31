@@ -12,7 +12,7 @@ namespace ConsoleUI
             {
                 Console.WriteLine("Please select an action from options below:");
                 Console.WriteLine("0-Add\n 1-Update\n 2-Display item\n 3-Display list\n 4-Exit ");
-                 c = Convert.ToInt32(Console.ReadLine());
+                c = Convert.ToInt32(Console.ReadLine());
                 switch (c)
                 {
                     case 0://add
@@ -22,25 +22,43 @@ namespace ConsoleUI
                         switch (a)
                         {
                             case 0:// add station
-                                BaseStation NewStation=new BaseStation();
+                                BaseStation NewStation = new BaseStation();
                                 int ID;
                                 int Name;
                                 double Longitued;
                                 double Latitude;
                                 int ChargeSlots;
                                 Console.WriteLine("please insert id, name, longitude, latitude, charge slotes");
-                                ID= Convert.ToInt32(Console.ReadLine());
-                                Name= Convert.ToInt32(Console.ReadLine());
+                                ID = Convert.ToInt32(Console.ReadLine());
+                                Name = Convert.ToInt32(Console.ReadLine());
                                 Longitued = Convert.ToDouble(Console.ReadLine());
                                 Latitude = Convert.ToDouble(Console.ReadLine());
-                                ChargeSlots= Convert.ToInt32(Console.ReadLine());
+                                ChargeSlots = Convert.ToInt32(Console.ReadLine());
                                 NewStation.Id = ID;
                                 NewStation.Name = Name;
                                 NewStation.Longitude = Longitued;
-
-
+                                NewStation.Latitude = Latitude;
+                                NewStation.ChargeSlots = ChargeSlots;
+                                DalObject.DalObject.AddStation(NewStation);
                                 break;
                             case 1:// add drone
+                                Drone NewDrone = new Drone();
+                                String Model;
+                                Weights weights;
+                                DroneStatus status;
+                                double battery;
+                                Console.WriteLine("please insert id, model, weight,status, battery");
+                                ID = Convert.ToInt32(Console.ReadLine());
+                                Model = Console.ReadLine();
+                                Weights.TryParse(Console.ReadLine(), out weights);
+                                DroneStatus.TryParse(Console.ReadLine(), out status);
+                                battery = Convert.ToDouble(Console.ReadLine());
+                                NewDrone.Id = ID;
+                                NewDrone.Model = Model;
+                                NewDrone.weight = weights;
+                                NewDrone.status = status;
+                                NewDrone.Battery = battery;
+                                DalObject.DalObject.AddDrone(NewDrone);
                                 break;
                             case 2:// add customer
                                 break;
