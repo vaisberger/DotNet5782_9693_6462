@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using IDAL.DO;
+using DalObject;
 namespace ConsoleUI
 {
     class Program
     {
         static void Main(string[] args)
         {
+            DataSource data;
             int c;
             do
             {
@@ -82,8 +84,6 @@ namespace ConsoleUI
                                 int SenderId;
                                 int TargetId;
                                 Priorities priorty;
-                                DateTime Requsted;
-                                int DroneId;
                                 DateTime Scheduled;
                                 DateTime PickedUp;
                                 DateTime Delivered;
@@ -92,9 +92,7 @@ namespace ConsoleUI
                                 SenderId= Convert.ToInt32(Console.ReadLine()); 
                                 TargetId= Convert.ToInt32(Console.ReadLine());
                                 Weights.TryParse(Console.ReadLine(), out weights);
-                                Priorities.TryParse(Console.ReadLine(), out priorty); 
-                                DateTime.TryParse(Console.ReadLine(), out Requsted);
-                                DroneId = Convert.ToInt32(Console.ReadLine());
+                                Priorities.TryParse(Console.ReadLine(), out priorty);
                                 DateTime.TryParse(Console.ReadLine(), out Scheduled);
                                 DateTime.TryParse(Console.ReadLine(), out PickedUp);
                                 DateTime.TryParse(Console.ReadLine(), out Delivered);
@@ -103,8 +101,8 @@ namespace ConsoleUI
                                 NewParcel.TargetId=TargetId;
                                 NewParcel.weight = weights;
                                 NewParcel.priorty = priorty;
-                                NewParcel.Requsted =Requsted;
-                                NewParcel.DroneId = DroneId;
+                                NewParcel.Requsted =DateTime.Now;
+                                NewParcel.DroneId = 0;
                                 NewParcel.Scheduled = Scheduled;
                                 NewParcel.PickedUp = PickedUp;
                                 NewParcel.Delivered = Delivered;
@@ -120,7 +118,8 @@ namespace ConsoleUI
                         {
                             case 0://Match drone to parcel
                                 Console.WriteLine("please enter the ID of the parcel to match");
-
+                                int pID= Convert.ToInt32(Console.ReadLine());
+                                
                                 break;
                             case 1://Parcel collection
                                 break;

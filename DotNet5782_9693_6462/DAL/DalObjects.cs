@@ -6,7 +6,9 @@ namespace DalObject
 {
     public class DalObject
     {
-        // Absorption of a new customer to the customer list
+        public DalObject() {
+            DataSource.Initialize();
+        }
         public static void AddCustomer(Customer c)
         {
             DataSource.customers.Add(c);
@@ -21,14 +23,20 @@ namespace DalObject
         {
             DataSource.drones.Add(d);
         }
-        //Receipt of parcel for sending
-        public static void AddParcel(Parcel p)
+        public static int AddParcel(Parcel p)
         {
             DataSource.parcels.Add(p);
+            DataSource.Config.ParcelSerial += 1;
+            return DataSource.Config.ParcelSerial;
+        }
+        public static void Parcelcollection(Parcel p,Drone d)
+        {
+            p.DroneId = d.Id;
+            d.status = DroneStatus.Shipment;
+            p.PickedUp = DateTime.Now;
+
         }
 
-
-        //Displays a base station by ID 
         public static void DisplayStation(int Id)
         {
             DataSource.station.Find(x => x.Id == Id).ToString();
