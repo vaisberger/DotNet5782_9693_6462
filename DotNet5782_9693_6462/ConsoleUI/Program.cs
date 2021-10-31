@@ -81,24 +81,20 @@ namespace ConsoleUI
                                 break;
                             case 3:// add parcel
                                 Parcel NewParcel = new Parcel();
-                                int SenderId;
-                                int TargetId;
                                 Priorities priorty;
                                 DateTime Scheduled;
                                 DateTime PickedUp;
                                 DateTime Delivered;
                                 Console.WriteLine("please enter Id, Sender ID, Target ID, weight, priorty, Requsted, Drone ID, Scheduled, Picked Up, Delivered ");
                                 ID = Convert.ToInt32(Console.ReadLine());
-                                SenderId= Convert.ToInt32(Console.ReadLine()); 
-                                TargetId= Convert.ToInt32(Console.ReadLine());
                                 Weights.TryParse(Console.ReadLine(), out weights);
                                 Priorities.TryParse(Console.ReadLine(), out priorty);
                                 DateTime.TryParse(Console.ReadLine(), out Scheduled);
                                 DateTime.TryParse(Console.ReadLine(), out PickedUp);
                                 DateTime.TryParse(Console.ReadLine(), out Delivered);
                                 NewParcel.Id = ID;
-                                NewParcel.SenderId=SenderId;
-                                NewParcel.TargetId=TargetId;
+                                NewParcel.SenderId=0;
+                                NewParcel.TargetId=0;
                                 NewParcel.weight = weights;
                                 NewParcel.priorty = priorty;
                                 NewParcel.Requsted =DateTime.Now;
