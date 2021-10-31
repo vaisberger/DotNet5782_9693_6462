@@ -6,6 +6,7 @@ namespace DalObject
 {
     public class DalObject
     {
+      
         public static void AddCustomer(Customer c)
         {
             DataSource.customers.Add(c);
@@ -21,9 +22,15 @@ namespace DalObject
         public static void AddParcel(Parcel p)
         {
             DataSource.parcels.Add(p);
+            DataSource.Config.ParcelSerial += 1;
         }
+        public static void Parcelcollection(Parcel p,Drone d)
+        {
+            p.DroneId = d.Id;
+            d.status = DroneStatus.Shipment;
+            p.PickedUp = DateTime.Now;
 
-
+        }
 
         public static void DisplayStation(int Id)
         {
