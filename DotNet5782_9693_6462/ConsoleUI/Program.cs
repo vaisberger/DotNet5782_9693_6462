@@ -6,9 +6,10 @@ namespace ConsoleUI
 {
     class Program
     {
-        static void Main(string[] args)
+        
+        public  void Main(string[] args)
         {
-            DataSource data;
+            
             int c;
             do
             {
@@ -41,7 +42,7 @@ namespace ConsoleUI
                                 NewStation.Longitude = Longitued;
                                 NewStation.Latitude = Latitude;
                                 NewStation.ChargeSlots = ChargeSlots;
-                                DalObject.DalObject.AddStation(NewStation);
+                                data.AddStation(NewStation);
                                 break;
                             case 1:// add drone
                                 Drone NewDrone = new Drone();
@@ -60,7 +61,7 @@ namespace ConsoleUI
                                 NewDrone.MaxWeight = weights;
                                 NewDrone.status = status;
                                 NewDrone.Battery = battery;
-                                DalObject.DalObject.AddDrone(NewDrone);
+                                DalObject.AddDrone(NewDrone);
                                 break;
                             case 2:// add customer
                                 Customer NewCustomer = new Customer();
