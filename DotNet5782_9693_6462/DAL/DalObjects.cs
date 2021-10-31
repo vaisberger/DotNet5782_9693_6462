@@ -6,6 +6,7 @@ namespace DalObject
 {
     public class DalObject
     {
+        //
         public static void AddCustomer(Customer c)
         {
             DataSource.customers.Add(c);
@@ -91,6 +92,24 @@ namespace DalObject
                 }
             }
         }
+        public static void UpdateParcelToDrone(int droneId ,int parcleId)
+        {
+            for(int i=0; i<DataSource.parcels.Count; i++)
+            {
+                if(DataSource.parcels[i].Id==parcleId)
+                {
+                    Parcel P = new Parcel();
+                    P = DataSource.parcels[i];
+                    P.DroneId = droneId;
+                    P.Scheduled = DateTime.Now;
+                    DataSource.parcels[i] = P;
+                    
+
+                }
+            }
+
+        }
+       // public static void SendDroneTOCharging(int DronId)
 
     }
 }
