@@ -22,9 +22,6 @@ namespace IDAL
             Normal, Fast, Urgent
         }
 
-        public enum Choices
-        {
-            Add,
-        }
+
     }
 }
