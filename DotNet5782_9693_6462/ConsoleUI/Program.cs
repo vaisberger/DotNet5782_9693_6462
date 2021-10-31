@@ -5,14 +5,10 @@ namespace ConsoleUI
 {
     class Program
     {
-        static void Main(Choices c)
+        static void Main()
         {
-            int i = (int) c;
-            switch (i)
-            {
-                
 
-            }
         }
+
     }
 }
