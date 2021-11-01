@@ -59,6 +59,7 @@ namespace DalObject
             parcels.Add(new Parcel { Id = 0, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//9
             parcels.Add(new Parcel { Id = 0, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//10
         }
+
     }
 
 }
