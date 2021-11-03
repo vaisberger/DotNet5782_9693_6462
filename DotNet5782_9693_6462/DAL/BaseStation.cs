@@ -18,7 +18,7 @@ namespace IDAL
 
             public override string ToString()//print
             {
-                return "ID:" + Id + "Name:" + Name + "Longitude:" + Longitude + "Latitude:" + Latitude + "ChargeSlots:" + ChargeSlots;
+                return "ID: " + Id + " Name: " + Name + " Longitude: " + Longitude + " Latitude: " + Latitude + " ChargeSlots: " + ChargeSlots;
             }
         }
 

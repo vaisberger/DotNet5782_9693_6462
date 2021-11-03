@@ -8,6 +8,8 @@ namespace ConsoleUI
 {
     class Program
     {
+        static DalObject.DalObject data = new DalObject.DalObject();
+
         static void Main(string[] args)
         {
 
@@ -15,7 +17,7 @@ namespace ConsoleUI
             int c;
             do
             {
-                DalObject.DalObject data = new DalObject.DalObject();
+                
                 Console.WriteLine("Please select an action from options below:");
                 Console.WriteLine(" 0-Add\n 1-Update\n 2-Display item\n 3-Display list\n 4-Exit ");
                 c = Convert.ToInt32(Console.ReadLine());
@@ -28,24 +30,7 @@ namespace ConsoleUI
                         switch (a)
                         {
                             case 0:// add station
-                                BaseStation NewStation = new BaseStation();
-                                int ID;
-                                int Name;
-                                double Longitued;
-                                double Latitude;
-                                int ChargeSlots;
-                                Console.WriteLine("please enter id, name, longitude, latitude, charge slotes");
-                                ID = Convert.ToInt32(Console.ReadLine());
-                                Name = Convert.ToInt32(Console.ReadLine());
-                                Longitued = Convert.ToDouble(Console.ReadLine());
-                                Latitude = Convert.ToDouble(Console.ReadLine());
-                                ChargeSlots = Convert.ToInt32(Console.ReadLine());
-                                NewStation.Id = ID;
-                                NewStation.Name = Name;
-                                NewStation.Longitude = Longitued;
-                                NewStation.Latitude = Latitude;
-                                NewStation.ChargeSlots = ChargeSlots;
-                                data.AddStation(NewStation);
+                                addStation();
                                 break;
                             case 1:// add drone
                                 Drone NewDrone = new Drone();
@@ -54,7 +39,7 @@ namespace ConsoleUI
                                 DroneStatus status;
                                 double battery;
                                 Console.WriteLine("please enter id, model, Max weight,status, battery");
-                                ID = Convert.ToInt32(Console.ReadLine());
+                                int ID = Convert.ToInt32(Console.ReadLine());
                                 Model = Console.ReadLine();
                                 Weights.TryParse(Console.ReadLine(), out weights);
                                 DroneStatus.TryParse(Console.ReadLine(), out status);
@@ -71,12 +56,12 @@ namespace ConsoleUI
                                 String name;
                                 String Phone;
                                 Console.WriteLine("please enter id, name, phone, longitude, latitude");
-                                ID = Convert.ToInt32(Console.ReadLine());
+                                int Id = Convert.ToInt32(Console.ReadLine());
                                 name = Console.ReadLine();
                                 Phone = Console.ReadLine();
-                                Longitued = Convert.ToDouble(Console.ReadLine());
-                                Latitude = Convert.ToDouble(Console.ReadLine());
-                                NewCustomer.Id = ID;
+                                double Longitued = Convert.ToDouble(Console.ReadLine());
+                                double Latitude = Convert.ToDouble(Console.ReadLine());
+                                NewCustomer.Id = Id;
                                 NewCustomer.Name = name;
                                 NewCustomer.Phone = Phone;
                                 NewCustomer.Longitude = Longitued;
@@ -213,6 +198,33 @@ namespace ConsoleUI
             } while (c != 4);
 
 
+        }
+
+        private static void addStation()
+        {
+            int Name;
+            int ID;
+            int ChargeSlots;
+            double Longitued;
+            double Latitude;
+
+            Console.WriteLine("please enter id, name, longitude, latitude, charge slotes");
+            ID = Convert.ToInt32(Console.ReadLine());
+            Name = Convert.ToInt32(Console.ReadLine());
+            Longitued = Convert.ToDouble(Console.ReadLine());
+            Latitude = Convert.ToDouble(Console.ReadLine());
+            ChargeSlots = Convert.ToInt32(Console.ReadLine());
+
+            BaseStation NewStation = new BaseStation()
+            {
+                Id = ID,
+                Name = Name,
+                Longitude = Longitued,
+                Latitude = Latitude,
+                ChargeSlots = ChargeSlots,
+            };
+
+            data.AddStation(ref NewStation);
         }
     }
 }

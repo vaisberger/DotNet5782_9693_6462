@@ -11,11 +11,13 @@ namespace DalObject
     public struct DataSource
     {
         internal static List<Customer> customers = new List<Customer>();
-        internal static List<BaseStation> station = new List<BaseStation>();
+        internal static List<BaseStation> stations = new List<BaseStation>();
         internal static List<Drone> drones = new List<Drone>();
         internal static List<Parcel> parcels = new List<Parcel>();
         internal static List<DroneCharge> droneCharges = new List<DroneCharge>();
+
         public static Random r = new Random();
+
         internal class Config
         {
             internal static int ParcelSerial = 0;
@@ -32,8 +34,8 @@ namespace DalObject
             drones.Add(new Drone { Id = 0, Model = "x404", status = DroneStatus.Maitenance, Battery = r.Next(5, 100), MaxWeight = Weights.Light });//5
 
             //add 2 stations
-            station.Add(new BaseStation { Id = r.Next(1000, 10000), Name = 1212, Longitude = r.Next(10000, 100000), Latitude = r.Next(10000, 100000), ChargeSlots = r.Next(0, 6) });//1
-            station.Add(new BaseStation { Id = r.Next(1000, 10000), Name = 1313, Longitude = r.Next(10000, 100000), Latitude = r.Next(10000, 100000), ChargeSlots = r.Next(0, 6) });//2
+            stations.Add(new BaseStation { Id = r.Next(1000, 10000), Name = 1212, Longitude = r.Next(10000, 100000), Latitude = r.Next(10000, 100000), ChargeSlots = r.Next(0, 6) });//1
+            stations.Add(new BaseStation { Id = r.Next(1000, 10000), Name = 1313, Longitude = r.Next(10000, 100000), Latitude = r.Next(10000, 100000), ChargeSlots = r.Next(0, 6) });//2
 
             //add 10 customer
             customers.Add(new Customer { Id = 0, Name = "aaaa", Phone = $"0{r.Next(51, 58)}{r.Next(1000000, 9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });//1

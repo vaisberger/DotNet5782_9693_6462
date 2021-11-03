@@ -12,7 +12,7 @@ namespace DalObject
         {
             DataSource.Initialize();
         }
-        
+         
         //Add a parcel  to the list of  parcel
         public int AddParcel(Parcel p)
         {
@@ -27,9 +27,9 @@ namespace DalObject
         }
 
         //Add a base station to the list of stations
-        public void AddStation(BaseStation s)
+        public void AddStation(ref BaseStation s)
         {
-            DataSource.station.Add(s);
+            DataSource.stations.Add(s);
         }
         // Add a drone  to the list of  drones
         public void AddDrone(Drone d)
@@ -115,14 +115,14 @@ namespace DalObject
                     DataSource.drones[i] = D;
                 }
             }
-            for (int i = 0; i < DataSource.station.Count; i++)
+            for (int i = 0; i < DataSource.stations.Count; i++)
             {
-                if (DataSource.station[i].Id == s)
+                if (DataSource.stations[i].Id == s)
                 {
                     BaseStation S = new BaseStation();
-                    S = DataSource.station[i];
+                    S = DataSource.stations[i];
                     S.ChargeSlots -= 1;
-                    DataSource.station[i] = S;
+                    DataSource.stations[i] = S;
                 }
             }
             DroneCharge dc = new DroneCharge();
@@ -159,7 +159,7 @@ namespace DalObject
         ////Drone display by ID
         public void DisplayStation(int Id)
         {
-            DataSource.station.Find(x => x.Id == Id).ToString();
+            DataSource.stations.Find(x => x.Id == Id).ToString();
         }
        public void DisplayDrone(int Id)
         {
@@ -198,7 +198,7 @@ namespace DalObject
         //Displays a list of base stations
         public void DisplayStationList()
         {
-            foreach (BaseStation b in DataSource.station)
+            foreach (BaseStation b in DataSource.stations)
             {
                 Console.WriteLine(b.ToString());
             }
@@ -234,7 +234,7 @@ namespace DalObject
         //Displays base stations with available charging stations
         public void DisplayAvailableStation()
         {
-            foreach (BaseStation b in DataSource.station)
+            foreach (BaseStation b in DataSource.stations)
             {
                 if (b.Longitude != 0)
                 {
