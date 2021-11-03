@@ -167,7 +167,8 @@ namespace DalObject
             {
                 if(DataSource.drones[i].Id==Id)
                 {
-                    DataSource.drones[i].ToString();
+                    Console.WriteLine(DataSource.drones[i].ToString());
+                    
                     return;
                 }
             }
