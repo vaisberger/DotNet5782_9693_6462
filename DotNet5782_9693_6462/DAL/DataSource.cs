@@ -27,11 +27,11 @@ namespace DalObject
         {
             Random r = new Random();
             //add 5 drones
-            drones.Add(new Drone { Id = 33, Model = "x400", status = DroneStatus.Available, Battery = r.Next(5, 100), MaxWeight = Weights.Heavy });//1
-            drones.Add(new Drone { Id = 55, Model = "x401", status = DroneStatus.Maitenance, Battery = r.Next(5, 100), MaxWeight = Weights.Light });//2
-            drones.Add(new Drone { Id = 66, Model = "x402", status = DroneStatus.Shipment, Battery = r.Next(5, 100), MaxWeight = Weights.Medium });//3
-            drones.Add(new Drone { Id = 77, Model = "x403", status = DroneStatus.Available, Battery = r.Next(5, 100), MaxWeight = Weights.Heavy });//4
-            drones.Add(new Drone { Id = 88, Model = "x404", status = DroneStatus.Maitenance, Battery = r.Next(5, 100), MaxWeight = Weights.Light });//5
+            drones.Add(new Drone { Id = 0, Model = "x400", status = DroneStatus.Available, Battery = r.Next(5, 100), MaxWeight = Weights.Heavy });//1
+            drones.Add(new Drone { Id = 0, Model = "x401", status = DroneStatus.Maitenance, Battery = r.Next(5, 100), MaxWeight = Weights.Light });//2
+            drones.Add(new Drone { Id = 0, Model = "x402", status = DroneStatus.Shipment, Battery = r.Next(5, 100), MaxWeight = Weights.Medium });//3
+            drones.Add(new Drone { Id = 0, Model = "x403", status = DroneStatus.Available, Battery = r.Next(5, 100), MaxWeight = Weights.Heavy });//4
+            drones.Add(new Drone { Id = 0, Model = "x404", status = DroneStatus.Maitenance, Battery = r.Next(5, 100), MaxWeight = Weights.Light });//5
 
             //add 2 stations
             stations.Add(new BaseStation { Id = r.Next(1000, 10000), Name = 1212, Longitude = r.Next(10000, 100000), Latitude = r.Next(10000, 100000), ChargeSlots = r.Next(0, 6) });//1
