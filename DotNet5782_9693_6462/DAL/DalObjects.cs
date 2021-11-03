@@ -12,7 +12,7 @@ namespace DalObject
         {
             DataSource.Initialize();
         }
-         
+
         //Add a parcel  to the list of  parcel
         public int AddParcel(Parcel p)
         {
@@ -161,14 +161,14 @@ namespace DalObject
         {
             DataSource.stations.Find(x => x.Id == Id).ToString();
         }
-       public void DisplayDrone(int Id)
+        public void DisplayDrone(int Id)
         {
-            for(int i=0; i<DataSource.drones.Count; i++)
+            for (int i = 0; i < DataSource.drones.Count; i++)
             {
-                if(DataSource.drones[i].Id==Id)
+                if (DataSource.drones[i].Id == Id)
                 {
                     Console.WriteLine(DataSource.drones[i].ToString());
-                    
+
                     return;
                 }
             }
