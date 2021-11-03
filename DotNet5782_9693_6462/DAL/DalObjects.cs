@@ -161,11 +161,22 @@ namespace DalObject
         {
             DataSource.station.Find(x => x.Id == Id).ToString();
         }
+       public void DisplayDrone(int Id)
+        {
+            for(int i=0; i<DataSource.drones.Count; i++)
+            {
+                if(DataSource.drones[i].Id==Id)
+                {
+                    DataSource.drones[i].ToString();
+                    return;
+                }
+            }
+        }
         //Drone display by ID 
-        public void DispalyDrone(int Id)
+        /*public void DispalyDrone(int Id)
         {
             DataSource.drones.Find(x => x.Id == Id).ToString();
-        }
+        }*/
         //Displays customer by ID 
         public void DisplayCustomer(int Id)
         {
