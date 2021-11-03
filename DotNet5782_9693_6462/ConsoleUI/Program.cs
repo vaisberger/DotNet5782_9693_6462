@@ -148,7 +148,7 @@ namespace ConsoleUI
                             case 1:// display drone
                                 Console.WriteLine("enter the ID of the drone you would like to display");
                                 int IDd = Convert.ToInt32(Console.ReadLine());
-                                data.DispalyDrone(IDd);
+                                data.DisplayDrone(IDd);
                                 break;
                             case 2:// display customer
                                 Console.WriteLine("enter the ID of the customer you would like to display");
@@ -225,6 +225,14 @@ namespace ConsoleUI
             };
 
             data.AddStation(ref NewStation);
+        }
+        private static void addDrone()
+        {
+            int ID;
+            String Model;
+            Weights weights;
+            DroneStatus status;
+            double battery;
         }
     }
 }
