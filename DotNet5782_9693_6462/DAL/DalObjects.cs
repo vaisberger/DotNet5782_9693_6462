@@ -159,9 +159,17 @@ namespace DalObject
         ////Drone display by ID
         public void DisplayStation(int Id)
         {
-            DataSource.stations.Find(x => x.Id == Id).ToString();
+            for(int i=0; i<DataSource.stations.Count; i++)
+            {
+                if(DataSource.stations[i].Id==Id)
+                {
+                    Console.WriteLine(DataSource.stations[i].ToString());
+                    return;
+                }
+            }
         }
-       public void DisplayDrone(int Id)
+        //Drone display by ID
+        public void DisplayDrone(int Id)
         {
             for(int i=0; i<DataSource.drones.Count; i++)
             {
@@ -173,20 +181,30 @@ namespace DalObject
                 }
             }
         }
-        //Drone display by ID 
-        /*public void DispalyDrone(int Id)
-        {
-            DataSource.drones.Find(x => x.Id == Id).ToString();
-        }*/
+  
         //Displays customer by ID 
         public void DisplayCustomer(int Id)
         {
-            DataSource.customers.Find(x => x.Id == Id).ToString();
+            for(int i=0; i<DataSource.customers.Count; i++)
+            {
+                if (DataSource.customers[i].Id==Id)
+                {
+                    Console.WriteLine(DataSource.customers[i].ToString());
+                    return;
+                }
+            }
         }
         //Displays parcel by ID 
         public void DisplayParcel(int Id)
         {
-            DataSource.parcels.Find(x => x.Id == Id).ToString();
+            for(int i=0; i<DataSource.parcels.Count;i++)
+            {
+                if(DataSource.parcels[i].Id==Id)
+                {
+                    Console.WriteLine(DataSource.parcels[i].ToString());
+                    return;
+                }
+            }
         }
         //Displays a list of drone
         public void DisplayDroneList()
