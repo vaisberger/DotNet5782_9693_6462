@@ -17,7 +17,7 @@ namespace ConsoleUI
             int c;
             do
             {
-                
+
                 Console.WriteLine("Please select an action from options below:");
                 Console.WriteLine(" 0-Add\n 1-Update\n 2-Display item\n 3-Display list\n 4-Exit ");
                 c = Convert.ToInt32(Console.ReadLine());
@@ -33,65 +33,13 @@ namespace ConsoleUI
                                 addStation();
                                 break;
                             case 1:// add drone
-                                Drone NewDrone = new Drone();
-                                String Model;
-                                Weights weights;
-                                DroneStatus status;
-                                double battery;
-                                Console.WriteLine("please enter id, model, Max weight,status, battery");
-                                int ID = Convert.ToInt32(Console.ReadLine());
-                                Model = Console.ReadLine();
-                                Weights.TryParse(Console.ReadLine(), out weights);
-                                DroneStatus.TryParse(Console.ReadLine(), out status);
-                                battery = Convert.ToDouble(Console.ReadLine());
-                                NewDrone.Id = ID;
-                                NewDrone.Model = Model;
-                                NewDrone.MaxWeight = weights;
-                                NewDrone.status = status;
-                                NewDrone.Battery = battery;
-                                data.AddDrone(NewDrone);
+                                addDrone();
                                 break;
                             case 2:// add customer
-                                Customer NewCustomer = new Customer();
-                                String name;
-                                String Phone;
-                                Console.WriteLine("please enter id, name, phone, longitude, latitude");
-                                int Id = Convert.ToInt32(Console.ReadLine());
-                                name = Console.ReadLine();
-                                Phone = Console.ReadLine();
-                                double Longitued = Convert.ToDouble(Console.ReadLine());
-                                double Latitude = Convert.ToDouble(Console.ReadLine());
-                                NewCustomer.Id = Id;
-                                NewCustomer.Name = name;
-                                NewCustomer.Phone = Phone;
-                                NewCustomer.Longitude = Longitued;
-                                NewCustomer.Latitude = Latitude;
-                                data.AddCustomer(NewCustomer);
+                                addCustomer();
                                 break;
                             case 3:// add parcel
-                                Parcel NewParcel = new Parcel();
-                                Priorities priorty;
-                                DateTime Scheduled;
-                                DateTime PickedUp;
-                                DateTime Delivered;
-                                Console.WriteLine("please enter Id, Sender ID, Target ID, weight, priorty, Requsted, Drone ID, Scheduled, Picked Up, Delivered ");
-                                ID = Convert.ToInt32(Console.ReadLine());
-                                Weights.TryParse(Console.ReadLine(), out weights);
-                                Priorities.TryParse(Console.ReadLine(), out priorty);
-                                DateTime.TryParse(Console.ReadLine(), out Scheduled);
-                                DateTime.TryParse(Console.ReadLine(), out PickedUp);
-                                DateTime.TryParse(Console.ReadLine(), out Delivered);
-                                NewParcel.Id = ID;
-                                NewParcel.SenderId = 0;
-                                NewParcel.TargetId = 0;
-                                NewParcel.weight = weights;
-                                NewParcel.priorty = priorty;
-                                NewParcel.Requsted = DateTime.Now;
-                                NewParcel.DroneId = 0;
-                                NewParcel.Scheduled = Scheduled;
-                                NewParcel.PickedUp = PickedUp;
-                                NewParcel.Delivered = Delivered;
-                                data.AddParcel(NewParcel);
+                                addParcel();
                                 break;
                         }
                         break;
@@ -202,18 +150,12 @@ namespace ConsoleUI
 
         private static void addStation()
         {
-            int Name;
-            int ID;
-            int ChargeSlots;
-            double Longitued;
-            double Latitude;
-
             Console.WriteLine("please enter id, name, longitude, latitude, charge slotes");
-            ID = Convert.ToInt32(Console.ReadLine());
-            Name = Convert.ToInt32(Console.ReadLine());
-            Longitued = Convert.ToDouble(Console.ReadLine());
-            Latitude = Convert.ToDouble(Console.ReadLine());
-            ChargeSlots = Convert.ToInt32(Console.ReadLine());
+            int ID = Convert.ToInt32(Console.ReadLine());
+            int Name = Convert.ToInt32(Console.ReadLine());
+            double Longitued = Convert.ToDouble(Console.ReadLine());
+            double Latitude = Convert.ToDouble(Console.ReadLine());
+            int ChargeSlots = Convert.ToInt32(Console.ReadLine());
 
             BaseStation NewStation = new BaseStation()
             {
@@ -228,11 +170,75 @@ namespace ConsoleUI
         }
         private static void addDrone()
         {
-            int ID;
-            String Model;
+
             Weights weights;
-            DroneStatus status;
-            double battery;
+            DroneStatus Status;
+            Console.WriteLine("please enter id, model, Max weight,status, battery");
+            int ID = Convert.ToInt32(Console.ReadLine());
+            String model = Console.ReadLine();
+            Weights.TryParse(Console.ReadLine(), out weights);
+            DroneStatus.TryParse(Console.ReadLine(), out Status);
+            double battery = Convert.ToDouble(Console.ReadLine());
+            Drone NewDrone = new Drone()
+            {
+                Id = ID,
+                Model = model,
+                MaxWeight = weights,
+                status = Status,
+                Battery = battery,
+            };
+            data.AddDrone(NewDrone);
+
+        }
+
+        private static void addCustomer()
+        {
+            Console.WriteLine("please enter id, name, phone, longitude, latitude");
+            int ID = Convert.ToInt32(Console.ReadLine());
+            String name = Console.ReadLine();
+            String phone = Console.ReadLine();
+            double longitued = Convert.ToDouble(Console.ReadLine());
+            double latitude = Convert.ToDouble(Console.ReadLine());
+            Customer NewCustomer = new Customer()
+            {
+                Id = ID,
+                Name = name,
+                Phone = phone,
+                Longitude = longitued,
+                Latitude = latitude,
+            };
+
+            data.AddCustomer(NewCustomer);
+        }
+
+        private static void addParcel()
+        {
+            Priorities Priorty;
+            DateTime scheduled;
+            DateTime pickedUp;
+            DateTime delivered;
+            Weights Weight;
+            Console.WriteLine("please enter Id, Sender ID, Target ID, weight, priorty, Requsted, Drone ID, Scheduled, Picked Up, Delivered ");
+            int ID = Convert.ToInt32(Console.ReadLine());
+            Weights.TryParse(Console.ReadLine(), out Weight);
+            Priorities.TryParse(Console.ReadLine(), out Priorty);
+            DateTime.TryParse(Console.ReadLine(), out scheduled);
+            DateTime.TryParse(Console.ReadLine(), out pickedUp);
+            DateTime.TryParse(Console.ReadLine(), out delivered);
+            Parcel NewParcel = new Parcel()
+            {
+                Id = ID,
+                SenderId = 0,
+                TargetId = 0,
+                weight = Weight,
+                priorty = Priorty,
+                Requsted = DateTime.Now,
+                DroneId = 0,
+                Scheduled = scheduled,
+                PickedUp = pickedUp,
+                Delivered = delivered,
+            };
+            data.AddParcel(NewParcel);
         }
     }
 }
