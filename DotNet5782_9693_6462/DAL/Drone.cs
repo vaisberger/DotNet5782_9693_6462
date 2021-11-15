@@ -16,6 +16,8 @@ namespace IDAL
             public String Model { get; set; }
             public Weights MaxWeight { get; set; }
             //public DroneStatus status { get; set; }
+            //public double Battery { get; set; }
+            //public DroneStatus status { get; set; }
           
             //public double Battery { get; set; }
             public override string ToString()//print
