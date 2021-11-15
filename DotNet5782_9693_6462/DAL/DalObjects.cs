@@ -77,7 +77,7 @@ namespace DalObject
                 {
                     Drone D = new Drone();
                     D = DataSource.drones[i];
-                    D.status = DroneStatus.Shipment;
+                    //D.status = DroneStatus.Shipment;
                     DataSource.drones[i] = D;
                 }
             }
@@ -111,7 +111,7 @@ namespace DalObject
                 {
                     Drone D = new Drone();
                     D = DataSource.drones[i];
-                    D.status = DroneStatus.Maitenance;
+                   // D.status = DroneStatus.Maitenance;
                     DataSource.drones[i] = D;
                 }
             }
@@ -141,7 +141,7 @@ namespace DalObject
                 {
                     Drone D = new Drone();
                     D = DataSource.drones[i];
-                    D.status = DroneStatus.Available;
+                    //D.status = DroneStatus.Available;
                     DataSource.drones[i] = D;
                 }
             }
