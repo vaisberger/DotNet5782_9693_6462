@@ -172,20 +172,16 @@ namespace ConsoleUI
         {
 
             Weights weights;
-            DroneStatus Status;
             Console.WriteLine("please enter id, model, Max weight,status, battery");
             int ID = Convert.ToInt32(Console.ReadLine());
             String model = Console.ReadLine();
             Weights.TryParse(Console.ReadLine(), out weights);
-            DroneStatus.TryParse(Console.ReadLine(), out Status);
             double battery = Convert.ToDouble(Console.ReadLine());
             Drone NewDrone = new Drone()
             {
                 Id = ID,
                 Model = model,
                 MaxWeight = weights,
-                status = Status,
-                Battery = battery,
             };
             data.AddDrone(NewDrone);
 
