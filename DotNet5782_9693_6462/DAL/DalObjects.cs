@@ -1,5 +1,9 @@
 ﻿using System;
 using IDAL.DO;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace DalObject
@@ -7,8 +11,9 @@ namespace DalObject
 
     public class DalObject
     {
-        //constructor
-        public DalObject()
+ 
+    //constructor
+    public DalObject()
         {
             DataSource.Initialize();
         }
