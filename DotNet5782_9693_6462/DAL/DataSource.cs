@@ -21,6 +21,11 @@ namespace DalObject
         internal class Config
         {
             internal static int ParcelSerial = 10000;
+            internal static double Avaliable { get => 0;}
+            internal static double Light { get => 25;}
+            internal static double Medium { get => 60; }
+            internal static double Heavy { get => 100; }
+            internal static double ChargingRate { get => 15; }
         }
         internal static void Initialize() //Initiating function
         {
