@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class IBL
+    namespace BO
     {
+          interface  IBL
+        {
+        }
     }
 }

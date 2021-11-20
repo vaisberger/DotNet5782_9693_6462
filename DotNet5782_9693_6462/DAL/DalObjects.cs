@@ -9,7 +9,7 @@ using System.Linq;
 namespace DalObject
 {
 
-    public class DalObject
+    internal class DalObject
     {
  
     //constructor
@@ -19,11 +19,11 @@ namespace DalObject
         }
 
             //Add a parcel  to the list of  parcel
-            public int AddParcel(Parcel p)
+            public void AddParcel(Parcel p)
             {
                 DataSource.parcels.Add(p);
-                DataSource.Config.ParcelSerial += 1;
-                return DataSource.Config.ParcelSerial;
+               // DataSource.Config.ParcelSerial += 1;
+                //return DataSource.Config.ParcelSerial;
             }
             //Add customer to the list of customer
             public void AddCustomer(Customer c)
@@ -265,6 +265,7 @@ namespace DalObject
                     }
                 }
             }
+
         
 
 
