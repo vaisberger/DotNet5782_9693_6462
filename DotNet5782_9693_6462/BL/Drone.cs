@@ -15,6 +15,7 @@ namespace IBL
             public String Model { get; set; }
             public Weights MaxWeight { get; set; }
             public DroneStatus status { get; set; }
+            public double Battery { get; set; }
             public ParcelInRansfer parcelInRansfer{ get; set; }
             public Location location { get; set; }
 

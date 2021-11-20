@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,8 @@ namespace IBL
             public int Name { get; set; }
             public Location location { get; set; }
             public int AvailableChargingStations { get; set; }
-            public int BusyChaרgingStations { get; set; }
+            public List<DroneInCharging> DroneInChargings { get; set; }
+
 
 
 
