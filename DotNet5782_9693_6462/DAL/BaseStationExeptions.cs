@@ -8,10 +8,8 @@ using System.Runtime.Serialization;
 namespace IDAL.DO
 {
     [Serializable]
-    internal class BaseStationExeptions : Exception
+    public class BaseStationExeptions : Exception
     {
-        private int baseStationID;
-        private string expMsg;
         public BaseStationExeptions()
        {
 

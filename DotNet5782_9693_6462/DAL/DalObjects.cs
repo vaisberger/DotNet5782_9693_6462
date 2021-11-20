@@ -24,6 +24,10 @@ namespace DalObject
         //Add a parcel  to the list of  parcel
         public int AddParcel(Parcel p)
         {
+            if (DataSource.parcels.Exists(parcel => parcel.Id == p.Id))
+            {
+                throw new ParcelExeptions($"parcel {p.Id} allready exists ");
+            }
             DataSource.parcels.Add(p);
             DataSource.Config.ParcelSerial += 1;
             return DataSource.Config.ParcelSerial;
@@ -31,6 +35,10 @@ namespace DalObject
         //Add customer to the list of customer
         public void AddCustomer(Customer c)
         {
+            if (DataSource.customers.Exists(customer => customer.Id == c.Id))
+            {
+                throw new CustomerExeptions($"customer {c.Id} allready exists ");
+            }
             DataSource.customers.Add(c);
         }
 
@@ -46,11 +54,23 @@ namespace DalObject
         // Add a drone  to the list of  drones
         public void AddDrone(Drone d)
         {
+            if (DataSource.drones.Exists(drone => drone.Id == d.Id))
+            {
+                throw new DroneExeptions($"drone {d.Id} allready exists ");
+            }
             DataSource.drones.Add(d);
         }
         //Update parcel  to a drone
         public void UpdateParcelToDrone(int droneId, int parcleId)
         {
+            if (DataSource.parcels.Exists(parcel => parcel.Id != parcleId))
+            {
+                throw new ParcelExeptions($"parcel {parcleId} dosen't exists ");
+            }
+            if (DataSource.drones.Exists(drone => drone.Id != droneId))
+            {
+                throw new DroneExeptions($"drone {droneId} dosen't exists ");
+            }
             for (int i = 0; i < DataSource.parcels.Count; i++)
             {
                 if (DataSource.parcels[i].Id == parcleId)
@@ -69,6 +89,14 @@ namespace DalObject
         //Parcel collection drone
         public void Parcelcollection(int p, int d)
         {
+            if (DataSource.parcels.Exists(parcel => parcel.Id != p))
+            {
+                throw new ParcelExeptions($"parcel {p} dosen't exists ");
+            }
+            if (DataSource.drones.Exists(drone => drone.Id != d))
+            {
+                throw new DroneExeptions($"drone {d} dosen't exists ");
+            }
             for (int i = 0; i < DataSource.parcels.Count; i++)
             {
                 if (DataSource.parcels[i].Id == p)
@@ -99,6 +127,10 @@ namespace DalObject
         //Delivery of a parcel to the customer
         public void ParcelDelivery(int p, int c)
         {
+            if (DataSource.customers.Exists(customer => customer.Id !=c ))
+            {
+                throw new CustomerExeptions($"customer {c} dosen't exists ");
+            }
             for (int i = 0; i < DataSource.parcels.Count; i++)
             {
                 if (DataSource.parcels[i].Id == p)
@@ -117,6 +149,18 @@ namespace DalObject
         //Sending drone for charging at a base station
         public void ChargeDrone(int d, int s)
         {
+            if (DataSource.drones.Exists(drone => drone.Id != d))
+            {
+                throw new DroneExeptions($"drone {d} dosen't exists ");
+            }
+            if (DataSource.stations.Exists(station => station.Id != s))
+            {
+                throw new BaseStationExeptions($"station {s} dosen't exists ");
+            }
+            if (DataSource.droneCharges.Exists(drone => drone.DroneId == d))
+            {
+                throw new DroneChargeExeptions($"drone {d} allready in charging ");
+            }
             for (int i = 0; i < DataSource.drones.Count; i++)
             {
                 if (DataSource.drones[i].Id == d)
@@ -146,6 +190,10 @@ namespace DalObject
         //Discharge drone from charging at base station
         public void DischargeDrone(int d)
         {
+            if (DataSource.droneCharges.Exists(drone => drone.DroneId == d))
+            {
+                throw new DroneChargeExeptions($"station {d} dosen't exists ");
+            }
             DroneCharge dc;
             for (int i = 0; i < DataSource.drones.Count; i++)
             {
@@ -171,6 +219,10 @@ namespace DalObject
         ////Drone display by ID
         public void DisplayStation(int Id)
         {
+            if (DataSource.stations.Exists(station => station.Id != Id))
+            {
+                throw new BaseStationExeptions($"station {Id} dosen't exists ");
+            }
             for (int i = 0; i < DataSource.stations.Count; i++)
             {
                 if (DataSource.stations[i].Id == Id)
@@ -182,6 +234,10 @@ namespace DalObject
         }
         public void DisplayDrone(int Id)
         {
+            if (DataSource.drones.Exists(drone => drone.Id != Id))
+            {
+                throw new DroneExeptions($"station {Id} dosen't exists ");
+            }
             for (int i = 0; i < DataSource.drones.Count; i++)
             {
                 if (DataSource.drones[i].Id == Id)
@@ -196,6 +252,10 @@ namespace DalObject
         //Displays customer by ID 
         public void DisplayCustomer(int Id)
         {
+            if (DataSource.customers.Exists(customer => customer.Id != Id))
+            {
+                throw new CustomerExeptions($"customer {Id} dosen't exists ");
+            }
             for (int i = 0; i < DataSource.customers.Count; i++)
             {
                 if (DataSource.customers[i].Id == Id)
@@ -208,6 +268,10 @@ namespace DalObject
         //Displays parcel by ID 
         public void DisplayParcel(int Id)
         {
+            if (DataSource.drones.Exists(drone => drone.Id != Id))
+            {
+                throw new ParcelExeptions($"station {Id} dosen't exists ");
+            }
             for (int i = 0; i < DataSource.parcels.Count; i++)
             {
                 if (DataSource.parcels[i].Id == Id)
