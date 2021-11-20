@@ -20,13 +20,15 @@ namespace IDAL.DO
         {
 
         }
-        public BaseStationExeptions(int basestationid,string exmsg) : this(string.Format(""))
+        public BaseStationExeptions(string m,Exception exp) : base(m,exp)
         {
-            this.baseStationID = basestationid;
-            this.expMsg = exmsg;
+
         }
 
+        protected BaseStationExeptions(SerializationInfo info,StreamingContext contex) : base(info, contex)
+        {
 
+        }
     }
 
 }

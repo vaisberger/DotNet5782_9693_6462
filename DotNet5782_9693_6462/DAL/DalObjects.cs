@@ -35,8 +35,12 @@ namespace DalObject
         }
 
         //Add a base station to the list of stations
-        public void AddStation(ref BaseStation s)
+        public void AddStation(BaseStation s)
         {
+            if(DataSource.stations.Exists(station=> station.Id == s.Id))
+            {
+                throw new BaseStationExeptions($"station {s.Id} allready exists ");
+            }
             DataSource.stations.Add(s);
         }
         // Add a drone  to the list of  drones
