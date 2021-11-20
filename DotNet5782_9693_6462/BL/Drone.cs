@@ -1,4 +1,5 @@
 ﻿using BL;
+using BL.Bo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,10 @@ namespace IBL
             public String Model { get; set; }
             public Weights MaxWeight { get; set; }
             public DroneStatus status { get; set; }
-            public ParcelInRansfer parcelInRansfer{ get; set; }
-            public Location location { get; set; }
+            public double Battery { get; set; }
+            public ParcelInRansfer ParcelInRansfer{ get; set; }
 
-           
-
-        }
+            private Location location1 { get; set; }
     }
 }
 }
