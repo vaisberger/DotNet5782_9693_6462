@@ -45,7 +45,7 @@ namespace DalObject
         //Add a base station to the list of stations
         public void AddStation(BaseStation s)
         {
-            if(DataSource.stations.Exists(station=> station.Id == s.Id))
+            if (DataSource.stations.Exists(station => station.Id == s.Id))
             {
                 throw new BaseStationExeptions($"station {s.Id} allready exists ");
             }
@@ -127,7 +127,7 @@ namespace DalObject
         //Delivery of a parcel to the customer
         public void ParcelDelivery(int p, int c)
         {
-            if (DataSource.customers.Exists(customer => customer.Id !=c ))
+            if (DataSource.customers.Exists(customer => customer.Id != c))
             {
                 throw new CustomerExeptions($"customer {c} dosen't exists ");
             }
@@ -229,7 +229,7 @@ namespace DalObject
                 if (DataSource.stations[i].Id == Id)
                 {
                     s = DataSource.stations[i];
-                   
+
                 }
             }
             return s;
@@ -247,7 +247,7 @@ namespace DalObject
                 {
                     d = DataSource.drones[i];
 
-                   
+
                 }
             }
             return d;
@@ -265,8 +265,8 @@ namespace DalObject
             {
                 if (DataSource.customers[i].Id == Id)
                 {
-                    c=DataSource.customers[i];
-                  
+                    c = DataSource.customers[i];
+
                 }
             }
             return c;
@@ -274,7 +274,7 @@ namespace DalObject
         //Displays parcel by ID 
         public Parcel DisplayParcel(int Id)
         {
-            Parcel p=new Parcel();
+            Parcel p = new Parcel();
             if (DataSource.parcels.Exists(parcel => parcel.Id != Id))
             {
                 throw new ParcelExeptions($"parcel {Id} dosen't exists ");
@@ -283,8 +283,8 @@ namespace DalObject
             {
                 if (DataSource.parcels[i].Id == Id)
                 {
-                     p = DataSource.parcels[i];
-                    
+                    p = DataSource.parcels[i];
+
                 }
             }
             return p;
@@ -355,10 +355,16 @@ namespace DalObject
                 }
                 yield return S;
             }
-        
 
 
 
+
+        }
+        public double[] PowerConsumptionRequest()
+        {
+            double[] powerConsumtion = new double[] { DataSource.Config.Avaliable, DataSource.Config.Light, DataSource.Config.Medium, DataSource.Config.Heavy, DataSource.Config.ChargingRate };
+            return powerConsumtion;
+        }
     }
 }
 
