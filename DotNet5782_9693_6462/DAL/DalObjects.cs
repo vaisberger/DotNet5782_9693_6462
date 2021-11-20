@@ -12,7 +12,7 @@ public interface IEnumerable<out list> : IEnumerable
 namespace DalObject
 {
 
-    public class DalObject
+    internal class DalObject
     {
 
         //constructor
@@ -289,11 +289,10 @@ namespace DalObject
                 }
                 yield return S;
             }
+        
 
 
 
-
-        }
     }
 }
 
