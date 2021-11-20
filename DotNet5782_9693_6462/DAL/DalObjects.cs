@@ -12,7 +12,7 @@ public interface IEnumerable<out list> : IEnumerable
 namespace DalObject
 {
 
-    public class DalObject
+    public class DalObject:IDal
     {
 
         //constructor
@@ -22,7 +22,7 @@ namespace DalObject
         }
 
         //Add a parcel  to the list of  parcel
-        public int AddParcel(Parcel p)
+        int IDal.AddParcel(Parcel p)
         {
             if (DataSource.parcels.Exists(parcel => parcel.Id == p.Id))
             {
@@ -33,7 +33,7 @@ namespace DalObject
             return DataSource.Config.ParcelSerial;
         }
         //Add customer to the list of customer
-        public void AddCustomer(Customer c)
+         void IDal.AddCustomer(Customer c)
         {
             if (DataSource.customers.Exists(customer => customer.Id == c.Id))
             {
@@ -43,7 +43,7 @@ namespace DalObject
         }
 
         //Add a base station to the list of stations
-        public void AddStation(BaseStation s)
+         void IDal.AddStation(BaseStation s)
         {
             if (DataSource.stations.Exists(station => station.Id == s.Id))
             {
@@ -52,7 +52,7 @@ namespace DalObject
             DataSource.stations.Add(s);
         }
         // Add a drone  to the list of  drones
-        public void AddDrone(Drone d)
+         void IDal.AddDrone(Drone d)
         {
             if (DataSource.drones.Exists(drone => drone.Id == d.Id))
             {
@@ -61,7 +61,7 @@ namespace DalObject
             DataSource.drones.Add(d);
         }
         //Update parcel  to a drone
-        public void UpdateParcelToDrone(int droneId, int parcleId)
+        void IDal.UpdateParcelToDrone(int droneId, int parcleId)
         {
             if (DataSource.parcels.Exists(parcel => parcel.Id != parcleId))
             {
@@ -87,7 +87,7 @@ namespace DalObject
         }
 
         //Parcel collection drone
-        public void Parcelcollection(int p, int d)
+        void IDal.Parcelcollection(int p, int d)
         {
             if (DataSource.parcels.Exists(parcel => parcel.Id != p))
             {
@@ -125,7 +125,7 @@ namespace DalObject
 
         }
         //Delivery of a parcel to the customer
-        public void ParcelDelivery(int p, int c)
+        void IDal.ParcelDelivery(int p, int c)
         {
             if (DataSource.customers.Exists(customer => customer.Id != c))
             {
@@ -147,7 +147,7 @@ namespace DalObject
             }
         }
         //Sending drone for charging at a base station
-        public void ChargeDrone(int d, int s)
+        void IDal.ChargeDrone(int d, int s)
         {
             if (DataSource.drones.Exists(drone => drone.Id != d))
             {
@@ -188,7 +188,7 @@ namespace DalObject
 
         }
         //Discharge drone from charging at base station
-        public void DischargeDrone(int d)
+        void IDal.DischargeDrone(int d)
         {
             if (DataSource.droneCharges.Exists(drone => drone.DroneId == d))
             {
@@ -217,7 +217,7 @@ namespace DalObject
         }
 
         ////Drone display by ID
-        public BaseStation DisplayStation(int Id)
+        BaseStation IDal.DisplayStation(int Id)
         {
             BaseStation s = new BaseStation();
             if (DataSource.stations.Exists(station => station.Id != Id))
@@ -234,7 +234,7 @@ namespace DalObject
             }
             return s;
         }
-        public Drone DisplayDrone(int Id)
+        Drone IDal.DisplayDrone(int Id)
         {
             Drone d = new Drone();
             if (DataSource.drones.Exists(drone => drone.Id != Id))
@@ -254,7 +254,7 @@ namespace DalObject
         }
 
         //Displays customer by ID 
-        public Customer DisplayCustomer(int Id)
+        Customer IDal.DisplayCustomer(int Id)
         {
             Customer c = new Customer();
             if (DataSource.customers.Exists(customer => customer.Id != Id))
@@ -272,7 +272,7 @@ namespace DalObject
             return c;
         }
         //Displays parcel by ID 
-        public Parcel DisplayParcel(int Id)
+        Parcel IDal.DisplayParcel(int Id)
         {
             Parcel p = new Parcel();
             if (DataSource.parcels.Exists(parcel => parcel.Id != Id))
@@ -290,7 +290,7 @@ namespace DalObject
             return p;
         }
         //Displays a list of drone
-        public IEnumerable DisplayDroneList()
+        IEnumerable IDal.DisplayDroneList()
         {
             List<Drone> D = new List<Drone>();
             foreach (Drone d in DataSource.drones)
@@ -300,7 +300,7 @@ namespace DalObject
             return D;
         }
         //Displays a list of base stations
-        public IEnumerable DisplayStationList()
+        IEnumerable IDal.DisplayStationList()
         {
             List<BaseStation> S = new List<BaseStation>();
             foreach (BaseStation b in DataSource.stations)
@@ -310,7 +310,7 @@ namespace DalObject
             return S;
         }
         //Displays a list of customer
-        public IEnumerable DisplayCustomerList()
+        IEnumerable IDal.DisplayCustomerList()
         {
             List<Customer> C = new List<Customer>();
             foreach (Customer c in DataSource.customers)
@@ -320,7 +320,7 @@ namespace DalObject
             return C;
         }
         //Displays a list of parcel
-        public IEnumerable DisplayParcelList()
+        IEnumerable IDal.DisplayParcelList()
         {
             List<Parcel> P = new List<Parcel>();
             foreach (Parcel p in DataSource.parcels)
@@ -330,7 +330,7 @@ namespace DalObject
             return P;
         }
         //Displays a list of parcel not yet associated with the drone
-        public IEnumerable DisplayParcelUnmatched()
+        IEnumerable IDal.DisplayParcelUnmatched()
         {
             List<Parcel> P = new List<Parcel>();
             foreach (Parcel p in DataSource.parcels)
@@ -344,7 +344,7 @@ namespace DalObject
 
         }
         //Displays base stations with available charging stations
-        public IEnumerable DisplayAvailableStation()
+        IEnumerable IDal.DisplayAvailableStation()
         {
             List<BaseStation> S = new List<BaseStation>();
             foreach (BaseStation b in DataSource.stations)
@@ -360,7 +360,7 @@ namespace DalObject
 
 
         }
-        public double[] PowerConsumptionRequest()
+       double[] IDal.PowerConsumptionRequest()
         {
             double[] powerConsumtion = new double[] { DataSource.Config.Avaliable, DataSource.Config.Light, DataSource.Config.Medium, DataSource.Config.Heavy, DataSource.Config.ChargingRate };
             return powerConsumtion;

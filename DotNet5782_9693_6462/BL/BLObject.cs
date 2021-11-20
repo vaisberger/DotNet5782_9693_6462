@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.DalObject;
-using IDAL.DO;
+using IBL.BO;
 namespace BL
 {
-    class BLObject
+    public class BLObject
     {
-        IDal dAL;
+        IDAL.DO.IDal mydale;
         public BLObject()
         {
-            dAL = new DalObject.DalObject();
+            mydale = new DalObject.DalObject();
+        }
+        public Customer GetCustomer(int id)
+        {
+
         }
     }
 }
