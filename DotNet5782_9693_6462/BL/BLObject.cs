@@ -15,7 +15,17 @@ namespace BL
         }
         public Customer GetCustomer(int id)
         {
-
+            Customer customer = default;
+            try
+            {
+                IDAL.DO.Customer dalCustomper = mydale.DisplayCustomer(id);
+            }
+            catch (IDAL.DO.CustomerExeptions custEx)
+            {
+                throw new BLCustomerExption($"Customer id (id) was not found", custEx);
+            }
+            return customer;
         }
+
     }
 }
