@@ -117,22 +117,22 @@ namespace ConsoleUI
                         switch (dl)
                         {
                             case 0:// display list of stations
-                                data.DisplayStationList();
+                                displaystationlist();
                                 break;
                             case 1:// display list of drones
-                                data.DisplayDroneList();
+                                displaydronelist();
                                 break;
                             case 2:// display list of customers
-                                data.DisplayCustomerList();
+                                displaycustomerlist();
                                 break;
                             case 3:// display list of parcels
-                                data.DisplayParcelList();
+                                displayparcellist();
                                 break;
                             case 4: // display list of parcels unmatched
-                                data.DisplayParcelUnmatched();
+                                displayparcelunmatched();
                                 break;
                             case 5: // display list of available charging station
-                                data.DisplayAvailableStation();
+                                displayavailablestation();
                                 break;
                         }
 
@@ -146,6 +146,54 @@ namespace ConsoleUI
             } while (c != 4);
 
 
+        }
+
+        private static void displayavailablestation()
+        {
+            foreach (BaseStation s in data.DisplayAvailableStation())
+            {
+                s.ToString();
+            }
+        }
+
+        private static void displayparcelunmatched()
+        {
+            foreach (Parcel p in data.DisplayParcelUnmatched())
+            {
+                p.ToString();
+            }
+        }
+
+        private static void displayparcellist()
+        {
+            foreach (Parcel p in data.DisplayParcelList())
+            {
+                p.ToString();
+            }
+        }
+
+        private static void displaycustomerlist()
+        {
+            foreach (Customer c in data.DisplayCustomerList())
+            {
+                c.ToString();
+            }
+        }
+
+        private static void displaydronelist()
+        {
+            foreach (Drone d in data.DisplayDroneList())
+            {
+                d.ToString();
+            }
+        }
+
+        private static void displaystationlist()
+        {
+            foreach (BaseStation s in data.DisplayStationList())
+            {
+                s.ToString();
+            }
         }
 
         private static void addStation()
@@ -166,7 +214,7 @@ namespace ConsoleUI
                 ChargeSlots = ChargeSlots,
             };
 
-            data.AddStation(ref NewStation);
+            data.AddStation(NewStation);
         }
         private static void addDrone()
         {

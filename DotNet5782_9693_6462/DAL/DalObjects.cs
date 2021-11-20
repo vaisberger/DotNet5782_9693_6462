@@ -12,7 +12,7 @@ public interface IEnumerable<out list> : IEnumerable
 namespace DalObject
 {
 
-    internal class DalObject
+    public class DalObject
     {
 
         //constructor
@@ -287,7 +287,6 @@ namespace DalObject
             List<Drone> D = new List<Drone>();
             foreach (Drone d in DataSource.drones)
             {
-                Console.WriteLine(d.ToString());
                 D.Add(d);
             }
             return D;
@@ -298,7 +297,6 @@ namespace DalObject
             List<BaseStation> S = new List<BaseStation>();
             foreach (BaseStation b in DataSource.stations)
             {
-                Console.WriteLine(b.ToString());
                 S.Add(b);
             }
             return S;
@@ -309,7 +307,6 @@ namespace DalObject
             List<Customer> C = new List<Customer>();
             foreach (Customer c in DataSource.customers)
             {
-                Console.WriteLine(c.ToString());
                 C.Add(c);
             }
             return C;
@@ -320,7 +317,6 @@ namespace DalObject
             List<Parcel> P = new List<Parcel>();
             foreach (Parcel p in DataSource.parcels)
             {
-                Console.WriteLine(p.ToString());
                 P.Add(p);
             }
             return P;
@@ -333,7 +329,6 @@ namespace DalObject
             {
                 if (p.DroneId == 0)
                 {
-                    Console.WriteLine(p.ToString());
                     P.Add(p);
                 }
             }
@@ -348,7 +343,6 @@ namespace DalObject
             {
                 if (b.Longitude != 0)
                 {
-                    Console.WriteLine(b.ToString());
                     S.Add(b);
                 }
                 yield return S;
