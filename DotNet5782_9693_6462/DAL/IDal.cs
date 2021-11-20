@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IDAL.DO;
+using System.Collections;
 
 
 
@@ -21,17 +22,17 @@ using IDAL.DO;
                 public void Parcelcollection(int p, int d);
                 public void ParcelDelivery(int p, int c);
                 public void ChargeDrone(int d, int s);
-                public void DischargeDrone(int d);
-                public void DisplayStation(int Id);
-                public void DisplayDrone(int Id);
-                public void DisplayCustomer(int Id);
-                public void DisplayParcel(int Id);
-                public void DisplayDroneList();
-                public void DisplayStationList();
-                public void DisplayCustomerList();
-                public void DisplayParcelList();
-                public void DisplayParcelUnmatched();
-                public void DisplayAvailableStation();
+                public Drone DischargeDrone(int d);
+                public BaseStation DisplayStation(int Id);
+                public Drone DisplayDrone(int Id);
+                public Customer DisplayCustomer(int Id);
+                public Parcel DisplayParcel(int Id);
+                public IEnumerable DisplayDroneList();
+                public IEnumerable DisplayStationList();
+                public IEnumerable DisplayCustomerList();
+                public IEnumerable DisplayParcelList();
+                public IEnumerable DisplayParcelUnmatched();
+                public IEnumerable DisplayAvailableStation();
                 public double[] PowerConsumptionRequest();
 
 

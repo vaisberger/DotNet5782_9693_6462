@@ -217,8 +217,9 @@ namespace DalObject
         }
 
         ////Drone display by ID
-        public void DisplayStation(int Id)
+        public BaseStation DisplayStation(int Id)
         {
+            BaseStation s = new BaseStation();
             if (DataSource.stations.Exists(station => station.Id != Id))
             {
                 throw new BaseStationExeptions($"station {Id} dosen't exists ");
@@ -227,13 +228,15 @@ namespace DalObject
             {
                 if (DataSource.stations[i].Id == Id)
                 {
-                    Console.WriteLine(DataSource.stations[i].ToString());
-                    return;
+                    s = DataSource.stations[i];
+                   
                 }
             }
+            return s;
         }
-        public void DisplayDrone(int Id)
+        public Drone DisplayDrone(int Id)
         {
+            Drone d = new Drone();
             if (DataSource.drones.Exists(drone => drone.Id != Id))
             {
                 throw new DroneExeptions($"station {Id} dosen't exists ");
@@ -242,16 +245,18 @@ namespace DalObject
             {
                 if (DataSource.drones[i].Id == Id)
                 {
-                    Console.WriteLine(DataSource.drones[i].ToString());
+                    d = DataSource.drones[i];
 
-                    return;
+                   
                 }
             }
+            return d;
         }
 
         //Displays customer by ID 
-        public void DisplayCustomer(int Id)
+        public Customer DisplayCustomer(int Id)
         {
+            Customer c = new Customer();
             if (DataSource.customers.Exists(customer => customer.Id != Id))
             {
                 throw new CustomerExeptions($"customer {Id} dosen't exists ");
@@ -260,26 +265,29 @@ namespace DalObject
             {
                 if (DataSource.customers[i].Id == Id)
                 {
-                    Console.WriteLine(DataSource.customers[i].ToString());
-                    return;
+                    c=DataSource.customers[i];
+                  
                 }
             }
+            return c;
         }
         //Displays parcel by ID 
-        public void DisplayParcel(int Id)
+        public Parcel DisplayParcel(int Id)
         {
-            if (DataSource.drones.Exists(drone => drone.Id != Id))
+            Parcel p=new Parcel();
+            if (DataSource.parcels.Exists(parcel => parcel.Id != Id))
             {
-                throw new ParcelExeptions($"station {Id} dosen't exists ");
+                throw new ParcelExeptions($"parcel {Id} dosen't exists ");
             }
             for (int i = 0; i < DataSource.parcels.Count; i++)
             {
                 if (DataSource.parcels[i].Id == Id)
                 {
-                    Console.WriteLine(DataSource.parcels[i].ToString());
-                    return;
+                     p = DataSource.parcels[i];
+                    
                 }
             }
+            return p;
         }
         //Displays a list of drone
         public IEnumerable DisplayDroneList()
