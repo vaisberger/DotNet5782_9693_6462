@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,14 @@ namespace IBL
 {
     namespace BO
     {
-        public struct Drone
+        public class Drone
         {
             public int Id { get; set; }
             public String Model { get; set; }
             public Weights MaxWeight { get; set; }
             public DroneStatus status { get; set; }
-            public double Battery { get; set; }
-           // public Location Location { get; set; }
+            public ParcelInRansfer parcelInRansfer{ get; set; }
+            public Location location { get; set; }
 
            
 

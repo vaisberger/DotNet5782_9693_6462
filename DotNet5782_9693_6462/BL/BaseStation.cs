@@ -12,11 +12,12 @@ namespace IBL
         {
             public int Id { get; set; }
             public int Name { get; set; }
-            public double Longitude { get; set; }
-            public double Latitude { get; set; }
-            public int ChargeSlots { get; set; }
+            public Location location { get; set; }
+            public int AvailableChargingStations { get; set; }
+            public int BusyChaרgingStations { get; set; }
 
-            
+
+
         }
     }
 }

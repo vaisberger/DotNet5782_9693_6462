@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,14 @@ namespace IBL
 {
     namespace BO
     {
-        class Customer
+       public class Customer
         {
             public int Id { get; set; }
             public String Name { get; set; }
             public String Phone { get; set; }
-            public double Longitude { get; set; }
-            public double Latitude { get; set; }
+            public Location Location { get; set; }
+            List<ParcelCustomer> SendParcels { get; set; }
+            List<ParcelCustomer> Parcels { get; set; }
 
         }
     }

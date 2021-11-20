@@ -22,6 +22,10 @@ namespace IBL
             Normal, Fast, Urgent
         }
 
+        public enum Situation
+        {
+            Defined, Associated, Collected, Provided
 
+        }
     }
 }
