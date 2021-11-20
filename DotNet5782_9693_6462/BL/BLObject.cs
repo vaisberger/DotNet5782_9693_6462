@@ -13,9 +13,19 @@ namespace BL
         {
             mydale = new DalObject.DalObject();
         }
-        public Customer GetCustomer(int id)
+        public void UpdateDrone(int id, String model)
         {
-
+            try {
+                mydale.DisplayDrone(id);
+            }
+            catch (IDAL.DO.DroneExeptions dexp)
+            {
+                throw new BLDroneExeption()
+            }
+           
         }
+
+
     }
+
 }
