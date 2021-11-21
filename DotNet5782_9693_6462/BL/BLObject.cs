@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BL;
 using IBL.BO;
 
 
@@ -30,9 +31,7 @@ namespace IBL
             }
             return customer;
         }
-        public BaseStation GetBaseStation(int id)
-        {
-            BaseStation baseStation = default;
+
         public Drone GetDrone(int id)
         {
             Drone d = new Drone();
@@ -49,17 +48,6 @@ namespace IBL
             }
             return d;
         }
-
-            try
-            {
-                IDAL.DO.BaseStation dalStation = mydale.DisplayStation(id);
-            }
-            catch (IDAL.DO.BaseStationExeptions bex)
-            {
-                throw new BLBaseStationException(bex.Message + "from dal");
-            }
-        }
-
 
         public void UpdateDrone(int id, String model)
         {
@@ -116,25 +104,38 @@ namespace IBL
             {
                 throw new BLDroneExption($"Can't send the drone to charge because it is transfering a parcel");
             }
-            BaseStation s = DistanceToBattery(id);
-            if (s!=null)
-            {
-
-            }
+            IDAL.DO.BaseStation s = DistanceToBattery(id);
+            
 
         }
-        private BaseStation DistanceToBattery(int id)
+        private IDAL.DO.BaseStation DistanceToBattery(int id)
         {
+            double dis = 0;
             double dla = toRadians(drones.FirstOrDefault(x => x.Id == id).location1.Latitude);
             double dlo= toRadians(drones.FirstOrDefault(x => x.Id == id).location1.Longitude);
+            double km = 6371;
+            double help;
+            IDAL.DO.BaseStation b=new IDAL.DO.BaseStation();
             foreach (IDAL.DO.BaseStation bs in mydale.DisplayAvailableStation())
             {
                 double bsla = toRadians(bs.Latitude);
                 double bslo = toRadians(bs.Longitude);
-
-
+                help= km * (2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin((dla - bsla) / 2), 2) +
+                   Math.Cos(dla) * Math.Cos(bsla) *
+                   Math.Pow(Math.Sin((dlo - bslo) / 2), 2))));
+                if (dis == 0)
+                {
+                    dis = help;
+                    b = bs;
+                }
+                else if (dis > help)
+                {
+                    dis = help;
+                    b = bs;
+                }
             }
-            return null;
+            
+            return b;
         }
         private double toRadians(double deg)
         {
@@ -142,4 +143,5 @@ namespace IBL
         }
     }
 }
+
 
