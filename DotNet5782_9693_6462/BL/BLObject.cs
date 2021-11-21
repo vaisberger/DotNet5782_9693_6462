@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IBL.BO;
-namespace BL
+
+
+namespace IBL
 {
     public class BLObject
     {
@@ -28,6 +30,9 @@ namespace BL
             }
             return customer;
         }
+        public BaseStation GetBaseStation(int id)
+        {
+            BaseStation baseStation = default;
         public Drone GetDrone(int id)
         {
             Drone d = new Drone();
@@ -44,6 +49,17 @@ namespace BL
             }
             return d;
         }
+
+            try
+            {
+                IDAL.DO.BaseStation dalStation = mydale.DisplayStation(id);
+            }
+            catch (IDAL.DO.BaseStationExeptions bex)
+            {
+                throw new BLBaseStationException(bex.Message + "from dal");
+            }
+        }
+
 
         public void UpdateDrone(int id, String model)
         {
@@ -126,3 +142,4 @@ namespace BL
         }
     }
 }
+
