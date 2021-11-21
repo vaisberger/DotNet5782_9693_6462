@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IBL.BO;
-namespace BL
+
+
+namespace IBL
 {
     public class BLObject
     {
@@ -22,10 +24,25 @@ namespace BL
             }
             catch (IDAL.DO.CustomerExeptions custEx)
             {
-                throw new BLCustomerExption($"Customer id (id) was not found", custEx);
+                throw new BLCustomerExption($"Customer id {id} was not found", custEx);
             }
             return customer;
         }
+        public BaseStation GetBaseStation(int id)
+        {
+            BaseStation baseStation = default;
+
+            try
+            {
+                IDAL.DO.BaseStation dalStation = mydale.DisplayStation(id);
+            }
+            catch (IDAL.DO.BaseStationExeptions bex)
+            {
+                throw new BLBaseStationException(bex.Message + "from dal");
+            }
+        }
+
 
     }
 }
+
