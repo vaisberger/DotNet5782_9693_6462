@@ -28,7 +28,21 @@ namespace IBL
             }
             return customer;
         }
-        public BaseStation GetBaseStation(int id)
+        public Drone GetDrone(int id)
+        {
+            Drone drone = default;
+            try
+            {
+                IDAL.DO.Drone dalDrone = mydale.DisplayDrone(id);
+            }
+            catch (IDAL.DO.DroneExeptions cus)
+            {
+                throw new BLDroneExptions($"Drone id {id} was not found", cus);
+            }
+            return drone;
+        }
+
+        /*public BaseStation GetBaseStation(int id)
         {
             BaseStation baseStation = default;
 
@@ -40,10 +54,16 @@ namespace IBL
             {
                 throw new BLBaseStationException(bex.Message + "from dal");
             }
+            return new BO.BaseStation
+            {
+                Id = dalStation.Id,
+                Name=dalStation.Name,
+
+            }
         }
+        */
 
-
-        public void UpdateDrone(int id, String model)
+        /*public void UpdateDrone(int id, String model)
         {
             try {
                 mydale.DisplayDrone(id);
@@ -53,7 +73,7 @@ namespace IBL
                 throw new BLDroneExeption()
             }
            
-        }
+        }*/
     }
 }
 
