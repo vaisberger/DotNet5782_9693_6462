@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL.Bo
 {
-    class ParcelInRansfer
+    class ParcelInTransfer
     {
         public int Id { get; set; }
         public Weights weight { get; set; }
