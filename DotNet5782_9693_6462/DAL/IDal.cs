@@ -18,9 +18,7 @@ using DalObject;
             public void AddStation( BaseStation s);
             public void AddDrone(Drone d);
             public void UpdateDrone(int id, String model);
-        void AddCustomer(global::IBL.BO.Customer customer);
-        void AddCustomer(global::IBL.BO.Customer customer);
-        public void UpdateBaseStation(int id,int name,int chargeslots);
+            public void UpdateBaseStation(int id,int name,int chargeslots);
             public void UpdateParcelToDrone(int droneId, int parcleId);
             public void UpdateCustomer(int id, String name="", String phone="");
             public void Parcelcollection(int p, int d);
@@ -38,6 +36,7 @@ using DalObject;
             public IEnumerable DisplayParcelUnmatched();
             public IEnumerable DisplayAvailableStation();
             public double[] PowerConsumptionRequest();
+            public double returnChargerate() { return DataSource.Config.ChargingRate()}
     
 
 

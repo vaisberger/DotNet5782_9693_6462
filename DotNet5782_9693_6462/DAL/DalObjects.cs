@@ -230,10 +230,12 @@ namespace DalObject
                 {
                     Drone D = new Drone();
                     D = DataSource.drones[i];
-                    //D.status = DroneStatus.Available;
                     DataSource.drones[i] = D;
                 }
             }
+            DroneCharge dcs =DataSource.droneCharges.FirstOrDefault(x => x.DroneId == d);
+            BaseStation s = DataSource.stations.FirstOrDefault(x => x.Id == dcs.StatioId);
+            s.ChargeSlots += 1;
             for (int i = 0; i < DataSource.droneCharges.Count; i++)
             {
                 if (DataSource.droneCharges[i].DroneId == d)

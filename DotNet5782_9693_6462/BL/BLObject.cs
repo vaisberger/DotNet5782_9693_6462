@@ -22,14 +22,14 @@ namespace IBL
         }
         public void AddCustomer(Customer customer)
         {
-            IDAL.DO.Customer  customer1= new IDAL.DO.Customer();
+            IDAL.DO.Customer customer1 = new IDAL.DO.Customer();
             customer1.Id = customer.Id;
             customer1.Name = customer.Name;
             customer1.Phone = customer.Phone;
             customer1.Latitude = customer.location.Latitude;
             customer1.Longitude = customer.location.Longitude;
             mydale.AddCustomer(customer1);
-            
+
         }
         public void AddDrone(Drone drone)
         {
@@ -37,24 +37,26 @@ namespace IBL
             IDAL.DO.Drone drone1 = new IDAL.DO.Drone();
             drone1.Id = drone.Id;
             drone1.Model = drone.Model;
-            drone1.MaxWeight = drone.MaxWeight;
-            drone.Battery = r.Next(20,41);
+            drone1.MaxWeight = (IDAL.DO.Weights)drone.MaxWeight;
+            drone.Battery = r.Next(20, 41);
             drone.status = DroneStatus.Maitenance;
             drones.Add(drone);
 
 
         }
-        public void AddParcel (Parcel parcel)
+        public void AddParcel(Parcel parcel)
         {
             IDAL.DO.Parcel parcel1 = new IDAL.DO.Parcel();
             parcel1.SenderId = parcel.Sender.Id;
             parcel1.TargetId = parcel.Getting.Id;
-            parcel1.weight = parcel.weight;
-            parcel1.priorty = parcel.priority;
-            parcel1.Requsted = null;
-
-
-
+            parcel1.weight = (IDAL.DO.Weights)parcel.weight;
+            parcel1.priorty = (IDAL.DO.Priorities)parcel.priority;
+            parcel1.Requsted = parcel.Requsted;
+            parcel1.Scheduled = parcel.Scheduled;
+            parcel1.PickedUp = parcel.PickedUp;
+            parcel1.Delivered = parcel.Delivered;
+            parcel1.DroneId = parcel.droaneParcel.Id;
+            mydale.AddParcel(parcel1);
         }
 
         public void AddBaseStation(BaseStation baseStation)
@@ -65,8 +67,7 @@ namespace IBL
             baseStation1.Latitude = baseStation.location.Latitude;
             baseStation1.Longitude = baseStation.location.Longitude;
             baseStation1.ChargeSlots = baseStation.AvailableChargingStations;
-
-            baseStation.DroneInChargings = 0;
+            baseStation.DroneInChargings = baseStation.DroneInChargings;
         }
         public Customer GetCustomer(int id)
         {
@@ -79,10 +80,10 @@ namespace IBL
             {
                 throw new BLCustomerExption($"Customer id {id} was not found", custEx);
             }
-           
+
             return customer;
         }
-       
+
 
         public Drone GetDrone(int id)
         {
@@ -104,7 +105,8 @@ namespace IBL
         public void UpdateDrone(int id, String model)
         {
 
-            try {
+            try
+            {
                 mydale.DisplayDrone(id);
             }
             catch (IDAL.DO.DroneExeptions dexp)
@@ -129,7 +131,7 @@ namespace IBL
         }
 
 
-        public void UpdateCustomer(int id, String name="", String phone = "")
+        public void UpdateCustomer(int id, String name = "", String phone = "")
         {
             try
             {
@@ -139,25 +141,25 @@ namespace IBL
             {
                 throw new BLCustomerExption($"Can't update the custumer because it dosn't exist");
             }
-            mydale.UpdateCustomer(id, name,phone);
+            mydale.UpdateCustomer(id, name, phone);
         }
-          public void SendDroneToCharge(int id)
+        public void SendDroneToCharge(int id)
         {
             Drone d;
             try
             {
-               d= GetDrone(id);     //bl צריך לחפש ברשימה של הרחפנים ב 
+                d = GetDrone(id);     //bl צריך לחפש ברשימה של הרחפנים ב 
             }
             catch (IDAL.DO.DroneExeptions dexp)
             {
                 throw new BLDroneExption($"Can't send the drone to charge because it dosn't exist");
             }
-            if (d.status!=DroneStatus.Available)
+            if (d.status != DroneStatus.Available)
             {
                 throw new BLDroneExption($"Can't send the drone to charge because it is transfering a parcel");
             }
             double battery = d.Battery;
-            IDAL.DO.BaseStation s = DistanceToBattery(id,ref battery);  //the station to charge
+            IDAL.DO.BaseStation s = DistanceToBattery(id, ref battery);  //the station to charge
             Drone dr = drones.FirstOrDefault(x => x.Id == id);
             dr.Battery = battery;
             dr.location1.Latitude = s.Latitude;
@@ -170,10 +172,10 @@ namespace IBL
         {
             double dis = 0;
             double dla = toRadians(drones.FirstOrDefault(x => x.Id == id).location1.Latitude);
-            double dlo= toRadians(drones.FirstOrDefault(x => x.Id == id).location1.Longitude);
+            double dlo = toRadians(drones.FirstOrDefault(x => x.Id == id).location1.Longitude);
             double km = 6371;
             double help;
-            IDAL.DO.BaseStation b=new IDAL.DO.BaseStation();
+            IDAL.DO.BaseStation b = new IDAL.DO.BaseStation();
             foreach (IDAL.DO.BaseStation bs in mydale.DisplayAvailableStation())
             {
                 double bsla = toRadians(bs.Latitude);
@@ -190,7 +192,7 @@ namespace IBL
                 {
                     dis = help;
                     b = bs;
-                } 
+                }
             }
             Drone d = drones.FirstOrDefault(x => x.Id == id);//the battrey goes down 1% per km
             if (dis > d.Battery)
@@ -204,13 +206,13 @@ namespace IBL
         {
             return (deg * Math.PI) / 180;
         }
-        
-        public void DischargeDrone(int id,DateTime time)
+
+        public void DischargeDrone(int id, double time)
         {
             Drone d = new Drone();
             try
             {
-                d=drones.Find(x => x.Id == id);
+                d = drones.Find(x => x.Id == id);
             }
             catch (IBL.BO.BLDroneExption dexp)
             {
@@ -220,8 +222,51 @@ namespace IBL
             {
                 throw new BLDroneExption("the drone was is not charging in the moment");
             }
+            d.status = DroneStatus.Available;
+            double battery = mydale.returnChargerate() * 60 * time;
+            d.Battery += battery;
+            mydale.DischargeDrone(id);
         }
-        
+        public void MatchDroneToParcel(int id)
+        {
+            Drone d = drones.FirstOrDefault(x => x.Id == id);
+            double battery = d.Battery;
+            if (d.status != DroneStatus.Available)
+            {
+                throw new BLDroneExption("the drone isnt aviabale");
+            }
+            foreach (IDAL.DO.Parcel P in mydale.DisplayParcelUnmatched())
+            {
+                if (P.priorty == IDAL.DO.Priorities.Urgent && P.weight < (IDAL.DO.Weights)d.MaxWeight)
+                {
+                    IDAL.DO.BaseStation bsender = mydale.DisplayStation(P.SenderId);
+                    distance(d, bsender, ref battery);
+                    IDAL.DO.BaseStation breciver = mydale.DisplayStation(P.TargetId);
+                    Drone drone = new Drone();
+                    drone.location1.Latitude = bsender.Latitude;
+                    drone.location1.Longitude = bsender.Longitude;
+                    distance(drone, breciver, ref battery);
+                    if (battery < d.Battery)// if there is enough battery to make the delivery then check if there is a way to charge if needed
+                    {
+
+                    }
+                }
+            }
+        }
+        public void distance(Drone d, IDAL.DO.BaseStation s, ref double battery)// get the battery needed for that distance
+        {
+            double km = 6371;
+            double dla = toRadians(d.location1.Latitude);
+            double dlo = toRadians(d.location1.Longitude);
+            double bla = toRadians(s.Latitude);
+            double blo = toRadians(s.Longitude);
+            double help = km * (2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin((dla - bla) / 2), 2) +
+                    Math.Cos(dla) * Math.Cos(bla) *
+                    Math.Pow(Math.Sin((dlo - blo) / 2), 2))));
+            battery -= help;
+
+        }
+
     }
 }
 
