@@ -31,56 +31,23 @@ namespace IBL
             }
             return customer;
         }
+
         public Drone GetDrone(int id)
         {
-            Drone drone = default;
-            try
+            Drone d = new Drone();
+            if (drones.Exists(drone => drone.Id != id))
             {
-                IDAL.DO.Drone dalDrone = mydale.DisplayDrone(id);
+                throw new BLDroneExption($"station {id} dosen't exists ");
             }
-            catch (IDAL.DO.DroneExeptions cus)
+            for (int i = 0; i < drones.Count; i++)
             {
-                throw new BLDroneExptions($"Drone id {id} was not found", cus);
+                if (drones[i].Id == id)
+                {
+                    d = drones[i];
+                }
             }
-            return drone;
+            return d;
         }
-
-        /*public BaseStation GetBaseStation(int id)
-        {
-            BaseStation baseStation = default;
-            public Drone GetDrone(int id)
-            {
-                Drone d = new Drone();
-                if (drones.Exists(drone => drone.Id != id))
-                {
-                    throw new BLDroneExption($"station {id} dosen't exists ");
-                }
-                for (int i = 0; i < drones.Count; i++)
-                {
-                    if (drones[i].Id == id)
-                    {
-                        d = drones[i];
-                    }
-                }
-                return d;
-            }
-
-            /* try
-             {
-                 IDAL.DO.BaseStation dalStation = mydale.DisplayStation(id);
-             }
-             catch (IDAL.DO.BaseStationExeptions bex)
-             {
-                 throw new BLBaseStationException(bex.Message + "from dal");
-             }
-             return new BO.BaseStation
-             {
-                 Id = dalStation.Id,
-                 Name=dalStation.Name,
-
-             }*/
-        }*/
-        
 
         public void UpdateDrone(int id, String model)
         {
@@ -137,25 +104,38 @@ namespace IBL
             {
                 throw new BLDroneExption($"Can't send the drone to charge because it is transfering a parcel");
             }
-            BaseStation s = DistanceToBattery(id);
-            if (s!=null)
-            {
-
-            }
+            IDAL.DO.BaseStation s = DistanceToBattery(id);
+            
 
         }
-        private BaseStation DistanceToBattery(int id)
+        private IDAL.DO.BaseStation DistanceToBattery(int id)
         {
+            double dis = 0;
             double dla = toRadians(drones.FirstOrDefault(x => x.Id == id).location1.Latitude);
             double dlo= toRadians(drones.FirstOrDefault(x => x.Id == id).location1.Longitude);
+            double km = 6371;
+            double help;
+            IDAL.DO.BaseStation b=new IDAL.DO.BaseStation();
             foreach (IDAL.DO.BaseStation bs in mydale.DisplayAvailableStation())
             {
                 double bsla = toRadians(bs.Latitude);
                 double bslo = toRadians(bs.Longitude);
-
-
+                help= km * (2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin((dla - bsla) / 2), 2) +
+                   Math.Cos(dla) * Math.Cos(bsla) *
+                   Math.Pow(Math.Sin((dlo - bslo) / 2), 2))));
+                if (dis == 0)
+                {
+                    dis = help;
+                    b = bs;
+                }
+                else if (dis > help)
+                {
+                    dis = help;
+                    b = bs;
+                }
             }
-            return null;
+            
+            return b;
         }
         private double toRadians(double deg)
         {
@@ -163,4 +143,5 @@ namespace IBL
         }
     }
 }
+
 
