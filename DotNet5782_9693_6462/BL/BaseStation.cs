@@ -17,9 +17,6 @@ namespace IBL
             public int AvailableChargingStations { get; set; }
             public List<DroneInCharging> DroneInChargings { get; set; }
 
-
-
-
         }
     }
 }

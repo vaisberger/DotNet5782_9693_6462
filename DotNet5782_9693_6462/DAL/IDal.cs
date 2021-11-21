@@ -36,7 +36,7 @@ using DalObject;
             public IEnumerable DisplayParcelUnmatched();
             public IEnumerable DisplayAvailableStation();
             public double[] PowerConsumptionRequest();
-            public bool DistanceToBattery(int id);
+    
 
 
         }
