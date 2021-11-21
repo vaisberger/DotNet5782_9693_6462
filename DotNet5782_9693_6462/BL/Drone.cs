@@ -17,9 +17,8 @@ namespace IBL
             public Weights MaxWeight { get; set; }
             public DroneStatus status { get; set; }
             public double Battery { get; set; }
-            public ParcelInRansfer ParcelInRansfer{ get; set; }
-
-            private Location location1 { get; set; }
+            public ParcelInTransfer ParcelInTransfer{ get; set; }
+            public Location location1 { get; set; }
     }
 }
 }

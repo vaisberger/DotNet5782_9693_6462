@@ -60,6 +60,35 @@ namespace DalObject
             }
             DataSource.drones.Add(d);
         }
+         void IDal.UpdateDrone(int id, String model)
+        {
+            var d = DataSource.drones.FirstOrDefault(X => X.Id == id);
+            d.Model = model;
+        }
+        void IDal.UpdateBaseStation(int id, int name, int chargeslots)
+        {
+            var s = DataSource.stations.FirstOrDefault(bs => bs.Id == id);
+            if (name !=-1)
+            {
+                s.Name = name;
+            }
+            if (chargeslots != -1)
+            {
+                s.ChargeSlots = chargeslots;
+            }
+        }
+        void IDal.UpdateCustomer(int id, String name, String phone)
+        {
+            var c = DataSource.customers.FirstOrDefault(cs => cs.Id == id);
+            if (name != "")
+            {
+                c.Name = name;
+            }
+            if (phone != "")
+            {
+                c.Phone = phone;
+            }
+        }
         //Update parcel  to a drone
         void IDal.UpdateParcelToDrone(int droneId, int parcleId)
         {
@@ -365,6 +394,7 @@ namespace DalObject
             double[] powerConsumtion = new double[] { DataSource.Config.Avaliable, DataSource.Config.Light, DataSource.Config.Medium, DataSource.Config.Heavy, DataSource.Config.ChargingRate };
             return powerConsumtion;
         }
+
     }
 }
 

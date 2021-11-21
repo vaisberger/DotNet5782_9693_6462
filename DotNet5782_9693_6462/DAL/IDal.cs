@@ -17,7 +17,10 @@ using DalObject;
             public void AddCustomer(Customer c);
             public void AddStation( BaseStation s);
             public void AddDrone(Drone d);
+            public void UpdateDrone(int id, String model);
+            public void UpdateBaseStation(int id,int name,int chargeslots);
             public void UpdateParcelToDrone(int droneId, int parcleId);
+            public void UpdateCustomer(int id, String name="", String phone="");
             public void Parcelcollection(int p, int d);
             public void ParcelDelivery(int p, int c);
             public void ChargeDrone(int d, int s);
@@ -33,6 +36,7 @@ using DalObject;
             public IEnumerable DisplayParcelUnmatched();
             public IEnumerable DisplayAvailableStation();
             public double[] PowerConsumptionRequest();
+            public bool DistanceToBattery(int id);
 
 
         }
