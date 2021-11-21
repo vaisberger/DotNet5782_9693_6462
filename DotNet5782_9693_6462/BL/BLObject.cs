@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BL;
 using IBL.BO;
 
 
@@ -47,41 +48,41 @@ namespace IBL
         /*public BaseStation GetBaseStation(int id)
         {
             BaseStation baseStation = default;
-        public Drone GetDrone(int id)
-        {
-            Drone d = new Drone();
-            if (drones.Exists(drone => drone.Id != id))
+            public Drone GetDrone(int id)
             {
-                throw new BLDroneExption($"station {id} dosen't exists ");
-            }
-            for (int i = 0; i < drones.Count; i++)
-            {
-                if (drones[i].Id == id)
+                Drone d = new Drone();
+                if (drones.Exists(drone => drone.Id != id))
                 {
-                    d = drones[i];
+                    throw new BLDroneExption($"station {id} dosen't exists ");
                 }
+                for (int i = 0; i < drones.Count; i++)
+                {
+                    if (drones[i].Id == id)
+                    {
+                        d = drones[i];
+                    }
+                }
+                return d;
             }
-            return d;
-        }
 
-            try
-            {
-                IDAL.DO.BaseStation dalStation = mydale.DisplayStation(id);
-            }
-            catch (IDAL.DO.BaseStationExeptions bex)
-            {
-                throw new BLBaseStationException(bex.Message + "from dal");
-            }
-            return new BO.BaseStation
-            {
-                Id = dalStation.Id,
-                Name=dalStation.Name,
+            /* try
+             {
+                 IDAL.DO.BaseStation dalStation = mydale.DisplayStation(id);
+             }
+             catch (IDAL.DO.BaseStationExeptions bex)
+             {
+                 throw new BLBaseStationException(bex.Message + "from dal");
+             }
+             return new BO.BaseStation
+             {
+                 Id = dalStation.Id,
+                 Name=dalStation.Name,
 
-            }
-        }
-        */
+             }*/
+        }*/
+        
 
-        /*public void UpdateDrone(int id, String model)
+        public void UpdateDrone(int id, String model)
         {
 
             try {

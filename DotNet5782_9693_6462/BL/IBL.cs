@@ -8,7 +8,7 @@ namespace IBL.BO
     public interface IBL
     {
         public void AddDrone(Drone drone, int id);
-        public void AddBaseStation(BaseStation baseStation);
+        
     }
 }
 
