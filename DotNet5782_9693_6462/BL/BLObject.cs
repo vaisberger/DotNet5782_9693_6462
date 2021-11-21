@@ -43,6 +43,17 @@ namespace IBL
         }
 
 
+        public void UpdateDrone(int id, String model)
+        {
+            try {
+                mydale.DisplayDrone(id);
+            }
+            catch (IDAL.DO.DroneExeptions dexp)
+            {
+                throw new BLDroneExeption()
+            }
+           
+        }
     }
 }
 
