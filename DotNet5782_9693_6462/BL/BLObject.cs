@@ -13,10 +13,60 @@ namespace IBL
     {
         private List<IBL.BO.Drone> drones;
         IDAL.DO.IDal mydale;
+        private object l;
+
         public BLObject()
         {
             mydale = new DalObject.DalObject();
             drones = new List<IBL.BO.Drone>();
+        }
+        public void AddCustomer(Customer customer)
+        {
+            IDAL.DO.Customer  customer1= new IDAL.DO.Customer();
+            customer1.Id = customer.Id;
+            customer1.Name = customer.Name;
+            customer1.Phone = customer.Phone;
+            customer1.Latitude = customer.location.Latitude;
+            customer1.Longitude = customer.location.Longitude;
+            mydale.AddCustomer(customer1);
+            
+        }
+        public void AddDrone(Drone drone)
+        {
+            Random r = new Random();
+            IDAL.DO.Drone drone1 = new IDAL.DO.Drone();
+            drone1.Id = drone.Id;
+            drone1.Model = drone.Model;
+            drone1.MaxWeight = drone.MaxWeight;
+            drone.Battery = r.Next(20,41);
+            drone.status = DroneStatus.Maitenance;
+            drones.Add(drone);
+
+
+        }
+        public void AddParcel (Parcel parcel)
+        {
+            IDAL.DO.Parcel parcel1 = new IDAL.DO.Parcel();
+            parcel1.SenderId = parcel.Sender.Id;
+            parcel1.TargetId = parcel.Getting.Id;
+            parcel1.weight = parcel.weight;
+            parcel1.priorty = parcel.priority;
+            parcel1.Requsted = null;
+
+
+
+        }
+
+        public void AddBaseStation(BaseStation baseStation)
+        {
+            IDAL.DO.BaseStation baseStation1 = new IDAL.DO.BaseStation();
+            baseStation1.Id = baseStation.Id;
+            baseStation1.Name = baseStation.Name;
+            baseStation1.Latitude = baseStation.location.Latitude;
+            baseStation1.Longitude = baseStation.location.Longitude;
+            baseStation1.ChargeSlots = baseStation.AvailableChargingStations;
+
+            baseStation.DroneInChargings = 0;
         }
         public Customer GetCustomer(int id)
         {
@@ -29,8 +79,10 @@ namespace IBL
             {
                 throw new BLCustomerExption($"Customer id {id} was not found", custEx);
             }
+           
             return customer;
         }
+       
 
         public Drone GetDrone(int id)
         {
