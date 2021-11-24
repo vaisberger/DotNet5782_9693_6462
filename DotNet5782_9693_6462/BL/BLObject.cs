@@ -15,7 +15,7 @@ namespace BLObject
 {
     public class BLObject:IBl
     {
-        private List<IBL.BO.Drone> drones;
+        public List<IBL.BO.Drone> drones;
         IDAL.DO.IDal mydale;
         private object l;
 
@@ -57,14 +57,14 @@ namespace BLObject
             parcel1.weight = (IDAL.DO.Weights)parcel.weight;
             parcel1.priorty = (IDAL.DO.Priorities)parcel.priority;
             parcel1.Requsted = parcel.Requsted;
-            parcel1.Scheduled = parcel.Scheduled;
-            parcel1.PickedUp = parcel.PickedUp;
-            parcel1.Delivered = parcel.Delivered;
             parcel1.DroneId = parcel.droaneParcel.Id;
+            parcel1.PickedUp = parcel.PickedUp;
+            parcel1.Scheduled = parcel.Scheduled;
+            parcel1.Delivered = parcel.Delivered;
             mydale.AddParcel(parcel1);
         }
 
-        public void AddBaseStation(BaseStation baseStation)
+        public void AddBaseStation(BaseStation baseStation)          // לא נכון צריך תיקון
         {
             IDAL.DO.BaseStation baseStation1 = new IDAL.DO.BaseStation();
             baseStation1.Id = baseStation.Id;

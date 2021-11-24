@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 
 using DalObject;
+using IDAL.DO;
+
 namespace ConsoleUI
 {
     class Program
