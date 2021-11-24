@@ -1,19 +1,16 @@
-﻿//course mini project in windows
-// by moria mizrachi and yael vaisberger
-using System;
+﻿using System;
+using BLObject;
 using System.Collections.Generic;
-
-using DalObject;
-namespace ConsoleUI
+namespace ConsoleUI__BL
 {
     class Program
     {
-        static DalObject.DalObject data = new DalObject.DalObject();
+         static BLObject.BLObject data = new BLObject.BLObject();
 
         static void Main(string[] args)
         {
-
-
+            int id;
+            String s;
             int c;
             do
             {
@@ -51,7 +48,7 @@ namespace ConsoleUI
                         {
                             case 0:
                                 Console.WriteLine("please enter the ID and the new model name of the drone to update:");
-
+                               
                                 break;
                             case 1:
                                 break;
@@ -295,4 +292,5 @@ namespace ConsoleUI
             data.AddParcel(NewParcel);
         }
     }
+
 }

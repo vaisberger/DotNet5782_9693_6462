@@ -16,6 +16,7 @@ namespace BL.Bo
         public CustomerParcel getting { get; set; }
         public Location Collection { get; set; }
         public Location CollectionDestination { get; set; }
+        public bool status { get; set; }
         public double TransportDistance { get; set; }
 
     }

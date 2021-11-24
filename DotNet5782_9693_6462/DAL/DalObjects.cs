@@ -100,6 +100,7 @@ namespace DalObject
             {
                 throw new DroneExeptions($"drone {droneId} dosen't exists ");
             }
+            Drone d = DataSource.drones.FirstOrDefault(drone => drone.Id != droneId);
             for (int i = 0; i < DataSource.parcels.Count; i++)
             {
                 if (DataSource.parcels[i].Id == parcleId)

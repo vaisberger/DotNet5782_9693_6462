@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,13 @@ using System.Threading.Tasks;
 using BL;
 using IBL.BO;
 
-
-namespace IBL
+public interface IEnumerable<out list> : IEnumerable
 {
-    public class BLObject
+    IEnumerable<list> GetEnumerable();
+}
+namespace BLObject
+{
+    public class BLObject:IBl
     {
         private List<IBL.BO.Drone> drones;
         IDAL.DO.IDal mydale;
@@ -20,6 +24,7 @@ namespace IBL
             mydale = new DalObject.DalObject();
             drones = new List<IBL.BO.Drone>();
         }
+
         public void AddCustomer(Customer customer)
         {
             IDAL.DO.Customer customer1 = new IDAL.DO.Customer();
@@ -29,8 +34,8 @@ namespace IBL
             customer1.Latitude = customer.location.Latitude;
             customer1.Longitude = customer.location.Longitude;
             mydale.AddCustomer(customer1);
-
         }
+
         public void AddDrone(Drone drone)
         {
             Random r = new Random();
@@ -148,7 +153,7 @@ namespace IBL
             Drone d;
             try
             {
-                d = GetDrone(id);     //bl צריך לחפש ברשימה של הרחפנים ב 
+                d = drones.FirstOrDefault(x => x.Id == id);  //bl צריך לחפש ברשימה של הרחפנים ב 
             }
             catch (IDAL.DO.DroneExeptions dexp)
             {
@@ -159,7 +164,7 @@ namespace IBL
                 throw new BLDroneExption($"Can't send the drone to charge because it is transfering a parcel");
             }
             double battery = d.Battery;
-            IDAL.DO.BaseStation s = DistanceToBattery(id, ref battery);  //the station to charge
+            IDAL.DO.BaseStation s = DistanceToCharge(id, ref battery);  //the station to charge
             Drone dr = drones.FirstOrDefault(x => x.Id == id);
             dr.Battery = battery;
             dr.location1.Latitude = s.Latitude;
@@ -168,7 +173,7 @@ namespace IBL
             mydale.ChargeDrone(id, s.Id);
 
         }
-        private IDAL.DO.BaseStation DistanceToBattery(int id, ref double battery)
+         private IDAL.DO.BaseStation DistanceToCharge(int id, ref double battery)
         {
             double dis = 0;
             double dla = toRadians(drones.FirstOrDefault(x => x.Id == id).location1.Latitude);
@@ -240,32 +245,121 @@ namespace IBL
                 if (P.priorty == IDAL.DO.Priorities.Urgent && P.weight < (IDAL.DO.Weights)d.MaxWeight)
                 {
                     IDAL.DO.BaseStation bsender = mydale.DisplayStation(P.SenderId);
-                    distance(d, bsender, ref battery);
+                    Distance(d, bsender, ref battery);
                     IDAL.DO.BaseStation breciver = mydale.DisplayStation(P.TargetId);
                     Drone drone = new Drone();
-                    drone.location1.Latitude = bsender.Latitude;
-                    drone.location1.Longitude = bsender.Longitude;
-                    distance(drone, breciver, ref battery);
-                    if (battery < d.Battery)// if there is enough battery to make the delivery then check if there is a way to charge if needed
+                    Distance(drone, breciver, ref battery);
+                    double newbattery = battery;
+                    DistanceToCharge(id, ref newbattery);
+                    if (newbattery < d.Battery)// if there is enough battery to make the delivery and to charge if needed
                     {
+                        d.status = DroneStatus.Shipment;
+                        d.ParcelInTransfer.Id = P.Id;
+                        d.ParcelInTransfer.status = false;// false=waiting for transfer
+                        d.ParcelInTransfer.weight = (Weights)P.weight;
+                        d.ParcelInTransfer.Sender.Id = P.SenderId;
+                        d.ParcelInTransfer.Sender.Name = mydale.DisplayStation(P.SenderId).Name;
+                        d.ParcelInTransfer.Collection.Latitude = mydale.DisplayStation(P.SenderId).Latitude;
+                        d.ParcelInTransfer.Collection.Longitude = mydale.DisplayStation(P.SenderId).Longitude;
+                        d.ParcelInTransfer.CollectionDestination.Latitude = mydale.DisplayStation(P.TargetId).Latitude;
+                        d.ParcelInTransfer.CollectionDestination.Longitude = mydale.DisplayStation(P.TargetId).Longitude;
+                        d.ParcelInTransfer.TransportDistance = Distance(d, mydale.DisplayStation(P.SenderId), ref newbattery);
+                        //all the changes needed in bl for the drone
+                        mydale.UpdateParcelToDrone(id, P.Id);//updates changes in drone
 
                     }
                 }
             }
         }
-        public void distance(Drone d, IDAL.DO.BaseStation s, ref double battery)// get the battery needed for that distance
+        private double Distance(Drone d, IDAL.DO.BaseStation s, ref double battery)// get the battery needed for that distance
         {
             double km = 6371;
             double dla = toRadians(d.location1.Latitude);
             double dlo = toRadians(d.location1.Longitude);
             double bla = toRadians(s.Latitude);
             double blo = toRadians(s.Longitude);
-            double help = km * (2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin((dla - bla) / 2), 2) +
+            double dis = km * (2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin((dla - bla) / 2), 2) +
                     Math.Cos(dla) * Math.Cos(bla) *
                     Math.Pow(Math.Sin((dlo - blo) / 2), 2))));
-            battery -= help;
+            battery -= dis;
+            return dis;
 
         }
+        public void ParcelCollection(int Pid)
+        {
+            Drone d = drones.FirstOrDefault(x => x.ParcelInTransfer.Id == Pid);
+            double battery = d.Battery;
+            IDAL.DO.Parcel P = mydale.DisplayParcel(Pid);
+            if (d.ParcelInTransfer.status == true)
+            {
+                throw new BLDroneExption("the parcel was allready picked up");
+            }
+            IDAL.DO.BaseStation s = mydale.DisplayStation(d.ParcelInTransfer.Sender.Id);
+            Distance(d, s, ref battery);
+            d.Battery = battery;
+            d.location1.Latitude = s.Latitude;
+            d.location1.Longitude = s.Longitude;
+            d.ParcelInTransfer.status = true;
+            mydale.Parcelcollection(Pid, d.Id);
+        }
+        public void ParcelDelivery(int Pid)
+        {
+            Drone d = drones.FirstOrDefault(x => x.ParcelInTransfer.Id == Pid);
+            IDAL.DO.Parcel P = mydale.DisplayParcel(Pid);
+            if (d.ParcelInTransfer.status == false || P.Delivered != null)
+            {
+                throw new BLDroneExption("the parcel can't be delivered ");
+            }
+            d.Battery-=d.ParcelInTransfer.TransportDistance;
+            d.location1 = d.ParcelInTransfer.CollectionDestination;
+            mydale.ParcelDelivery(P.Id, P.TargetId);
+        }
+
+
+
+
+        /*מפה צריך לעשות את כל הפונקציות הבאות*/
+
+        public Parcel GetParcel(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BaseStation GetBaseStation(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable DisplayBaseStationlst()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable DisplayDronelst()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable DisplayCustomerlst()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable DisplayParcellst()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable DisplayParcelsUnmatched()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable DisplayStationsToCharge()
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
 }
