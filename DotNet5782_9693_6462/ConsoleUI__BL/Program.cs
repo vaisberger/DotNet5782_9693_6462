@@ -1,21 +1,17 @@
-﻿//course mini project in windows
-// by moria mizrachi and yael vaisberger
-using System;
+﻿using System;
+using BLObject;
 using System.Collections.Generic;
+using IBL.BO;
 
-using DalObject;
-using IDAL.DO;
-
-namespace ConsoleUI
+namespace ConsoleUI__BL
 {
     class Program
     {
-        static DalObject.DalObject data = new DalObject.DalObject();
-
+         static BLObject.BLObject data = new BLObject.BLObject();
+        public static Random r = new Random();
         static void Main(string[] args)
         {
-
-
+            
             int c;
             do
             {
@@ -47,50 +43,79 @@ namespace ConsoleUI
                         break;
                     case 1://update
                         Console.WriteLine("please select the item you would like to update:");
-                        Console.WriteLine("0-Update Drone\n 1-Update Base Station\n 2-Update customer\n 4-Match drone to parcel \n 5-Parcel collection\n 6-Parcel delivery\n 7-Charge Drone\n 8-Discharge Drone");
+                        Console.WriteLine("0-Update Drone\n 1-Update Base Station\n 2-Update customer\n 3-Match drone to parcel \n 4-Parcel collection\n 5-Parcel delivery\n 6-Charge Drone\n 7-Discharge Drone");
                         int u = Convert.ToInt32(Console.ReadLine());
                         switch (u)
                         {
                             case 0:
                                 Console.WriteLine("please enter the ID and the new model name of the drone to update:");
-
+                                int id = Convert.ToInt32(Console.ReadLine());
+                                String s = Console.ReadLine();
+                                data.UpdateDrone(id, s);
                                 break;
                             case 1:
+                                Console.WriteLine("please enter the ID of station to update");
+                                int sid = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("if you want to update the name press 1");
+                                int name=-1;
+                                int ch=-1;
+                                int check = Convert.ToInt32(Console.ReadLine());
+                                if (check == 1)
+                                {
+                                    name = Convert.ToInt32(Console.ReadLine());
+                                }
+                                Console.WriteLine("if you want to update the ChargeSlots press 1");
+                                check = Convert.ToInt32(Console.ReadLine());
+                                if (check == 1)
+                                {
+                                    ch = Convert.ToInt32(Console.ReadLine());
+                                }
+                                data.UpdateBaseStation(sid, name, ch);
                                 break;
                             case 2:
+                                Console.WriteLine("please enter the ID of customer to update");
+                                int cid = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("if you want to update the name press 1");
+                                String nameC = "";
+                                String phone = "";
+                                check = Convert.ToInt32(Console.ReadLine());
+                                if (check == 1)
+                                {
+                                    nameC = Console.ReadLine();
+                                }
+                                Console.WriteLine("if you want to update the ChargeSlots press 1");
+                                check = Convert.ToInt32(Console.ReadLine());
+                                if (check == 1)
+                                {
+                                    phone = Console.ReadLine();
+                                }
+                                data.UpdateCustomer(cid,nameC,phone);
                                 break;
-                            case 3:
-                                break;
-                            case 4://Match drone to parcel
-                                Console.WriteLine("please enter the ID of the parcel and drone to match");
-                                int pID = Convert.ToInt32(Console.ReadLine());
+                            case 3://Match drone to parcel
+                                Console.WriteLine("please enter the ID of the drone to match");
                                 int dID = Convert.ToInt32(Console.ReadLine());
-                                data.UpdateParcelToDrone(pID, dID);
+                                data.MatchDroneToParcel(dID);
                                 break;
-                            case 5://Parcel collection
-                                Console.WriteLine("please enter the ID of the parcel and drone to collect");
-                                pID = Convert.ToInt32(Console.ReadLine());
+                            case 4://Parcel collection
+                                Console.WriteLine("please enter the ID of the drone to collect");
                                 dID = Convert.ToInt32(Console.ReadLine());
-                                data.Parcelcollection(pID, dID);
+                                data.ParcelCollection(dID);
                                 break;
-                            case 6://Parcel delivery
-                                Console.WriteLine("please enter the ID of the parcel and customer to deliver to");
-                                pID = Convert.ToInt32(Console.ReadLine());
+                            case 5://Parcel delivery
+                                Console.WriteLine("please enter the ID of the drone to deliver to customer");
                                 int cID = Convert.ToInt32(Console.ReadLine());
-                                data.ParcelDelivery(pID, cID);
+                                data.ParcelDelivery(cID);
                                 break;
-                            case 7://Charge Drone
-                                Console.WriteLine("All the available station:");
-                                data.DisplayAvailableStation();
-                                Console.WriteLine("please enter the ID of the drone and staition to charge");
+                            case 6://Charge Drone
+                                Console.WriteLine("please enter the ID of the drone to charge");
                                 dID = Convert.ToInt32(Console.ReadLine());
-                                int sID = Convert.ToInt32(Console.ReadLine());
-                                data.ChargeDrone(dID, sID);
+                                data.SendDroneToCharge(dID);
                                 break;
-                            case 8://Discharge Drone
-                                Console.WriteLine("please enter the ID of the drone to discharge");
+                            case 7://Discharge Drone
+                                Console.WriteLine("please enter the ID of the drone and time it was charging in hr to discharge");
                                 dID = Convert.ToInt32(Console.ReadLine());
-                                data.DischargeDrone(dID);
+                                double chc= Convert.ToInt32(Console.ReadLine());
+                                data.DischargeDrone(dID,chc);
                                 break;
                         }
                         break;
@@ -103,22 +128,22 @@ namespace ConsoleUI
                             case 0:// display station
                                 Console.WriteLine("enter the ID of the station you would like to display");
                                 int IDs = Convert.ToInt32(Console.ReadLine());
-                                data.DisplayStation(IDs);
+                                data.GetBaseStation(IDs);
                                 break;
                             case 1:// display drone
                                 Console.WriteLine("enter the ID of the drone you would like to display");
                                 int IDd = Convert.ToInt32(Console.ReadLine());
-                                data.DisplayDrone(IDd);
+                                data.GetDrone(IDd);
                                 break;
                             case 2:// display customer
                                 Console.WriteLine("enter the ID of the customer you would like to display");
                                 int IDc = Convert.ToInt32(Console.ReadLine());
-                                data.DisplayCustomer(IDc);
+                                data.GetCustomer(IDc);
                                 break;
                             case 3:// display parcel
                                 Console.WriteLine("enter the ID of the parcel you would like to display");
                                 int IDp = Convert.ToInt32(Console.ReadLine());
-                                data.DisplayParcel(IDp);
+                                data.GetParcel(IDp);
                                 break;
                         }
                         break;
@@ -162,7 +187,7 @@ namespace ConsoleUI
 
         private static void displayavailablestation()
         {
-            foreach (BaseStation s in data.DisplayAvailableStation())
+            foreach (BaseStation s in data.DisplayStationsToCharge())
             {
                 s.ToString();
             }
@@ -170,7 +195,7 @@ namespace ConsoleUI
 
         private static void displayparcelunmatched()
         {
-            foreach (Parcel p in data.DisplayParcelUnmatched())
+            foreach (Parcel p in data.DisplayParcelsUnmatched())
             {
                 p.ToString();
             }
@@ -178,7 +203,7 @@ namespace ConsoleUI
 
         private static void displayparcellist()
         {
-            foreach (Parcel p in data.DisplayParcelList())
+            foreach (Parcel p in data.DisplayParcellst())
             {
                 p.ToString();
             }
@@ -186,7 +211,7 @@ namespace ConsoleUI
 
         private static void displaycustomerlist()
         {
-            foreach (Customer c in data.DisplayCustomerList())
+            foreach (Customer c in data.DisplayCustomerlst())
             {
                 c.ToString();
             }
@@ -194,7 +219,7 @@ namespace ConsoleUI
 
         private static void displaydronelist()
         {
-            foreach (Drone d in data.DisplayDroneList())
+            foreach (Drone d in data.drones)
             {
                 d.ToString();
             }
@@ -202,7 +227,7 @@ namespace ConsoleUI
 
         private static void displaystationlist()
         {
-            foreach (BaseStation s in data.DisplayStationList())
+            foreach (BaseStation s in data.DisplayBaseStationlst())
             {
                 s.ToString();
             }
@@ -216,32 +241,39 @@ namespace ConsoleUI
             double Longitued = Convert.ToDouble(Console.ReadLine());
             double Latitude = Convert.ToDouble(Console.ReadLine());
             int ChargeSlots = Convert.ToInt32(Console.ReadLine());
-
+            Location L=new Location();
+            L.Latitude = Latitude;
+            L.Longitude = Longitued;
             BaseStation NewStation = new BaseStation()
             {
                 Id = ID,
                 Name = Name,
-                Longitude = Longitued,
-                Latitude = Latitude,
-                ChargeSlots = ChargeSlots,
+                location = L,
+                AvailableChargingStations = ChargeSlots,
+                DroneInChargings = null,
             };
 
-            data.AddStation(NewStation);
+            data.AddBaseStation(NewStation);
         }
         private static void addDrone()
         {
 
             Weights weights;
-            Console.WriteLine("please enter id, model, Max weight,status, battery");
+            Console.WriteLine("please enter id, model, Max weight,station to charge");
             int ID = Convert.ToInt32(Console.ReadLine());
             String model = Console.ReadLine();
             Weights.TryParse(Console.ReadLine(), out weights);
-            double battery = Convert.ToDouble(Console.ReadLine());
+            int ids = Convert.ToInt32(Console.ReadLine());
+            BaseStation b=data.GetBaseStation(ids);
+            Location sl = b.location;
             Drone NewDrone = new Drone()
             {
                 Id = ID,
                 Model = model,
                 MaxWeight = weights,
+                location1 = sl,
+                Battery = r.Next(20, 40),
+                status = DroneStatus.Maitenance,
             };
             data.AddDrone(NewDrone);
 
@@ -255,13 +287,15 @@ namespace ConsoleUI
             String phone = Console.ReadLine();
             double longitued = Convert.ToDouble(Console.ReadLine());
             double latitude = Convert.ToDouble(Console.ReadLine());
+            Location L = new Location();
+            L.Latitude = latitude;
+            L.Longitude = longitued;
             Customer NewCustomer = new Customer()
             {
                 Id = ID,
                 Name = name,
                 Phone = phone,
-                Longitude = longitued,
-                Latitude = latitude,
+                location = L,
             };
 
             data.AddCustomer(NewCustomer);
@@ -270,31 +304,33 @@ namespace ConsoleUI
         private static void addParcel()
         {
             Priorities Priorty;
-            DateTime scheduled;
-            DateTime pickedUp;
-            DateTime delivered;
             Weights Weight;
-            Console.WriteLine("please enter Id, Sender ID, Target ID, weight, priorty, Requsted, Drone ID, Scheduled, Picked Up, Delivered ");
+            Console.WriteLine("please enter Id, Sender ID, Target ID, weight, priorty");
             int ID = Convert.ToInt32(Console.ReadLine());
+            int sid= Convert.ToInt32(Console.ReadLine());
+            int tid= Convert.ToInt32(Console.ReadLine());
             Weights.TryParse(Console.ReadLine(), out Weight);
             Priorities.TryParse(Console.ReadLine(), out Priorty);
-            DateTime.TryParse(Console.ReadLine(), out scheduled);
-            DateTime.TryParse(Console.ReadLine(), out pickedUp);
-            DateTime.TryParse(Console.ReadLine(), out delivered);
+            ParcelCustomer pc1 = new ParcelCustomer();
+            pc1.Id = sid;
+            ParcelCustomer pc2 = new ParcelCustomer();
+            pc2.Id = tid;
+            DateTime d = new DateTime(0,0,0, 0, 0, 0);
             Parcel NewParcel = new Parcel()
             {
                 Id = ID,
-                SenderId = 0,
-                TargetId = 0,
+                Sender = pc1,
+                Getting = pc2,
                 weight = Weight,
-                priorty = Priorty,
+                priority = Priorty,
                 Requsted = DateTime.Now,
-                DroneId = 0,
-                Scheduled = scheduled,
-                PickedUp = pickedUp,
-                Delivered = delivered,
+                Scheduled=d,
+                Delivered=d,
+                PickedUp=d,
+                droaneParcel = null,
             };
             data.AddParcel(NewParcel);
         }
     }
+
 }

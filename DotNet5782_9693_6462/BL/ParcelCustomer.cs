@@ -6,7 +6,6 @@
         public Weights weight { get; set; }
         public Priorities priority { get; set; }
         public Situation situation { get; set; }
-
         public CustomerParcel customerParcel { get; set; }
 
     }

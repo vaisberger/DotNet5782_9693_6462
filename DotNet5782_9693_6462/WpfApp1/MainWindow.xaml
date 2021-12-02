@@ -5,38 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="260">
-    <Grid x:Name="maingrid" Margin="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-
-
-        </Grid.RowDefinitions>
-        <Label Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Margin="0,2,3,0" Height="104" Width="86" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <ListBox  Grid.Row="1" x:Name="lstNames"/>
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="5,0,0,0">
-            <TextBox x:Name="txtName"/>
-            <Button x:Name="butNmae" Margin="0,5,2,3" Content="Add buttion" Click="butNmae_Click"/>
-            <!--Button x:Name="butNmae" Margin="0,5,2,3" Content="Add buttion" Click="butNmae_Click"/-->
-        </StackPanel>
-        <Label Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="110,80,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-     
-
-
-
-
-
-
-
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
 
     </Grid>
 </Window>

@@ -14,7 +14,7 @@ namespace IBL
         }
         public enum DroneStatus
          {
-             Available, Maitenance, Shi apment
+             Available, Maitenance, Shipment
          }
 
         public enum Priorities

@@ -36,7 +36,7 @@ using DalObject;
             public IEnumerable DisplayParcelUnmatched();
             public IEnumerable DisplayAvailableStation();
             public double[] PowerConsumptionRequest();
-            public double returnChargerate() { return DataSource.Config.ChargingRate()}
+            public double returnChargerate() { return DataSource.Config.ChargingRate; }
     
 
 
