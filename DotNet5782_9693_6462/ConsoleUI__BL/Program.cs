@@ -1,15 +1,16 @@
 ﻿using System;
-using BLObject;
 using System.Collections.Generic;
+using BLObject;
 using IBL.BO;
 
 namespace ConsoleUI__BL
 {
+    
     class Program
     {
          static BLObject.BLObject data = new BLObject.BLObject();
         public static Random r = new Random();
-        static void Main(string[] args)
+         static void Main(string[] args)
         {
             
             int c;
