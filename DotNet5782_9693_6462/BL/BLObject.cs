@@ -78,7 +78,7 @@ namespace IBL
             }
             catch (IDAL.DO.CustomerExeptions custEx)
             {
-                throw new BLCustomerExption($"Customer id {id} was not found", custEx);
+                throw new BLParcelExption($"Customer id {id} was not found", custEx);
             }
 
             return customer;
@@ -101,6 +101,35 @@ namespace IBL
             }
             return d;
         }
+        public Parcel GetParcel(int id)
+        {
+            Parcel parcel= default;
+            try
+            {
+                IDAL.DO.Parcel dalParcel = mydale.DisplayParcel(id);
+            }
+            catch (IDAL.DO.ParcelExeptions custEx)
+            {
+                throw new BLParcelExption($"Parcel id {id} was not found", custEx);
+            }
+
+            return parcel;
+        }
+        public BaseStation GetBaseStation(int id)
+        {
+            BaseStation baseStation = default;
+            try
+            {
+                IDAL.DO.BaseStation dalBaseStation = mydale.DisplayStation(id);
+            }
+            catch (IDAL.DO.BaseStationExeptions custEx)
+            {
+                throw new BLBaseStationExption($"BaseStation id {id} was not found", custEx);
+            }
+
+            return baseStation;
+        }
+
 
         public void UpdateDrone(int id, String model)
         {
@@ -139,7 +168,7 @@ namespace IBL
             }
             catch (IDAL.DO.CustomerExeptions cexp)
             {
-                throw new BLCustomerExption($"Can't update the custumer because it dosn't exist");
+                throw new BLParcelExption($"Can't update the custumer because it dosn't exist");
             }
             mydale.UpdateCustomer(id, name, phone);
         }

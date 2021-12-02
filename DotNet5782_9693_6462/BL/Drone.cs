@@ -19,6 +19,10 @@ namespace IBL
             public double Battery { get; set; }
             public ParcelInTransfer ParcelInTransfer{ get; set; }
             public Location location1 { get; set; }
-    }
+            public override string ToString()//print
+            {
+                return "Id: " + Id + " Model: " + Model + " Max Weight: " + MaxWeight+ " Status: " + status + "Battey: " + Battery + "Parcel In Transfer:" + ParcelInTransfer + "Location:" + location1;
+            }
+        }
 }
 }

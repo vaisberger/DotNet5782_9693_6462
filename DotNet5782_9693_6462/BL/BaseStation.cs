@@ -16,6 +16,10 @@ namespace IBL
             public Location location { get; set; }
             public int AvailableChargingStations { get; set; }
             public List<DroneInCharging> DroneInChargings { get; set; }
+            public override string ToString()//print
+            {
+                return "ID: " + Id + " Name: " + Name + "Location" + location + "Available Charging Stations:" + AvailableChargingStations + "Drone In Chargings:" + DroneInChargings;
+            }
 
         }
     }

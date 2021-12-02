@@ -4,23 +4,23 @@ using System.Runtime.Serialization;
 namespace IBL.BO
 {
     [Serializable]
-    public class BLCustomerExption : Exception
+    public class BLParcelExption : Exception
     {
-        public BLCustomerExption()
+        public BLParcelExption()
         {
         }
 
-        public BLCustomerExption(string message) : base(message)
+        public BLParcelExption(string message) : base(message)
         {
         }
 
-        public BLCustomerExption(string message, Exception innerException) : base(message, innerException)
+        public BLParcelExption(string message, Exception innerException) : base(message, innerException)
         {
         }
 
       
 
-        protected BLCustomerExption(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected BLParcelExption(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }
