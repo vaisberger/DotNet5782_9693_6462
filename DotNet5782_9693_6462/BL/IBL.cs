@@ -17,7 +17,7 @@ namespace IBL.BO
 
         public Customer GetCustomer(int id);
         public Drone GetDrone(int id);
-        public Parcel GetParcel(int id); // לסיים את שניהם
+        public Parcel GetParcel(int id); 
         public BaseStation GetBaseStation(int id);
 
         public void UpdateBaseStation(int id, int name = -1, int chargeslots = -1);
