@@ -393,7 +393,7 @@ namespace DalObject
 
         }
        double[] IDal.PowerConsumptionRequest()
-        {
+        { 
             double[] powerConsumtion = new double[] { DataSource.Config.Avaliable, DataSource.Config.Light, DataSource.Config.Medium, DataSource.Config.Heavy, DataSource.Config.ChargingRate };
             return powerConsumtion;
         }
