@@ -9,7 +9,7 @@ namespace IBL.BO
    public class BaseStationList
     {
         public int Id { get; set; }
-        public string Nmae { get; set; }
+        public int Nmae { get; set; }
         public int AvailableChargingStations { get; set; }
         public int BusyChargingStations { get; set; }
 

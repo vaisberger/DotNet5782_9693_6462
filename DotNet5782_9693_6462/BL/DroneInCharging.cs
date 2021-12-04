@@ -9,6 +9,6 @@ namespace IBL.BO
     public class DroneInCharging
     {
         public int Id { get; set; }
-        public double Battery { get; set; }
+        public double? Battery { get; set; }
     }
 }
