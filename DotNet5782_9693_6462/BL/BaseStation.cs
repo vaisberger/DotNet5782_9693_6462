@@ -11,7 +11,9 @@ namespace IBL
     {
         public class BaseStation
         {
-            public int Id { get; set; }
+            public int Id
+            {
+                get; set= null; }
             public int Name { get; set; }
             public Location location { get; set; }
             public int AvailableChargingStations { get; set; }

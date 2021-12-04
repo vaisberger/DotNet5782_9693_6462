@@ -16,10 +16,10 @@ namespace IDAL
 
             public Weights weight { set; get; }
             public Priorities priorty { set; get; }
-            public DateTime Requsted { set; get; }
+            public DateTime? Requsted { set; get; }
             public int DroneId { set; get; }
-            public DateTime Scheduled { set; get; }
-            public DateTime PickedUp { set; get; }
+            public DateTime? Scheduled { set; get; }
+            public DateTime? PickedUp { set; get; }
             public DateTime? Delivered { set; get; }
             public override string ToString()//print
             {
