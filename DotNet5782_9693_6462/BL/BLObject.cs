@@ -287,7 +287,7 @@ namespace BLObject
                         d.ParcelInTransfer.status = false;// false=waiting for transfer
                         d.ParcelInTransfer.weight = (Weights)P.weight;
                         d.ParcelInTransfer.Sender.Id = P.SenderId;
-                        d.ParcelInTransfer.Sender.Name = mydale.DisplayStation(P.SenderId).Name;
+                        d.ParcelInTransfer.Sender.Id = mydale.DisplayStation(P.SenderId).Name;
                         d.ParcelInTransfer.Collection.Latitude = mydale.DisplayStation(P.SenderId).Latitude;
                         d.ParcelInTransfer.Collection.Longitude = mydale.DisplayStation(P.SenderId).Longitude;
                         d.ParcelInTransfer.CollectionDestination.Latitude = mydale.DisplayStation(P.TargetId).Latitude;
