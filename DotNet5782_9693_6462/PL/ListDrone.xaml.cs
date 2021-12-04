@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for ListDrone.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class ListDrone : Window
+    public partial class MainWindow : Window
     {
-        public ListDrone()
+        public MainWindow()
         {
             InitializeComponent();
         }
