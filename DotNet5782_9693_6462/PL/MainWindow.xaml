@@ -11,5 +11,6 @@
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
+        <Grid/>
     </Grid>
 </Window>
