@@ -349,44 +349,39 @@ namespace BLObject
 
         /*מפה צריך לעשות את כל הפונקציות הבאות*/
 
-        public Parcel GetParcel(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BaseStation GetBaseStation(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable DisplayBaseStationlst()
         {
-            throw new NotImplementedException();
+            return mydale.DisplayStationList();
         }
 
         public IEnumerable DisplayDronelst()
         {
-            throw new NotImplementedException();
+            List<Drone> D = new List<Drone>();
+            foreach (Drone d in drones)
+            {
+                D.Add(d);
+            }
+            return D;
         }
 
         public IEnumerable DisplayCustomerlst()
         {
-            throw new NotImplementedException();
+            return mydale.DisplayCustomerList();
         }
 
         public IEnumerable DisplayParcellst()
         {
-            throw new NotImplementedException();
+            return mydale.DisplayParcelList();
         }
 
         public IEnumerable DisplayParcelsUnmatched()
         {
-            throw new NotImplementedException();
+            return mydale.DisplayParcelUnmatched();
         }
 
         public IEnumerable DisplayStationsToCharge()
         {
-            throw new NotImplementedException();
+            return mydale.DisplayAvailableStation();
         }
 
 

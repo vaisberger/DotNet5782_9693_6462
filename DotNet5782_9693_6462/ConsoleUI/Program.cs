@@ -1,6 +1,6 @@
 ﻿//course mini project in windows
 // by moria mizrachi and yael vaisberger
-/*using System;
+using System;
 using System.Collections.Generic;
 
 using DalObject;
@@ -65,32 +65,32 @@ namespace ConsoleUI
                                 Console.WriteLine("please enter the ID of the parcel and drone to match");
                                 int pID = Convert.ToInt32(Console.ReadLine());
                                 int dID = Convert.ToInt32(Console.ReadLine());
-                                data.UpdateParcelToDrone(pID, dID);
+                               // data.UpdateParcelToDrone(pID, dID);
                                 break;
                             case 5://Parcel collection
                                 Console.WriteLine("please enter the ID of the parcel and drone to collect");
                                 pID = Convert.ToInt32(Console.ReadLine());
                                 dID = Convert.ToInt32(Console.ReadLine());
-                                data.Parcelcollection(pID, dID);
+                               // data.Parcelcollection(pID, dID);
                                 break;
                             case 6://Parcel delivery
                                 Console.WriteLine("please enter the ID of the parcel and customer to deliver to");
                                 pID = Convert.ToInt32(Console.ReadLine());
                                 int cID = Convert.ToInt32(Console.ReadLine());
-                                data.ParcelDelivery(pID, cID);
+                               // data.ParcelDelivery(pID, cID);
                                 break;
                             case 7://Charge Drone
                                 Console.WriteLine("All the available station:");
-                                data.DisplayAvailableStation();
+                               // data.DisplayAvailableStation();
                                 Console.WriteLine("please enter the ID of the drone and staition to charge");
                                 dID = Convert.ToInt32(Console.ReadLine());
                                 int sID = Convert.ToInt32(Console.ReadLine());
-                                data.ChargeDrone(dID, sID);
+                              //  data.ChargeDrone(dID, sID);
                                 break;
                             case 8://Discharge Drone
                                 Console.WriteLine("please enter the ID of the drone to discharge");
                                 dID = Convert.ToInt32(Console.ReadLine());
-                                data.DischargeDrone(dID);
+                               // data.DischargeDrone(dID);
                                 break;
                         }
                         break;
@@ -103,22 +103,22 @@ namespace ConsoleUI
                             case 0:// display station
                                 Console.WriteLine("enter the ID of the station you would like to display");
                                 int IDs = Convert.ToInt32(Console.ReadLine());
-                                data.DisplayStation(IDs);
+                                //data.DisplayStation(IDs);
                                 break;
                             case 1:// display drone
                                 Console.WriteLine("enter the ID of the drone you would like to display");
                                 int IDd = Convert.ToInt32(Console.ReadLine());
-                                data.DisplayDrone(IDd);
+                               // data.DisplayDrone(IDd);
                                 break;
                             case 2:// display customer
                                 Console.WriteLine("enter the ID of the customer you would like to display");
                                 int IDc = Convert.ToInt32(Console.ReadLine());
-                                data.DisplayCustomer(IDc);
+                                //data.DisplayCustomer(IDc);
                                 break;
                             case 3:// display parcel
                                 Console.WriteLine("enter the ID of the parcel you would like to display");
                                 int IDp = Convert.ToInt32(Console.ReadLine());
-                                data.DisplayParcel(IDp);
+                              //  data.DisplayParcel(IDp);
                                 break;
                         }
                         break;
@@ -162,50 +162,50 @@ namespace ConsoleUI
 
         private static void displayavailablestation()
         {
-            foreach (BaseStation s in data.DisplayAvailableStation())
+           /* foreach (BaseStation s in data.DisplayAvailableStation())
             {
                 s.ToString();
-            }
+            }*/
         }
 
         private static void displayparcelunmatched()
         {
-            foreach (Parcel p in data.DisplayParcelUnmatched())
+           /* foreach (Parcel p in data.DisplayParcelUnmatched())
             {
                 p.ToString();
-            }
+            }*/
         }
 
         private static void displayparcellist()
         {
-            foreach (Parcel p in data.DisplayParcelList())
+           /* foreach (Parcel p in data.DisplayParcelList())
             {
                 p.ToString();
-            }
+            }*/
         }
 
         private static void displaycustomerlist()
         {
-            foreach (Customer c in data.DisplayCustomerList())
+            /*foreach (Customer c in data.DisplayCustomerList())
             {
                 c.ToString();
-            }
+            }*/
         }
 
         private static void displaydronelist()
         {
-            foreach (Drone d in data.DisplayDroneList())
+            /*foreach (Drone d in data.DisplayDroneList())
             {
                 d.ToString();
-            }
+            }*/
         }
 
         private static void displaystationlist()
         {
-            foreach (BaseStation s in data.DisplayStationList())
+           /* foreach (BaseStation s in data.DisplayStationList())
             {
                 s.ToString();
-            }
+            }*/
         }
 
         private static void addStation()
@@ -226,7 +226,7 @@ namespace ConsoleUI
                 ChargeSlots = ChargeSlots,
             };
 
-            data.AddStation(NewStation);
+            //data.AddStation(NewStation);
         }
         private static void addDrone()
         {
@@ -243,7 +243,7 @@ namespace ConsoleUI
                 Model = model,
                 MaxWeight = weights,
             };
-            data.AddDrone(NewDrone);
+           // data.AddDrone(NewDrone);
 
         }
 
@@ -264,7 +264,7 @@ namespace ConsoleUI
                 Latitude = latitude,
             };
 
-            data.AddCustomer(NewCustomer);
+          //  data.AddCustomer(NewCustomer);
         }
 
         private static void addParcel()
@@ -294,7 +294,7 @@ namespace ConsoleUI
                 PickedUp = pickedUp,
                 Delivered = delivered,
             };
-            data.AddParcel(NewParcel);
+           // data.AddParcel(NewParcel);
         }
     }
-}*/
+}
