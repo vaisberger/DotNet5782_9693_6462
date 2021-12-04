@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ListDrone" Height="640" Width="800">
 
-    <Grid>
-
+    <Grid x:Name="MainGride">
+       
         </Grid>
 </Window>
