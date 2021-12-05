@@ -21,13 +21,14 @@ namespace PL
 
     public partial class MainWindow : Window
     {
-        IBL.BO.IBl mybl;
+        static IBL.BO.IBl mybl;
         static void Main(string[] args) {
-           
 
+            MainWindow New;
         }
         public MainWindow()
         {
+            mybl = new BLObject.BLObject();
             InitializeComponent();
         }
 
