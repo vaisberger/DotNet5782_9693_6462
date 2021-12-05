@@ -22,19 +22,12 @@ namespace PL
 
     public partial class ListDroneWindow : Window
     {
-        
-        IBl bl;
-        private IBL.IBL mybl;
-
-
-
-
-
-        internal ListDroneWindow(IBL.IBL mybl)
+        IBL.IBL bl;
+        public ListDroneWindow(IBL.IBL THBL)
         {
-            this.mybl = mybl;
+            this.bl = THBL;
             
-
+            
         }
     }
 }
