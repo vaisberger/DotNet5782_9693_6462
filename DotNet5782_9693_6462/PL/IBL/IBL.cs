@@ -1,6 +1,6 @@
 ﻿namespace IBL
 {
-    public class IBL
+    internal class IBL
     {
     }
 }

@@ -11,24 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using IBL;
 using IBL.BO;
-using BL;
-
-
-
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ListDrone.xaml
     /// </summary>
-    public partial class ListDroneWindow : Window
+    public partial class ListDrone : Window
     {
-        public ListDroneWindow(IBL.IBL THBL)
+        IBL.IBL bl;
+        public ListDrone(IBL.IBL bl)
         {
-            
+            this.bl = bl;
+            InitializeComponent();
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

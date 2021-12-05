@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="800">
-   
-        <Grid Name="MainMane" RenderTransformOrigin="0.47,0.606">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="400"/>
-        </Grid.RowDefinitions>
-    </Grid>
+        Title="MainWindow" Height="450" Width="800">
 
-    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Drone's list" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Height="156" Width="196" Click="Button_Click"/>
+        <Button Content="Drone" Grid.Column="1" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Height="156" Width="194"/>
+
+    </Grid>
 </Window>

@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using IBL;
 namespace PL
 {
     /// <summary>
@@ -19,9 +19,17 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        IBL.IBL mybl;
         public MainWindow()
         {
+            mybl = new IBL.IBL();
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ListDrone listDrone = new ListDrone(mybl);
+            listDrone.Show();
         }
     }
 }
