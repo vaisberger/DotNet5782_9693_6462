@@ -12,8 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using IBL.BO;
 using BL;
-
-
+using BLObject;
+using System;
 namespace PL
 {
     /// <summary>
@@ -22,11 +22,19 @@ namespace PL
 
     public partial class ListDroneWindow : Window
     {
+        
         IBl bl;
-        public ListDroneWindow(IBl THBL)
-        {
-            this.bl = THBL;
-        }
+        private IBL.IBL mybl;
 
+
+
+
+
+        internal ListDroneWindow(IBL.IBL mybl)
+        {
+            this.mybl = mybl;
+            InitializedCompoent();
+
+        }
     }
 }
