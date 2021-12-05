@@ -22,10 +22,12 @@ namespace PL
 
     public partial class ListDroneWindow : Window
     {
-        IBl bl;
-        public ListDroneWindow(IBl THBL)
+        IBL.IBL bl;
+        public ListDroneWindow(IBL.IBL THBL)
         {
             this.bl = THBL;
+            
+            
         }
 
     }
