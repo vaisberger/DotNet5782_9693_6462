@@ -33,7 +33,7 @@ namespace PL
         internal ListDroneWindow(IBL.IBL mybl)
         {
             this.mybl = mybl;
-            InitializedCompoent();
+            
 
         }
     }
