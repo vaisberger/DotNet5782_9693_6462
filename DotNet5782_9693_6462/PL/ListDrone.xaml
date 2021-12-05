@@ -11,6 +11,18 @@
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
-        
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="61,0,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Center" Height="49" Width="88"/>
+            <ComboBox x:Name="cmbStatus" Text="choose status" IsEditable="True" IsReadOnly="True" Grid.Column="1"/>
+        </Grid>
+
+
     </Grid>
 </Window>
