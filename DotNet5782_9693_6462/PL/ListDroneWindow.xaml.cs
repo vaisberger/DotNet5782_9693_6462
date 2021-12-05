@@ -29,10 +29,7 @@ namespace PL
             cmbStatus.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatus));
         }
 
-        private void InitializeComponent()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
