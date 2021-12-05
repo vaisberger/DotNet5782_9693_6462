@@ -21,10 +21,10 @@ namespace PL
     /// </summary>
     public partial class ListDroneWindow : Window
     {
-        IBL.IBL bL;
+        IBL.BO.IBL bL;
         public ListDroneWindow(IBL.BO.IBL iBL)
         {
-          
+            this.bL = iBL;
             InitializeComponent();
             cmbStatus.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatus));
         }
