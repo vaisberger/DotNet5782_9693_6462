@@ -21,8 +21,8 @@ namespace PL
     /// </summary>
     public partial class ListDroneWindow : Window
     {
-
-        public ListDroneWindow()
+        IBL.IBL bL;
+        public ListDroneWindow(IBL.IBL iBL)
         {
           
             InitializeComponent();
