@@ -8,7 +8,7 @@ using BLObject;
 
     namespace IBL.BO
     {
-        public interface IBL
+        public interface IBl
         {
             public void AddDrone(Drone drone);
             public void AddCustomer(Customer customer);

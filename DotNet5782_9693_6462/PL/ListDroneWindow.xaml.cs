@@ -19,10 +19,10 @@ namespace PL
     /// <summary>
     /// Interaction logic for ListDroneWindow.xaml
     /// </summary>
-    public partial class ListDroneWindow : Window
+    public partial  class ListDroneWindow : Window
     {
-        IBL.BO.IBL bL;
-        public ListDroneWindow(IBL.BO.IBL iBL)
+        IBL.BO.IBl bL;
+        public ListDroneWindow(IBL.BO.IBl iBL)
         {
             this.bL = iBL;
             InitializeComponent();

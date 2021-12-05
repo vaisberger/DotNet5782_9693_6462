@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IBL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,16 @@ namespace PL
     /// </summary>
     public partial class Drone : Window
     {
+        private IBl mybl;
+
         public Drone()
         {
             InitializeComponent();
+        }
+
+        public Drone(IBl mybl)
+        {
+            this.mybl = mybl;
         }
     }
 }

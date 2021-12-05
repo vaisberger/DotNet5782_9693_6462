@@ -17,21 +17,30 @@ namespace PL
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
+
     public partial class MainWindow : Window
     {
-       // IBL.BO.IBL mybl;
+        IBL.BO.IBl mybl;
+        static void Main(string[] args) {
+           
+
+        }
         public MainWindow()
         {
             InitializeComponent();
         }
 
-       
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button clicked!");
-            //new ListDroneWindow(mybl).Show();
-            
+            new ListDroneWindow(mybl).Show();
+
+        }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            new Drone(mybl).Show();
         }
 
         /*private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -39,4 +48,5 @@ namespace PL
             new Drone(mybl).Show();
         }*/
     }
+
 }
