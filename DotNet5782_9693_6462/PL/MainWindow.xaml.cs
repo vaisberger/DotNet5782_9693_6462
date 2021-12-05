@@ -32,5 +32,7 @@ namespace PL
             new ListDroneWindow(mybl).Show();
             
         }
+
+
     }
 }
