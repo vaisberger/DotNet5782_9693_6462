@@ -17,6 +17,7 @@ namespace BLObject
     {
         public List<IBL.BO.Drone> drones;
         IDAL.DO.IDal mydale;
+        private object l;
 
         public BLObject()
         {
