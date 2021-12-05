@@ -25,10 +25,14 @@ namespace PL
             InitializeComponent();
         }
 
+       
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ListDroneWindow listDrone = new ListDroneWindow(mybl);
-            listDrone.Show();
+            new ListDroneWindow(mybl).Show();
+            
         }
+
+
     }
 }

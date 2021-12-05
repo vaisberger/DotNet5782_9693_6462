@@ -29,6 +29,8 @@ namespace PL
             cmbStatus.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatus));
         }
 
+       
+
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
