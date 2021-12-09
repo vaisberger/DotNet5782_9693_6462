@@ -9,7 +9,7 @@ using DalObject;
 
 
 
-    namespace IDAL.DO
+    namespace DO
     {
         public interface IDal
         {
