@@ -10,44 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using IBL;
-namespace PL
+
+namespace WpfApp1
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-
-
     public partial class MainWindow : Window
     {
-        static IBL.BO.IBl mybl;
-        static void Main(string[] args) {
-
-            MainWindow New;
-        }
         public MainWindow()
         {
-            mybl = new BLObject.BLObject();
             InitializeComponent();
         }
 
-
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new ListDroneWindow(mybl).Show();
-
+            MessageBox.Show("Button clicked!");
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            new Drone(mybl).Show();
-        }
-
-        /*private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            new Drone(mybl).Show();
-        }*/
     }
-
 }
