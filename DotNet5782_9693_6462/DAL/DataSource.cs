@@ -1,4 +1,4 @@
-﻿using IDAL.DO;
+﻿using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +29,7 @@ namespace DalObject
         }
         internal static void Initialize() //Initiating function
         {
+            DateTime d = new DateTime(0, 0, 0, 0, 0, 0);
             Random r = new Random();
             //add 5 drones
             drones.Add(new Drone { Id = 0, Model = null, /*status = DroneStatus.Available, Battery = r.Next(5, 100),*/ MaxWeight = Weights.Heavy });//1
@@ -54,16 +55,16 @@ namespace DalObject
             customers.Add(new Customer { Id = 0, Name = null, Phone = $"0{r.Next(51, 58)}{r.Next(1000000, 9999999)}", Longitude = r.Next(0, 25), Latitude = r.Next(0, 61) });//10
 
             //add 10 parcels
-            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//1
-            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//2
-            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//3
-            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//4
-            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//5
-            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//6
-            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//7
-            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//8
-            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//9
-            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = DateTime.Now, PickedUp = DateTime.Now, Delivered = DateTime.Now });//10
+            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = d , PickedUp = d, Delivered = d });//1
+            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = d, PickedUp = d, Delivered = d });//2
+            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = d, PickedUp = d, Delivered = d });//3
+            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = d, PickedUp = d, Delivered = d });//4
+            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = d, PickedUp = d, Delivered = d });//5
+            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = d, PickedUp = d, Delivered = d });//6
+            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = d, PickedUp = d, Delivered = d });//7
+            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = d, PickedUp = d, Delivered = d });//8
+            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = d, PickedUp = d, Delivered = d });//9
+            parcels.Add(new Parcel { Id = Config.ParcelSerial++, SenderId = 0, TargetId = 0, weight = Weights.Light, priorty = Priorities.Normal, Requsted = DateTime.Now, DroneId = 0, Scheduled = d, PickedUp = d, Delivered = d });//10
         }
 
     }

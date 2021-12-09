@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConsoleUI\ConsoleUI.csproj" />
-    <ProjectReference Include="..\DAL\DAL.csproj" />
+    <ProjectReference Include="..\DAL\DalApi.csproj" />
   </ItemGroup>
 
 </Project>
