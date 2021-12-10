@@ -1,29 +1,28 @@
 ﻿using BL;
-using BL.Bo;
+using Bo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IBL
+
+namespace BO
 {
-    namespace BO
+    public class Customer
     {
-       public class Customer
+        public int Id { get; set; }
+        public String Name { get; set; }
+        public string Phone { get; set; }
+        public Location location { get; set; }
+        List<ParcelCustomer> SendParcels { get; set; }
+        List<ParcelCustomer> Parcels { get; set; }
+        public override string ToString()//print
         {
-            public int Id { get; set; }
-            public String Name { get; set; }
-            public string Phone { get; set; }
-            public Location location { get; set; }
-            List<ParcelCustomer> SendParcels { get; set; }
-            List<ParcelCustomer> Parcels { get; set; }
-            public override string ToString()//print
-            {
-                return "ID: " + Id + " Name: " + Name + " Phone " + Phone + "Location:" + location + "List of packages at the customer - from the customer:" + SendParcels + "List of packages at the customer - to the customer:" + Parcels;
-            }
-
-
+            return "ID: " + Id + " Name: " + Name + " Phone " + Phone + "Location:" + location + "List of packages at the customer - from the customer:" + SendParcels + "List of packages at the customer - to the customer:" + Parcels;
         }
+
+
     }
 }
+

@@ -1,5 +1,5 @@
 ﻿
-namespace IBL.BO
+namespace BO
 {
     public class DroaneParcel
     {

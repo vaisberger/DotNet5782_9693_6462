@@ -4,29 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IBL
+
+namespace BO
 {
-    namespace BO
+    public enum Weights
     {
-        public enum Weights
-        {
-            Light, Medium, Heavy
-        }
-        public enum DroneStatus
-         {
-             Available, Maitenance, Shipment
-         }
-
-        public enum Priorities
-        {
-            Normal, Fast, Urgent
-        }
-
-        public enum Situation
-        {
-            Defined, Associated, Collected, Provided
-
-        }
-       
+        Light, Medium, Heavy
     }
+    public enum DroneStatus
+    {
+        Available, Maitenance, Shipment
+    }
+
+    public enum Priorities
+    {
+        Normal, Fast, Urgent
+    }
+
+    public enum Situation
+    {
+        Defined, Associated, Collected, Provided
+
+    }
+
 }
