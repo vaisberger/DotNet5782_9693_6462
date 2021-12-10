@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using BLObject;
 
-    namespace IBL.BO
+    namespace BO
     {
         public interface IBl
         {

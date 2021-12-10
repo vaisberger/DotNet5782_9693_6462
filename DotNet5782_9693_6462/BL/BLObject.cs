@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BL;
-using IBL.BO;
+using BO;
 
 public interface IEnumerable<out list> : IEnumerable
 {
@@ -15,19 +15,19 @@ namespace BLObject
 {
     public class BLObject:IBl
     {
-        public List<IBL.BO.Drone> drones;
-        IDAL.DO.IDal mydale;
+        public List<BO.Drone> drones;
+        DO.IDal mydale;
         private object l;
 
         public BLObject()
         {
             mydale = new DalObject.DalObject();
-            drones = new List<IBL.BO.Drone>();
+            drones = new List<BO.Drone>();
         }
 
         public void AddCustomer(Customer customer)
         {
-            IDAL.DO.Customer customer1 = new IDAL.DO.Customer();
+            DO.Customer customer1 = new DO.Customer();
             customer1.Id = customer.Id;
             customer1.Name = customer.Name;
             customer1.Phone = customer.Phone;
@@ -39,10 +39,10 @@ namespace BLObject
         public void AddDrone(Drone drone)
         {
             Random r = new Random();
-            IDAL.DO.Drone drone1 = new IDAL.DO.Drone();
+            DO.Drone drone1 = new DO.Drone();
             drone1.Id = drone.Id;
             drone1.Model = drone.Model;
-            drone1.MaxWeight = (IDAL.DO.Weights)drone.MaxWeight;
+            drone1.MaxWeight = (DO.Weights)drone.MaxWeight;
             drone.Battery = r.Next(20, 41);
             drone.status = DroneStatus.Maitenance;
             drones.Add(drone);
@@ -51,11 +51,11 @@ namespace BLObject
         }
         public void AddParcel(Parcel parcel)
         {
-            IDAL.DO.Parcel parcel1 = new IDAL.DO.Parcel();
+            DO.Parcel parcel1 = new DO.Parcel();
             parcel1.SenderId = parcel.Sender.Id;
             parcel1.TargetId = parcel.Getting.Id;
-            parcel1.weight = (IDAL.DO.Weights)parcel.weight;
-            parcel1.priorty = (IDAL.DO.Priorities)parcel.priority;
+            parcel1.weight = (DO.Weights)parcel.weight;
+            parcel1.priorty = (DO.Priorities)parcel.priority;
             parcel1.Requsted = parcel.Requsted;
             parcel1.DroneId = parcel.droaneParcel.Id;
             parcel1.PickedUp = parcel.PickedUp;
@@ -66,7 +66,7 @@ namespace BLObject
 
         public void AddBaseStation(BaseStation baseStation)          // לא נכון צריך תיקון
         {
-            IDAL.DO.BaseStation baseStation1 = new IDAL.DO.BaseStation();
+            DO.BaseStation baseStation1 = new DO.BaseStation();
             baseStation1.Id = baseStation.Id;
             baseStation1.Name = baseStation.Name;
             baseStation1.Latitude = baseStation.location.Latitude;
@@ -79,9 +79,9 @@ namespace BLObject
             Customer customer = default;
             try
             {
-                IDAL.DO.Customer dalCustomper = mydale.DisplayCustomer(id);
+                DO.Customer dalCustomper = mydale.DisplayCustomer(id);
             }
-            catch (IDAL.DO.CustomerExeptions custEx)
+            catch (DO.CustomerExeptions custEx)
             {
                 throw new BLParcelExption($"Customer id {id} was not found", custEx);
             }
@@ -111,9 +111,9 @@ namespace BLObject
             Parcel parcel= default;
             try
             {
-                IDAL.DO.Parcel dalParcel = mydale.DisplayParcel(id);
+                DO.Parcel dalParcel = mydale.DisplayParcel(id);
             }
-            catch (IDAL.DO.ParcelExeptions custEx)
+            catch (DO.ParcelExeptions custEx)
             {
                 throw new BLParcelExption($"Parcel id {id} was not found", custEx);
             }
@@ -125,9 +125,9 @@ namespace BLObject
             BaseStation baseStation = default;
             try
             {
-                IDAL.DO.BaseStation dalBaseStation = mydale.DisplayStation(id);
+                DO.BaseStation dalBaseStation = mydale.DisplayStation(id);
             }
-            catch (IDAL.DO.BaseStationExeptions custEx)
+            catch (DO.BaseStationExeptions custEx)
             {
                 throw new BLBaseStationExption($"BaseStation id {id} was not found", custEx);
             }
@@ -143,7 +143,7 @@ namespace BLObject
             {
                 mydale.DisplayDrone(id);
             }
-            catch (IDAL.DO.DroneExeptions dexp)
+            catch (DO.DroneExeptions dexp)
             {
                 throw new BLDroneExption($"Can't update the drone because it dosn't exist");
             }
@@ -157,7 +157,7 @@ namespace BLObject
             {
                 mydale.DisplayStation(id);
             }
-            catch (IDAL.DO.BaseStationExeptions bexp)
+            catch (DO.BaseStationExeptions bexp)
             {
                 throw new BLBaseStationExption($"Can't update the station because it dosn't exist");
             }
@@ -171,7 +171,7 @@ namespace BLObject
             {
                 mydale.DisplayCustomer(id);
             }
-            catch (IDAL.DO.CustomerExeptions cexp)
+            catch (DO.CustomerExeptions cexp)
             {
                 throw new BLParcelExption($"Can't update the custumer because it dosn't exist");
             }
@@ -184,7 +184,7 @@ namespace BLObject
             {
                 d = drones.FirstOrDefault(x => x.Id == id);  //bl צריך לחפש ברשימה של הרחפנים ב 
             }
-            catch (IDAL.DO.DroneExeptions dexp)
+            catch (DO.DroneExeptions dexp)
             {
                 throw new BLDroneExption($"Can't send the drone to charge because it dosn't exist");
             }
@@ -193,7 +193,7 @@ namespace BLObject
                 throw new BLDroneExption($"Can't send the drone to charge because it is transfering a parcel");
             }
             double battery = d.Battery;
-            IDAL.DO.BaseStation s = DistanceToCharge(id, ref battery);  //the station to charge
+            DO.BaseStation s = DistanceToCharge(id, ref battery);  //the station to charge
             Drone dr = drones.FirstOrDefault(x => x.Id == id);
             dr.Battery = battery;
             dr.location1.Latitude = s.Latitude;
@@ -202,15 +202,15 @@ namespace BLObject
             mydale.ChargeDrone(id, s.Id);
 
         }
-         private IDAL.DO.BaseStation DistanceToCharge(int id, ref double battery)
+         private DO.BaseStation DistanceToCharge(int id, ref double battery)
         {
             double dis = 0;
             double dla = toRadians(drones.FirstOrDefault(x => x.Id == id).location1.Latitude);
             double dlo = toRadians(drones.FirstOrDefault(x => x.Id == id).location1.Longitude);
             double km = 6371;
             double help;
-            IDAL.DO.BaseStation b = new IDAL.DO.BaseStation();
-            foreach (IDAL.DO.BaseStation bs in mydale.DisplayAvailableStation())
+            DO.BaseStation b = new DO.BaseStation();
+            foreach (DO.BaseStation bs in mydale.DisplayAvailableStation())
             {
                 double bsla = toRadians(bs.Latitude);
                 double bslo = toRadians(bs.Longitude);
@@ -248,7 +248,7 @@ namespace BLObject
             {
                 d = drones.Find(x => x.Id == id);
             }
-            catch (IBL.BO.BLDroneExption dexp)
+            catch (BO.BLDroneExption dexp)
             {
                 throw new BLDroneExption("the drone was not found");
             }
@@ -269,13 +269,13 @@ namespace BLObject
             {
                 throw new BLDroneExption("the drone isnt aviabale");
             }
-            foreach (IDAL.DO.Parcel P in mydale.DisplayParcelUnmatched())
+            foreach (DO.Parcel P in mydale.DisplayParcelUnmatched())
             {
-                if (P.priorty == IDAL.DO.Priorities.Urgent && P.weight < (IDAL.DO.Weights)d.MaxWeight)
+                if (P.priorty == DO.Priorities.Urgent && P.weight < (DO.Weights)d.MaxWeight)
                 {
-                    IDAL.DO.BaseStation bsender = mydale.DisplayStation(P.SenderId);
+                    DO.BaseStation bsender = mydale.DisplayStation(P.SenderId);
                     Distance(d, bsender, ref battery);
-                    IDAL.DO.BaseStation breciver = mydale.DisplayStation(P.TargetId);
+                    DO.BaseStation breciver = mydale.DisplayStation(P.TargetId);
                     Drone drone = new Drone();
                     Distance(drone, breciver, ref battery);
                     double newbattery = battery;
@@ -300,7 +300,7 @@ namespace BLObject
                 }
             }
         }
-        private double Distance(Drone d, IDAL.DO.BaseStation s, ref double battery)// get the battery needed for that distance
+        private double Distance(Drone d, DO.BaseStation s, ref double battery)// get the battery needed for that distance
         {
             double km = 6371;
             double dla = toRadians(d.location1.Latitude);
@@ -318,12 +318,12 @@ namespace BLObject
         {
             Drone d = drones.FirstOrDefault(x => x.ParcelInTransfer.Id == Pid);
             double battery = d.Battery;
-            IDAL.DO.Parcel P = mydale.DisplayParcel(Pid);
+            DO.Parcel P = mydale.DisplayParcel(Pid);
             if (d.ParcelInTransfer.status == true)
             {
                 throw new BLDroneExption("the parcel was allready picked up");
             }
-            IDAL.DO.BaseStation s = mydale.DisplayStation(d.ParcelInTransfer.Sender.Id);
+            DO.BaseStation s = mydale.DisplayStation(d.ParcelInTransfer.Sender.Id);
             Distance(d, s, ref battery);
             d.Battery = battery;
             d.location1.Latitude = s.Latitude;
@@ -334,7 +334,7 @@ namespace BLObject
         public void ParcelDelivery(int Pid)
         {
             Drone d = drones.FirstOrDefault(x => x.ParcelInTransfer.Id == Pid);
-            IDAL.DO.Parcel P = mydale.DisplayParcel(Pid);
+            DO.Parcel P = mydale.DisplayParcel(Pid);
             if (d.ParcelInTransfer.status == false || P.Delivered != null)
             {
                 throw new BLDroneExption("the parcel can't be delivered ");
