@@ -12,15 +12,20 @@ public interface IEnumerable<out list> : IEnumerable
 namespace DalObject
 {
 
-    internal class DalObject:IDal
+    sealed class Dalobject : IDal
     {
-
-        //constructor
-        public DalObject()
+        #region constructors
+       private Dalobject() { }
+        public static Dalobject Instance { get { return Nested.instance; } }
+        private class Nested
         {
-            DataSource.Initialize();
+            static Nested() { }
+            internal static readonly Dalobject instance = new Dalobject();
         }
+   
+#endregion
 
+        #region Add methods
         //Add a parcel  to the list of  parcel
         int IDal.AddParcel(Parcel p)
         {
@@ -60,7 +65,10 @@ namespace DalObject
             }
             DataSource.drones.Add(d);
         }
-         void IDal.UpdateDrone(int id, String model)
+        #endregion
+
+
+        void IDal.UpdateDrone(int id, String model)
         {
             var d = DataSource.drones.FirstOrDefault(X => X.Id == id);
             d.Model = model;
