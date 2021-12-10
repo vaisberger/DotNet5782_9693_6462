@@ -12,7 +12,7 @@ public interface IEnumerable<out list> : IEnumerable
 namespace DalObject
 {
 
-    public class DalObject:IDal
+    internal class DalObject:IDal
     {
 
         //constructor
