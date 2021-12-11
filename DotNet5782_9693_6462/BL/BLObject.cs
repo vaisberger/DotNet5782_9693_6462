@@ -17,12 +17,12 @@ namespace BLObject
      public sealed class BLObject:IBl
     {
         public List<BO.Drone> drones;
-        DalApi.DalFactory mydale;
+        DalApi.DalFactory.GetDAL() mydale;
         private object l;
 
         public BLObject()
         {
-            mydale = new DalApi.DalFactory();
+            mydale = ;
             drones = new List<BO.Drone>();
         }
 
