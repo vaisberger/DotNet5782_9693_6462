@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BL;
-namespace BL
+using BO;
+
+
+namespace BLObject
 {
     public static class BlFactory
     {
 
         public static IBl GetBl()
         {
-            BO.IBl ibl;
 
-            return ibl;
+
+            return new BLObject();
         }
     }
 }
