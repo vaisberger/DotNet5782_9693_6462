@@ -9,9 +9,19 @@ namespace DalApi
 {
     public static class DalFactory
     {
-        public static IDal GetDAL(string str)
+      public static IDal GetDel()
         {
-            return DO.IDal;
+            string dlType = DLConfig.DLName;
+            DLConfig.DLPackage dlPackage;
+            try
+            {
+                dlPackage = DLConfig.DLPackages[dlType];
+            }
+            catch(KeyNotFoundException xx)
+            {
+                throw new DLConfigException($"Wrong DL type: {dlType}", xx);
+            }
+           
         }
 
     }
