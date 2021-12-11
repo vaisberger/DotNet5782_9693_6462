@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +22,18 @@ namespace DalApi
             {
                 throw new DLConfigException($"Wrong DL type: {dlType}", xx);
             }
-           
+            string dlPackageName = dlPackage.PkgName;
+            string dlNameSpace = dlPackage.NameSpace;
+            string dlClass = dlPackage.ClassName;
+            try
+            {
+                Assembly.Load(dlPackageName);
+            }
+            catch(KeyNotFoundException ex) {
+                throw new DLConfigException($"Cannot load {dlPackageName}", xx);
+            }
+            DO.IDal dal= (IDal)dlPackage;
+            return dal;
         }
 
     }
