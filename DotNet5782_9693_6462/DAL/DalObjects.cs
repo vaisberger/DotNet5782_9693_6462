@@ -15,7 +15,7 @@ namespace DalObject
     sealed class Dalobject : IDal
     {
         #region constructors
-       private Dalobject() { }
+        Dalobject() { }
         public static Dalobject Instance { get { return Nested.instance; } }
         private class Nested
         {

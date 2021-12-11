@@ -16,12 +16,12 @@ namespace BLObject
     public class BLObject:IBl
     {
         public List<BO.Drone> drones;
-        DO.IDal mydale;
+        DalApi.DalFactory mydale;
         private object l;
 
         public BLObject()
         {
-            mydale = new DalObject.DalObject();
+            mydale = new DalApi.();
             drones = new List<BO.Drone>();
         }
 
