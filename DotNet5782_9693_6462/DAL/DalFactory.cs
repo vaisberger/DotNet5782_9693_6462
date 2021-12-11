@@ -11,7 +11,7 @@ namespace DalApi
     {
         public static IDal GetDAL(string str)
         {
-            return IDal;
+            return DO.IDal;
         }
 
     }
