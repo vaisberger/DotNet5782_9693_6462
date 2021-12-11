@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 using BL;
 using BO;
 
+
 public interface IEnumerable<out list> : IEnumerable
 {
     IEnumerable<list> GetEnumerable();
 }
 namespace BLObject
 {
-    public class BLObject:IBl
+    sealed class BLObject:IBl
     {
         public List<BO.Drone> drones;
         DalApi.DalFactory mydale;
