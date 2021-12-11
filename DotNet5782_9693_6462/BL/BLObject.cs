@@ -14,7 +14,7 @@ public interface IEnumerable<out list> : IEnumerable
 }
 namespace BLObject
 {
-    sealed class BLObject:IBl
+     public sealed class BLObject:IBl
     {
         public List<BO.Drone> drones;
         DalApi.DalFactory mydale;
@@ -75,6 +75,12 @@ namespace BLObject
             baseStation1.ChargeSlots = baseStation.AvailableChargingStations;
             baseStation.DroneInChargings = baseStation.DroneInChargings;
         }
+
+       /* public void UpdateDrone(int id, string s)
+        {
+            throw new NotImplementedException();
+        }*/
+
         public Customer GetCustomer(int id)
         {
             Customer customer = default;
@@ -121,6 +127,12 @@ namespace BLObject
 
             return parcel;
         }
+
+        /*public void UpdateBaseStation(int sid, int name, int ch)
+        {
+            throw new NotImplementedException();
+        }*/
+
         public BaseStation GetBaseStation(int id)
         {
             BaseStation baseStation = default;
