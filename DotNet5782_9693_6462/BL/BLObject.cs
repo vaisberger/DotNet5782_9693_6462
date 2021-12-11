@@ -20,12 +20,12 @@ namespace BLObject
         public static BLObject Instance { get { return instance; } }
 
         public List<BO.Drone> drones;
-        DalApi.DalFactory mydale;
+        DalApi.DalFactory.GetDAL() mydale;
         private object l;
 
         private BLObject()
         {
-            mydale = new DalApi.DalFactory();
+            mydale = ;
             drones = new List<BO.Drone>();
         }
 
