@@ -22,7 +22,7 @@ namespace BLObject
 
         public BLObject()
         {
-            mydale = new DalApi.();
+            mydale = new DalApi.DalFactory();
             drones = new List<BO.Drone>();
         }
 
