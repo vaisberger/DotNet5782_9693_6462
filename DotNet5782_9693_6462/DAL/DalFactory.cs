@@ -30,7 +30,7 @@ namespace DalApi
                 Assembly.Load(dlPackageName);
             }
             catch(KeyNotFoundException ex) {
-                throw new DLConfigException($"Cannot load {dlPackageName}", xx);
+                throw new DLConfigException($"Cannot load {dlPackageName}", ex);
             }
             DO.IDal dal= (IDal)dlPackage;
             return dal;
