@@ -16,11 +16,14 @@ namespace BLObject
 {
      public sealed class BLObject:IBl
     {
+        static readonly BLObject instance = new BLObject();
+        public static BLObject Instance { get { return instance; } }
+
         public List<BO.Drone> drones;
         DalApi.DalFactory.GetDAL() mydale;
         private object l;
 
-        public BLObject()
+        private BLObject()
         {
             mydale = ;
             drones = new List<BO.Drone>();
