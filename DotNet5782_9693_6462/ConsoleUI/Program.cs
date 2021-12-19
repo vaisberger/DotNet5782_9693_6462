@@ -10,7 +10,10 @@ namespace ConsoleUI
 {
     class Program
     {
-        static DalObject.DalObject data = new DalObject.DalObject();
+        static DalObject.DataSource data = new DalObject.DataSource(); /// <summary>
+        /// </summary>
+        /// יש בעיה כנראה לתקן
+        /// <param name="args"></param>
 
         static void Main(string[] args)
         {

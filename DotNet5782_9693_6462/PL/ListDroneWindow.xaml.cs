@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using IBL.BO;
 using BL;
+using BO;
 
 namespace PL
 {
@@ -21,12 +22,12 @@ namespace PL
     /// </summary>
     public partial  class ListDroneWindow : Window
     {
-        IBL.BO.IBl bL;
-        public ListDroneWindow(IBL.BO.IBl iBL)
+        IBl bL;
+        public ListDroneWindow(IBl iBL)
         {
             this.bL = iBL;
             InitializeComponent();
-            cmbStatus.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatus));
+            cmbStatus.ItemsSource = Enum.GetValues(typeof(IBl BO.DroneStatus));
         }
 
        

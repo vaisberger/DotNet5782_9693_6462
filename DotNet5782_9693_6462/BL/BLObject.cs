@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BL;
 using BO;
 using DalApi;
+using DO;
 
 public interface IEnumerable<out list> : IEnumerable
 {
@@ -20,16 +21,16 @@ namespace BLObject
         public static BLObject Instance { get { return instance; } }
 
         public List<BO.Drone> drones;
-        DalApi.DalFactory.GetDaL() mydale;
+        static IDal mydale;
         private object l;
 
         private BLObject()
         {
-            mydale = ;
+            mydale = DalApi.DalFactory.GetDal();
             drones = new List<BO.Drone>();
         }
 
-        public void AddCustomer(Customer customer)
+        public void AddCustomer(BO.Customer customer)
         {
             DO.Customer customer1 = new DO.Customer();
             customer1.Id = customer.Id;
@@ -40,7 +41,7 @@ namespace BLObject
             mydale.AddCustomer(customer1);
         }
 
-        public void AddDrone(Drone drone)
+        public void AddDrone(BO.Drone drone)
         {
             Random r = new Random();
             DO.Drone drone1 = new DO.Drone();
@@ -53,7 +54,7 @@ namespace BLObject
 
 
         }
-        public void AddParcel(Parcel parcel)
+        public void AddParcel(BO.Parcel parcel)
         {
             DO.Parcel parcel1 = new DO.Parcel();
             parcel1.SenderId = parcel.Sender.Id;
@@ -68,7 +69,7 @@ namespace BLObject
             mydale.AddParcel(parcel1);
         }
 
-        public void AddBaseStation(BaseStation baseStation)          // לא נכון צריך תיקון
+        public void AddBaseStation(BO.BaseStation baseStation)          // לא נכון צריך תיקון
         {
             DO.BaseStation baseStation1 = new DO.BaseStation();
             baseStation1.Id = baseStation.Id;
@@ -84,9 +85,9 @@ namespace BLObject
             throw new NotImplementedException();
         }*/
 
-        public Customer GetCustomer(int id)
+        public BO.Customer GetCustomer(int id)
         {
-            Customer customer = default;
+            BO.Customer customer = default;
             try
             {
                 DO.Customer dalCustomper = mydale.DisplayCustomer(id);
@@ -100,9 +101,9 @@ namespace BLObject
         }
 
 
-        public Drone GetDrone(int id)
+        public BO.Drone GetDrone(int id)
         {
-            Drone d = new Drone();
+            BO.Drone d = new BO.Drone();
             if (drones.Exists(drone => drone.Id != id))
             {
                 throw new BLDroneExption($"drone {id} was not found");
@@ -116,9 +117,9 @@ namespace BLObject
             }
             return d;
         }
-        public Parcel GetParcel(int id)
+        public BO.Parcel GetParcel(int id)
         {
-            Parcel parcel= default;
+            BO.Parcel parcel= default;
             try
             {
                 DO.Parcel dalParcel = mydale.DisplayParcel(id);
@@ -136,9 +137,9 @@ namespace BLObject
             throw new NotImplementedException();
         }*/
 
-        public BaseStation GetBaseStation(int id)
+        public BO.BaseStation GetBaseStation(int id)
         {
-            BaseStation baseStation = default;
+            BO.BaseStation baseStation = default;
             try
             {
                 DO.BaseStation dalBaseStation = mydale.DisplayStation(id);
@@ -195,7 +196,7 @@ namespace BLObject
         }
         public void SendDroneToCharge(int id)
         {
-            Drone d;
+            BO.Drone d;
             try
             {
                 d = drones.FirstOrDefault(x => x.Id == id);  //bl צריך לחפש ברשימה של הרחפנים ב 
@@ -210,7 +211,7 @@ namespace BLObject
             }
             double battery = d.Battery;
             DO.BaseStation s = DistanceToCharge(id, ref battery);  //the station to charge
-            Drone dr = drones.FirstOrDefault(x => x.Id == id);
+            BO.Drone dr = drones.FirstOrDefault(x => x.Id == id);
             dr.Battery = battery;
             dr.location1.Latitude = s.Latitude;
             dr.location1.Longitude = s.Longitude;
@@ -244,7 +245,7 @@ namespace BLObject
                     b = bs;
                 }
             }
-            Drone d = drones.FirstOrDefault(x => x.Id == id);//the battrey goes down 1% per km
+            BO.Drone d = drones.FirstOrDefault(x => x.Id == id);//the battrey goes down 1% per km
             if (dis > d.Battery)
             {
                 throw new BLDroneExption("drone cannot be charged its too not enough battery to get to station ");
@@ -259,7 +260,7 @@ namespace BLObject
 
         public void DischargeDrone(int id, double time)
         {
-            Drone d = new Drone();
+            BO.Drone d = new BO.Drone();
             try
             {
                 d = drones.Find(x => x.Id == id);
@@ -279,7 +280,7 @@ namespace BLObject
         }
         public void MatchDroneToParcel(int id)
         {
-            Drone d = drones.FirstOrDefault(x => x.Id == id);
+            BO.Drone d = drones.FirstOrDefault(x => x.Id == id);
             double battery = d.Battery;
             if (d.status != DroneStatus.Available)
             {
@@ -292,23 +293,23 @@ namespace BLObject
                     DO.BaseStation bsender = mydale.DisplayStation(P.SenderId);
                     Distance(d, bsender, ref battery);
                     DO.BaseStation breciver = mydale.DisplayStation(P.TargetId);
-                    Drone drone = new Drone();
+                    BO.Drone drone = new BO.Drone();
                     Distance(drone, breciver, ref battery);
                     double newbattery = battery;
                     DistanceToCharge(id, ref newbattery);
                     if (newbattery < d.Battery)// if there is enough battery to make the delivery and to charge if needed
                     {
                         d.status = DroneStatus.Shipment;
-                        d.ParcelInTransfer.Id = P.Id;
-                        d.ParcelInTransfer.status = false;// false=waiting for transfer
-                        d.ParcelInTransfer.weight = (Weights)P.weight;
-                        d.ParcelInTransfer.Sender.Id = P.SenderId;
-                        d.ParcelInTransfer.Sender.Id = mydale.DisplayStation(P.SenderId).Name;
-                        d.ParcelInTransfer.Collection.Latitude = mydale.DisplayStation(P.SenderId).Latitude;
-                        d.ParcelInTransfer.Collection.Longitude = mydale.DisplayStation(P.SenderId).Longitude;
-                        d.ParcelInTransfer.CollectionDestination.Latitude = mydale.DisplayStation(P.TargetId).Latitude;
-                        d.ParcelInTransfer.CollectionDestination.Longitude = mydale.DisplayStation(P.TargetId).Longitude;
-                        d.ParcelInTransfer.TransportDistance = Distance(d, mydale.DisplayStation(P.SenderId), ref newbattery);
+                        d.ParcelIntransfer.Id = P.Id;
+                        d.ParcelIntransfer.status = false;// false=waiting for transfer
+                        d.ParcelIntransfer.weight = (BO.Weights)P.weight;
+                        d.ParcelIntransfer.Sender.Id = P.SenderId;
+                        d.ParcelIntransfer.Sender.Id = mydale.DisplayStation(P.SenderId).Name;
+                        d.ParcelIntransfer.Collection.Latitude = mydale.DisplayStation(P.SenderId).Latitude;
+                        d.ParcelIntransfer.Collection.Longitude = mydale.DisplayStation(P.SenderId).Longitude;
+                        d.ParcelIntransfer.CollectionDestination.Latitude = mydale.DisplayStation(P.TargetId).Latitude;
+                        d.ParcelIntransfer.CollectionDestination.Longitude = mydale.DisplayStation(P.TargetId).Longitude;
+                        d.ParcelIntransfer.TransportDistance = Distance(d, mydale.DisplayStation(P.SenderId), ref newbattery);
                         //all the changes needed in bl for the drone
                         mydale.UpdateParcelToDrone(id, P.Id);//updates changes in drone
 
@@ -316,7 +317,7 @@ namespace BLObject
                 }
             }
         }
-        private double Distance(Drone d, DO.BaseStation s, ref double battery)// get the battery needed for that distance
+        private double Distance(BO.Drone d, DO.BaseStation s, ref double battery)// get the battery needed for that distance
         {
             double km = 6371;
             double dla = toRadians(d.location1.Latitude);
@@ -332,31 +333,31 @@ namespace BLObject
         }
         public void ParcelCollection(int Pid)
         {
-            Drone d = drones.FirstOrDefault(x => x.ParcelInTransfer.Id == Pid);
+            BO.Drone d = drones.FirstOrDefault(x => x.ParcelIntransfer.Id == Pid);
             double battery = d.Battery;
             DO.Parcel P = mydale.DisplayParcel(Pid);
-            if (d.ParcelInTransfer.status == true)
+            if (d.ParcelIntransfer.status == true)
             {
                 throw new BLDroneExption("the parcel was allready picked up");
             }
-            DO.BaseStation s = mydale.DisplayStation(d.ParcelInTransfer.Sender.Id);
+            DO.BaseStation s = mydale.DisplayStation(d.ParcelIntransfer.Sender.Id);
             Distance(d, s, ref battery);
             d.Battery = battery;
             d.location1.Latitude = s.Latitude;
             d.location1.Longitude = s.Longitude;
-            d.ParcelInTransfer.status = true;
+            d.ParcelIntransfer.status = true;
             mydale.Parcelcollection(Pid, d.Id);
         }
         public void ParcelDelivery(int Pid)
         {
-            Drone d = drones.FirstOrDefault(x => x.ParcelInTransfer.Id == Pid);
+            BO.Drone d = drones.FirstOrDefault(x => x.ParcelIntransfer.Id == Pid);
             DO.Parcel P = mydale.DisplayParcel(Pid);
-            if (d.ParcelInTransfer.status == false || P.Delivered != null)
+            if (d.ParcelIntransfer.status == false || P.Delivered != null)
             {
                 throw new BLDroneExption("the parcel can't be delivered ");
             }
-            d.Battery-=d.ParcelInTransfer.TransportDistance;
-            d.location1 = d.ParcelInTransfer.CollectionDestination;
+            d.Battery-=d.ParcelIntransfer.TransportDistance;
+            d.location1 = d.ParcelIntransfer.CollectionDestination;
             mydale.ParcelDelivery(P.Id, P.TargetId);
         }
 
@@ -372,8 +373,8 @@ namespace BLObject
 
         public IEnumerable DisplayDronelst()
         {
-            List<Drone> D = new List<Drone>();
-            foreach (Drone d in drones)
+            List<BO.Drone> D = new List<BO.Drone>();
+            foreach (BO.Drone d in drones)
             {
                 D.Add(d);
             }
@@ -400,7 +401,25 @@ namespace BLObject
             return mydale.DisplayAvailableStation();
         }
 
+        BO.Customer IBl.GetCustomer(int id)
+        {
+            throw new NotImplementedException();
+        }
 
+        BO.Drone IBl.GetDrone(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        BO.Parcel IBl.GetParcel(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        BO.BaseStation IBl.GetBaseStation(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
