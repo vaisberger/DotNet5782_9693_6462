@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BL;
 using BO;
-
+using DalApi;
 
 public interface IEnumerable<out list> : IEnumerable
 {
@@ -20,7 +20,7 @@ namespace BLObject
         public static BLObject Instance { get { return instance; } }
 
         public List<BO.Drone> drones;
-        DalApi.DalFactory.GetDAL() mydale;
+        GetDal();
         private object l;
 
         private BLObject()

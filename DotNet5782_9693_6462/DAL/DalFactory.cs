@@ -10,7 +10,7 @@ namespace DalApi
 {
     public static class DalFactory
     {
-      public static IDal GetDel()
+      public static IDal GetDal()
         {
             string dlType = DLConfig.DLName;
             DLConfig.DLPackage dlPackage;
@@ -35,6 +35,7 @@ namespace DalApi
             DO.IDal dal= (IDal)dlPackage;
             return dal;
         }
+
 
     }
 }
