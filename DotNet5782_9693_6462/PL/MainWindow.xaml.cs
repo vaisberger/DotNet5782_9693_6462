@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using IBL;
+using BO;
+using BLApi;
+
 namespace PL
 {
     /// <summary>
@@ -20,10 +23,10 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        BO.IBl mybl;
+        static IBl mybl;
         public MainWindow()
         {
-           //mybl = new BLObject.BLObject();
+           // mybl = new BlFactory.GetBl();
            InitializeComponent();
         }
 
@@ -35,7 +38,12 @@ namespace PL
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            DroneWindow wnd = new DroneWindow();
+            bool? result=wnd.ShowDialog();
+            if(result != null)
+            {
+               MessageBox.Show( wnd.Drone.ToString());
+            }
         }
     }
 }

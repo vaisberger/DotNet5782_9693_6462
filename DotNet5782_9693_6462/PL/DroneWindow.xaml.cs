@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,18 +20,36 @@ namespace PL
     /// </summary>
     public partial class DroneWindow : Window
     {
-        BO.IBl bL;
-        public DroneWindow(BO.IBl iBL,String str) // the constructer to update the drone 
+        BO.Drone drone;
+        public DroneWindow() // the constructer to update the drone 
         {
-            this.bL = iBL;
+            drone = new BO.Drone();
+            DataContext = drone;
             InitializeComponent();
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.DroneStatus));
         }
 
-        public DroneWindow(BO.IBl iBL, char c)  //the constructer to add a drone
+        public DroneWindow(BO.Drone dr) // the constructer to update the drone 
         {
-            this.bL = iBL;
+            this.drone = dr;
+            DataContext = drone;
             InitializeComponent();
         }
+        private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DroneStatus status = (DroneStatus)statusComboBox.SelectedItem;
+            MessageBox.Show(statusComboBox.SelectedItem.ToString());
+        }
 
+        public Drone Drone { get => drone; }
+
+        private void button_Click1(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

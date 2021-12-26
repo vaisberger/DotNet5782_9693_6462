@@ -5,16 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using BO;
 
-    namespace BLObject
+    namespace BLApi
     {
-        public static class BlFactory
+        public class BlFactory
         {
-
             public static IBl GetBl()
+
             {
-
-
-                return new BLObject();
+                return new BLObject.BLObject();
             }
         }
     }
