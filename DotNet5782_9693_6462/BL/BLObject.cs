@@ -24,7 +24,7 @@ namespace BLObject
         static IDal mydale;
         private object l;
 
-        private BLObject()
+        public BLObject() // היה פריווט והחלפנו לפבליק כדי שיעבוד
         {
             mydale = DalApi.DalFactory.GetDal();
             drones = new List<BO.Drone>();
@@ -132,10 +132,7 @@ namespace BLObject
             return parcel;
         }
 
-        /*public void UpdateBaseStation(int sid, int name, int ch)
-        {
-            throw new NotImplementedException();
-        }*/
+
 
         public BO.BaseStation GetBaseStation(int id)
         {
@@ -371,14 +368,18 @@ namespace BLObject
             return mydale.DisplayStationList();
         }
 
-        public IEnumerable DisplayDronelst()
+        public IEnumerable DisplayDronelst(Func<BO.Drone, bool> predicate = null)
         {
             List<BO.Drone> D = new List<BO.Drone>();
             foreach (BO.Drone d in drones)
             {
                 D.Add(d);
             }
-            return D;
+            if (predicate == null)
+            {
+                return D;
+            }
+            return D.Where(predicate).ToList();
         }
 
         public IEnumerable DisplayCustomerlst()
@@ -401,25 +402,7 @@ namespace BLObject
             return mydale.DisplayAvailableStation();
         }
 
-        BO.Customer IBl.GetCustomer(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        BO.Drone IBl.GetDrone(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        BO.Parcel IBl.GetParcel(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        BO.BaseStation IBl.GetBaseStation(int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

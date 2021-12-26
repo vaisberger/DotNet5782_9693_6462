@@ -19,10 +19,22 @@ VerticalAlignment="Stretch" Width="auto">
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="cmbStatus" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Width="200" Height="69" SelectionChanged="comboBox_SelectionChanged"/>
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="39,0,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Center" Height="50" Width="99"/>
+            <ComboBox x:Name="cmbStatus" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Width="200" Height="69" SelectionChanged="Status_SelectionChanged"/>
+            <TextBlock x:Name="dronestatus" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="70" Width="190" Text="    Drone status:"/>
+            <TextBlock x:Name="DroneMaxWeight" FontSize="20" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Height="70" Width="190" Text=" Drone Max Weight :"/>
+            <ComboBox x:Name="cmbMaxWeight" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="69" SelectionChanged="cmbMaxWeight_SelectionChanged"/>
         </Grid>
+        <ListView x:Name="listView" Margin="0,69,0,55" Grid.RowSpan="2" SelectionChanged="listView_SelectionChanged">
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="button" Content="Add new drone" HorizontalAlignment="Left" Margin="587,521,0,0" Grid.Row="1" VerticalAlignment="Top" Height="24" Width="186" Click="button_Click"/>
     </Grid>
 
 
 </Window>
+

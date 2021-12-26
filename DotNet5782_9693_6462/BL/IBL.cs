@@ -31,7 +31,7 @@ using BLObject;
             public void ParcelDelivery(int Pid);
 
             public IEnumerable DisplayBaseStationlst();  //   צריך להחזיר רשימה שתודפס לסיים את זה  להחזיר בפונקציות 
-            public IEnumerable DisplayDronelst();
+            public IEnumerable DisplayDronelst(Func<Drone,bool> predicate=null);
             public IEnumerable DisplayCustomerlst();
             public IEnumerable DisplayParcellst();
             public IEnumerable DisplayParcelsUnmatched(); // רשימה של חבילות שלא שוייכו

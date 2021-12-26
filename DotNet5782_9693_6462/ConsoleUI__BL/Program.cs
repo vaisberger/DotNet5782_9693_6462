@@ -9,7 +9,7 @@ namespace ConsoleUI__BL
     
     class Program
     {
-         static BLObject.BLObject data = new BLObject.BLObject();
+        static BLObject.BLObject data = new BLObject.BLObject();
         public static Random r = new Random();
          static void Main(string[] args)
         {

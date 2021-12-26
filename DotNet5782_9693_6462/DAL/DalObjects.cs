@@ -67,7 +67,7 @@ namespace DalObject
         }
         #endregion
 
-
+        #region update methods
         void IDal.UpdateDrone(int id, String model)
         {
             var d = DataSource.drones.FirstOrDefault(X => X.Id == id);
@@ -123,7 +123,7 @@ namespace DalObject
                 }
             }
         }
-
+        #endregion
         //Parcel collection drone
         void IDal.Parcelcollection(int p, int d)
         {

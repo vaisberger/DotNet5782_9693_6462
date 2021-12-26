@@ -7,24 +7,26 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public enum Weights
-    {
-        Light, Medium, Heavy
-    }
-    public enum DroneStatus
-    {
-        Available, Maitenance, Shipment
-    }
+  
+        public enum Weights
+        {
+            Light, Medium, Heavy
+        }
+        public enum DroneStatus
+        {
+            Available, Maitenance, Shipment
+        }
 
-    public enum Priorities
-    {
-        Normal, Fast, Urgent
-    }
+        public enum Priorities
+        {
+            Normal, Fast, Urgent
+        }
 
-    public enum Situation
-    {
-        Defined, Associated, Collected, Provided
+        public enum Situation
+        {
+            Defined, Associated, Collected, Provided
 
-    }
+        }
+
 
 }

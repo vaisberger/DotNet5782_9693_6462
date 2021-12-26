@@ -10,24 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp1
+namespace PL
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for DroneWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DroneWindow : Window
     {
-        public MainWindow()
+        BO.IBl bL;
+        public DroneWindow(BO.IBl iBL,String str) // the constructer to update the drone 
         {
+            this.bL = iBL;
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public DroneWindow(BO.IBl iBL, char c)  //the constructer to add a drone
         {
-            MessageBox.Show("Button clicked!");
+            this.bL = iBL;
+            InitializeComponent();
         }
+
     }
 }
