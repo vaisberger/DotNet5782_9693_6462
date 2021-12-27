@@ -26,7 +26,7 @@ namespace PL
         static IBl mybl;
         public MainWindow()
         {
-           // mybl = new BlFactory.GetBl();
+           mybl = new BlFactory.GetBl();
            InitializeComponent();
         }
 
@@ -38,7 +38,7 @@ namespace PL
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            DroneWindow wnd = new DroneWindow();
+            DroneWindow wnd = new DroneWindow(mybl);
             bool? result=wnd.ShowDialog();
             if(result != null)
             {

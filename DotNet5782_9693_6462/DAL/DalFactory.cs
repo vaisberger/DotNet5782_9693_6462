@@ -8,31 +8,36 @@ using System.Threading.Tasks;
 
 namespace DalApi
 {
-    public static class DalFactory
+    public  class DalFactory
     {
       public static IDal GetDal()
         {
-            string dlType = DLConfig.DLName;
-            DLConfig.DLPackage dlPackage;
+            string dlType = DLConfig.dlname;
+            string dlPackage=DLConfig.dlpackages[dlType];
+            if (dlPackage == null)
+            {
+                throw new DalConfingExeption($"Package {dlType} is not found in packages list in dal-config.xml");
+            }
+
             try
             {
-                dlPackage = DLConfig.DLPackages[dlType];
+                Assembly.Load(dlPackage);
             }
-            catch(KeyNotFoundException xx)
+            catch(Exception)
             {
-                throw new DLConfigException($"Wrong DL type: {dlType}", xx);
+                throw new DalConfingExeption($"Faild to load the dal-config.wml file");
             }
-            string dlPackageName = dlPackage.PkgName;
-            string dlNameSpace = dlPackage.NameSpace;
-            string dlClass = dlPackage.ClassName;
-            try
+
+            Type type = Type.GetType($"Dal.{dlPackage}, {dlPackage}");
+            if (type == null)
             {
-                Assembly.Load(dlPackageName);
+                throw new DalConfingExeption($"Class {dlPackage} was not found in the {dlPackage}.dll");
             }
-            catch(KeyNotFoundException ex) {
-                throw new DLConfigException($"Cannot load {dlPackageName}", ex);
+            IDal dal = (IDal)type.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static).GetValue(null);
+            if (dal == null)
+            {
+                throw new DalConfingExeption($"Class {dlPackage} is not a singleton or wrong propertry name for Instance");
             }
-            DO.IDal dal= (IDal)dlPackage;
             return dal;
         }
 

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BL;
 using BO;
 using DalApi;
+using BLApi;
 using DO;
 
 public interface IEnumerable<out list> : IEnumerable
@@ -18,15 +19,14 @@ namespace BLObject
      public sealed class BLObject:IBl
     {
         static readonly BLObject instance = new BLObject();
-        public static BLObject Instance { get { return instance; } }
+        public static BLObject Instance{ get=> instance; } 
 
         public List<BO.Drone> drones;
-        static IDal mydale;
+        internal IDal mydale=DalFactory.GetDal();
         private object l;
 
         public BLObject() // היה פריווט והחלפנו לפבליק כדי שיעבוד
         {
-            mydale = DalApi.DalFactory.GetDal();
             drones = new List<BO.Drone>();
         }
 

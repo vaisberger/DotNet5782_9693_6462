@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using BLObject;
+using BO;
 
-    namespace BO
+namespace BLApi
     {
         public interface IBl
         {

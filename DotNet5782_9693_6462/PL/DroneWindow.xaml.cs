@@ -20,10 +20,12 @@ namespace PL
     /// </summary>
     public partial class DroneWindow : Window
     {
+        IBl bl;
         BO.Drone drone;
-        public DroneWindow() // the constructer to update the drone 
+        public DroneWindow(IBl Bl) // add a drone 
         {
             drone = new BO.Drone();
+            this.bl = Bl;
             DataContext = drone;
             InitializeComponent();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.DroneStatus));
@@ -43,13 +45,13 @@ namespace PL
 
         public Drone Drone { get => drone; }
 
-        private void button_Click1(object sender, RoutedEventArgs e)
-        {
-            
-        }
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void button_Click1(object sender, RoutedEventArgs e) // add button
         {
             Close();
+        }
+        private void button_Click(object sender, RoutedEventArgs e) // cancel adding
+        {
+            bl.AddDrone(drone);
         }
     }
 }

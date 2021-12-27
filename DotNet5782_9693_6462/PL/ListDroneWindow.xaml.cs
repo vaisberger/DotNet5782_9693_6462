@@ -39,7 +39,7 @@ namespace PL
 
         private void button_Click(object sender, RoutedEventArgs e) //button to add a drone
         {
-            DroneWindow wnd = new DroneWindow();
+            DroneWindow wnd = new DroneWindow(bL);
             wnd.Show();
         }
 

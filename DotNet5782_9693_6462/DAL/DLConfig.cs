@@ -9,33 +9,18 @@ namespace DalApi
 {
     static class DLConfig
     {
-        public class DLPackage
-        {
-            public string Name;
-            public string PkgName;
-            public string NameSpace;
-            public string ClassName;
-        }
-        internal static string DLName;
-        internal static Dictionary<string, DLPackage> DLPackages;
+        internal static string dlname;
+        internal static Dictionary<string, string> dlpackages;
         static DLConfig()
         {
            XElement dlConfig = XElement.Load(@"config.xml");
-            DLName = dlConfig.Element("dl").Value;
-            DLPackages = (from pkg in dlConfig.Element("dl-packages").Elements()
-                          let tmp1 = pkg.Attribute("namespace")
-                          let nameSpac = tmp1 == null ? "DL" : tmp1.Value
-                          let tmp2 = pkg.Attribute("class")
-                          let className = tmp2 == null ? pkg.Value : tmp2.Value
-                          select new DLPackage()
-                          {
-                              Name = "" + pkg.Name,
-                              PkgName = pkg.Value,
-                              NameSpace = nameSpac,
-                              ClassName = className
-                          })
-                          .ToDictionary(p => "" + p.Name, p => p);
-
+            dlname = dlConfig.Element("dal").Value;
+            dlpackages = (from pkg in dlConfig.Element("dl-packages").Elements()select pkg).ToDictionary(p=>""+p.Name,p=>p.Value)
         }
+    }
+    public class DalConfingExeption : Exception
+    {
+        public DalConfingExeption(string msg) : base(msg) { }
+        public DalConfingExeption(string msg,Exception ex) : base(msg, ex) { }
     }
 }
