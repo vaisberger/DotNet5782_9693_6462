@@ -270,8 +270,8 @@ namespace BLObject
                 throw new BLDroneExption("the drone was is not charging in the moment");
             }
             d.status = DroneStatus.Available;
-            double battery = mydale.returnChargerate() * 60 * time;
-            d.Battery += battery;
+            //double battery = mydale.returnChargerate() * 60 * time;
+            //d.Battery += battery;
             mydale.DischargeDrone(id);
         }
         public void MatchDroneToParcel(int id)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BLApi;
 using BLObject;
 using BO;
 
@@ -9,7 +10,7 @@ namespace ConsoleUI__BL
     
     class Program
     {
-        static BLObject.BLObject data = new BLObject.BLObject();
+        static IBl data = BlFactory.GetBl();
         public static Random r = new Random();
          static void Main(string[] args)
         {

@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BL\BLApi.csproj" />
+    <ProjectReference Include="..\BLL\BL.csproj" />
   </ItemGroup>
 
 </Project>

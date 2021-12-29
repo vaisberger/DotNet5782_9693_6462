@@ -10,7 +10,7 @@ namespace ConsoleUI
 {
     class Program
     {
-        IDal data = new DalFactory.GetDal();
+        static IDal data = DalFactory.GetDal();
         /// <summary>
         /// </summary>
         /// יש בעיה כנראה לתקן
