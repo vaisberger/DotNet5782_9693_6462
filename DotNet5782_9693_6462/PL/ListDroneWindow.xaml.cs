@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using BO;
+using BLApi;
 
 namespace PL
 {
@@ -12,8 +13,8 @@ namespace PL
     /// </summary>
     public partial class ListDroneWindow : Window
     {
-        BO.IBl bL;
-        public ListDroneWindow(BO.IBl iBL)
+        IBl bL;
+        public ListDroneWindow(IBl iBL)
         {
             InitializeComponent();
             this.bL = iBL;

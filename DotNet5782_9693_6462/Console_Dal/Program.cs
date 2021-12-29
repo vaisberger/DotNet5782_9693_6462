@@ -1,16 +1,17 @@
 ﻿//course mini project in windows
 // by moria mizrachi and yael vaisberger
+using DalApi;
+using DO;
 using System;
 using System.Collections.Generic;
 
-using DalObject;
-using DO;
 
 namespace ConsoleUI
 {
     class Program
     {
-        static DalObject.DataSource data = new DalObject.DataSource(); /// <summary>
+        IDal data = new DalFactory.GetDal();
+        /// <summary>
         /// </summary>
         /// יש בעיה כנראה לתקן
         /// <param name="args"></param>
@@ -68,32 +69,32 @@ namespace ConsoleUI
                                 Console.WriteLine("please enter the ID of the parcel and drone to match");
                                 int pID = Convert.ToInt32(Console.ReadLine());
                                 int dID = Convert.ToInt32(Console.ReadLine());
-                               // data.UpdateParcelToDrone(pID, dID);
+                                // data.UpdateParcelToDrone(pID, dID);
                                 break;
                             case 5://Parcel collection
                                 Console.WriteLine("please enter the ID of the parcel and drone to collect");
                                 pID = Convert.ToInt32(Console.ReadLine());
                                 dID = Convert.ToInt32(Console.ReadLine());
-                               // data.Parcelcollection(pID, dID);
+                                // data.Parcelcollection(pID, dID);
                                 break;
                             case 6://Parcel delivery
                                 Console.WriteLine("please enter the ID of the parcel and customer to deliver to");
                                 pID = Convert.ToInt32(Console.ReadLine());
                                 int cID = Convert.ToInt32(Console.ReadLine());
-                               // data.ParcelDelivery(pID, cID);
+                                // data.ParcelDelivery(pID, cID);
                                 break;
                             case 7://Charge Drone
                                 Console.WriteLine("All the available station:");
-                               // data.DisplayAvailableStation();
+                                // data.DisplayAvailableStation();
                                 Console.WriteLine("please enter the ID of the drone and staition to charge");
                                 dID = Convert.ToInt32(Console.ReadLine());
                                 int sID = Convert.ToInt32(Console.ReadLine());
-                              //  data.ChargeDrone(dID, sID);
+                                //  data.ChargeDrone(dID, sID);
                                 break;
                             case 8://Discharge Drone
                                 Console.WriteLine("please enter the ID of the drone to discharge");
                                 dID = Convert.ToInt32(Console.ReadLine());
-                               // data.DischargeDrone(dID);
+                                // data.DischargeDrone(dID);
                                 break;
                         }
                         break;
@@ -111,7 +112,7 @@ namespace ConsoleUI
                             case 1:// display drone
                                 Console.WriteLine("enter the ID of the drone you would like to display");
                                 int IDd = Convert.ToInt32(Console.ReadLine());
-                               // data.DisplayDrone(IDd);
+                                // data.DisplayDrone(IDd);
                                 break;
                             case 2:// display customer
                                 Console.WriteLine("enter the ID of the customer you would like to display");
@@ -121,7 +122,7 @@ namespace ConsoleUI
                             case 3:// display parcel
                                 Console.WriteLine("enter the ID of the parcel you would like to display");
                                 int IDp = Convert.ToInt32(Console.ReadLine());
-                              //  data.DisplayParcel(IDp);
+                                //  data.DisplayParcel(IDp);
                                 break;
                         }
                         break;
@@ -165,26 +166,26 @@ namespace ConsoleUI
 
         private static void displayavailablestation()
         {
-           /* foreach (BaseStation s in data.DisplayAvailableStation())
-            {
-                s.ToString();
-            }*/
+            /* foreach (BaseStation s in data.DisplayAvailableStation())
+             {
+                 s.ToString();
+             }*/
         }
 
         private static void displayparcelunmatched()
         {
-           /* foreach (Parcel p in data.DisplayParcelUnmatched())
-            {
-                p.ToString();
-            }*/
+            /* foreach (Parcel p in data.DisplayParcelUnmatched())
+             {
+                 p.ToString();
+             }*/
         }
 
         private static void displayparcellist()
         {
-           /* foreach (Parcel p in data.DisplayParcelList())
-            {
-                p.ToString();
-            }*/
+            /* foreach (Parcel p in data.DisplayParcelList())
+             {
+                 p.ToString();
+             }*/
         }
 
         private static void displaycustomerlist()
@@ -205,10 +206,10 @@ namespace ConsoleUI
 
         private static void displaystationlist()
         {
-           /* foreach (BaseStation s in data.DisplayStationList())
-            {
-                s.ToString();
-            }*/
+            /* foreach (BaseStation s in data.DisplayStationList())
+             {
+                 s.ToString();
+             }*/
         }
 
         private static void addStation()
@@ -246,7 +247,7 @@ namespace ConsoleUI
                 Model = model,
                 MaxWeight = weights,
             };
-           // data.AddDrone(NewDrone);
+            // data.AddDrone(NewDrone);
 
         }
 
@@ -267,7 +268,7 @@ namespace ConsoleUI
                 Latitude = latitude,
             };
 
-          //  data.AddCustomer(NewCustomer);
+            //  data.AddCustomer(NewCustomer);
         }
 
         private static void addParcel()
@@ -297,7 +298,7 @@ namespace ConsoleUI
                 PickedUp = pickedUp,
                 Delivered = delivered,
             };
-           // data.AddParcel(NewParcel);
+            // data.AddParcel(NewParcel);
         }
     }
 }

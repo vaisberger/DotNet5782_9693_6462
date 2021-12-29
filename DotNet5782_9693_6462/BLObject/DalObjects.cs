@@ -4,12 +4,12 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using DalApi;
 public interface IEnumerable<out list> : IEnumerable
 {
     IEnumerable<list> GetEnumerable();
 }
-namespace DalObject
+namespace DalApi
 {
 
     sealed class Dalobject : IDal
@@ -404,6 +404,10 @@ namespace DalObject
         { 
             double[] powerConsumtion = new double[] { DataSource.Config.Avaliable, DataSource.Config.Light, DataSource.Config.Medium, DataSource.Config.Heavy, DataSource.Config.ChargingRate };
             return powerConsumtion;
+        }
+        double returnChargerate()
+        {
+           
         }
 
     }

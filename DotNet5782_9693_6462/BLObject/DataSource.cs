@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DalObject
+namespace DalApi
 {
 
-    public struct DataSource
+    internal static class DataSource
     {
         internal static List<Customer> customers = new List<Customer>();
         internal static List<BaseStation> stations = new List<BaseStation>();

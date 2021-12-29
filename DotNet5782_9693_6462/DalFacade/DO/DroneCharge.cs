@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public struct DroneCharge
+    public class DroneCharge
     {
         public int DroneId { set; get; }
         public int StatioId { set; get; }

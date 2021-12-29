@@ -18,12 +18,11 @@ namespace BLObject
 {
      public sealed class BLObject:IBl
     {
-        static readonly BLObject instance = new BLObject();
-        public static BLObject Instance{ get=> instance; } 
+        static readonly IBl instance = new BLObject();
+        public static IBl Instance{ get=> instance; } 
 
         public List<BO.Drone> drones;
         internal IDal mydale=DalFactory.GetDal();
-        private object l;
 
         public BLObject() // היה פריווט והחלפנו לפבליק כדי שיעבוד
         {

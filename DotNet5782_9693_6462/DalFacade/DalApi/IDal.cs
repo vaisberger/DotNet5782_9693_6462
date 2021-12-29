@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using DO;
 using System.Collections;
-using DalObject;
 
 
 
-namespace DO
+namespace DalApi
 {
     public interface IDal
     {
@@ -36,10 +35,6 @@ namespace DO
         public IEnumerable DisplayParcelUnmatched();
         public IEnumerable DisplayAvailableStation();
         public double[] PowerConsumptionRequest();
-        public double returnChargerate() { return DataSource.Config.ChargingRate; }
-
-
-
     }
 
 }

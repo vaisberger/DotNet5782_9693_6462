@@ -10,10 +10,7 @@ namespace BLApi
     {
         public class BlFactory
         {
-        public static IBl GetBl()
-        {
-            
-        }
+        public static IBl GetBl() => BLObject.BLObject.Instance;
 
         }
     }

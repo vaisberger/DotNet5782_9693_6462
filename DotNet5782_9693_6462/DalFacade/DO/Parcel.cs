@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public struct Parcel
+    public class Parcel
     {
         public int Id { set; get; }
         public int SenderId { set; get; }

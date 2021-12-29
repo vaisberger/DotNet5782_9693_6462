@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public struct Customer
+    public class Customer
     {
         public int Id { get; set; }
         public String Name { get; set; }
