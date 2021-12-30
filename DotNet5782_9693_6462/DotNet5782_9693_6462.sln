@@ -17,17 +17,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items (2)", "Solut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{B06E228A-D391-432A-AF7E-E3C66E8AF301}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalFacade", "DalFacade\DalFacade.csproj", "{5DEAC9D5-4FCA-494B-A204-BBF991F3C4F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalFacade", "DalFacade\DalFacade.csproj", "{5DEAC9D5-4FCA-494B-A204-BBF991F3C4F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{82FEF78D-6390-4B87-98A3-BD1A00D19CD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{82FEF78D-6390-4B87-98A3-BD1A00D19CD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalObject", "BLObject\DalObject.csproj", "{9DB629EF-87A0-444C-94E0-BE885238DC99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalObject", "BLObject\DalObject.csproj", "{9DB629EF-87A0-444C-94E0-BE885238DC99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_Dal", "Console_Dal\Console_Dal.csproj", "{D0C6C346-6869-43A1-AA3C-6B7D73A7B81F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console_Dal", "Console_Dal\Console_Dal.csproj", "{D0C6C346-6869-43A1-AA3C-6B7D73A7B81F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BLL\BL.csproj", "{80E3BE12-D7DA-49E1-99D3-D24632BBCFB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BLL\BL.csproj", "{80E3BE12-D7DA-49E1-99D3-D24632BBCFB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_BL", "Console_BL\Console_BL.csproj", "{816F9CDA-DF45-4B8E-90D1-FD7A3B01C346}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console_BL", "Console_BL\Console_BL.csproj", "{816F9CDA-DF45-4B8E-90D1-FD7A3B01C346}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{91061270-730C-40CD-A790-BB2FF5F011DB}"
+	ProjectSection(SolutionItems) = preProject
+		dal_config.xml = dal_config.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

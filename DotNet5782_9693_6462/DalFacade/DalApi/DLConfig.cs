@@ -13,7 +13,7 @@ namespace DalApi
         internal static Dictionary<string, string> dlpackages;
         static DLConfig()
         {
-           XElement dlConfig = XElement.Load(@"Dal-config.xml");
+           XElement dlConfig = XElement.Load(@"dal-config.xml");
             dlname = dlConfig.Element("dal").Value;
             dlpackages = (from pkg in dlConfig.Element("dal-packages").Elements() select pkg).ToDictionary(p => "" + p.Name, p => p.Value);
         }
