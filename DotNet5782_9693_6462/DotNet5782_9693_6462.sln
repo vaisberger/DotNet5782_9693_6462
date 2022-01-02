@@ -29,10 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BLL\BL.csproj", "{80E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console_BL", "Console_BL\Console_BL.csproj", "{816F9CDA-DF45-4B8E-90D1-FD7A3B01C346}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{91061270-730C-40CD-A790-BB2FF5F011DB}"
-	ProjectSection(SolutionItems) = preProject
-		dal_config.xml = dal_config.xml
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{604C8B05-9FA2-4780-9B5C-A94942C83A62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
