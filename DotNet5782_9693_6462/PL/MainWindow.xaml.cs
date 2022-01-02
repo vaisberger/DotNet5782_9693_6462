@@ -10,44 +10,39 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using IBL;
+using BO;
+using BLApi;
+
 namespace PL
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-
-
     public partial class MainWindow : Window
     {
-        static IBL.BO.IBl mybl;
-        static void Main(string[] args) {
-
-            MainWindow New;
-        }
+        internal readonly IBl mybl = BlFactory.GetBl();
         public MainWindow()
         {
-            mybl = new BLObject.BLObject();
-            InitializeComponent();
+           InitializeComponent();
         }
-
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new ListDroneWindow(mybl).Show();
-
+           ListDroneWindow wnd = new ListDroneWindow(mybl);
+            wnd.Show();
         }
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            new Drone(mybl).Show();
+            DroneWindow wnd = new DroneWindow(mybl);
+            bool? result=wnd.ShowDialog();
+            if(result != null)
+            {
+               MessageBox.Show( wnd.Drone.ToString());
+            }
         }
-
-        /*private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            new Drone(mybl).Show();
-        }*/
     }
-
 }

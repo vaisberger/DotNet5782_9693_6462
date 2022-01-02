@@ -1,16 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon />
-    <Win32Resource />
-    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BLL\BL.csproj" />
+    <ProjectReference Include="..\DalFacade\DalFacade.csproj" />
   </ItemGroup>
 
 </Project>
