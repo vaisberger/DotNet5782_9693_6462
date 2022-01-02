@@ -11,7 +11,7 @@ namespace B0
  public class DroneExistsException : Exception
     {
         public int ID;
-        public DroneExistsException(string msg, Exception innerException) : base(msg, innerException) => ID = ((DO.IDExistsInsystem)innerException).ID;
+        public DroneExistsException(string msg, Exception innerException) : base(msg, innerException) => ID = ((DO.IDExistsInTheSystem)innerException).ID;
         public override string ToString() => base.ToString() + $", Drone ID : {ID} allready exists in the system can't finish the adding prosses";
 
     }
@@ -20,7 +20,7 @@ namespace B0
     public class ParcelExistsException : Exception
     {
         public int ID;
-        public ParcelExistsException(string msg, Exception innerException) : base(msg, innerException) => ID = ((DO.IDExistsInsystem)innerException).ID;
+        public ParcelExistsException(string msg, Exception innerException) : base(msg, innerException) => ID = ((DO.IDExistsInTheSystem)innerException).ID;
         public override string ToString() => base.ToString() + $", Parcel ID : {ID} allready exists in the system can't finish the adding prosses";
 
     }
@@ -29,7 +29,7 @@ namespace B0
     public class BaseStationExistsException : Exception
     {
         public int ID;
-        public BaseStationExistsException(string msg, Exception innerException) : base(msg, innerException) => ID = ((DO.IDExistsInsystem)innerException).ID;
+        public BaseStationExistsException(string msg, Exception innerException) : base(msg, innerException) => ID = ((DO.IDExistsInTheSystem)innerException).ID;
         public override string ToString() => base.ToString() + $", BaseStation ID : {ID} allready exists in the system can't finish the adding prosses";
 
     }
@@ -38,7 +38,7 @@ namespace B0
     public class CustomerExistsException : Exception
     {
         public int ID;
-        public CustomerExistsException(string msg, Exception innerException) : base(msg, innerException) => ID = ((DO.IDExistsInsystem)innerException).ID;
+        public CustomerExistsException(string msg, Exception innerException) : base(msg, innerException) => ID = ((DO.IDExistsInTheSystem)innerException).ID;
         public override string ToString() => base.ToString() + $", Customer ID : {ID} allready exists in the system can't finish the adding prosses";
 
     }
