@@ -58,24 +58,19 @@ namespace Dal
         {
             XElement customerelem = XMLTools.LoadListFromXMLElement(customerPath);
 
-            XElement customer = (from par in customerelem.Elements()
-                               where int.Parse(par.Element("ID").Value) == c.Id
-                               select par).FirstOrDefault();
+            XElement customer = (from cos in customerelem.Elements()
+                               where int.Parse(cos.Element("ID").Value) == c.Id
+                               select cos).FirstOrDefault();
             if (customer != null)
             {
                 throw
             }
 
-            XElement customerElem = new XElement("Person", new XElement("ID", p.Id),
-                                  new XElement("PickedUpTime", par.PickedUp),
-                                  new XElement("DeliveredTime", p.Delivered),
-                                  new XElement("ScheduledTime", p.Scheduled),
-                                  new XElement("RequstedTime", p.Requsted),
-                                  new XElement("SenderId", p.SenderId),
-                                  new XElement("TargetId", p.TargetId),
-                                  new XElement("priorty", p.priorty),
-                                  new XElement("weight", p.weight),
-                                  new XElement("DroneId", p.DroneId));
+            XElement customerElem = new XElement("Person", new XElement("ID", c.Id),
+                                  new XElement("Name", c.Name),
+                                  new XElement("Phone", c.Phone),
+                                  new XElement("Latitude", c.Latitude),
+                                  new XElement("Longitude", c.Longitude));
 
             customerelem.Add(customerElem);
 
@@ -85,20 +80,65 @@ namespace Dal
         //Add a base station to the list of stations
         void IDal.AddStation(BaseStation s)
         {
+            XElement stationelem = XMLTools.LoadListFromXMLElement(basestationPath);
 
+            XElement station = (from sta in stationelem.Elements()
+                                 where int.Parse(sta.Element("ID").Value) == s.Id
+                                 select sta).FirstOrDefault();
+            if (station != null)
+            {
+                throw
+            }
+
+            XElement stationElem = new XElement("Person", new XElement("ID", s.Id),
+                                  new XElement("Name", s.Name),
+                                  new XElement("ChargeSlots", s.ChargeSlots),
+                                  new XElement("Latitude", s.Latitude),
+                                  new XElement("Longitude", s.Longitude));
+
+            stationelem.Add(stationElem);
+
+            XMLTools.SaveListToXMLElement(stationelem, basestationPath);
         }
         // Add a drone  to the list of  drones
         void IDal.AddDrone(Drone d)
         {
+            XElement droneelem = XMLTools.LoadListFromXMLElement(dronePath);
 
+            XElement drone = (from dr in droneelem.Elements()
+                                where int.Parse(dr.Element("ID").Value) == d.Id
+                                select dr).FirstOrDefault();
+            if (drone != null)
+            {
+                throw
+            }
+
+            XElement droneElem = new XElement("Person", new XElement("ID", d.Id),
+                                  new XElement("Model", d.Model),
+                                  new XElement("Weight", d.MaxWeight),
+                                  new XElement("droneCharge", d.droneCharge));
+
+            droneelem.Add(droneElem);
+
+            XMLTools.SaveListToXMLElement(droneelem,dronePath);
         }
         #endregion
 
         #region update methods
         void IDal.UpdateDrone(int id, String model)
         {
-            var d = DataSource.drones.FirstOrDefault(X => X.Id == id);
-            d.Model = model;
+            XElement droneselem= XMLTools.LoadListFromXMLElement(dronePath);
+            XElement dr= (from d in droneselem.Elements()
+                          where int.Parse(d.Element("ID").Value) ==id
+                          select d).FirstOrDefault();
+            if (dr != null)
+            {
+                dr.Element("Model").Value = model;
+            }
+            else
+            {
+                throw new DO.BadPersonIdException(id, $"bad person id: {id}");
+            }
         }
         void IDal.UpdateBaseStation(int id, int name, int chargeslots)
         {
