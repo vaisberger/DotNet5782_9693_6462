@@ -222,7 +222,7 @@ namespace ConsoleUI__BL
 
         private static void displaydronelist()
         {
-            foreach (Drone d in data.drones)
+            foreach (Drone d in data.DisplayDronelst())
             {
                 d.ToString();
             }

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace B0
 {
-# IdExeptions
     [Serializable]
  public class DroneExistsException : Exception
     {
@@ -42,7 +41,7 @@ namespace B0
         public override string ToString() => base.ToString() + $", Customer ID : {ID} allready exists in the system can't finish the adding prosses";
 
     }
-#endregion
+
 
 
 }
