@@ -22,6 +22,7 @@ namespace Dal
         string basestationPath = @"BaseStationXml.xml";
         string customerPath = @"CustomerXml.xml";
         string parcelPath = @"ParcelXml.xml";
+        string dronechargePath = @"DroneChargeXml.xml";
         #endregion
 
         #region Add methods
@@ -38,7 +39,7 @@ namespace Dal
                 throw
             }
 
-            XElement parcelElem = new XElement("Person", new XElement("ID", p.Id),
+            XElement parcelElem = new XElement("Parcel", new XElement("ID", p.Id),
                                   new XElement("PickedUpTime", p.PickedUp),
                                   new XElement("DeliveredTime", p.Delivered),
                                   new XElement("ScheduledTime", p.Scheduled),
@@ -66,7 +67,7 @@ namespace Dal
                 throw
             }
 
-            XElement customerElem = new XElement("Person", new XElement("ID", c.Id),
+            XElement customerElem = new XElement("Customer", new XElement("ID", c.Id),
                                   new XElement("Name", c.Name),
                                   new XElement("Phone", c.Phone),
                                   new XElement("Latitude", c.Latitude),
@@ -90,7 +91,7 @@ namespace Dal
                 throw
             }
 
-            XElement stationElem = new XElement("Person", new XElement("ID", s.Id),
+            XElement stationElem = new XElement("BaseStation", new XElement("ID", s.Id),
                                   new XElement("Name", s.Name),
                                   new XElement("ChargeSlots", s.ChargeSlots),
                                   new XElement("Latitude", s.Latitude),
@@ -113,7 +114,7 @@ namespace Dal
                 throw
             }
 
-            XElement droneElem = new XElement("Person", new XElement("ID", d.Id),
+            XElement droneElem = new XElement("Drone", new XElement("ID", d.Id),
                                   new XElement("Model", d.Model),
                                   new XElement("Weight", d.MaxWeight),
                                   new XElement("droneCharge", d.droneCharge));
@@ -134,195 +135,197 @@ namespace Dal
             if (dr != null)
             {
                 dr.Element("Model").Value = model;
+                XMLTools.SaveListToXMLElement(droneselem, dronePath);
+            }
+            else
+            {
+                throw new DO.BadPersonIdException(id, $"bad person id: {id}");
+            }
+
+        }
+        void IDal.UpdateBaseStation(int id, int name, int chargeslots)
+        {
+            XElement stationelem = XMLTools.LoadListFromXMLElement(basestationPath);
+            XElement sta = (from d in stationelem.Elements()
+                           where int.Parse(d.Element("ID").Value) == id
+            select d).FirstOrDefault();
+            if (sta != null)
+            {
+                if (name != null)
+                {
+                    sta.Element("Name").Value = name.ToString();
+                }
+                if (chargeslots != null)
+                {
+                    sta.Element("Chargeslots").Value = chargeslots.ToString();
+                }
+                XMLTools.SaveListToXMLElement(stationelem, basestationPath);
+            }
+            else { throw new DO.BadPersonIdException(id, $"bad person id: {id}"); }
+        }
+        void IDal.UpdateCustomer(int id, String name, String phone)
+        {
+            XElement customerelem = XMLTools.LoadListFromXMLElement(customerPath);
+            XElement cust = (from c in customerelem.Elements()
+                            where int.Parse(c.Element("ID").Value) == id
+                            select c).FirstOrDefault();
+            if (cust != null)
+            {
+                if (name != null)
+                {
+                    cust.Element("Name").Value = name;
+                }
+                if (phone != null)
+                {
+                    cust.Element("Phone").Value = phone;
+                }
+                XMLTools.SaveListToXMLElement(customerelem, customerPath);
             }
             else
             {
                 throw new DO.BadPersonIdException(id, $"bad person id: {id}");
             }
         }
-        void IDal.UpdateBaseStation(int id, int name, int chargeslots)
-        {
-            var s = DataSource.stations.FirstOrDefault(bs => bs.Id == id);
-            if (name != -1)
-            {
-                s.Name = name;
-            }
-            if (chargeslots != -1)
-            {
-                s.ChargeSlots = chargeslots;
-            }
-        }
-        void IDal.UpdateCustomer(int id, String name, String phone)
-        {
-            var c = DataSource.customers.FirstOrDefault(cs => cs.Id == id);
-            if (name != "")
-            {
-                c.Name = name;
-            }
-            if (phone != "")
-            {
-                c.Phone = phone;
-            }
-        }
         //Update parcel  to a drone
         void IDal.UpdateParcelToDrone(int droneId, int parcleId)
         {
-            if (DataSource.parcels.Exists(parcel => parcel.Id != parcleId))
-            {
-                throw new ParcelExeptions($"parcel {parcleId} dosen't exists ");
-            }
-            if (DataSource.drones.Exists(drone => drone.Id != droneId))
-            {
-                throw new DroneExeptions($"drone {droneId} dosen't exists ");
-            }
-            Drone d = DataSource.drones.FirstOrDefault(drone => drone.Id != droneId);
-            for (int i = 0; i < DataSource.parcels.Count; i++)
-            {
-                if (DataSource.parcels[i].Id == parcleId)
-                {
-                    Parcel P = new Parcel();
-                    P = DataSource.parcels[i];
-                    P.DroneId = droneId;
-                    P.Scheduled = DateTime.Now;
-                    DataSource.parcels[i] = P;
+            XElement droneselem = XMLTools.LoadListFromXMLElement(dronePath);
+            XElement dr = (from d in droneselem.Elements()
+                           where int.Parse(d.Element("ID").Value) == droneId
+                           select d).FirstOrDefault();
+            XElement parcelelem = XMLTools.LoadListFromXMLElement(parcelPath);
+            XElement par = (from p in droneselem.Elements()
+                           where int.Parse(p.Element("ID").Value) == parcleId
+                            select p).FirstOrDefault();
 
-
-                }
+            if (dr == null)
+            {
+                throw // חריגת אין רחפן כזה 
             }
+            if (par == null)
+            {
+                throw // חריגת אין חבילה כזו 
+            }
+
+            par.Element("DroneId").Value= droneId.ToString();
+            par.Element("Schedualed").Value = DateTime.Now.ToString();
+            XMLTools.SaveListToXMLElement(parcelelem, parcelPath);
         }
         #endregion
 
         #region Parcel system methods
         //Parcel collection drone
-        void IDal.Parcelcollection(int p, int d)
+        void IDal.Parcelcollection(int pd, int dId)
         {
-            if (DataSource.parcels.Exists(parcel => parcel.Id != p))
-            {
-                throw new ParcelExeptions($"parcel {p} dosen't exists ");
-            }
-            if (DataSource.drones.Exists(drone => drone.Id != d))
-            {
-                throw new DroneExeptions($"drone {d} dosen't exists ");
-            }
-            for (int i = 0; i < DataSource.parcels.Count; i++)
-            {
-                if (DataSource.parcels[i].Id == p)
-                {
-                    //d.status = DroneStatus.Shipment;
-                    Parcel P = new Parcel();
-                    P = DataSource.parcels[i];
-                    P.DroneId = d;
-                    P.PickedUp = DateTime.Now;
-                    DataSource.parcels[i] = P;
 
+            XElement droneselem = XMLTools.LoadListFromXMLElement(dronePath);
+            XElement dr = (from d in droneselem.Elements()
+                           where int.Parse(d.Element("ID").Value) == dId
+                           select d).FirstOrDefault();
+            XElement parcelelem = XMLTools.LoadListFromXMLElement(parcelPath);
+            XElement par = (from p in parcelelem.Elements()
+                            where int.Parse(p.Element("ID").Value) == pd
+                            select p).FirstOrDefault();
 
-                }
-            }
-            for (int i = 0; i < DataSource.drones.Count; i++)
+            if (dr == null)
             {
-                if (DataSource.drones[i].Id == d)
-                {
-                    Drone D = new Drone();
-                    D = DataSource.drones[i];
-                    //D.status = DroneStatus.Shipment;
-                    DataSource.drones[i] = D;
-                }
+                throw // חריגת אין רחפן כזה 
             }
-
-
+            if (par == null)
+            {
+                throw // חריגת אין חבילה כזו 
+            }
+            par.Element("DroneId").Value = dId.ToString();
+            par.Element("PickedUp").Value = DateTime.Now.ToString();
+            XMLTools.SaveListToXMLElement(parcelelem, parcelPath);
         }
         //Delivery of a parcel to the customer
-        void IDal.ParcelDelivery(int p, int c)
+        void IDal.ParcelDelivery(int pId, int cId)
         {
-            if (DataSource.customers.Exists(customer => customer.Id != c))
+            XElement customerelem = XMLTools.LoadListFromXMLElement(customerPath);
+            XElement cust = (from c in customerelem.Elements()
+                             where int.Parse(c.Element("ID").Value) == cId
+                             select c).FirstOrDefault();
+            XElement parcelelem = XMLTools.LoadListFromXMLElement(parcelPath);
+            XElement par = (from p in parcelelem.Elements()
+                            where int.Parse(p.Element("ID").Value) == pId
+                            select p).FirstOrDefault();
+            if (par == null)
             {
-                throw new CustomerExeptions($"customer {c} dosen't exists ");
+                throw // חריגת אין חבילה כזו 
             }
-            for (int i = 0; i < DataSource.parcels.Count; i++)
+            if (cust == null)
             {
-                if (DataSource.parcels[i].Id == p)
-                {
-                    //d.status = DroneStatus.Shipment;
-                    Parcel P = new Parcel();
-                    P = DataSource.parcels[i];
-                    P.SenderId = c;
-                    P.TargetId = c;
-                    P.Delivered = DateTime.Now;
-                    DataSource.parcels[i] = P;
-
-                }
+                throw // חריגת אין לקוח כזה           
             }
+            //par.Element("SenderId").Value = cId.ToString();
+            par.Element("TargetId").Value = cId.ToString();
+            par.Element("Delivered").Value = DateTime.Now.ToString();
+            XMLTools.SaveListToXMLElement(parcelelem, parcelPath);
         }
         //Sending drone for charging at a base station
-        void IDal.ChargeDrone(int d, int s)
+        void IDal.ChargeDrone(int droneId, int sId)
         {
-            if (DataSource.drones.Exists(drone => drone.Id != d))
-            {
-                throw new DroneExeptions($"drone {d} dosen't exists ");
-            }
-            if (DataSource.stations.Exists(station => station.Id != s))
-            {
-                throw new BaseStationExeptions($"station {s} dosen't exists ");
-            }
-            if (DataSource.droneCharges.Exists(drone => drone.DroneId == d))
-            {
-                throw new DroneChargeExeptions($"drone {d} allready in charging ");
-            }
-            for (int i = 0; i < DataSource.drones.Count; i++)
-            {
-                if (DataSource.drones[i].Id == d)
-                {
-                    Drone D = new Drone();
-                    D = DataSource.drones[i];
-                    // D.status = DroneStatus.Maitenance;
-                    DataSource.drones[i] = D;
-                }
-            }
-            for (int i = 0; i < DataSource.stations.Count; i++)
-            {
-                if (DataSource.stations[i].Id == s)
-                {
-                    BaseStation S = new BaseStation();
-                    S = DataSource.stations[i];
-                    S.ChargeSlots -= 1;
-                    DataSource.stations[i] = S;
-                }
-            }
-            DroneCharge dc = new DroneCharge();
-            dc.DroneId = d;
-            dc.StatioId = s;
-            DataSource.droneCharges.Add(dc);
+            XElement droneselem = XMLTools.LoadListFromXMLElement(dronePath);
+            XElement dr = (from d in droneselem.Elements()
+                           where int.Parse(d.Element("ID").Value) == droneId 
+                           select d).FirstOrDefault();
+            XElement stationelem = XMLTools.LoadListFromXMLElement(basestationPath);
 
+            XElement sta = (from d in stationelem.Elements()
+                            where int.Parse(d.Element("ID").Value) == sId
+                            select d).FirstOrDefault();
+            XElement drchelem = XMLTools.LoadListFromXMLElement(dronechargePath);
+            if (dr == null)
+            {
+                throw
+            }
+            if (sta == null)
+            {
+                throw
+            }
+            if (dr.Element("DroneCharge").Value == null)
+            {
+                throw
+            }
+
+            int chargeS = int.Parse(sta.Element("ChargeSlots").Value);
+            chargeS--;
+            sta.Element("ChargeSlots").Value = chargeS.ToString();
+            XElement newdrc = new XElement("DroneCharge",new XElement("DroneId", droneId.ToString()),
+                new XElement("StatioId", sId.ToString()));
+            drchelem.Add(newdrc);
+            XMLTools.SaveListToXMLElement(drchelem, dronechargePath);
+            XMLTools.SaveListToXMLElement(stationelem, basestationPath);
         }
         //Discharge drone from charging at base station
-        void IDal.DischargeDrone(int d)
+        void IDal.DischargeDrone(int Id)
         {
-            if (DataSource.droneCharges.Exists(drone => drone.DroneId == d))
-            {
-                throw new DroneChargeExeptions($"station {d} dosen't exists ");
-            }
-            DroneCharge dc;
-            for (int i = 0; i < DataSource.drones.Count; i++)
-            {
-                if (DataSource.drones[i].Id == d)
-                {
-                    Drone D = new Drone();
-                    D = DataSource.drones[i];
-                    DataSource.drones[i] = D;
-                }
-            }
-            DroneCharge dcs = DataSource.droneCharges.FirstOrDefault(x => x.DroneId == d);
-            BaseStation s = DataSource.stations.FirstOrDefault(x => x.Id == dcs.StatioId);
-            s.ChargeSlots += 1;
-            for (int i = 0; i < DataSource.droneCharges.Count; i++)
-            {
-                if (DataSource.droneCharges[i].DroneId == d)
-                {
-                    dc = DataSource.droneCharges[i];
-                    DataSource.droneCharges.Remove(dc);
-                }
-            }
+            XElement dronechargeelem = XMLTools.LoadListFromXMLElement(dronechargePath);
+            XElement drch = (from d in dronechargeelem.Elements()
+                           where int.Parse(d.Element("DroneId").Value) == Id
+                           select d).FirstOrDefault();
 
+            XElement droneselem = XMLTools.LoadListFromXMLElement(dronePath);
+            XElement dr = (from d in droneselem.Elements()
+                           where int.Parse(d.Element("ID").Value) == Id
+                           select d).FirstOrDefault();
+            XElement stationelem = XMLTools.LoadListFromXMLElement(basestationPath);
+            XElement sta = (from d in stationelem.Elements()
+                            where int.Parse(d.Element("ID").Value) == int.Parse(drch.Element("StationId").Value)
+                            select d).FirstOrDefault();
+            if (drch==null)
+            {
+                throw
+            }
+            dr.Element("DroneCharge").Value = null;
+            int chargeS = int.Parse(sta.Element("ChargeSlots").Value);
+            chargeS++;
+            sta.Element("ChargeSlots").Value = chargeS.ToString();
+            drch.Remove();
+            XMLTools.SaveListToXMLElement(dronechargeelem, dronechargePath);
+            XMLTools.SaveListToXMLElement(droneselem, dronePath);
+            XMLTools.SaveListToXMLElement(stationelem, basestationPath);
         }
         #endregion
         // עשיתי
@@ -519,11 +522,11 @@ namespace Dal
                    select s;
         }
         #endregion
-        double[] IDal.PowerConsumptionRequest()
+        /*double[] IDal.PowerConsumptionRequest()
         {
             double[] powerConsumtion = new double[] { DataSource.Config.Avaliable, DataSource.Config.Light, DataSource.Config.Medium, DataSource.Config.Heavy, DataSource.Config.ChargingRate };
             return powerConsumtion;
-        }
+        }*/
 
     }
 
