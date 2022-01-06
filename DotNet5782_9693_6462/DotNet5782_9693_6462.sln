@@ -31,7 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console_BL", "Console_BL\Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{604C8B05-9FA2-4780-9B5C-A94942C83A62}"
 	ProjectSection(SolutionItems) = preProject
+		BaseStationXml.xml = BaseStationXml.xml
+		CustomerXml.xml = CustomerXml.xml
 		dal_config.xml = dal_config.xml
+		DroneXml.xml = DroneXml.xml
+		ParcelXml.xml = ParcelXml.xml
 	EndProjectSection
 EndProject
 Global
