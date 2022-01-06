@@ -13,7 +13,6 @@ namespace DO
         public int Id { set; get; }
         public int SenderId { set; get; }
         public int TargetId { set; get; }
-
         public Weights weight { set; get; }
         public Priorities priorty { set; get; }
         public DateTime? Requsted { set; get; }

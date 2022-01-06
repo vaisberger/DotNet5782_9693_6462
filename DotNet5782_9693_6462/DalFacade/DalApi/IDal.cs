@@ -34,7 +34,7 @@ namespace DalApi
         public IEnumerable DisplayParcelList();
         public IEnumerable DisplayParcelUnmatched(Predicate<Parcel> p);
         public IEnumerable DisplayAvailableStation(Predicate<BaseStation> p);
-        public double[] PowerConsumptionRequest();
+        //public double[] PowerConsumptionRequest();
     }
 
 }
