@@ -35,8 +35,8 @@ namespace BLApi
             public IEnumerable DisplayDronelst(Func<Drone,bool> predicate=null);
             public IEnumerable DisplayCustomerlst();
             public IEnumerable DisplayParcellst();
-            public IEnumerable DisplayParcelsUnmatched(); // רשימה של חבילות שלא שוייכו
-            public IEnumerable DisplayStationsToCharge(); // רשימה של תחנות שעדיין לא שוייכו
+            public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p=null); // רשימה של חבילות שלא שוייכו
+            public IEnumerable DisplayStationsToCharge(Predicate<BO.BaseStation> s=null); // רשימה של תחנות שעדיין לא שוייכו
 
         }
     }

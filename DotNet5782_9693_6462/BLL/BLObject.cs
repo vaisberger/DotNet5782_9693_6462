@@ -9,6 +9,7 @@ using BO;
 using DalApi;
 using BLApi;
 using DO;
+using System.Runtime.CompilerServices;
 
 public interface IEnumerable<out list> : IEnumerable
 {
@@ -391,14 +392,15 @@ namespace BLObject
             return mydale.DisplayParcelList();
         }
 
-        public IEnumerable DisplayParcelsUnmatched()
+        public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p)
         {
-            return mydale.DisplayParcelUnmatched();
+
+            return mydale.DisplayParcelUnmatched((Predicate<DO.Parcel>)p);
         }
 
-        public IEnumerable DisplayStationsToCharge()
+        public IEnumerable DisplayStationsToCharge(Predicate<BO.BaseStation> s)
         {
-            return mydale.DisplayAvailableStation();
+            return mydale.DisplayAvailableStation((Predicate<DO.BaseStation>) s);
         }
 
 

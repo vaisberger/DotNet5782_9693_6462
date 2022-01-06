@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace DalApi
 {
-    static class DLConfig
+     class DLConfig
     {
         internal static string dlname;
         internal static Dictionary<string, string> dlpackages;
