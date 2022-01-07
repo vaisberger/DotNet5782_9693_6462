@@ -25,13 +25,13 @@ namespace DalApi
             }
             catch(Exception)
             {
-                throw new DalConfingExeption($"Faild to load the dal-config.wml file");
+                throw new DalConfingExeption($"Faild to load the dal-config.xml file");
             }
 
-            Type type = Type.GetType($"Dal.{dlPackage}, {dlPackage}");
+            Type type = Type.GetType($"Dal.{dlPackage}, {dlPackage}"); // error
             if (type == null)
             {
-                throw new DalConfingExeption($"Class {dlPackage} was not found in the {dlPackage}.dll");
+               throw new DalConfingExeption($"Class {dlPackage} was not found in the {dlPackage}.dll");
             }
             IDal dal = (IDal)type.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static).GetValue(null);
             if (dal == null)

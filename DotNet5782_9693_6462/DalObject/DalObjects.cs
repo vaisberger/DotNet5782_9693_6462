@@ -10,7 +10,7 @@ public interface IEnumerable<out list> : IEnumerable
 {
     IEnumerable<list> GetEnumerable();
 }
-namespace DalApi
+namespace Dal
 {
 
     sealed class DalObjects : IDal
