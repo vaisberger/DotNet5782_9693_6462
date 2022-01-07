@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Dal
 {
@@ -27,16 +28,18 @@ namespace Dal
 
         #region Add methods
         //Add a parcel  to the list of  parcel
-         void AddParcel(Parcel p)
+
+        //Add customer to the list of customer
+        void IDal.AddParcel(Parcel p)
         {
             XElement parcelelem = XMLTools.LoadListFromXMLElement(parcelPath);
 
             XElement parcel = (from par in parcelelem.Elements()
-                             where int.Parse(par.Element("ID").Value) == p.Id
-                             select par).FirstOrDefault();
+                               where int.Parse(par.Element("ID").Value) == p.Id
+                               select par).FirstOrDefault();
             if (parcel != null)
             {
-                throw
+                throw new IDExistsInTheSystem(p.Id, $"Parcel ID Exists:{p.Id}");
             }
 
             XElement parcelElem = new XElement("Parcel", new XElement("ID", p.Id),
@@ -54,7 +57,6 @@ namespace Dal
 
             XMLTools.SaveListToXMLElement(parcelelem, parcelPath);
         }
-        //Add customer to the list of customer
         void IDal.AddCustomer(Customer c)
         {
             XElement customerelem = XMLTools.LoadListFromXMLElement(customerPath);
@@ -64,7 +66,7 @@ namespace Dal
                                select cos).FirstOrDefault();
             if (customer != null)
             {
-                throw
+                throw new IDExistsInTheSystem(c.Id, $"Customer ID Exists:{c.Id}");
             }
 
             XElement customerElem = new XElement("Customer", new XElement("ID", c.Id),
@@ -88,7 +90,7 @@ namespace Dal
                                  select sta).FirstOrDefault();
             if (station != null)
             {
-                throw
+                throw new IDExistsInTheSystem(s.Id, $"Basestation ID Exists:{s.Id}");
             }
 
             XElement stationElem = new XElement("BaseStation", new XElement("ID", s.Id),
@@ -111,7 +113,7 @@ namespace Dal
                                 select dr).FirstOrDefault();
             if (drone != null)
             {
-                throw
+                throw new IDExistsInTheSystem(d.Id, $"Drone ID Exists:{d.Id}");
             }
 
             XElement droneElem = new XElement("Drone", new XElement("ID", d.Id),
@@ -139,7 +141,7 @@ namespace Dal
             }
             else
             {
-                throw new DO.BadPersonIdException(id, $"bad person id: {id}");
+                throw new IDNotExistsInTheSystem(id, $"Drone ID dosn't Exist:{id}");
             }
 
         }
@@ -161,7 +163,7 @@ namespace Dal
                 }
                 XMLTools.SaveListToXMLElement(stationelem, basestationPath);
             }
-            else { throw new DO.BadPersonIdException(id, $"bad person id: {id}"); }
+            else { throw new IDNotExistsInTheSystem(id, $"Basestation ID dosn't Exist:{id}"); }
         }
         void IDal.UpdateCustomer(int id, String name, String phone)
         {
@@ -183,7 +185,7 @@ namespace Dal
             }
             else
             {
-                throw new DO.BadPersonIdException(id, $"bad person id: {id}");
+                throw new IDNotExistsInTheSystem(id, $"Customer ID dosn't Exist:{id}");
             }
         }
         //Update parcel  to a drone
@@ -200,11 +202,11 @@ namespace Dal
 
             if (dr == null)
             {
-                throw // חריגת אין רחפן כזה 
+                throw new IDNotExistsInTheSystem(droneId, $"Drone ID dosn't Exist:{droneId}");
             }
             if (par == null)
             {
-                throw // חריגת אין חבילה כזו 
+                throw new IDNotExistsInTheSystem(parcleId, $"Drone ID dosn't Exist:{parcleId}");
             }
 
             par.Element("DroneId").Value= droneId.ToString();
@@ -229,11 +231,11 @@ namespace Dal
 
             if (dr == null)
             {
-                throw // חריגת אין רחפן כזה 
+                throw new IDNotExistsInTheSystem(dId, $"Drone ID dosn't Exist:{dId}");
             }
             if (par == null)
             {
-                throw // חריגת אין חבילה כזו 
+                throw new IDNotExistsInTheSystem(pd, $"Parcel ID dosn't Exist:{pd}");
             }
             par.Element("DroneId").Value = dId.ToString();
             par.Element("PickedUp").Value = DateTime.Now.ToString();
@@ -252,11 +254,11 @@ namespace Dal
                             select p).FirstOrDefault();
             if (par == null)
             {
-                throw // חריגת אין חבילה כזו 
+                throw new IDNotExistsInTheSystem(pId, $"Parcel ID dosn't Exist:{pId}");
             }
             if (cust == null)
             {
-                throw // חריגת אין לקוח כזה           
+                throw new IDNotExistsInTheSystem(cId, $"Customer ID dosn't Exist:{cId}");
             }
             //par.Element("SenderId").Value = cId.ToString();
             par.Element("TargetId").Value = cId.ToString();
@@ -278,15 +280,15 @@ namespace Dal
             XElement drchelem = XMLTools.LoadListFromXMLElement(dronechargePath);
             if (dr == null)
             {
-                throw
+                throw new IDNotExistsInTheSystem(droneId, $"Drone ID dosn't Exist:{droneId}");
             }
             if (sta == null)
             {
-                throw
+                throw new IDNotExistsInTheSystem(sId, $"Basestation ID dosn't Exist:{sId}");
             }
-            if (dr.Element("DroneCharge").Value == null)
+            if (dr.Element("DroneCharge").Value != null)
             {
-                throw
+                throw new IDExistsInTheSystem(droneId, $"Drone ID Exist in charge list:{droneId}");
             }
 
             int chargeS = int.Parse(sta.Element("ChargeSlots").Value);
@@ -316,7 +318,7 @@ namespace Dal
                             select d).FirstOrDefault();
             if (drch==null)
             {
-                throw
+                throw new IDNotExistsInTheSystem(Id, $"Drone ID dosn't Exist:{Id}");
             }
             dr.Element("DroneCharge").Value = null;
             int chargeS = int.Parse(sta.Element("ChargeSlots").Value);
@@ -328,7 +330,7 @@ namespace Dal
             XMLTools.SaveListToXMLElement(stationelem, basestationPath);
         }
         #endregion
-        // עשיתי
+
         #region get items
         ////Drone display by ID
         BaseStation IDal.DisplayStation(int Id)
@@ -347,7 +349,7 @@ namespace Dal
 
             if (s==null)
             {
-                throw new DO.idnotfound();
+
             }
             return s;
         }
@@ -366,7 +368,7 @@ namespace Dal
 
             if (d == null)
             {
-                throw new DO.idnotfound();
+
             }
             return d;
         }
@@ -388,7 +390,7 @@ namespace Dal
 
             if (c == null)
             {
-                throw new DO.idnotfound();
+
             }
             return c;
         }
@@ -414,7 +416,7 @@ namespace Dal
 
             if (p == null)
             {
-                throw new DO.idnotfound();
+
             }
             return p;
         }
@@ -522,6 +524,7 @@ namespace Dal
                    select s;
         }
         #endregion
+
         /*double[] IDal.PowerConsumptionRequest()
         {
             double[] powerConsumtion = new double[] { DataSource.Config.Avaliable, DataSource.Config.Light, DataSource.Config.Medium, DataSource.Config.Heavy, DataSource.Config.ChargingRate };

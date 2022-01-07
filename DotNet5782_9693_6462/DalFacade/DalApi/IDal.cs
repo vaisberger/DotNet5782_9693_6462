@@ -12,7 +12,7 @@ namespace DalApi
 {
     public interface IDal
     {
-        public int AddParcel(Parcel p);
+        public void AddParcel(Parcel p);
         public void AddCustomer(Customer c);
         public void AddStation(BaseStation s);
         public void AddDrone(Drone d);
@@ -32,8 +32,8 @@ namespace DalApi
         public IEnumerable DisplayStationList();
         public IEnumerable DisplayCustomerList();
         public IEnumerable DisplayParcelList();
-        public IEnumerable DisplayParcelUnmatched(Predicate<Parcel> p);
-        public IEnumerable DisplayAvailableStation(Predicate<BaseStation> p);
+        public IEnumerable DisplayParcelUnmatched(Predicate<Parcel> p=null);
+        public IEnumerable DisplayAvailableStation(Predicate<BaseStation> p=null);
         //public double[] PowerConsumptionRequest();
     }
 

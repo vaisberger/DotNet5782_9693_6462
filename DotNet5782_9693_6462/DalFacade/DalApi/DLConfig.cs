@@ -7,12 +7,13 @@ using System.Xml.Linq;
 
 namespace DalApi
 {
-    static class DLConfig
+     class DLConfig
     {
         internal static string dlname;
         internal static Dictionary<string, string> dlpackages;
         static DLConfig()
         {
+
             XElement dalConfig = XElement.Load(@"dal_config.xml");
             dlname = dalConfig.Element("dal").Value;
             dlpackages = (from pkg in dalConfig.Element("dal-packages").Elements()

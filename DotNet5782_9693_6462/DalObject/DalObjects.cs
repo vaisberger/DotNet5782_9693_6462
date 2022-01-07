@@ -5,29 +5,36 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DalApi;
+using System.Runtime.CompilerServices;
 public interface IEnumerable<out list> : IEnumerable
 {
     IEnumerable<list> GetEnumerable();
 }
-namespace DalApi
+namespace Dal
 {
 
-    sealed class Dalobject : IDal
+    sealed class DalObjects : IDal
     {
         #region constructors
-        Dalobject() { }
-        public static Dalobject Instance { get { return Nested.instance; } }
+        static readonly IDal instance = new DalObjects();
+        public static IDal Instance { get => instance; }
+        DalObjects()
+        {
+            DataSource.Initialize();
+        }
+     /*   DalObjects() { }
+        public static DalObjects Instance { get { return Nested.instance; } }
         private class Nested
         {
             static Nested() { }
-            internal static readonly Dalobject instance = new Dalobject();
-        }
+            internal static readonly DalObjects instance = new DalObjects();
+        }*/
    
 #endregion
 
         #region Add methods
         //Add a parcel  to the list of  parcel
-        int IDal.AddParcel(Parcel p)
+        void IDal.AddParcel(Parcel p)
         {
             if (DataSource.parcels.Exists(parcel => parcel.Id == p.Id))
             {
@@ -35,7 +42,7 @@ namespace DalApi
             }
             DataSource.parcels.Add(p);
             DataSource.Config.ParcelSerial += 1;
-            return DataSource.Config.ParcelSerial;
+
         }
         //Add customer to the list of customer
          void IDal.AddCustomer(Customer c)
@@ -370,21 +377,21 @@ namespace DalApi
             return P;
         }
         //Displays a list of parcel not yet associated with the drone
-        IEnumerable IDal.DisplayParcelUnmatched()
+        IEnumerable IDal.DisplayParcelUnmatched(Predicate<Parcel> p)
         {
             List<Parcel> P = new List<Parcel>();
-            foreach (Parcel p in DataSource.parcels)
+            foreach (Parcel par in DataSource.parcels)
             {
-                if (p.DroneId == 0)
+                if (par.DroneId == 0)
                 {
-                    P.Add(p);
+                    P.Add(par);
                 }
             }
             return P;
 
         }
         //Displays base stations with available charging stations
-        IEnumerable IDal.DisplayAvailableStation()
+        IEnumerable IDal.DisplayAvailableStation(Predicate<BaseStation> s)
         {
             List<BaseStation> S = new List<BaseStation>();
             foreach (BaseStation b in DataSource.stations)
@@ -400,11 +407,11 @@ namespace DalApi
 
 
         }
-       double[] IDal.PowerConsumptionRequest()
+      /* double[] IDal.PowerConsumptionRequest()
         { 
             double[] powerConsumtion = new double[] { DataSource.Config.Avaliable, DataSource.Config.Light, DataSource.Config.Medium, DataSource.Config.Heavy, DataSource.Config.ChargingRate };
             return powerConsumtion;
-        }
+        }*/
 
 
     }
