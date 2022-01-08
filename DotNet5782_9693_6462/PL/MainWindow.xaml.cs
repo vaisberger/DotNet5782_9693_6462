@@ -44,5 +44,11 @@ namespace PL
                MessageBox.Show( wnd.Drone.ToString());
             }
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            CustomerParcel wnd = new CustomerWindow(mybl);
+            
+        }
     }
 }
