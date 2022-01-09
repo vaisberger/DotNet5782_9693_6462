@@ -36,6 +36,8 @@ namespace PL
         public DroneWindow(BO.Drone dr) // the constructer to update the drone 
         {
             InitializeComponent();
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.DroneStatus));
+            maxWeightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
             grid1.DataContext = dr;
         }
         private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,10 +60,11 @@ namespace PL
             }
             catch (Exception)
             {
-                throw new Exception("couldn't add the drone because this Id allready exists in the system");
-            }
-            
 
+                MessageBox.Show("couldn't add the drone because this Id allready exists in the system");
+            }
+
+            Close();
         }
     }
 }

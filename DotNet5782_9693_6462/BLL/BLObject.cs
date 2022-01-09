@@ -11,6 +11,7 @@ using BLApi;
 using DO;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using BO;
 
 public interface IEnumerable<out list> : IEnumerable
 {
@@ -33,6 +34,7 @@ namespace BLObject
 
         public void AddCustomer(BO.Customer customer)
         {
+
             DO.Customer customer1 = new DO.Customer();
             customer1.Id = customer.Id;
             customer1.Name = customer.Name;
@@ -44,13 +46,24 @@ namespace BLObject
 
         public void AddDrone(BO.Drone drone)
         {
+            try
+            {
+                BO.Drone d = drones.FirstOrDefault(x => x.Id == drone.Id);
+                if (d != null)
+                {
+                    throw new DO.IDNotExistsInTheSystem(drone.Id);
+                }
+            }
+            catch (DO.IDExistsInTheSystem ex)
+            {
+                throw new BO.DroneExistsException($"Cant add the drone: {drone.Id} because the Id allready exists in the system", ex);
+            }
             Random r = new Random();
             DO.Drone drone1 = new DO.Drone();
             drone1.Id = drone.Id;
             drone1.Model = drone.Model;
             drone1.MaxWeight = (DO.Weights)drone.MaxWeight;
             drone.Battery = r.Next(20, 41);
-            drone.status = DroneStatus.Maitenance;
             drones.Add(drone);
 
 
