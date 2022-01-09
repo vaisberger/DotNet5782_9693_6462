@@ -47,8 +47,15 @@ namespace PL
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            CustomerParcel wnd = new CustomerWindow(mybl);
-            
+            CustomerWindow wnd = new CustomerWindow(mybl);
+            wnd.Show();
+
+        }
+
+        private void BaseStation_Click(object sender, RoutedEventArgs e)
+        {
+            BaseStationListWindow wnd = new BaseStationListWindow();
+            wnd.Show();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace BO
+﻿using System;
+
+namespace BO
 {
     public class CustomerParcel
     {
