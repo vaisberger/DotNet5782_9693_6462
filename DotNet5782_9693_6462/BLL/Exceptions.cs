@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace B0
+namespace BO
 {
     [Serializable]
  public class DroneExistsException : Exception
