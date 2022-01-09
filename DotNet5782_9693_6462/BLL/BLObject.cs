@@ -10,6 +10,7 @@ using DalApi;
 using BLApi;
 using DO;
 using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 public interface IEnumerable<out list> : IEnumerable
 {
@@ -22,12 +23,12 @@ namespace BLObject
         static readonly IBl instance = new BLObject();
         public static IBl Instance{ get=> instance; } 
 
-        public List<BO.Drone> drones;
+        public ObservableCollection<BO.Drone> drones;
         internal IDal mydale=DalFactory.GetDal();
 
         public BLObject() // היה פריווט והחלפנו לפבליק כדי שיעבוד
         {
-            drones = new List<BO.Drone>();
+            drones = new ObservableCollection<BO.Drone>();
         }
 
         public void AddCustomer(BO.Customer customer)
@@ -103,17 +104,11 @@ namespace BLObject
 
         public BO.Drone GetDrone(int id)
         {
-            BO.Drone d = new BO.Drone();
-            if (drones.Exists(drone => drone.Id != id))
+            BO.Drone d = drones.FirstOrDefault(x => x.Id == id);
+
+            if (d==null)
             {
                 throw new BLDroneExption($"drone {id} was not found");
-            }
-            for (int i = 0; i < drones.Count; i++)
-            {
-                if (drones[i].Id == id)
-                {
-                    d = drones[i];
-                }
             }
             return d;
         }
@@ -257,15 +252,12 @@ namespace BLObject
 
         public void DischargeDrone(int id, double time)
         {
-            BO.Drone d = new BO.Drone();
-            try
-            {
-                d = drones.Find(x => x.Id == id);
-            }
-            catch (BO.BLDroneExption dexp)
+            BO.Drone d = drones.FirstOrDefault(x => x.Id == id);
+            if (d == null)
             {
                 throw new BLDroneExption("the drone was not found");
-            }
+            };
+
             if (d.status != DroneStatus.Maitenance)
             {
                 throw new BLDroneExption("the drone was is not charging in the moment");
@@ -370,16 +362,7 @@ namespace BLObject
 
         public IEnumerable DisplayDronelst(Func<BO.Drone, bool> predicate = null)
         {
-            List<BO.Drone> D = new List<BO.Drone>();
-            foreach (BO.Drone d in drones)
-            {
-                D.Add(d);
-            }
-            if (predicate == null)
-            {
-                return D;
-            }
-            return D.Where(predicate).ToList();
+            return drones;
         }
 
         public IEnumerable DisplayCustomerlst()
