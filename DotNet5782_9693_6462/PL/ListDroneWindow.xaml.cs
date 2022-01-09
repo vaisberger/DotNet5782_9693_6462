@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using BO;
 using BLApi;
+using System.Collections.ObjectModel;
 
 namespace PL
 {
@@ -20,21 +21,28 @@ namespace PL
             this.bL = iBL;
             cmbStatus.ItemsSource = Enum.GetValues(typeof(BO.DroneStatus));
             cmbMaxWeight.ItemsSource= Enum.GetValues(typeof(BO.Weights));
+            droneDataGrid.DataContext = bL.DisplayDronelst();
+            droneDataGrid.IsReadOnly = true;
         }
 
 
 
         private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DroneStatus status = (DroneStatus)cmbStatus.SelectedItem;
-            this.listView.ItemsSource = bL.DisplayDronelst(x => x.status == status);
-            MessageBox.Show(cmbStatus.SelectedItem.ToString());
+            if (cmbStatus.SelectedItem == null)
+            {
+        
+            }
+            else
+            {
+                DroneStatus status = (DroneStatus)cmbStatus.SelectedItem;
+            }
+
         }
 
         private void cmbMaxWeight_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Weights w = (Weights)cmbMaxWeight.SelectedItem;
-            this.listView.ItemsSource = bL.DisplayDronelst(x => x.MaxWeight == w);
             MessageBox.Show(cmbMaxWeight.SelectedItem.ToString());
         }
 
@@ -44,9 +52,26 @@ namespace PL
             wnd.Show();
         }
 
-        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+
+        private void droneDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            listView.ItemsSource = bL.DisplayDronelst();   // להוסיף אופציה שבלחיצה ברחפן יהיה אפשר לעדכן
+
+        }
+
+        private void Updateddronebtn_Click(object sender, RoutedEventArgs e)
+        {
+            Drone d = (droneDataGrid.SelectedItem as Drone);
+            if (d != null)
+            {
+                DroneWindow w = new DroneWindow(d);
+                w.Show();
+            }
+        }
+
+        private void droneDataGrid_SelectionChanged_3(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
