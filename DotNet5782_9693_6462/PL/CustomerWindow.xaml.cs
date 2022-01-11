@@ -23,8 +23,8 @@ namespace PL
     public partial class CustomerWindow : Window
     {
         IBl mybl;
-        private ObservableCollection<Customer> customers =
-            new ObservableCollection<Customer>();
+        //private ObservableCollection<Customer> customers =
+          //  new ObservableCollection<Customer>();
         public CustomerWindow(IBl bl)
         {
             InitializeComponent();
@@ -56,12 +56,12 @@ namespace PL
         private void AddCustomer_Click(object sender, RoutedEventArgs e)//Add more customer
         {
 
-            customers.Add(
-                new Customer
-                {
-                    Id = 7887,
-                    Name = "bbbb"
-                });
+            //customers.Add(
+               // new Customer
+               // {
+                 //   Id = 7887,
+                  //  Name = "bbbb"
+               // });
             DisplayCustomerWindow dcw = new DisplayCustomerWindow(mybl);
             dcw.Show();
         }
