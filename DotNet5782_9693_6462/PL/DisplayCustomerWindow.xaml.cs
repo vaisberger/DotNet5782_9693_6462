@@ -20,10 +20,17 @@ namespace PL
     /// </summary>
     public partial class DisplayCustomerWindow : Window
     {
-        
-        public DisplayCustomerWindow()
+        IBl bl;
+        BO.Customer customer;
+        public DisplayCustomerWindow(IBl Bl)//Add a customer
         {
+            customer = new BO.Customer();
+            this.bl = Bl;
+            DataContext = customer;
             InitializeComponent();
+
         }
+
+       
     }
 }

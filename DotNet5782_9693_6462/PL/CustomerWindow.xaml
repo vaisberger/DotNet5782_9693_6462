@@ -1,11 +1,32 @@
-﻿<Window x:Class="PL.CustomerWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+        xmlns:System="clr-namespace:System;assembly=System.Runtime" x:Class="PL.CustomerWindow"
         mc:Ignorable="d"
         Title="CustomerWindow" Height="450" Width="800">
-    
+
+    <Grid x:Name="MainGrid" Margin="10,0,0,-85">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="-10,-36,10,10" Grid.RowSpan="2">
+
+            <ListBox x:Name="ListCustomer" ItemsSource="{Binding}" SelectionChanged="ListBox_SelectionChanged" />
+            <DataGrid  x:Name="customerDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="CustomerDataGrid_SelectionChanged_3" Height="353" RenderTransformOrigin="0.52,0.754" Width="770">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="IdColumn" Binding="{Binding Id}" Header="Id                   "  Width="SizeToHeader" FontSize="22"/>
+                    <DataGridTextColumn x:Name="NameColunm" Binding="{Binding Name}" Header="Name" Width="56767"/>
+                </DataGrid.Columns>
+                <System:String>Height="78";</System:String>
+            </DataGrid>
+
+        </StackPanel>
+        <Button x:Name="AddCustomer" Content="Add" Height="32" Width="126" FontSize="13" Click="AddCustomer_Click" RenderTransformOrigin="2.7,78.886" Background="#FFDDDDDD" Margin="654,392,10,10"/>
+    </Grid>
+
 </Window>
 
