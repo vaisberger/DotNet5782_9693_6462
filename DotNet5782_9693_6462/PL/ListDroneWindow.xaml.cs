@@ -29,21 +29,16 @@ namespace PL
 
         private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbStatus.SelectedItem == null)
-            {
-        
-            }
-            else
-            {
-                DroneStatus status = (DroneStatus)cmbStatus.SelectedItem;
-            }
-
+            DroneStatus status = (DroneStatus)cmbStatus.SelectedItem;
+            MessageBox.Show(cmbStatus.SelectedItem.ToString());
+            droneDataGrid.DataContext = bL.DisplayDronelst(drone=>drone.status==status);
         }
 
         private void cmbMaxWeight_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Weights w = (Weights)cmbMaxWeight.SelectedItem;
             MessageBox.Show(cmbMaxWeight.SelectedItem.ToString());
+            droneDataGrid.DataContext = bL.DisplayDronelst(drone => drone.MaxWeight == w);
         }
 
         private void button_Click(object sender, RoutedEventArgs e) //button to add a drone
@@ -72,6 +67,11 @@ namespace PL
         private void droneDataGrid_SelectionChanged_3(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Clearfilterbtn_Click(object sender, RoutedEventArgs e)
+        {
+            droneDataGrid.DataContext = bL.DisplayDronelst();
         }
     }
 }

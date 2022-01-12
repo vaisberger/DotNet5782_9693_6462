@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfBaseStatuin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<BaseStatuin>
-		<ID>3456</ID>
-		<Name>mmmm</Name>
+		<ID></ID>
+		<Name></Name>
 		<ChargeSlots></ChargeSlots>
 		<Latitude></Latitude>
 		<Lodgitude></Lodgitude>

@@ -28,21 +28,28 @@
             <TextBlock x:Name="DroneMaxWeight" FontSize="20" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Height="70" Width="190" Text=" Drone Max Weight :"/>
             <ComboBox x:Name="cmbMaxWeight" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="69" SelectionChanged="cmbMaxWeight_SelectionChanged"/>
         </Grid>
-
         <Button x:Name="button" Content="Add new drone" HorizontalAlignment="Left" Margin="219,514,0,0" Grid.Row="1" VerticalAlignment="Top" Height="24" Width="186" Click="button_Click" Grid.Column="1"/>
-
-
         <DataGrid x:Name="droneDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,160,10,138" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="droneDataGrid_SelectionChanged_3" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id     " Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="modelColumn" Binding="{Binding Model}" Header="Model" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="batteryColumn" Binding="{Binding Battery}" Header="Battery" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="batteryColumn" Header="Battery" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Battery,StringFormat={}{0:0}% }" HorizontalAlignment="Center"/>
+                                <ProgressBar Value="{Binding Battery, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Height="20"  />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn x:Name="maxWeightColumn" Binding="{Binding MaxWeight}" Header="Max Weight" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="statusColumn" Binding="{Binding status}" Header="status         " Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="location1Column" Binding="{Binding location1}" Header="location " Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="Updateddronebtn" Content="Update selected Drone" HorizontalAlignment="Left" Margin="412,514,0,0" Grid.Row="1" VerticalAlignment="Top" Width="198" Click="Updateddronebtn_Click" Height="24" Grid.ColumnSpan="2"/>
+        <Button x:Name="Clearfilterbtn" Content="Clear list filter" HorizontalAlignment="Left" Margin="181,514,0,0" Grid.Row="1" VerticalAlignment="Top" Height="24" Width="192" Click="Clearfilterbtn_Click"/>
 
 
     </Grid>

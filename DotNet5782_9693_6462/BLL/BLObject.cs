@@ -65,7 +65,7 @@ namespace BLObject
             drone1.MaxWeight = (DO.Weights)drone.MaxWeight;
             drone.Battery = r.Next(20, 41);
             drones.Add(drone);
-
+           // mydale.AddDrone(drone1);
 
         }
         public void AddParcel(BO.Parcel parcel)
@@ -375,7 +375,15 @@ namespace BLObject
 
         public IEnumerable DisplayDronelst(Func<BO.Drone, bool> predicate = null)
         {
-            return drones;
+        
+            if (predicate != null)
+            {
+                return drones.Where(predicate);
+            }
+            else
+            { 
+                return drones; 
+            }
         }
 
         public IEnumerable DisplayCustomerlst()

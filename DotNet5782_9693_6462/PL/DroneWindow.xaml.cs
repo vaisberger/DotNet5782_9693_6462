@@ -31,6 +31,8 @@ namespace PL
             InitializeComponent();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.DroneStatus));
             maxWeightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
+            button2.IsEnabled = false;
+            batteryTextBox.IsEnabled = false;
         }
 
         public DroneWindow(BO.Drone dr) // the constructer to update the drone 
@@ -38,21 +40,28 @@ namespace PL
             InitializeComponent();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.DroneStatus));
             maxWeightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
-            grid1.DataContext = dr;
+            button.IsEnabled = false;
+            idTextBox.IsEnabled = false;
+            batteryTextBox.IsEnabled = false;
+            maxWeightComboBox.IsEnabled = false;
+            statusComboBox.IsEnabled = false;
+            latitudeTextBox.IsEnabled = false;
+            longitudeTextBox.IsEnabled = false;
+            drone = dr;
+            DataContext = drone;
         }
         private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DroneStatus status = (DroneStatus)statusComboBox.SelectedItem;
-            MessageBox.Show(statusComboBox.SelectedItem.ToString());
         }
 
         public Drone Drone { get => drone; }
 
-        private void button_Click1(object sender, RoutedEventArgs e) // add button
+        private void button_Click1(object sender, RoutedEventArgs e) // cancel button
         {
             Close();
         }
-        private void button_Click(object sender, RoutedEventArgs e) // cancel adding
+        private void button_Click(object sender, RoutedEventArgs e) //  adding
         {
             try
             {
@@ -63,7 +72,15 @@ namespace PL
 
                 MessageBox.Show("couldn't add the drone because this Id allready exists in the system");
             }
+            MessageBox.Show(drone.ToString());
+            Close();
+        }
 
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            
+            grid1.DataContext = drone;
+            MessageBox.Show("Drone was updated");
             Close();
         }
     }
