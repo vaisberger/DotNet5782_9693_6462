@@ -12,10 +12,11 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnshowdrones" Content="Drone's list" HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Top" FontSize="22" Height="342" Width="196" Click="Button_Click"/>
-        <Button x:Name="Drone" Content="Drone" Grid.Column="1" HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Top" FontSize="22" Height="342" Width="194" Click="Button_Click_1"/>
+        <Button x:Name="btnshowdrones" Content="Drone's list" HorizontalAlignment="Left" Margin="32,36,0,0" VerticalAlignment="Top" FontSize="22" Height="342" Width="196" Click="Button_Click"/>
+        <Button x:Name="Drone" Content="Drone" Grid.Column="1" HorizontalAlignment="Left" Margin="169,27,0,0" VerticalAlignment="Top" FontSize="22" Height="342" Width="194" Click="Button_Click_1"/>
         <Button x:Name ="Customer" Content="Customer" HorizontalAlignment="Center" Margin="0,440,0,0" VerticalAlignment="Top" FontSize="22" Height="151" Width="294" Click="Button_Click_2"/>
         <Button x:Name="BaseStation" Content="Base Station" Grid.Column="1" HorizontalAlignment="Left" Margin="77,440,0,0" VerticalAlignment="Top" Height="122" Width="241" FontSize="22" Click="BaseStation_Click"/>
+        <Button x:Name="parcel" Content="Parcel" HorizontalAlignment="Left" Margin="286,207,0,0" VerticalAlignment="Top" Height="138" Width="101" Click="parcel_Click"/>
 
 
 

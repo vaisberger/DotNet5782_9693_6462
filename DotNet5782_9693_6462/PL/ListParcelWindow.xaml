@@ -1,0 +1,41 @@
+﻿<Window x:Class="PL.ListParcelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="ListParcelWindow" Height="450" Width="800">
+    <Grid>
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,362">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <ComboBox x:Name="prioritycmb" HorizontalAlignment="Center" VerticalAlignment="Center" Width="134" SelectionChanged="comboBox_SelectionChanged" Height="72" Grid.Column="1"/>
+            <ComboBox x:Name="datecmb" HorizontalAlignment="Center" VerticalAlignment="Center" Width="134" SelectionChanged="comboBox_SelectionChanged" Height="72" Grid.Column="3"/>
+            <TextBlock x:Name="prioritytxt" HorizontalAlignment="Center" FontSize="17" TextWrapping="Wrap" VerticalAlignment="Center" Height="72" Width="133"><Run Text="  "/><LineBreak/><Run Text="      Priority :"/></TextBlock>
+            <TextBlock x:Name="datestxt" HorizontalAlignment="Center" FontSize="17" TextWrapping="Wrap" VerticalAlignment="Top" Height="72" Width="133" Grid.Column="2" Margin="0,-2,0,0"><Run Text="  "/><LineBreak/><Run Text="        Date :"/></TextBlock>
+            <TextBlock x:Name="weighttxt" HorizontalAlignment="Center" FontSize="17" TextWrapping="Wrap" VerticalAlignment="Center" Height="72" Width="133" Grid.Column="4"><Run Text="  "/><LineBreak/><Run Text="      Weight :"/></TextBlock>
+            <ComboBox x:Name="weightcmb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" SelectionChanged="comboBox_SelectionChanged" Height="72" Grid.Column="6" />
+        </Grid>
+        <DataGrid x:Name="parcellDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,72,10,58" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="parcellDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="priorityColumn" Binding="{Binding priority}" Header="priority" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="weightColumn" Binding="{Binding weight}" Header="weight" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="droaneParcelColumn" Binding="{Binding droaneParcel}" Header="Drone" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="senderColumn" Binding="{Binding Sender}" Header="Sender" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gettingColumn" Binding="{Binding Getting}" Header="Getting" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="deliveredColumn" Binding="{Binding Delivered}" Header="Delivered" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="requstedColumn" Binding="{Binding Requsted}" Header="Requsted" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="scheduledColumn" Binding="{Binding Scheduled}" Header="Scheduled" Width="SizeToHeader"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

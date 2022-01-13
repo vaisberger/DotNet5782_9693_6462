@@ -391,9 +391,25 @@ namespace BLObject
             return mydale.DisplayCustomerList();
         }
 
-        public IEnumerable DisplayParcellst()
+        public IEnumerable DisplayParcellst(Predicate<DO.Parcel> p)
         {
-            return mydale.DisplayParcelList();
+            List<DO.Parcel> parcellst= new List<DO.Parcel>();
+            if (p != null)
+            {
+                foreach(var item in mydale.DisplayParcelList())
+                {
+                    if (p((DO.Parcel)item))
+                    {
+                        parcellst.Add((DO.Parcel)item);
+                    }
+                }
+                return parcellst.AsEnumerable();
+            }
+            else
+            {
+                return mydale.DisplayParcelList();
+            }
+          
         }
 
         public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p)

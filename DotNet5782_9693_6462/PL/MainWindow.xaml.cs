@@ -57,5 +57,11 @@ namespace PL
             BaseStationListWindow wnd = new BaseStationListWindow();
             wnd.Show();
         }
+
+        private void parcel_Click(object sender, RoutedEventArgs e)
+        {
+            ListParcelWindow wnd = new ListParcelWindow(mybl);
+            wnd.Show();
+        }
     }
 }

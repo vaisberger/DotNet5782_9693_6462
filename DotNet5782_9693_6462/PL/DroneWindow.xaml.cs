@@ -2,6 +2,7 @@
 using BO;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,8 @@ namespace PL
             maxWeightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
             button2.IsEnabled = false;
             batteryTextBox.IsEnabled = false;
+            button3.IsEnabled = false;
+            
         }
 
         public DroneWindow(BO.Drone dr) // the constructer to update the drone 
@@ -82,6 +85,18 @@ namespace PL
             grid1.DataContext = drone;
             MessageBox.Show("Drone was updated");
             Close();
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.SendDroneToCharge(drone.Id);
+            }
+            catch
+            {
+
+            }
         }
     }
 }

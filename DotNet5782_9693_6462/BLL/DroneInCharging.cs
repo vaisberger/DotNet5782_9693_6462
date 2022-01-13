@@ -10,5 +10,6 @@ namespace BO
     {
         public int Id { get; set; }
         public double? Battery { get; set; }
+        public DateTime? startCharge { get; set; }
     }
 }
