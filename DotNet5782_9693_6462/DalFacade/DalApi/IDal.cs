@@ -31,7 +31,7 @@ namespace DalApi
         public IEnumerable DisplayDroneList();
         public IEnumerable DisplayStationList();
         public IEnumerable DisplayCustomerList();
-        public IEnumerable DisplayParcelList();
+        public IEnumerable DisplayParcelList(Predicate<Parcel> p=null);
         public IEnumerable DisplayParcelUnmatched(Predicate<Parcel> p=null);
         public IEnumerable DisplayAvailableStation(Predicate<BaseStation> p=null);
         //public double[] PowerConsumptionRequest();

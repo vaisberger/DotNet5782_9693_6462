@@ -468,7 +468,7 @@ namespace Dal
                     });
         }
         //Displays a list of parcel
-        IEnumerable IDal.DisplayParcelList()
+        IEnumerable IDal.DisplayParcelList(Predicate<Parcel> p)
         {
             XElement parcelelemnts = XMLTools.LoadListFromXMLElement(parcelPath);
             return (from par in parcelelemnts.Elements()

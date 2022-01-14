@@ -16,14 +16,14 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="prioritycmb" HorizontalAlignment="Center" VerticalAlignment="Center" Width="134" SelectionChanged="comboBox_SelectionChanged" Height="72" Grid.Column="1"/>
+            <ComboBox x:Name="prioritycmb" HorizontalAlignment="Center" VerticalAlignment="Center" Width="134" SelectionChanged="comboBox_SelectionChanged1" Height="72" Grid.Column="1"/>
             <ComboBox x:Name="datecmb" HorizontalAlignment="Center" VerticalAlignment="Center" Width="134" SelectionChanged="comboBox_SelectionChanged" Height="72" Grid.Column="3"/>
             <TextBlock x:Name="prioritytxt" HorizontalAlignment="Center" FontSize="17" TextWrapping="Wrap" VerticalAlignment="Center" Height="72" Width="133"><Run Text="  "/><LineBreak/><Run Text="      Priority :"/></TextBlock>
             <TextBlock x:Name="datestxt" HorizontalAlignment="Center" FontSize="17" TextWrapping="Wrap" VerticalAlignment="Top" Height="72" Width="133" Grid.Column="2" Margin="0,-2,0,0"><Run Text="  "/><LineBreak/><Run Text="        Date :"/></TextBlock>
             <TextBlock x:Name="weighttxt" HorizontalAlignment="Center" FontSize="17" TextWrapping="Wrap" VerticalAlignment="Center" Height="72" Width="133" Grid.Column="4"><Run Text="  "/><LineBreak/><Run Text="      Weight :"/></TextBlock>
-            <ComboBox x:Name="weightcmb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" SelectionChanged="comboBox_SelectionChanged" Height="72" Grid.Column="6" />
+            <ComboBox x:Name="weightcmb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" SelectionChanged="comboBox_SelectionChanged2" Height="72" Grid.Column="6" />
         </Grid>
-        <DataGrid x:Name="parcellDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,72,10,58" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="parcellDataGrid_SelectionChanged">
+        <DataGrid x:Name="parcelDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,72,10,58" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="parcellDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="priorityColumn" Binding="{Binding priority}" Header="priority" Width="SizeToHeader"/>
@@ -37,5 +37,6 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="addbtn" Content="Add Parcel" HorizontalAlignment="Left" Margin="647,399,0,0" VerticalAlignment="Top" Height="25" Width="131" Click="addbtn_Click"/>
     </Grid>
 </Window>

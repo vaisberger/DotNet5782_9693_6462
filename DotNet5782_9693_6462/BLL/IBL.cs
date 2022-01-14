@@ -34,7 +34,7 @@ namespace BLApi
             public IEnumerable DisplayBaseStationlst();  //   צריך להחזיר רשימה שתודפס לסיים את זה  להחזיר בפונקציות 
             public IEnumerable DisplayDronelst(Func<Drone,bool> predicate=null);
             public IEnumerable DisplayCustomerlst();
-            public IEnumerable DisplayParcellst(Predicate<DO.Parcel> p = null);
+            public IEnumerable DisplayParcellst(Predicate<BO.Parcel> p = null);
             public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p=null); // רשימה של חבילות שלא שוייכו
             public IEnumerable DisplayStationsToCharge(Predicate<BO.BaseStation> s=null); // רשימה של תחנות שעדיין לא שוייכו
 
