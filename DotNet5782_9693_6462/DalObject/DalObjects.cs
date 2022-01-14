@@ -367,7 +367,7 @@ namespace Dal
             return C;
         }
         //Displays a list of parcel
-        IEnumerable IDal.DisplayParcelList()
+        IEnumerable IDal.DisplayParcelList(Predicate<Parcel> par)
         {
             List<Parcel> P = new List<Parcel>();
             foreach (Parcel p in DataSource.parcels)

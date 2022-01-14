@@ -476,14 +476,14 @@ namespace Dal
                     {
                         Id = Int32.Parse(par.Element("ID").Value),
                         DroneId = Int32.Parse(par.Element("DroneId").Value),
-                        Delivered = DateTime.Parse(par.Element("DeliverdTime").Value),
+                        Delivered = DateTime.Parse(par.Element("DeliveredTime").Value),
                         Scheduled = DateTime.Parse(par.Element("ScheduledTime").Value),
                         PickedUp = DateTime.Parse(par.Element("PickedUpTime").Value),
                         Requsted = DateTime.Parse(par.Element("RequstedTime").Value),
                         priorty = (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
                         SenderId = Int32.Parse(par.Element("SenderId").Value),
                         TargetId = Int32.Parse(par.Element("TargetId").Value),
-                        weight = (Weights)Enum.Parse(typeof(Weights), par.Element("ParcelWeight").Value)
+                        weight = (Weights)Enum.Parse(typeof(Weights), par.Element("Parcelweight").Value)
                     });
         }
         //Displays a list of parcel not yet associated with the drone

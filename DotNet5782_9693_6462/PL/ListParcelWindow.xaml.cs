@@ -77,7 +77,8 @@ namespace PL
 
         private void addbtn_Click(object sender, RoutedEventArgs e)
         {
-
+            ParcelWindow w = new ParcelWindow(bl);
+            w.Show();
         }
     }
 }
