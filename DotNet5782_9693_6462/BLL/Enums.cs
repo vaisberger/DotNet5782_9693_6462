@@ -22,7 +22,7 @@ namespace BO
             Normal, Fast, Urgent
         }
 
-        public enum Situation
+        public enum Status
         {
             Defined, Associated, Collected, Provided
 

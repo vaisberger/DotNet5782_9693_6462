@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    class DroaneList
+    class Dronelist
     {
         public int Id { get; set; }
         public string Model { get; set; }
