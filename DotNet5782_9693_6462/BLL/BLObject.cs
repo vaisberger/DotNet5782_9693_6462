@@ -393,7 +393,7 @@ namespace BLObject
 
         public IEnumerable DisplayParcellst(Predicate<BO.Parcel> p)
         {
-                return mydale.DisplayParcelList((Predicate<DO.Parcel>)p); 
+          return mydale.DisplayParcelList((Predicate<DO.Parcel>)p);
         }
 
         public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p)

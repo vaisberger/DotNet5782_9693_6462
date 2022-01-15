@@ -26,11 +26,11 @@
         <DataGrid x:Name="parcelDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,72,10,58" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="parcellDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="priorityColumn" Binding="{Binding priority}" Header="priority" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="priorityColumn" Binding="{Binding priorty}" Header="priority" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="weightColumn" Binding="{Binding weight}" Header="weight" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="droaneParcelColumn" Binding="{Binding droaneParcel}" Header="Drone" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="senderColumn" Binding="{Binding Sender}" Header="Sender" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="gettingColumn" Binding="{Binding Getting}" Header="Getting" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="droaneParcelColumn" Binding="{Binding DroneId}" Header="Drone" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="senderColumn" Binding="{Binding SenderId}" Header="Sender" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gettingColumn" Binding="{Binding TargetId}" Header="Getting" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="deliveredColumn" Binding="{Binding Delivered}" Header="Delivered" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="requstedColumn" Binding="{Binding Requsted}" Header="Requsted" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="scheduledColumn" Binding="{Binding Scheduled}" Header="Scheduled" Width="SizeToHeader"/>
