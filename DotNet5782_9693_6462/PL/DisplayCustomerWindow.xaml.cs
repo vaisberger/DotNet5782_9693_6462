@@ -22,7 +22,7 @@ namespace PL
     {
         IBl bl;
         BO.Customer customer;
-        public DisplayCustomerWindow(IBl Bl)//Add a customer
+        public DisplayCustomerWindow(IBl Bl)
         {
             customer = new BO.Customer();
             this.bl = Bl;
@@ -31,6 +31,22 @@ namespace PL
 
         }
 
-       
+        private void Button_Click_cancle(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Button_Click_Update(object sender, RoutedEventArgs e)
+        {
+            grid1.DataContext = customer;
+            MessageBox.Show("Customer was updated");
+            Close();
+        }
+
+        private void Button_Click_Add(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(customer.ToString());
+            Close();
+        }
     }
 }

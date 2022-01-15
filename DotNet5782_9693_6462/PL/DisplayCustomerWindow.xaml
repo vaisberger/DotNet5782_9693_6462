@@ -7,6 +7,35 @@
         mc:Ignorable="d"
         Title="DisplayCustomerWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="95,73,0,0" VerticalAlignment="Top" Height="346">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="IdTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="NameTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Center" Width="120" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}"/>
+            <Label Content= "Phon:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="PhonTextBox" Grid.Column="1" HorizontalAlignment="Center"  Height="30" Grid.Row="2" VerticalAlignment="Top" Width="120" Text="{Binding Phon, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="0,2,0,0" Grid.RowSpan="2"/>
+            <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="LongitudeTextBox" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="120" Text="{Binding Longitude,Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <Label Content="Latitude:" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="LatitudeTextBox" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="120" Text="{Binding Latitude, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="0,2,0,0" Grid.RowSpan="2"/>
+
+        </Grid>
+        <Button Content="cancle" HorizontalAlignment="Left" Margin="680,379,0,0" VerticalAlignment="Top" Height="24" Width="90" Click="Button_Click_cancle"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="571,379,0,0" VerticalAlignment="Top" Height="24" Width="90" Click="Button_Click_Update"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="462,379,0,0" VerticalAlignment="Top" Height="24" Width="90" Click="Button_Click_Add"/>
+
+
+
     </Grid>
 </Window>
