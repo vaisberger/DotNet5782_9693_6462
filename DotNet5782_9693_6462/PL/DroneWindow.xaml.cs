@@ -34,7 +34,9 @@ namespace PL
             maxWeightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
             button2.IsEnabled = false;
             batteryTextBox.IsEnabled = false;
+            locationTextBox.IsEnabled = false;
             button3.IsEnabled = false;
+
             
         }
 
@@ -48,8 +50,6 @@ namespace PL
             batteryTextBox.IsEnabled = false;
             maxWeightComboBox.IsEnabled = false;
             statusComboBox.IsEnabled = false;
-            latitudeTextBox.IsEnabled = false;
-            longitudeTextBox.IsEnabled = false;
             drone = dr;
             DataContext = drone;
         }
@@ -66,15 +66,15 @@ namespace PL
         }
         private void button_Click(object sender, RoutedEventArgs e) //  adding
         {
-            try
-            {
+          //  try
+          //  {
                 bl.AddDrone(drone);
-            }
-            catch (Exception)
-            {
+         //   }
+         //   catch (Exception)
+          //  {
 
                 MessageBox.Show("couldn't add the drone because this Id allready exists in the system");
-            }
+          //  }
             MessageBox.Show(drone.ToString());
             Close();
         }
@@ -98,5 +98,11 @@ namespace PL
 
             }
         }
+
+        private void StationcomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
     }
 }

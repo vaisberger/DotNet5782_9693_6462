@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Targil0", "Targil0\Targil0.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{70848853-B738-463B-AD03-BFFED59E51E8}"
 	ProjectSection(SolutionItems) = preProject
+		BaseStationXML.xml = BaseStationXML.xml
 		dal_config.xml = dal_config.xml
+		DroneChargeXml.xml = DroneChargeXml.xml
 		..\..\..\mini project\README.md = ..\..\..\mini project\README.md
 	EndProjectSection
 EndProject

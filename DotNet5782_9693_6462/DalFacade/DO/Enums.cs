@@ -9,10 +9,10 @@ namespace DO
     {
         Light, Medium, Heavy
     }
-    /* public enum DroneStatus
+     public enum DroneStatus
      {
          Available, Maitenance, Shipment
-     }*/
+     }
 
     public enum Priorities
     {

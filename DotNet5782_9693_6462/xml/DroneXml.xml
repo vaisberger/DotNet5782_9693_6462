@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfDorne xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-	<Drone>
-		<ID> 1234</ID>
-		<Model></Model>
-		<Weight></Weight>
-		<droneCharge></droneCharge>
-	</Drone>
-	<Drone>
-		<ID> 2345</ID>
-		<Model></Model>
-		<Weight></Weight>
-		<droneCharge></droneCharge>
-	</Drone>
-	<Drone>
-		<ID> 3456</ID>
-		<Model></Model>
-		<Weight></Weight>
-		<droneCharge></droneCharge>
-	</Drone>
-	<Drone>
-		<ID> 5678</ID>
-		<Model></Model>
-		<Weight></Weight>
-		<droneCharge></droneCharge>
-	</Drone>
+  <Drone>
+    <ID> 1234</ID>
+    <Model>xxx</Model>
+    <WeightStatus>Light</WeightStatus>
+  </Drone>
+  <Drone>
+    <ID> 2345</ID>
+    <Model>xxx</Model>
+    <WeightStatus>Light</WeightStatus>
+  </Drone>
+  <Drone>
+    <ID> 3456</ID>
+    <Model>xxx</Model>
+    <WeightStatus>Light</WeightStatus>
+  </Drone>
+  <Drone>
+    <ID> 5678</ID>
+    <Model>xxx</Model>
+    <WeightStatus>Light</WeightStatus>
+  </Drone>
+  <Drone>
+    <ID>99</ID>
+    <Model>xxx</Model>
+    <WeightStatus>Heavy</WeightStatus>
+  </Drone>
 </ArrayOfDorne>
