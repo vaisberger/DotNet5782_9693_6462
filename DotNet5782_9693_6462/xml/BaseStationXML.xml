@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBaseStatuin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BaseStation>
+    <Id>1111</Id>
+    <Name>12</Name>
+    <ChargeSlots>3</ChargeSlots>
+   
+      <Latitude>21</Latitude>
+      <Longitude>12</Longitude>
+  
+  </BaseStation>
+  <BaseStation>
+    <Id>1113</Id>
+    <Name>12</Name>
+    <ChargeSlots>3</ChargeSlots>
+    <Latitude>21</Latitude>
+    <Longitude>12</Longitude>
+  </BaseStation>
+  <BaseStation>
+    <Id>1112</Id>
+    <Name>12</Name>
+    <ChargeSlots>3</ChargeSlots>
+   <Latitude>21</Latitude>
+   <Longitude>12</Longitude>
+
+  </BaseStation>
+  <BaseStation>
+    <Id>1115</Id>
+    <Name>12</Name>
+    <ChargeSlots>3</ChargeSlots>
+
+      <Latitude>21</Latitude>
+      <Longitude>12</Longitude>
+
+  </BaseStation>
+</ArrayOfBaseStatuin>

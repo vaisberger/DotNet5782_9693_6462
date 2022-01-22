@@ -192,7 +192,7 @@ namespace Dal
             }
         }
         //Sending drone for charging at a base station
-        void IDal.ChargeDrone(int d, int s)
+        void IDal.ChargeDrone(int d, int? s)
         {
             if (DataSource.drones.Exists(drone => drone.Id != d))
             {
@@ -228,7 +228,7 @@ namespace Dal
             }
             DroneCharge dc = new DroneCharge();
             dc.DroneId = d;
-            dc.StatioId = s;
+            dc.StatioId = (int)s;
             DataSource.droneCharges.Add(dc);
 
         }
@@ -347,7 +347,7 @@ namespace Dal
             return D;
         }
         //Displays a list of base stations
-        IEnumerable IDal.DisplayStationList()
+        List<BaseStation> IDal.DisplayStationList(Func<BaseStation,bool> predicate)
         {
             List<BaseStation> S = new List<BaseStation>();
             foreach (BaseStation b in DataSource.stations)
@@ -367,7 +367,7 @@ namespace Dal
             return C;
         }
         //Displays a list of parcel
-        IEnumerable IDal.DisplayParcelList(Predicate<Parcel> par)
+        IEnumerable IDal.DisplayParcelList(Func<Parcel,bool> par)
         {
             List<Parcel> P = new List<Parcel>();
             foreach (Parcel p in DataSource.parcels)
@@ -407,11 +407,11 @@ namespace Dal
 
 
         }
-      /* double[] IDal.PowerConsumptionRequest()
+       public double[] PowerConsumptionRequest()
         { 
             double[] powerConsumtion = new double[] { DataSource.Config.Avaliable, DataSource.Config.Light, DataSource.Config.Medium, DataSource.Config.Heavy, DataSource.Config.ChargingRate };
             return powerConsumtion;
-        }*/
+        }
 
 
     }

@@ -12,6 +12,9 @@ using DO;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using BO;
+using System.Xml.Linq;
+using NPOI.SS.Formula.Functions;
+
 
 public interface IEnumerable<out list> : IEnumerable
 {
@@ -19,17 +22,18 @@ public interface IEnumerable<out list> : IEnumerable
 }
 namespace BLObject
 {
-     public sealed class BLObject:IBl
+    public sealed class BLObject : IBl
     {
         static readonly IBl instance = new BLObject();
-        public static IBl Instance{ get=> instance; } 
+        public static IBl Instance { get => instance; }
 
         public ObservableCollection<BO.Drone> drones;
-        internal IDal mydale=DalFactory.GetDal();
-
+        internal IDal mydale = DalFactory.GetDal();
+        public Random rand = new Random();
         public BLObject() // היה פריווט והחלפנו לפבליק כדי שיעבוד
         {
             drones = new ObservableCollection<BO.Drone>();
+
         }
 
         public void AddCustomer(BO.Customer customer)
@@ -58,15 +62,30 @@ namespace BLObject
             {
                 throw new BO.DroneExistsException($"Cant add the drone: {drone.Id} because the Id allready exists in the system", ex);
             }
-            Random r = new Random();
+            DO.BaseStation station=firstCharge();
             DO.Drone drone1 = new DO.Drone();
+            BO.Location l = new Location();
+            l.Latitude = station.Longitude;
+            l.Longitude = station.Longitude;
             drone1.Id = drone.Id;
             drone1.Model = drone.Model;
             drone1.MaxWeight = (DO.Weights)drone.MaxWeight;
-            drone.Battery = r.Next(20, 41);
+            drone.Battery = rand.Next(20, 41);
+            drone.location1 = l;
+            if (station != null)
+            {
+                drone.status = BO.DroneStatus.Maitenance;
+            }
             drones.Add(drone);
-           // mydale.AddDrone(drone1);
-
+            //mydale.AddDrone(drone1);
+            try
+            {
+                SendDroneToCharge(drone.Id,station.Id);
+            }
+            catch
+            {
+               // throw  "couldnt charge";
+            }
         }
         public void AddParcel(BO.Parcel parcel)
         {
@@ -94,10 +113,10 @@ namespace BLObject
             baseStation.DroneInChargings = baseStation.DroneInChargings;
         }
 
-       /* public void UpdateDrone(int id, string s)
-        {
-            throw new NotImplementedException();
-        }*/
+        /* public void UpdateDrone(int id, string s)
+         {
+             throw new NotImplementedException();
+         }*/
 
         public BO.Customer GetCustomer(int id)
         {
@@ -119,7 +138,7 @@ namespace BLObject
         {
             BO.Drone d = drones.FirstOrDefault(x => x.Id == id);
 
-            if (d==null)
+            if (d == null)
             {
                 throw new BLDroneExption($"drone {id} was not found");
             }
@@ -127,7 +146,7 @@ namespace BLObject
         }
         public BO.Parcel GetParcel(int id)
         {
-            BO.Parcel parcel= default;
+            BO.Parcel parcel = default;
             try
             {
                 DO.Parcel dalParcel = mydale.DisplayParcel(id);
@@ -199,8 +218,13 @@ namespace BLObject
             }
             mydale.UpdateCustomer(id, name, phone);
         }
-        public void SendDroneToCharge(int id)
+        public void SendDroneToCharge(int id,int? stationId=null)
         {
+            if (stationId != null)
+            {
+                mydale.ChargeDrone(id, stationId);
+                return;
+            }
             BO.Drone d;
             try
             {
@@ -210,7 +234,7 @@ namespace BLObject
             {
                 throw new BLDroneExption($"Can't send the drone to charge because it dosn't exist");
             }
-            if (d.status != DroneStatus.Available)
+            if (d.status != BO.DroneStatus.Available)
             {
                 throw new BLDroneExption($"Can't send the drone to charge because it is transfering a parcel");
             }
@@ -220,11 +244,11 @@ namespace BLObject
             dr.Battery = battery;
             dr.location1.Latitude = s.Latitude;
             dr.location1.Longitude = s.Longitude;
-            dr.status = DroneStatus.Maitenance;
+            dr.status = BO.DroneStatus.Maitenance;
             mydale.ChargeDrone(id, s.Id);
 
         }
-         private DO.BaseStation DistanceToCharge(int id, ref double battery)
+        private DO.BaseStation DistanceToCharge(int id, ref double battery)
         {
             double dis = 0;
             double dla = toRadians(drones.FirstOrDefault(x => x.Id == id).location1.Latitude);
@@ -271,11 +295,11 @@ namespace BLObject
                 throw new BLDroneExption("the drone was not found");
             };
 
-            if (d.status != DroneStatus.Maitenance)
+            if (d.status != BO.DroneStatus.Maitenance)
             {
                 throw new BLDroneExption("the drone was is not charging in the moment");
             }
-            d.status = DroneStatus.Available;
+            d.status = BO.DroneStatus.Available;
             //double battery = mydale.returnChargerate() * 60 * time;
             //d.Battery += battery;
             mydale.DischargeDrone(id);
@@ -284,7 +308,7 @@ namespace BLObject
         {
             BO.Drone d = drones.FirstOrDefault(x => x.Id == id);
             double battery = d.Battery;
-            if (d.status != DroneStatus.Available)
+            if (d.status != BO.DroneStatus.Available)
             {
                 throw new BLDroneExption("the drone isnt aviabale");
             }
@@ -301,7 +325,7 @@ namespace BLObject
                     DistanceToCharge(id, ref newbattery);
                     if (newbattery < d.Battery)// if there is enough battery to make the delivery and to charge if needed
                     {
-                        d.status = DroneStatus.Shipment;
+                        d.status = BO.DroneStatus.Shipment;
                         d.ParcelIntransfer.Id = P.Id;
                         d.ParcelIntransfer.status = false;// false=waiting for transfer
                         d.ParcelIntransfer.weight = (BO.Weights)P.weight;
@@ -358,15 +382,35 @@ namespace BLObject
             {
                 throw new BLDroneExption("the parcel can't be delivered ");
             }
-            d.Battery-=d.ParcelIntransfer.TransportDistance;
+            d.Battery -= d.ParcelIntransfer.TransportDistance;
             d.location1 = d.ParcelIntransfer.CollectionDestination;
             mydale.ParcelDelivery(P.Id, P.TargetId);
         }
 
+        private DO.BaseStation firstCharge()
+        {
+            DO.BaseStation station;
+            try
+            {
+                station = (from s in mydale.DisplayStationList()
+                           where s.ChargeSlots > 0
+                           select new DO.BaseStation()
+                           {
+                               Id = s.Id,
+                               Name = s.Name,
+                               Latitude = s.Latitude,
+                               Longitude = s.Longitude,
+                               ChargeSlots = s.ChargeSlots
+                           }).FirstOrDefault();
+            }
+            catch
+            {
+                station = null;
+            }
 
+            return station;
+        }
 
-
-        /*מפה צריך לעשות את כל הפונקציות הבאות*/
 
         public IEnumerable DisplayBaseStationlst()
         {
@@ -375,14 +419,40 @@ namespace BLObject
 
         public IEnumerable DisplayDronelst(Func<BO.Drone, bool> predicate = null)
         {
-        
-            if (predicate != null)
+            if (drones.Count() == 0)
+            {
+                foreach (DO.Drone dr in mydale.DisplayDroneList())
+                {
+                    DO.BaseStation station = firstCharge();
+                    BO.Location l = new Location();
+                    l.Latitude = station.Longitude;
+                    l.Longitude = station.Longitude;
+                    drones.Add(new BO.Drone()
+                    {
+                        Id = dr.Id,
+                        Model = dr.Model,
+                        MaxWeight = (BO.Weights)dr.MaxWeight,
+                        location1 = l,
+                        status = BO.DroneStatus.Maitenance,
+                        Battery=rand.Next(20,40)
+                    });
+                    try
+                    {
+                        SendDroneToCharge(dr.Id, station.Id);
+                    }
+                    catch
+                    {
+                        // throw  "couldnt charge";
+                    }
+                }
+            }
+                if (predicate != null)
             {
                 return drones.Where(predicate);
             }
             else
-            { 
-                return drones; 
+            {
+                return drones;
             }
         }
 
@@ -390,10 +460,11 @@ namespace BLObject
         {
             return mydale.DisplayCustomerList();
         }
+        public delegate object Mydelegate(dynamic target);
 
-        public IEnumerable DisplayParcellst(Predicate<BO.Parcel> p)
+        public IEnumerable DisplayParcellst(Func<BO.Parcel, bool> predicate)
         {
-          return mydale.DisplayParcelList((Predicate<DO.Parcel>)p);
+            return mydale.DisplayParcelList();
         }
 
         public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p)
@@ -404,7 +475,7 @@ namespace BLObject
 
         public IEnumerable DisplayStationsToCharge(Predicate<BO.BaseStation> s)
         {
-            return mydale.DisplayAvailableStation((Predicate<DO.BaseStation>) s);
+            return mydale.DisplayAvailableStation((Predicate<DO.BaseStation>)s);
         }
 
 

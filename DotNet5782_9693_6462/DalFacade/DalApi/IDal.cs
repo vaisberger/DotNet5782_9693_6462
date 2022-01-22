@@ -22,19 +22,18 @@ namespace DalApi
         public void UpdateCustomer(int id, String name = "", String phone = "");
         public void Parcelcollection(int p, int d);
         public void ParcelDelivery(int p, int c);
-        public void ChargeDrone(int d, int s);
+        public void ChargeDrone(int d, int? s);
         public void DischargeDrone(int d);
         public BaseStation DisplayStation(int Id);
         public Drone DisplayDrone(int Id);
         public Customer DisplayCustomer(int Id);
         public Parcel DisplayParcel(int Id);
         public IEnumerable DisplayDroneList();
-        public IEnumerable DisplayStationList();
+        public List<BaseStation> DisplayStationList(Func<BaseStation, bool> p=null);
         public IEnumerable DisplayCustomerList();
-        public IEnumerable DisplayParcelList(Predicate<Parcel> p=null);
+        public IEnumerable DisplayParcelList(Func<Parcel,bool> p=null);
         public IEnumerable DisplayParcelUnmatched(Predicate<Parcel> p=null);
         public IEnumerable DisplayAvailableStation(Predicate<BaseStation> p=null);
-        //public double[] PowerConsumptionRequest();
     }
 
 }

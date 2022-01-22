@@ -118,8 +118,7 @@ namespace Dal
 
             XElement droneElem = new XElement("Drone", new XElement("ID", d.Id),
                                   new XElement("Model", d.Model),
-                                  new XElement("Weight", d.MaxWeight),
-                                  new XElement("droneCharge", d.droneCharge));
+                                  new XElement("Weight", d.MaxWeight));
 
             droneelem.Add(droneElem);
 
@@ -266,7 +265,7 @@ namespace Dal
             XMLTools.SaveListToXMLElement(parcelelem, parcelPath);
         }
         //Sending drone for charging at a base station
-        void IDal.ChargeDrone(int droneId, int sId)
+        void IDal.ChargeDrone(int droneId, int? sId)
         {
             XElement droneselem = XMLTools.LoadListFromXMLElement(dronePath);
             XElement dr = (from d in droneselem.Elements()
@@ -277,6 +276,7 @@ namespace Dal
             XElement sta = (from d in stationelem.Elements()
                             where int.Parse(d.Element("ID").Value) == sId
                             select d).FirstOrDefault();
+        
             XElement drchelem = XMLTools.LoadListFromXMLElement(dronechargePath);
             if (dr == null)
             {
@@ -284,7 +284,7 @@ namespace Dal
             }
             if (sta == null)
             {
-                throw new IDNotExistsInTheSystem(sId, $"Basestation ID dosn't Exist:{sId}");
+                throw new IDNotExistsInTheSystem((int)sId, $"Basestation ID dosn't Exist:{sId}");
             }
             if (dr.Element("DroneCharge").Value != null)
             {
@@ -362,7 +362,6 @@ namespace Dal
                                            {
                                                Id = Int32.Parse(dr.Element("ID").Value),
                                                Model = dr.Element("Modle").Value,
-                                               droneCharge = (DroneCharge)Enum.Parse(typeof(DroneCharge), dr.Element("ChargeStatus").Value),
                                                MaxWeight = (Weights)Enum.Parse(typeof(Weights), dr.Element("WeightStatus").Value)
                                            }).FirstOrDefault());
 
@@ -433,25 +432,24 @@ namespace Dal
                     select new Drone()
                     {
                         Id = Int32.Parse(d.Element("ID").Value),
-                        Model = d.Element("Modle").Value,
-                        droneCharge = (DroneCharge)Enum.Parse(typeof(DroneCharge), d.Element("ChargeStatus").Value),
+                        Model = d.Element("Model").Value,
                         MaxWeight = (Weights)Enum.Parse(typeof(Weights), d.Element("WeightStatus").Value)
-                    });
+                    }).ToList();
 
         }
         //Displays a list of base stations
-        IEnumerable IDal.DisplayStationList()
+        List<BaseStation> IDal.DisplayStationList(Func<BaseStation, bool> prd)
         {
             XElement stationelemnts = XMLTools.LoadListFromXMLElement(basestationPath);
             return (from stat in stationelemnts.Elements()
                     select new BaseStation()
                     {
-                        Id = Int32.Parse(stat.Element("ID").Value),
-                        ChargeSlots = Int32.Parse(stat.Element("Slots").Value),
+                        Id = Int32.Parse(stat.Element("Id").Value),
+                        ChargeSlots = Int32.Parse(stat.Element("ChargeSlots").Value),
                         Name = Int32.Parse(stat.Element("Name").Value),
                         Longitude = double.Parse((string)stat.Element("Longitude")),
                         Latitude = double.Parse((string)stat.Element("Latitude"))
-                    });
+                    }).ToList();
         }
         //Displays a list of customer
         IEnumerable IDal.DisplayCustomerList()
@@ -468,23 +466,46 @@ namespace Dal
                     });
         }
         //Displays a list of parcel
-        IEnumerable IDal.DisplayParcelList(Predicate<Parcel> p)
+        IEnumerable IDal.DisplayParcelList(Func<Parcel,bool> p)
         {
             XElement parcelelemnts = XMLTools.LoadListFromXMLElement(parcelPath);
-            return (from par in parcelelemnts.Elements()
-                    select new Parcel()
-                    {
-                        Id = Int32.Parse(par.Element("ID").Value),
-                        DroneId = Int32.Parse(par.Element("DroneId").Value),
-                        Delivered = DateTime.Parse(par.Element("DeliveredTime").Value),
-                        Scheduled = DateTime.Parse(par.Element("ScheduledTime").Value),
-                        PickedUp = DateTime.Parse(par.Element("PickedUpTime").Value),
-                        Requsted = DateTime.Parse(par.Element("RequstedTime").Value),
-                        priorty = (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
-                        SenderId = Int32.Parse(par.Element("SenderId").Value),
-                        TargetId = Int32.Parse(par.Element("TargetId").Value),
-                        weight = (Weights)Enum.Parse(typeof(Weights), par.Element("Parcelweight").Value)
-                    });
+            if (p != null)
+            {
+                return from par in parcelelemnts.Elements()
+                       let P = new Parcel()
+                       {
+                           Id = Int32.Parse(par.Element("ID").Value),
+                           DroneId = Int32.Parse(par.Element("DroneId").Value),
+                           Delivered = DateTime.Parse(par.Element("DeliveredTime").Value),
+                           Scheduled = DateTime.Parse(par.Element("ScheduledTime").Value),
+                           PickedUp = DateTime.Parse(par.Element("PickedUpTime").Value),
+                           Requsted = DateTime.Parse(par.Element("RequstedTime").Value),
+                           priorty = (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
+                           SenderId = Int32.Parse(par.Element("SenderId").Value),
+                           TargetId = Int32.Parse(par.Element("TargetId").Value),
+                           weight = (Weights)Enum.Parse(typeof(Weights), par.Element("Parcelweight").Value)
+                       }
+                       where p(P)
+                       select P;
+            }
+            else
+            {
+                return (from par in parcelelemnts.Elements()
+                        select new Parcel()
+                        {
+                            Id = Int32.Parse(par.Element("ID").Value),
+                            DroneId = Int32.Parse(par.Element("DroneId").Value),
+                            Delivered = DateTime.Parse(par.Element("DeliveredTime").Value),
+                            Scheduled = DateTime.Parse(par.Element("ScheduledTime").Value),
+                            PickedUp = DateTime.Parse(par.Element("PickedUpTime").Value),
+                            Requsted = DateTime.Parse(par.Element("RequstedTime").Value),
+                            priorty = (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
+                            SenderId = Int32.Parse(par.Element("SenderId").Value),
+                            TargetId = Int32.Parse(par.Element("TargetId").Value),
+                            weight = (Weights)Enum.Parse(typeof(Weights), par.Element("Parcelweight").Value)
+                        });
+
+            }
         }
         //Displays a list of parcel not yet associated with the drone
         IEnumerable IDal.DisplayParcelUnmatched(Predicate<Parcel> predicate)
