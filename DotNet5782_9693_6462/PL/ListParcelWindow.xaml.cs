@@ -66,13 +66,13 @@ namespace PL
         private void comboBox_SelectionChanged1(object sender, SelectionChangedEventArgs e)
         {
             BO.Priorities p = (BO.Priorities)prioritycmb.SelectedItem;
-            parcelDataGrid.DataContext = bl.DisplayParcellst(parcel => parcel.priority == p);
+           // parcelDataGrid.DataContext = bl.DisplayParcellst(parcel => parcel.priorty == p);
         }
 
         private void comboBox_SelectionChanged2(object sender, SelectionChangedEventArgs e)
         {
             BO.Weights w = (BO.Weights)prioritycmb.SelectedItem;
-            parcelDataGrid.DataContext = bl.DisplayParcellst(parcel => parcel.weight == w);
+           // parcelDataGrid.DataContext = bl.DisplayParcellst(parcel => parcel.weight == w);
         }
 
         private void addbtn_Click(object sender, RoutedEventArgs e)

@@ -36,7 +36,7 @@ namespace PL
             batteryTextBox.IsEnabled = false;
             locationTextBox.IsEnabled = false;
             button3.IsEnabled = false;
-
+            button4.IsEnabled = false;
             
         }
 
@@ -52,6 +52,7 @@ namespace PL
             statusComboBox.IsEnabled = false;
             drone = dr;
             DataContext = drone;
+            parcelgrid.IsEnabled = false;
         }
         private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -66,15 +67,15 @@ namespace PL
         }
         private void button_Click(object sender, RoutedEventArgs e) //  adding
         {
-          //  try
-          //  {
+          try
+           {
                 bl.AddDrone(drone);
-         //   }
-         //   catch (Exception)
-          //  {
+           }
+            catch (Exception)
+            {
 
                 MessageBox.Show("couldn't add the drone because this Id allready exists in the system");
-          //  }
+          }
             MessageBox.Show(drone.ToString());
             Close();
         }
@@ -95,14 +96,27 @@ namespace PL
             }
             catch
             {
-
+                MessageBox.Show("Drone couldn't be charged");
+                return;
             }
+            MessageBox.Show($"Drone {drone.Id} was send to charge");
         }
 
-        private void StationcomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void button4_Click(object sender, RoutedEventArgs e)
         {
-
+            int p=0;
+            try
+            {
+                p= bl.MatchDroneToParcel(drone.Id);
+            }
+            catch
+            {
+                MessageBox.Show($"Drone {drone.Id} was not matched");
+                return;
+            }
+            parcelgrid.Visibility = Visibility.Visible;
+           parcelgrid.DataContext= bl.GetParcel(p);
         }
-
     }
 }

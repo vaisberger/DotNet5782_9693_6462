@@ -118,7 +118,7 @@ namespace Dal
 
             XElement droneElem = new XElement("Drone", new XElement("ID", d.Id),
                                   new XElement("Model", d.Model),
-                                  new XElement("Weight", d.MaxWeight));
+                                  new XElement("WeightStatus", d.MaxWeight));
 
             droneelem.Add(droneElem);
 
@@ -292,7 +292,7 @@ namespace Dal
             }
 
             int chargeS = int.Parse(sta.Element("ChargeSlots").Value);
-            chargeS--;
+            chargeS= chargeS-1;
             sta.Element("ChargeSlots").Value = chargeS.ToString();
             XElement newdrc = new XElement("DroneCharge",new XElement("DroneId", droneId.ToString()),
                 new XElement("StatioId", sId.ToString()));

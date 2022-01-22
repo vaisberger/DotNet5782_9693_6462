@@ -65,7 +65,7 @@ namespace BLObject
             DO.BaseStation station=firstCharge();
             DO.Drone drone1 = new DO.Drone();
             BO.Location l = new Location();
-            l.Latitude = station.Longitude;
+            l.Latitude = station.Latitude;
             l.Longitude = station.Longitude;
             drone1.Id = drone.Id;
             drone1.Model = drone.Model;
@@ -77,7 +77,7 @@ namespace BLObject
                 drone.status = BO.DroneStatus.Maitenance;
             }
             drones.Add(drone);
-            //mydale.AddDrone(drone1);
+            mydale.AddDrone(drone1);
             try
             {
                 SendDroneToCharge(drone.Id,station.Id);
@@ -304,7 +304,7 @@ namespace BLObject
             //d.Battery += battery;
             mydale.DischargeDrone(id);
         }
-        public void MatchDroneToParcel(int id)
+        public int MatchDroneToParcel(int id)
         {
             BO.Drone d = drones.FirstOrDefault(x => x.Id == id);
             double battery = d.Battery;
@@ -338,10 +338,11 @@ namespace BLObject
                         d.ParcelIntransfer.TransportDistance = Distance(d, mydale.DisplayStation(P.SenderId), ref newbattery);
                         //all the changes needed in bl for the drone
                         mydale.UpdateParcelToDrone(id, P.Id);//updates changes in drone
-
+                        return P.Id;
                     }
                 }
             }
+            return -1;
         }
         private double Distance(BO.Drone d, DO.BaseStation s, ref double battery)// get the battery needed for that distance
         {
@@ -421,30 +422,7 @@ namespace BLObject
         {
             if (drones.Count() == 0)
             {
-                foreach (DO.Drone dr in mydale.DisplayDroneList())
-                {
-                    DO.BaseStation station = firstCharge();
-                    BO.Location l = new Location();
-                    l.Latitude = station.Longitude;
-                    l.Longitude = station.Longitude;
-                    drones.Add(new BO.Drone()
-                    {
-                        Id = dr.Id,
-                        Model = dr.Model,
-                        MaxWeight = (BO.Weights)dr.MaxWeight,
-                        location1 = l,
-                        status = BO.DroneStatus.Maitenance,
-                        Battery=rand.Next(20,40)
-                    });
-                    try
-                    {
-                        SendDroneToCharge(dr.Id, station.Id);
-                    }
-                    catch
-                    {
-                        // throw  "couldnt charge";
-                    }
-                }
+                initlizedronelist();
             }
                 if (predicate != null)
             {
@@ -462,9 +440,9 @@ namespace BLObject
         }
         public delegate object Mydelegate(dynamic target);
 
-        public IEnumerable DisplayParcellst(Func<BO.Parcel, bool> predicate)
+        public IEnumerable DisplayParcellst(Func<DO.Parcel, bool> predicate)
         {
-            return mydale.DisplayParcelList();
+            return mydale.DisplayParcelList(predicate);
         }
 
         public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p)
@@ -477,7 +455,33 @@ namespace BLObject
         {
             return mydale.DisplayAvailableStation((Predicate<DO.BaseStation>)s);
         }
-
+        private void initlizedronelist() //saves all the drones saved in dal to bl drone list
+        {
+            foreach (DO.Drone dr in mydale.DisplayDroneList())
+            {
+                DO.BaseStation station = firstCharge();
+                BO.Location l = new Location();
+                l.Latitude = station.Latitude;
+                l.Longitude = station.Longitude;
+                drones.Add(new BO.Drone()
+                {
+                    Id = dr.Id,
+                    Model = dr.Model,
+                    MaxWeight = (BO.Weights)dr.MaxWeight,
+                    location1 = l,
+                    status = BO.DroneStatus.Maitenance,
+                    Battery = rand.Next(20, 40)
+                });
+                try
+                {
+                    SendDroneToCharge(dr.Id, station.Id);
+                }
+                catch
+                {
+                    // throw  "couldnt charge";
+                }
+            }
+        }
 
     }
 }

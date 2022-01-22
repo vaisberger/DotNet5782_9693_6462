@@ -34,6 +34,7 @@
                 <DataGridTextColumn x:Name="deliveredColumn" Binding="{Binding Delivered}" Header="Delivered" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="requstedColumn" Binding="{Binding Requsted}" Header="Requsted" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="scheduledColumn" Binding="{Binding Scheduled}" Header="Scheduled" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="pickedupColumn"  Binding="{Binding PickedUp}" Header="Picked up" Width="SizeToHeader"/>
 
             </DataGrid.Columns>
         </DataGrid>
