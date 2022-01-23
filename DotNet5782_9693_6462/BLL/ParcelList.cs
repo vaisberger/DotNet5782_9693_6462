@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bo
+namespace BO
 {
-    class ParcelList
+   public class ParcelToList
     {
         public int Id { get; set; }
         public string SenderId { set; get; }
@@ -15,6 +15,9 @@ namespace Bo
         public Weights weight { get; set; }
         public Priorities priority { get; set; }
         public Status status { get; set; }
-
+        public override string ToString()
+        {
+            return "ID" + Id;
+        }
     }
 }

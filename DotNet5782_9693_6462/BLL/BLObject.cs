@@ -442,6 +442,7 @@ namespace BLObject
 
         public IEnumerable DisplayParcellst(Func<DO.Parcel, bool> predicate)
         {
+                
             return mydale.DisplayParcelList(predicate);
         }
 

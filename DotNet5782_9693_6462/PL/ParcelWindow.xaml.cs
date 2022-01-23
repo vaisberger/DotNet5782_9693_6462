@@ -21,9 +21,43 @@ namespace PL
     public partial class ParcelWindow : Window
     {
         IBl bl;
+        BO.ParcelToList parcel;
         public ParcelWindow(IBl BL)
         {
+            parcel = new BO.ParcelToList();
+            this.bl = BL;
+            DataContext = parcel;
             InitializeComponent();
+            showdronebtn.Visibility = Visibility.Collapsed;
+            showreciverbtn.Visibility = Visibility.Collapsed;
+            showsenderdtn.Visibility = Visibility.Collapsed;
+            updatebtn.Visibility = Visibility.Collapsed;
+        }
+        public ParcelWindow(BO.ParcelToList p)
+        {
+
+        }
+
+        private void grid1_TouchMove(object sender, TouchEventArgs e)
+        {
+
+        }
+
+        private void Cancelbtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void addbtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch
+            {
+
+            }
         }
     }
 }
