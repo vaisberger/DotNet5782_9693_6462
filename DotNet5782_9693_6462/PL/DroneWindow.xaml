@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DroneWindow" Height="450" Width="800">
-    <Grid>
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="128,75,0,0" HorizontalAlignment="Left" >
+    <Grid Margin="0,10,0,0">
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="66,75,0,0" HorizontalAlignment="Left" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -45,5 +45,41 @@
         <Button x:Name="button1" Content="cancle" HorizontalAlignment="Left" Margin="658,371,0,0" VerticalAlignment="Top" Height="35" Width="114" Click="button_Click1"/>
         <Button x:Name="button2" Content="Update Drone" HorizontalAlignment="Left" Margin="343,372,0,0" VerticalAlignment="Top" Height="34" Width="134" Click="button2_Click"/>
         <Button x:Name="button3" Content="Send Drone to charge" HorizontalAlignment="Left" Margin="163,372,0,0" VerticalAlignment="Top" Height="34" Width="145" Click="button3_Click"/>
+        <Button x:Name="button4" Content="Deliver parcel" HorizontalAlignment="Left" Margin="22,372,0,0" VerticalAlignment="Top" Height="34" Width="116" Click="button4_Click"/>
+        <Grid Margin="203,-133,-203,133"/>
+        <Grid x:Name="parcelgrid"  HorizontalAlignment="Left" Height="240" Margin="440,51,0,0" VerticalAlignment="Top" Width="275"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="idtxt" Grid.Row="0" Grid.Column="0" Text="ID :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="sendertxt" Grid.Row="1" Grid.Column="0" Text="Sender ID :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="recivertxt" Grid.Row="2" Grid.Column="0" Text="Reciver ID :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="weighttxt" Grid.Row="3" Grid.Column="0" Text="Weight :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="requstedtxt" Grid.Row="4" Grid.Column="0" Text="Requsted :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="pickedUptxt" Grid.Row="5" Grid.Column="0" Text="Picked up :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="schedualedtxt" Grid.Row="6" Grid.Column="0" Text="Scheduled :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="Deliveredtxt" Grid.Row="7" Grid.Column="0" Text="Delivered :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="id" Grid.Row="0" Grid.Column="1" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="sender" Grid.Row="1" Grid.Column="1" Text="{Binding SenderId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="reciver" Grid.Row="2" Grid.Column="1" Text="{Binding TargetId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="weight" Grid.Row="3" Grid.Column="1" Text="{Binding weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="requsted" Grid.Row="4" Grid.Column="1" Text="{Binding Requsted, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="pickedUp" Grid.Row="5" Grid.Column="1" Text="{Binding PickedUp, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="schedualed" Grid.Row="6" Grid.Column="1" Text="{Binding Scheduled, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="Delivered" Grid.Row="7" Grid.Column="1" Text="{Binding Delivered, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+        </Grid>
+
     </Grid>
+
 </Window>

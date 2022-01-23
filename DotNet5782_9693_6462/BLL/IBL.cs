@@ -13,7 +13,7 @@ namespace BLApi
         {
             public void AddDrone(Drone drone);
             public void AddCustomer(Customer customer);
-            public void AddParcel(Parcel parcel);
+            public void AddParcel(ParcelToList p);
             public void AddBaseStation(BaseStation baseStation);
 
             public Customer GetCustomer(int id);
@@ -27,18 +27,17 @@ namespace BLApi
 
             public void SendDroneToCharge(int id,int? stationid=null);
             public void DischargeDrone(int id, double time);
-            public void MatchDroneToParcel(int id);
+            public int MatchDroneToParcel(int id);
             public void ParcelCollection(int Pid);
             public void ParcelDelivery(int Pid);
 
             public IEnumerable DisplayBaseStationlst();  //   צריך להחזיר רשימה שתודפס לסיים את זה  להחזיר בפונקציות 
             public IEnumerable DisplayDronelst(Func<Drone,bool> predicate=null);
             public IEnumerable DisplayCustomerlst();
-            public IEnumerable DisplayParcellst(Func<BO.Parcel,bool> p = null);
-            public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p=null); // רשימה של חבילות שלא שוייכו
-            public IEnumerable DisplayStationsToCharge(Predicate<BO.BaseStation> s=null); // רשימה של תחנות שעדיין לא שוייכו
-
-        }
+            public IEnumerable DisplayParcellst(Func<DO.Parcel, bool> p = null);
+            public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p=null); // רשימה של חבילות שלא שוייכו                                                               
+            public IEnumerable DisplayStationsToCharge(Predicate<BO.BaseStation> s=null);
+      }
     }
 
 

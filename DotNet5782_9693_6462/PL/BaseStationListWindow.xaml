@@ -6,9 +6,16 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="BaseStationListWindow" Height="450" Width="800">
-    <Grid>
-       
-        
+    <Grid Margin="0,10,0,0">
+        <DataGrid x:Name="baseStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="10,66,10,58" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="availableChargingStationsColumn" Binding="{Binding AvailableChargingStations}" Header="Available Charging Stations" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="busyChargingStationsColumn" Binding="{Binding BusyChargingStations}" Header="Busy Charging Stations" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid/>
 
     </Grid>
 </Window>

@@ -2,35 +2,31 @@
 <ArrayOfBaseStatuin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <BaseStation>
     <Id>1111</Id>
-    <Name>12</Name>
-    <ChargeSlots>3</ChargeSlots>
-   
-      <Latitude>21</Latitude>
-      <Longitude>12</Longitude>
-  
+    <Name>13</Name>
+    <ChargeSlots>1</ChargeSlots>
+    <Latitude>13.5</Latitude>
+    <Longitude>14.8</Longitude>
   </BaseStation>
   <BaseStation>
     <Id>1113</Id>
     <Name>12</Name>
-    <ChargeSlots>3</ChargeSlots>
-    <Latitude>21</Latitude>
-    <Longitude>12</Longitude>
+    <ChargeSlots>1</ChargeSlots>
+    <Latitude>8.4</Latitude>
+    <Longitude>15</Longitude>
   </BaseStation>
   <BaseStation>
     <Id>1112</Id>
     <Name>12</Name>
-    <ChargeSlots>3</ChargeSlots>
-   <Latitude>21</Latitude>
-   <Longitude>12</Longitude>
+    <ChargeSlots>4</ChargeSlots>
+   <Latitude>7</Latitude>
+   <Longitude>17.8</Longitude>
 
   </BaseStation>
   <BaseStation>
     <Id>1115</Id>
     <Name>12</Name>
-    <ChargeSlots>3</ChargeSlots>
-
-      <Latitude>21</Latitude>
-      <Longitude>12</Longitude>
-
+    <ChargeSlots>5</ChargeSlots>
+    <Latitude>27</Latitude>
+    <Longitude>16</Longitude>
   </BaseStation>
 </ArrayOfBaseStatuin>

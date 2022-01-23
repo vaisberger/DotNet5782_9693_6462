@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ParcelWindow" Height="450" Width="800">
-    <Grid>
-        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="95,73,0,0" VerticalAlignment="Top">
+    <Grid Margin="0,10,0,0">
+        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="116,88,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -16,19 +16,25 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="priority:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <ComboBox x:Name="priorityComboBox" Grid.Column="1" DisplayMemberPath="priority" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120">
+            <Label Content="priorty:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <ComboBox x:Name="priortyComboBox" Grid.Column="1" DisplayMemberPath="priorty" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="3" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label Content="weight:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <ComboBox x:Name="weightComboBox" Grid.Column="1" DisplayMemberPath="weight" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="2" VerticalAlignment="Center" Width="120">
+            <Label Content="Sender Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="senderIdTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding SenderId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Target Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="targetIdTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding TargetId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="weight:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <ComboBox x:Name="weightComboBox" Grid.Column="1" DisplayMemberPath="weight" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -36,5 +42,22 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
         </Grid>
+        <Grid Margin="0,350,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <Button x:Name="addbtn" Content="Add Parcel" HorizontalAlignment="Left" Margin="542,373,0,0" VerticalAlignment="Top" Height="27" Width="114" Click="addbtn_Click"/>
+        <Button x:Name="Cancelbtn" Content="Cancel" HorizontalAlignment="Left" Margin="674,373,0,0" VerticalAlignment="Top" Height="27" Width="116" Click="Cancelbtn_Click"/>
+        <Button x:Name="updatebtn" Content="Update parcel" HorizontalAlignment="Left" Margin="414,374,0,0" VerticalAlignment="Top" Width="108" Height="27"/>
+        <Button x:Name="showsenderdtn" Content="Show Sender" HorizontalAlignment="Left" Margin="280,374,0,0" VerticalAlignment="Top" Width="108" Height="27"/>
+        <Button x:Name="showreciverbtn" Content="Show reciver" HorizontalAlignment="Left" Margin="155,374,0,0" VerticalAlignment="Top" Height="27" Width="100"/>
+        <Button x:Name="showdronebtn" Content="Show Drone" HorizontalAlignment="Left" Margin="21,373,0,0" VerticalAlignment="Top" Width="104" Height="28"/>
+
     </Grid>
 </Window>
