@@ -49,8 +49,8 @@ namespace Dal
                                   new XElement("RequstedTime", p.Requsted),
                                   new XElement("SenderId", p.SenderId),
                                   new XElement("TargetId", p.TargetId),
-                                  new XElement("priorty", p.priorty),
-                                  new XElement("weight", p.weight),
+                                  new XElement("Priorities", p.priorty),
+                                  new XElement("Parcelweight", p.weight),
                                   new XElement("DroneId", p.DroneId));
 
             parcelelem.Add(parcelElem);

@@ -87,19 +87,19 @@ namespace BLObject
                // throw  "couldnt charge";
             }
         }
-        public void AddParcel(BO.Parcel parcel)
+        public void AddParcel(BO.ParcelToList parcel)
         {
-            DO.Parcel parcel1 = new DO.Parcel();
-            parcel1.SenderId = parcel.Sender.Id;
-            parcel1.TargetId = parcel.Getting.Id;
-            parcel1.weight = (DO.Weights)parcel.weight;
-            parcel1.priorty = (DO.Priorities)parcel.priority;
-            parcel1.Requsted = parcel.Requsted;
-            parcel1.DroneId = parcel.droaneParcel.Id;
-            parcel1.PickedUp = parcel.PickedUp;
-            parcel1.Scheduled = parcel.Scheduled;
-            parcel1.Delivered = parcel.Delivered;
-            mydale.AddParcel(parcel1);
+            DO.Parcel newparcel = new DO.Parcel();
+            newparcel.Id = parcel.Id;
+            //newparcel.SenderId
+            //newparcel.TargetId
+            newparcel.priorty = (DO.Priorities)parcel.priority;
+            newparcel.weight = (DO.Weights)parcel.weight;
+            newparcel.Requsted = DateTime.Now;
+            newparcel.Scheduled =new DateTime(0001,01,01,00,00,00);
+            newparcel.Delivered = new DateTime(0001, 01, 01, 00, 00, 00);
+            newparcel.PickedUp = new DateTime(0001, 01, 01, 00, 00, 00);
+            mydale.AddParcel(newparcel);
         }
 
         public void AddBaseStation(BO.BaseStation baseStation)          // לא נכון צריך תיקון

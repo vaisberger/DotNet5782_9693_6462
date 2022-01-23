@@ -80,5 +80,15 @@ namespace PL
             ParcelWindow w = new ParcelWindow(bl);
             w.Show();
         }
+
+        private void updatebtn_Click(object sender, RoutedEventArgs e)
+        {
+            BO.ParcelToList p = (parcelDataGrid.SelectedItem as BO.ParcelToList);
+            if (p != null)
+            {
+                ParcelWindow w = new ParcelWindow(p);
+                w.Show();
+            }
+        }
     }
 }

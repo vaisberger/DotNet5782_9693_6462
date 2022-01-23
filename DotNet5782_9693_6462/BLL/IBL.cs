@@ -13,7 +13,7 @@ namespace BLApi
         {
             public void AddDrone(Drone drone);
             public void AddCustomer(Customer customer);
-            public void AddParcel(Parcel parcel);
+            public void AddParcel(ParcelToList p);
             public void AddBaseStation(BaseStation baseStation);
 
             public Customer GetCustomer(int id);

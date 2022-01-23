@@ -39,5 +39,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="addbtn" Content="Add Parcel" HorizontalAlignment="Left" Margin="659,469,0,0" VerticalAlignment="Top" Height="25" Width="131" Click="addbtn_Click"/>
+        <Button x:Name="updatebtn" Content="Updated Selected Parcel" HorizontalAlignment="Left" Margin="496,469,0,0" VerticalAlignment="Top" Height="25" Width="137" Click="updatebtn_Click"/>
     </Grid>
 </Window>
