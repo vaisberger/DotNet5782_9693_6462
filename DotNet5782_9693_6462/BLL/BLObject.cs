@@ -93,7 +93,7 @@ namespace BLObject
             newparcel.Id = parcel.Id;
             //newparcel.SenderId
             //newparcel.TargetId
-            newparcel.priorty = (DO.Priorities)parcel.priority;
+            newparcel.priority = (DO.Priorities)parcel.priority;
             newparcel.weight = (DO.Weights)parcel.weight;
             newparcel.Requsted = DateTime.Now;
             newparcel.Scheduled =new DateTime(0001,01,01,00,00,00);
@@ -314,7 +314,7 @@ namespace BLObject
             }
             foreach (DO.Parcel P in mydale.DisplayParcelUnmatched())
             {
-                if (P.priorty == DO.Priorities.Urgent && P.weight < (DO.Weights)d.MaxWeight)
+                if (P.priority == DO.Priorities.Urgent && P.weight < (DO.Weights)d.MaxWeight)
                 {
                     DO.BaseStation bsender = mydale.DisplayStation(P.SenderId);
                     Distance(d, bsender, ref battery);

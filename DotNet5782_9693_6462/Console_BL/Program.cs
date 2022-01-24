@@ -332,7 +332,7 @@ namespace ConsoleUI__BL
                 PickedUp=d,
                 droaneParcel = null,
             };
-            data.AddParcel(NewParcel);
+          //  data.AddParcel(NewParcel);                                  // לטפל
         }
     }
 

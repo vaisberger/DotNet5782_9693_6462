@@ -58,15 +58,12 @@ namespace PL
             }
         }
 
-        private void parcellDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
 
         private void comboBox_SelectionChanged1(object sender, SelectionChangedEventArgs e)
         {
             BO.Priorities p = (BO.Priorities)prioritycmb.SelectedItem;
-            parcelDataGrid.DataContext = bl.DisplayParcellst(parcel => parcel.priorty.ToString() == p.ToString());
+            parcelDataGrid.DataContext = bl.DisplayParcellst(parcel => parcel.priority.ToString() == p.ToString());
         }
 
         private void comboBox_SelectionChanged2(object sender, SelectionChangedEventArgs e)

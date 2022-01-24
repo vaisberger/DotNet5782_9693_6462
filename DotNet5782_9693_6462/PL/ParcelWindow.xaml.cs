@@ -22,6 +22,7 @@ namespace PL
     {
         IBl bl;
         BO.ParcelToList parcel;
+        BO.Parcel P;
         public ParcelWindow(IBl BL)
         {
             parcel = new BO.ParcelToList();
@@ -38,6 +39,7 @@ namespace PL
         public ParcelWindow(BO.ParcelToList p)
         {
             InitializeComponent();
+            parcel=p;
         }
 
         private void Cancelbtn_Click(object sender, RoutedEventArgs e)

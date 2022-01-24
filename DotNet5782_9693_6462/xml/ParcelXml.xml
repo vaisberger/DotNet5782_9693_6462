@@ -60,4 +60,28 @@
     <Parcelweight>Light</Parcelweight>
     <DroneId>0</DroneId>
   </Parcel>
+  <Parcel>
+    <ID>66</ID>
+    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
+    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
+    <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
+    <RequstedTime>2022-01-23T20:44:00.36512+02:00</RequstedTime>
+    <SenderId>0</SenderId>
+    <TargetId>0</TargetId>
+    <Priorities>Normal</Priorities>
+    <Parcelweight>Light</Parcelweight>
+    <DroneId>0</DroneId>
+  </Parcel>
+  <Parcel>
+    <ID>8</ID>
+    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
+    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
+    <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
+    <RequstedTime>2022-01-23T20:49:53.3117471+02:00</RequstedTime>
+    <SenderId>0</SenderId>
+    <TargetId>0</TargetId>
+    <Priorities>Normal</Priorities>
+    <Parcelweight>Light</Parcelweight>
+    <DroneId>0</DroneId>
+  </Parcel>
 </ArrayOfParcel>
