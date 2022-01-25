@@ -1,4 +1,5 @@
-﻿using BLApi;
+﻿
+using BLApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,13 +34,13 @@ namespace PL
             showreciverbtn.Visibility = Visibility.Collapsed;
             showsenderdtn.Visibility = Visibility.Collapsed;
             updatebtn.Visibility = Visibility.Collapsed;
-            priortyComboBox.ItemsSource= Enum.GetValues(typeof(BO.Priorities));
+            priortyComboBox.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
         }
         public ParcelWindow(BO.ParcelToList p)
         {
             InitializeComponent();
-            parcel=p;
+            parcel = p;
         }
 
         private void Cancelbtn_Click(object sender, RoutedEventArgs e)
@@ -58,7 +59,13 @@ namespace PL
                 MessageBox.Show("couldn't add the parcel because this Id allready exists in the system");
             }
             MessageBox.Show(parcel.ToString());
+           
             Close();
+        }
+
+        private void idTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

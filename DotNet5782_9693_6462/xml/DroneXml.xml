@@ -25,4 +25,9 @@
     <Model />
     <WeightStatus>Light</WeightStatus>
   </Drone>
+  <Drone>
+    <ID>7</ID>
+    <Model />
+    <WeightStatus>Light</WeightStatus>
+  </Drone>
 </ArrayOfDorne>

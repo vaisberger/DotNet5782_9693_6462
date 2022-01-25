@@ -91,12 +91,12 @@ namespace BLObject
         {
             DO.Parcel newparcel = new DO.Parcel();
             newparcel.Id = parcel.Id;
-            //newparcel.SenderId
-            //newparcel.TargetId
+            newparcel.SenderId = parcel.SenderId;
+            newparcel.TargetId = parcel.TargetId;
             newparcel.priority = (DO.Priorities)parcel.priority;
             newparcel.weight = (DO.Weights)parcel.weight;
             newparcel.Requsted = DateTime.Now;
-            newparcel.Scheduled =new DateTime(0001,01,01,00,00,00);
+            newparcel.Scheduled = new DateTime(0001, 01, 01, 00, 00, 00);
             newparcel.Delivered = new DateTime(0001, 01, 01, 00, 00, 00);
             newparcel.PickedUp = new DateTime(0001, 01, 01, 00, 00, 00);
             mydale.AddParcel(newparcel);
@@ -442,13 +442,25 @@ namespace BLObject
 
         public IEnumerable DisplayParcellst(Func<DO.Parcel, bool> predicate)
         {
-                
-            return mydale.DisplayParcelList(predicate);
+            IEnumerable oldlst= mydale.DisplayParcelList(predicate);
+            List<BO.ParcelToList> newlst=new List<BO.ParcelToList>();
+            foreach (DO.Parcel item in oldlst)
+            {
+                newlst.Add(new ParcelToList
+                {
+                    Id = item.Id,
+                    SenderId = item.SenderId,
+                    TargetId=item.TargetId,
+                    weight= (BO.Weights?)item.weight,
+                    priority = (BO.Priorities?)item.priority,
+                    //status=
+                });
+            }
+            return newlst;
         }
 
         public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p)
         {
-
             return mydale.DisplayParcelUnmatched((Predicate<DO.Parcel>)p);
         }
 

@@ -471,7 +471,7 @@ namespace Dal
             XElement parcelelemnts = XMLTools.LoadListFromXMLElement(parcelPath);
             if (p != null)
             {
-                return from par in parcelelemnts.Elements()
+                return (from par in parcelelemnts.Elements()
                        let P = new Parcel()
                        {
                            Id = Int32.Parse(par.Element("ID").Value),
@@ -486,7 +486,7 @@ namespace Dal
                            weight = (Weights)Enum.Parse(typeof(Weights), par.Element("Parcelweight").Value)
                        }
                        where p(P)
-                       select P;
+                       select P);
             }
             else
             {

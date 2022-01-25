@@ -24,25 +24,28 @@ namespace PL
         IBl bl;
         public ListParcelWindow(IBl BL)
         {
-            this.bl = BL;
             InitializeComponent();
+            this.bl = BL;
             datecmb.ItemsSource = Enum.GetValues(typeof(Date));
             prioritycmb.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
-            weightcmb.ItemsSource= Enum.GetValues(typeof(BO.Weights));
+            weightcmb.ItemsSource = Enum.GetValues(typeof(BO.Weights));
             parcelDataGrid.DataContext = bl.DisplayParcellst();
+            parcelDataGrid.IsReadOnly = true;
         }
-        public enum Date {Scheduled=0,PickedUp,Delivered,Requsted };
+        public enum Date { Scheduled = 0, PickedUp, Delivered, Requsted };
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Date d = (Date)datecmb.SelectedItem;
             switch ((int)d)
             {
-                case 0: string sc = "Enter the date and time of scheduled parcel you would like to filter :";  //Scheduled
+                case 0:
+                    string sc = "Enter the date and time of scheduled parcel you would like to filter :";  //Scheduled
                     DateTime date0 = DateTime.Parse(Interaction.InputBox(sc, "get date", "01 - january - 0001 00: 00"));
                     parcelDataGrid.DataContext = bl.DisplayParcellst(parcel => parcel.Scheduled == date0);
                     break;
-                case 1:  string pu = "Enter the date and time of picked parcel you would like to filter :";   //PickedUp
+                case 1:
+                    string pu = "Enter the date and time of picked parcel you would like to filter :";   //PickedUp
                     DateTime date1 = DateTime.Parse(Interaction.InputBox(pu, "get date", "01 - january - 0001 00: 00"));
                     parcelDataGrid.DataContext = bl.DisplayParcellst(parcel => parcel.PickedUp == date1);
                     break;
@@ -51,7 +54,8 @@ namespace PL
                     DateTime date2 = DateTime.Parse(Interaction.InputBox(de, "get date", "01 - january - 0001 00: 00"));
                     parcelDataGrid.DataContext = bl.DisplayParcellst(parcel => parcel.Delivered == date2);
                     break;
-                case 3: string re = "Enter the date and time of requested parcel you would like to filter :";    //Requsted
+                case 3:
+                    string re = "Enter the date and time of requested parcel you would like to filter :";    //Requsted
                     DateTime date3 = DateTime.Parse(Interaction.InputBox(re, "get date", "01 - january - 0001 00: 00"));
                     parcelDataGrid.DataContext = bl.DisplayParcellst(parcel => parcel.Requsted == date3);
                     break;
@@ -74,8 +78,9 @@ namespace PL
 
         private void addbtn_Click(object sender, RoutedEventArgs e)
         {
-            ParcelWindow w = new ParcelWindow(bl);
-            w.Show();
+            new ParcelWindow(bl).ShowDialog();
+            parcelDataGrid.ItemsSource = bl.DisplayParcellst();
+           
         }
 
         private void updatebtn_Click(object sender, RoutedEventArgs e)
@@ -86,6 +91,11 @@ namespace PL
                 ParcelWindow w = new ParcelWindow(p);
                 w.Show();
             }
+        }
+
+        private void parcelDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
