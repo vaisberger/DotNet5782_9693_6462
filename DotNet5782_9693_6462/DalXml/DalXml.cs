@@ -49,7 +49,7 @@ namespace Dal
                                   new XElement("RequstedTime", p.Requsted),
                                   new XElement("SenderId", p.SenderId),
                                   new XElement("TargetId", p.TargetId),
-                                  new XElement("Priorities", p.priorty),
+                                  new XElement("Priorities", p.priority),
                                   new XElement("Parcelweight", p.weight),
                                   new XElement("DroneId", p.DroneId));
 
@@ -407,7 +407,7 @@ namespace Dal
                                          Scheduled= DateTime.Parse(par.Element("ScheduledTime").Value),
                                          PickedUp= DateTime.Parse(par.Element("PickedUpTime").Value),
                                          Requsted= DateTime.Parse(par.Element("RequstedTime").Value),
-                                         priorty= (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
+                                         priority= (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
                                          SenderId = Int32.Parse(par.Element("SenderId").Value),
                                          TargetId = Int32.Parse(par.Element("TargetId").Value),
                                          weight= (Weights)Enum.Parse(typeof(Weights), par.Element("ParcelWeight").Value)
@@ -471,7 +471,7 @@ namespace Dal
             XElement parcelelemnts = XMLTools.LoadListFromXMLElement(parcelPath);
             if (p != null)
             {
-                return from par in parcelelemnts.Elements()
+                return (from par in parcelelemnts.Elements()
                        let P = new Parcel()
                        {
                            Id = Int32.Parse(par.Element("ID").Value),
@@ -480,13 +480,13 @@ namespace Dal
                            Scheduled = DateTime.Parse(par.Element("ScheduledTime").Value),
                            PickedUp = DateTime.Parse(par.Element("PickedUpTime").Value),
                            Requsted = DateTime.Parse(par.Element("RequstedTime").Value),
-                           priorty = (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
+                           priority = (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
                            SenderId = Int32.Parse(par.Element("SenderId").Value),
                            TargetId = Int32.Parse(par.Element("TargetId").Value),
                            weight = (Weights)Enum.Parse(typeof(Weights), par.Element("Parcelweight").Value)
                        }
                        where p(P)
-                       select P;
+                       select P);
             }
             else
             {
@@ -499,7 +499,7 @@ namespace Dal
                             Scheduled = DateTime.Parse(par.Element("ScheduledTime").Value),
                             PickedUp = DateTime.Parse(par.Element("PickedUpTime").Value),
                             Requsted = DateTime.Parse(par.Element("RequstedTime").Value),
-                            priorty = (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
+                            priority = (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
                             SenderId = Int32.Parse(par.Element("SenderId").Value),
                             TargetId = Int32.Parse(par.Element("TargetId").Value),
                             weight = (Weights)Enum.Parse(typeof(Weights), par.Element("Parcelweight").Value)
@@ -520,7 +520,7 @@ namespace Dal
                        Scheduled = DateTime.Parse(par.Element("ScheduledTime").Value),
                        PickedUp = DateTime.Parse(par.Element("PickedUpTime").Value),
                        Requsted = DateTime.Parse(par.Element("RequstedTime").Value),
-                       priorty = (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
+                       priority = (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
                        SenderId = Int32.Parse(par.Element("SenderId").Value),
                        TargetId = Int32.Parse(par.Element("TargetId").Value),
                        weight = (Weights)Enum.Parse(typeof(Weights), par.Element("ParcelWeight").Value)

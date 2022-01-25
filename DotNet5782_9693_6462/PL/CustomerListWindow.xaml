@@ -1,0 +1,22 @@
+﻿<Window x:Class="PL.CustomerListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="CustomerListWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="customerDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="344,160,49.6,60" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="parceloReceivedColumn" Binding="{Binding ParceloReceived}" Header="Parcelo Received" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="parcelSentAndDeliveredColumn" Binding="{Binding ParcelSentAndDelivered}" Header="Parcel Sent And Delivered" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="parcelSentAndNotDeliveredColumn" Binding="{Binding ParcelSentAndNotDelivered}" Header="Parcel Sent And Not Delivered" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="parcelWayToCustomeerColumn" Binding="{Binding ParcelWayToCustomeer}" Header="Parcel Way To Customeer" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="phoneColumn" Binding="{Binding Phone}" Header="Phone" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

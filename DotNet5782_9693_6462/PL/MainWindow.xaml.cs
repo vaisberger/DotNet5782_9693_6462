@@ -38,7 +38,7 @@ namespace PL
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            CustomerWindow wnd = new CustomerWindow(mybl);
+            CustomerListWindow wnd = new CustomerListWindow(mybl);
             wnd.Show();
 
         }

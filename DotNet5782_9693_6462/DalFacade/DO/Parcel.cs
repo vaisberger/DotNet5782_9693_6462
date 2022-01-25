@@ -14,7 +14,7 @@ namespace DO
         public int SenderId { set; get; }
         public int TargetId { set; get; }
         public Weights? weight { set; get; }
-        public Priorities? priorty { set; get; }
+        public Priorities? priority { set; get; }
         public DateTime? Requsted { set; get; }
         public int DroneId { set; get; }
         public DateTime? Scheduled { set; get; }
@@ -22,7 +22,7 @@ namespace DO
         public DateTime? Delivered { set; get; }
         public override string ToString()//print
         {
-            return "ID:" + Id + " SenderId: " + SenderId + " TargetId: " + TargetId + " weight: " + weight + " priorty: " + priorty + " Requsted " + Requsted + " DroneId: " + DroneId + " Scheduled: " + Scheduled + " PickedUp: " + PickedUp + " Delivered: " + Delivered;
+            return "ID:" + Id + " SenderId: " + SenderId + " TargetId: " + TargetId + " weight: " + weight + " priorty: " + priority + " Requsted " + Requsted + " DroneId: " + DroneId + " Scheduled: " + Scheduled + " PickedUp: " + PickedUp + " Delivered: " + Delivered;
         }
 
     }

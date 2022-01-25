@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,18 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for CustomerWindow.xaml
+    /// Interaction logic for CustomerListWindow.xaml
     /// </summary>
-    public partial class CustomerWindow : Window
+    public partial class CustomerListWindow : Window
     {
-        public CustomerWindow()
+        IBl bl;
+        public CustomerListWindow(IBl BL)
         {
+            bl = BL;
             InitializeComponent();
+            
         }
+        
     }
+
 }

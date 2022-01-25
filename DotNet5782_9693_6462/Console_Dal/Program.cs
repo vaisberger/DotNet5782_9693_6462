@@ -291,7 +291,7 @@ namespace ConsoleUI
                 SenderId = 0,
                 TargetId = 0,
                 weight = Weight,
-                priorty = Priorty,
+                priority = Priorty,
                 Requsted = DateTime.Now,
                 DroneId = 0,
                 Scheduled = scheduled,

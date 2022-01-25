@@ -10,10 +10,10 @@ namespace BO
    public class ParcelToList
     {
         public int Id { get; set; }
-        public string SenderId { set; get; }
-        public string TargetId { set; get; }
-        public Weights weight { get; set; }
-        public Priorities priority { get; set; }
+        public int SenderId { set; get; }
+        public int TargetId { set; get; }
+        public Weights? weight { get; set; }
+        public Priorities? priority { get; set; }
         public Status status { get; set; }
         public override string ToString()
         {
