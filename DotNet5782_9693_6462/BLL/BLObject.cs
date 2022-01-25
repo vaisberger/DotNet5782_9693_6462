@@ -413,7 +413,7 @@ namespace BLObject
         }
 
 
-        public IEnumerable DisplayBaseStationlst()
+        public IEnumerable DisplayBaseStationlst(Func<DO.BaseStation, bool> predicate)
         {
             return mydale.DisplayStationList();
         }

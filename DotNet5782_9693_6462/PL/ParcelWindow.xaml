@@ -54,7 +54,7 @@
         </Grid>
         <Button x:Name="addbtn" Content="Add Parcel" HorizontalAlignment="Left" Margin="542,373,0,0" VerticalAlignment="Top" Height="27" Width="114" Click="addbtn_Click"/>
         <Button x:Name="Cancelbtn" Content="Cancel" HorizontalAlignment="Left" Margin="674,373,0,0" VerticalAlignment="Top" Height="27" Width="116" Click="Cancelbtn_Click"/>
-        <Button x:Name="updatebtn" Content="Update parcel" HorizontalAlignment="Left" Margin="414,374,0,0" VerticalAlignment="Top" Width="108" Height="27"/>
+        <Button x:Name="updatebtn" Content="Update parcel" HorizontalAlignment="Left" Margin="414,374,0,0" VerticalAlignment="Top" Width="108" Height="27" Click="updatebtn_Click"/>
         <Button x:Name="showsenderdtn" Content="Show Sender" HorizontalAlignment="Left" Margin="280,374,0,0" VerticalAlignment="Top" Width="108" Height="27"/>
         <Button x:Name="showreciverbtn" Content="Show reciver" HorizontalAlignment="Left" Margin="155,374,0,0" VerticalAlignment="Top" Height="27" Width="100"/>
         <Button x:Name="showdronebtn" Content="Show Drone" HorizontalAlignment="Left" Margin="21,373,0,0" VerticalAlignment="Top" Width="104" Height="28"/>

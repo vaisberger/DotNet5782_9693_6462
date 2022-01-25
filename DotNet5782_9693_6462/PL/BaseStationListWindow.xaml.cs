@@ -21,7 +21,7 @@ namespace PL
     public partial class BaseStationListWindow : Window
     {
         IBl bl;
-        BO.BaseStationList baseStation;
+        
         public BaseStationListWindow()
         {
             InitializeComponent();
@@ -29,13 +29,14 @@ namespace PL
 
         private void FilteringByStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            BO.BaseStationList w = (BO.BaseStationList)prioritycmb.SelectedItem;
+            parcelDataGrid.DataContext = bl.DisplayBaseStationlst(basestation => basestation.AvailableChargingStations.ToString() == w.ToString());
         }
 
         private void AddBaseStation_Click(object sender, RoutedEventArgs e)
         {
-           MessageBox.Show(baseStation.ToString());
-           Close();
+            BaseStationWindow wnd = new BaseStationWindow(bl);
+            wnd.Show();
         }
 
         private void ButtonCantent_Click(object sender, RoutedEventArgs e)
