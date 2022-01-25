@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CustomerListWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="customerDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="33,95,33,95" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="customerDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="344,160,49.6,60" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
