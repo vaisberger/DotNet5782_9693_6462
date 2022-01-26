@@ -27,11 +27,8 @@ namespace PL
             InitializeComponent();
         }
 
-        private void FilteringByStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            BO.BaseStationList w = (BO.BaseStationList)prioritycmb.SelectedItem;
-            parcelDataGrid.DataContext = bl.DisplayBaseStationlst(basestation => basestation.AvailableChargingStations.ToString() == w.ToString());
-        }
+        
+
 
         private void AddBaseStation_Click(object sender, RoutedEventArgs e)
         {
