@@ -20,6 +20,7 @@ namespace DalApi
         public void UpdateBaseStation(int id, int name, int chargeslots);
         public void UpdateParcelToDrone(int droneId, int parcleId);
         public void UpdateCustomer(int id, String name = "", String phone = "");
+        public void UpdateParcel(Parcel p);
         public void Parcelcollection(int p, int d);
         public void ParcelDelivery(int p, int c);
         public void ChargeDrone(int d, int? s);

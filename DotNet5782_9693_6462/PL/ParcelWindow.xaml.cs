@@ -23,7 +23,6 @@ namespace PL
     {
         IBl bl;
         BO.ParcelToList parcel;
-        BO.Parcel P;
         public ParcelWindow(IBl BL)
         {
             parcel = new BO.ParcelToList();
@@ -39,8 +38,19 @@ namespace PL
         }
         public ParcelWindow(BO.ParcelToList p)
         {
-            InitializeComponent();
             parcel = p;
+            DataContext = parcel;
+            InitializeComponent();
+            priortyComboBox.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
+            weightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
+            showdronebtn.Visibility = Visibility.Collapsed;
+            showreciverbtn.Visibility = Visibility.Collapsed;
+            showsenderdtn.Visibility = Visibility.Collapsed;
+            addbtn.Visibility = Visibility.Collapsed;
+            senderIdTextBox.IsEnabled = false;
+            idTextBox.IsEnabled = false;
+            weightComboBox.IsEnabled = false;
+
         }
 
         private void Cancelbtn_Click(object sender, RoutedEventArgs e)
@@ -63,9 +73,17 @@ namespace PL
             Close();
         }
 
-        private void idTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void updatebtn_Click(object sender, RoutedEventArgs e)
         {
-
+            try { 
+                bl.UpdateParcel(parcel);
+            }
+            catch
+            {
+                return;
+            }
+      
+          MessageBox.Show("yes");
         }
     }
 }

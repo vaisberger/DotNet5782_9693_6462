@@ -88,8 +88,8 @@ namespace PL
             BO.ParcelToList p = (parcelDataGrid.SelectedItem as BO.ParcelToList);
             if (p != null)
             {
-                ParcelWindow w = new ParcelWindow(p);
-                w.Show();
+                new ParcelWindow(p).ShowDialog();
+                parcelDataGrid.ItemsSource = bl.DisplayParcellst();
             }
         }
 

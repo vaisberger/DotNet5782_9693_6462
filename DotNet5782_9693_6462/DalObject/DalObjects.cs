@@ -130,6 +130,11 @@ namespace Dal
                 }
             }
         }
+
+        public void UpdateParcel(Parcel p)
+        {
+
+        }
         #endregion
         //Parcel collection drone
         void IDal.Parcelcollection(int p, int d)

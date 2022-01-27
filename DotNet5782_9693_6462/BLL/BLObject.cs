@@ -24,9 +24,9 @@ namespace BLObject
 {
     public sealed class BLObject : IBl
     {
+        #region constructers
         static readonly IBl instance = new BLObject();
         public static IBl Instance { get => instance; }
-
         public ObservableCollection<BO.Drone> drones;
         internal IDal mydale = DalFactory.GetDal();
         public Random rand = new Random();
@@ -35,7 +35,9 @@ namespace BLObject
             drones = new ObservableCollection<BO.Drone>();
 
         }
+        #endregion
 
+        #region Add methods
         public void AddCustomer(BO.Customer customer)
         {
 
@@ -112,12 +114,9 @@ namespace BLObject
             baseStation1.ChargeSlots = baseStation.AvailableChargingStations;
             baseStation.DroneInChargings = baseStation.DroneInChargings;
         }
+        #endregion
 
-        /* public void UpdateDrone(int id, string s)
-         {
-             throw new NotImplementedException();
-         }*/
-
+        #region Get item methods
         public BO.Customer GetCustomer(int id)
         {
             BO.Customer customer = default;
@@ -176,7 +175,7 @@ namespace BLObject
             return baseStation;
         }
 
-
+        #endregion
         public void UpdateDrone(int id, String model)
         {
 
@@ -218,6 +217,20 @@ namespace BLObject
             }
             mydale.UpdateCustomer(id, name, phone);
         }
+
+        public void UpdateParcel(BO.ParcelToList p)
+        {
+            DO.Parcel P = new DO.Parcel
+            {
+                Id = p.Id,
+                priority = (DO.Priorities?)p.priority,
+                TargetId = p.TargetId
+            };
+            mydale.UpdateParcel(P);
+        }
+
+
+
         public void SendDroneToCharge(int id,int? stationId=null)
         {
             if (stationId != null)

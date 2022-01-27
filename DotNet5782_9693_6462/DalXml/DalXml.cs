@@ -212,6 +212,26 @@ namespace Dal
             par.Element("Schedualed").Value = DateTime.Now.ToString();
             XMLTools.SaveListToXMLElement(parcelelem, parcelPath);
         }
+        void IDal.UpdateParcel(Parcel p)
+        {
+            XElement parcelelem = XMLTools.LoadListFromXMLElement(parcelPath);
+
+            XElement parcel = (from par in parcelelem.Elements()
+                               where int.Parse(par.Element("ID").Value) == p.Id
+                               select par).FirstOrDefault();
+            if (parcel == null)
+            {
+              //  throw new IDExistsInTheSystem(p.Id, $"Parcel ID Exists:{p.Id}");
+            }
+            if(p.TargetId != -1) {
+                parcel.Element("TargetId").Value = p.TargetId.ToString(); 
+            }
+            if (p.priority != null)
+            {
+                parcel.Element("Priorities").Value = p.priority.ToString();
+            }
+            XMLTools.SaveListToXMLElement(parcelelem, parcelPath);
+        }
         #endregion
 
         #region Parcel system methods

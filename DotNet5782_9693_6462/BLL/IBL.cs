@@ -24,6 +24,7 @@ namespace BLApi
             public void UpdateBaseStation(int id, int name = -1, int chargeslots = -1);
             public void UpdateDrone(int id, String model);
             public void UpdateCustomer(int id, String name = "", String phone = "");
+            public void UpdateParcel(BO.ParcelToList p);
 
             public void SendDroneToCharge(int id,int? stationid=null);
             public void DischargeDrone(int id, double time);
