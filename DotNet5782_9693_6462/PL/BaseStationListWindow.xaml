@@ -16,10 +16,12 @@
             </DataGrid.Columns>
         </DataGrid>
         <Grid>
-            <ComboBox x:Name="FilteringByStations" HorizontalAlignment="Left" Margin="153,27,0,0" VerticalAlignment="Top" Width="120" Height="22" SelectionChanged="FilteringByStations_SelectionChanged" />
-            <TextBox x:Name="FilteringByStationsText" HorizontalAlignment="Left" Margin="33,27,0,0" Text="Filtering by stations" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
+
             <Button x:Name="AddBaseStation" Content="Add" HorizontalAlignment="Left" Margin="630,380,0,0" VerticalAlignment="Top" Height="23" Width="61" Click="AddBaseStation_Click"/>
             <Button x:Name="ButtonCantent" Content="Cancel" HorizontalAlignment="Left" Margin="710,380,0,21" Width="61" Height="23" Click="ButtonCantent_Click" />
+            <Label x:Name="LableFilteringByStations" Content="Filtering by stations" HorizontalAlignment="Left" Margin="57,24,0,0" VerticalAlignment="Top"/>
+            <ComboBox HorizontalAlignment="Left" Margin="180,24,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
+
         </Grid>
 
     </Grid>

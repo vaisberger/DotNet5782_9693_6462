@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArryOfDrones xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ArryOfDrones xmlns:local="clr-namespace:PL">
   <DroneCharge>
     <DroneId></DroneId>
     <StatioId></StatioId>

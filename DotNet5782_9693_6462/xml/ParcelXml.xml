@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfParcel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ArrayOfParcel xmlns:local="clr-namespace:PL">
   <Parcel>
     <ID>111</ID>
     <DroneId>12</DroneId>

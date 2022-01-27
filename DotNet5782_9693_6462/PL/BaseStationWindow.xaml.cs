@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,19 @@ namespace PL
     /// </summary>
     public partial class BaseStationWindow : Window
     {
+        IBl bl;
+        BO.BaseStationList baseStation;
+        
+        public BaseStationWindow(IBl bl)//Add
+        {
+            baseStation = new BO.BaseStationList();
+            this.bl = bl;
+            DataContext = baseStation;
+            InitializeComponent();
+            
+
+
+        }
         public BaseStationWindow()
         {
             InitializeComponent();
@@ -31,7 +45,24 @@ namespace PL
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
+            grid1.DataContext = baseStation;
+            MessageBox.Show("Station was updated");
+            Close();
+        }
 
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.AddBaseStation(baseStation);
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("couldn't add the Station because this Id allready exists in the system");
+            }
+            MessageBox.Show(baseStation.ToString());
+            Close();
         }
     }
 }

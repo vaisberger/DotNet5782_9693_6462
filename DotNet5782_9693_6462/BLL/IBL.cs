@@ -29,10 +29,11 @@ namespace BLApi
             public void SendDroneToCharge(int id,int? stationid=null);
             public void DischargeDrone(int id, double time);
             public int MatchDroneToParcel(int id);
-            public void ParcelCollection(int Pid);
+        void AddBaseStation(BaseStationList baseStation);
+        public void ParcelCollection(int Pid);
             public void ParcelDelivery(int Pid);
 
-            public IEnumerable DisplayBaseStationlst();  //   צריך להחזיר רשימה שתודפס לסיים את זה  להחזיר בפונקציות 
+            public IEnumerable DisplayBaseStationlst(Func<DO.BaseStation, bool> p = null);  //   צריך להחזיר רשימה שתודפס לסיים את זה  להחזיר בפונקציות 
             public IEnumerable DisplayDronelst(Func<Drone,bool> predicate=null);
             public IEnumerable DisplayCustomerlst();
             public IEnumerable DisplayParcellst(Func<DO.Parcel, bool> p = null);
