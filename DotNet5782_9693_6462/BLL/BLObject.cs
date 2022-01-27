@@ -176,19 +176,16 @@ namespace BLObject
         }
 
         #endregion
-        public void UpdateDrone(int id, String model)
+        public void UpdateDrone(BO.Drone d)
         {
+            DO.Drone drone=new DO.Drone{
+            Id = d.Id,
+            Model = d.Model,
+            MaxWeight= (DO.Weights)d.MaxWeight
+        };
 
-            try
-            {
-                mydale.DisplayDrone(id);
-            }
-            catch (DO.DroneExeptions dexp)
-            {
-                throw new BLDroneExption($"Can't update the drone because it dosn't exist");
-            }
-
-            mydale.UpdateDrone(id, model);
+                mydale.UpdateDrone(drone);
+            
         }
 
         public void UpdateBaseStation(int id, int name = -1, int chargeslots = -1)

@@ -36,10 +36,11 @@ namespace PL
             priortyComboBox.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
         }
-        public ParcelWindow(BO.ParcelToList p)
+        public ParcelWindow(BO.ParcelToList p, IBl BL)
         {
             parcel = p;
             DataContext = parcel;
+            this.bl = BL;
             InitializeComponent();
             priortyComboBox.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));

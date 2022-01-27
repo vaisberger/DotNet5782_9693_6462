@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Runtime.CompilerServices;
 
+
 namespace Dal
 {
     sealed class DalXml : IDal
@@ -109,16 +110,16 @@ namespace Dal
             XElement droneelem = XMLTools.LoadListFromXMLElement(dronePath);
 
             XElement drone = (from dr in droneelem.Elements()
-                                where int.Parse(dr.Element("ID").Value) == d.Id
+                                where int.Parse(dr.Element("Id").Value) == d.Id
                                 select dr).FirstOrDefault();
             if (drone != null)
             {
                 throw new IDExistsInTheSystem(d.Id, $"Drone ID Exists:{d.Id}");
             }
 
-            XElement droneElem = new XElement("Drone", new XElement("ID", d.Id),
+            XElement droneElem = new XElement("Drone", new XElement("Id", d.Id),
                                   new XElement("Model", d.Model),
-                                  new XElement("WeightStatus", d.MaxWeight));
+                                  new XElement("MaxWeight", d.MaxWeight));
 
             droneelem.Add(droneElem);
 
@@ -127,22 +128,15 @@ namespace Dal
         #endregion
 
         #region update methods
-        void IDal.UpdateDrone(int id, String model)
+        void IDal.UpdateDrone(Drone d)
         {
-            XElement droneselem= XMLTools.LoadListFromXMLElement(dronePath);
-            XElement dr= (from d in droneselem.Elements()
-                          where int.Parse(d.Element("ID").Value) ==id
-                          select d).FirstOrDefault();
-            if (dr != null)
-            {
-                dr.Element("Model").Value = model;
-                XMLTools.SaveListToXMLElement(droneselem, dronePath);
-            }
-            else
-            {
-                throw new IDNotExistsInTheSystem(id, $"Drone ID dosn't Exist:{id}");
-            }
+            XElement droneelem = XMLTools.LoadListFromXMLElement(dronePath);
 
+            XElement drone = (from dr in droneelem.Elements()
+                              where int.Parse(dr.Element("Id").Value) == d.Id
+                              select dr).FirstOrDefault();
+            drone.Element("Model").Value = d.Model;
+            XMLTools.SaveListToXMLElement(droneelem, dronePath);
         }
         void IDal.UpdateBaseStation(int id, int name, int chargeslots)
         {
@@ -377,12 +371,12 @@ namespace Dal
         {
             XElement droneelem = XMLTools.LoadListFromXMLElement(dronePath);
             Drone d = ((Drone)(from dr in droneelem.Elements()
-                                           where int.Parse(dr.Element("ID").Value) == Id
+                                           where int.Parse(dr.Element("Id").Value) == Id
                                            select new Drone()
                                            {
-                                               Id = Int32.Parse(dr.Element("ID").Value),
+                                               Id = Int32.Parse(dr.Element("Id").Value),
                                                Model = dr.Element("Modle").Value,
-                                               MaxWeight = (Weights)Enum.Parse(typeof(Weights), dr.Element("WeightStatus").Value)
+                                               MaxWeight = (Weights)Enum.Parse(typeof(Weights), dr.Element("MaxWeight").Value)
                                            }).FirstOrDefault());
 
             if (d == null)
@@ -451,9 +445,9 @@ namespace Dal
             return (from d in droneelemnts.Elements()
                     select new Drone()
                     {
-                        Id = Int32.Parse(d.Element("ID").Value),
+                        Id = Int32.Parse(d.Element("Id").Value),
                         Model = d.Element("Model").Value,
-                        MaxWeight = (Weights)Enum.Parse(typeof(Weights), d.Element("WeightStatus").Value)
+                        MaxWeight = (Weights)Enum.Parse(typeof(Weights), d.Element("MaxWeight").Value)
                     }).ToList();
 
         }

@@ -40,9 +40,10 @@ namespace PL
             
         }
 
-        public DroneWindow(BO.Drone dr) // the constructer to update the drone 
+        public DroneWindow(BO.Drone dr,IBl Bl) // the constructer to update the drone 
         {
             InitializeComponent();
+            this.bl = Bl;
             statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.DroneStatus));
             maxWeightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
             button.IsEnabled = false;
@@ -84,6 +85,14 @@ namespace PL
         {
             
             grid1.DataContext = drone;
+            try
+            {
+                bl.UpdateDrone(drone);
+            }
+            catch 
+            {
+                MessageBox.Show("NO");
+            }
             MessageBox.Show("Drone was updated");
             Close();
         }

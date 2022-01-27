@@ -59,7 +59,7 @@ namespace PL
             Drone d = (droneDataGrid.SelectedItem as Drone);
             if (d != null)
             {
-                DroneWindow w = new DroneWindow(d);
+                DroneWindow w = new DroneWindow(d,bL);
                 w.Show();
             }
         }

@@ -75,10 +75,10 @@ namespace Dal
         #endregion
 
         #region update methods
-        void IDal.UpdateDrone(int id, String model)
+        void IDal.UpdateDrone(Drone d)
         {
-            var d = DataSource.drones.FirstOrDefault(X => X.Id == id);
-            d.Model = model;
+            var dr = DataSource.drones.FirstOrDefault(X => X.Id == d.Id);
+            dr = d;
         }
         void IDal.UpdateBaseStation(int id, int name, int chargeslots)
         {

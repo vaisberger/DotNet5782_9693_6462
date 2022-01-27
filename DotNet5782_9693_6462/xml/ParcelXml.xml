@@ -31,7 +31,7 @@
     <ScheduledTime>11 - july - 2000 12:33</ScheduledTime>
     <PickedUpTime>11 - july - 2000 12:33</PickedUpTime>
     <RequstedTime>11 - july - 2000 12:33</RequstedTime>
-    <Priorities>Fast</Priorities>
+    <Priorities>Normal</Priorities>
     <SenderId>77</SenderId>
     <TargetId>33</TargetId>
     <Parcelweight>Light</Parcelweight>
@@ -84,5 +84,4 @@
     <Parcelweight>Light</Parcelweight>
     <DroneId>0</DroneId>
   </Parcel>
-
 </ArrayOfParcel>

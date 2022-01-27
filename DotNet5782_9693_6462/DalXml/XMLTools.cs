@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Dal
 {
@@ -17,7 +18,7 @@ namespace Dal
                 Directory.CreateDirectory(dir);
         }
 
-        internal static XElement LoadListFromXMLElement(string filePath)
+        public static XElement LoadListFromXMLElement(string filePath)
         {
             try
             {
@@ -38,7 +39,7 @@ namespace Dal
             }
         }
 
-        internal static void SaveListToXMLElement(XElement rootElem, string filePath)
+        public static void SaveListToXMLElement(XElement rootElem, string filePath)
         {
             try
             {
@@ -47,6 +48,42 @@ namespace Dal
             catch (Exception ex)
             {
                 throw new DO.XMLFileLoadCreateException(filePath, $"fail to create xml file: {filePath}", ex);
+            }
+        }
+
+        public static void SaveListToXMLSerializer<T>(List<T> list, string filePath)
+        {
+            try
+            {
+                FileStream file = new FileStream(dir + filePath, FileMode.Create);
+                XmlSerializer x = new XmlSerializer(list.GetType());
+                x.Serialize(file, list);
+                file.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new DO.XMLFileLoadCreateException(filePath, $"fail to create xml file: {filePath}", ex);
+            }
+        }
+        public static List<T> LoadListFromXMLSerializer<T>(string filePath)
+        {
+            try
+            {
+                if (File.Exists(dir + filePath))
+                {
+                    List<T> list;
+                    XmlSerializer x = new XmlSerializer(typeof(List<T>));
+                    FileStream file = new FileStream(dir + filePath, FileMode.Open);
+                    list = (List<T>)x.Deserialize(file);
+                    file.Close();
+                    return list;
+                }
+                else
+                    return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                throw new DO.XMLFileLoadCreateException(filePath, $"fail to load xml file: {filePath}", ex);
             }
         }
     }
