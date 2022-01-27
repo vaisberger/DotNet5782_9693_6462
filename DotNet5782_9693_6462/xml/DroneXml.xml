@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfDorne xmlns:local="clr-namespace:PL">
+<ArrayOfDorne xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Drone>
     <ID> 1234</ID>
     <Model>xxx</Model>

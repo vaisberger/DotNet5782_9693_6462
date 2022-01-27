@@ -21,11 +21,11 @@ namespace PL
     public partial class BaseStationWindow : Window
     {
         IBl bl;
-        BO.BaseStationList baseStation;
+        BO.BaseStation baseStation;
         
         public BaseStationWindow(IBl bl)//Add
         {
-            baseStation = new BO.BaseStationList();
+            baseStation = new BO.BaseStation();
             this.bl = bl;
             DataContext = baseStation;
             InitializeComponent();

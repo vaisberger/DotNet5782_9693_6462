@@ -29,8 +29,7 @@ namespace BLApi
             public void SendDroneToCharge(int id,int? stationid=null);
             public void DischargeDrone(int id, double time);
             public int MatchDroneToParcel(int id);
-        void AddBaseStation(BaseStationList baseStation);
-        public void ParcelCollection(int Pid);
+            public void ParcelCollection(int Pid);
             public void ParcelDelivery(int Pid);
 
             public IEnumerable DisplayBaseStationlst(Func<DO.BaseStation, bool> p = null);  //   צריך להחזיר רשימה שתודפס לסיים את זה  להחזיר בפונקציות 

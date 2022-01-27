@@ -1,33 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfBaseStatuin xmlns:local="clr-namespace:PL">
+<ArrayOfBaseStatuin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 	<BaseStation>
 		<Id>1111</Id>
 		<Name>13</Name>
-		<ChargeSlots>1</ChargeSlots>
+		<ChargeSlots>8</ChargeSlots>
 		<Latitude>13.5</Latitude>
 		<Longitude>14.8</Longitude>
 	</BaseStation>
-	<BaseStation>
-		<Id>1113</Id
-		<Name>12</Name>
-		<ChargeSlots>1</ChargeSlots>
-		<Latitude>8.4</Latitude>
-		<Longitude>15</Longitude>
-	</BaseStation>
-	<BaseStation>
-		<Id>1112</Id>
-		<Name>12</Name>
-		<ChargeSlots>4</ChargeSlots>
-		<Latitude>7</Latitude>
-		<Longitude>17.8</Longitude>
-
-	</BaseStation>
-	<BaseStation>
-		<Id>1115</Id>
-		<Name>12</Name>
-		<ChargeSlots>5</ChargeSlots>
-		<Latitude>27</Latitude>
-		<Longitude>16</Longitude>
-	</BaseStation>
+  <BaseStation>
+    <Id>1111</Id>
+    <Name>13</Name>
+    <ChargeSlots>8</ChargeSlots>
+    <Latitude>13.5</Latitude>
+    <Longitude>14.8</Longitude>
+  </BaseStation>
+  <BaseStation>
+    <Id>1111</Id>
+    <Name>13</Name>
+    <ChargeSlots>8</ChargeSlots>
+    <Latitude>13.5</Latitude>
+    <Longitude>14.8</Longitude>
+  </BaseStation>
+  <BaseStation>
+    <Id>1111</Id>
+    <Name>13</Name>
+    <ChargeSlots>8</ChargeSlots>
+    <Latitude>13.5</Latitude>
+    <Longitude>14.8</Longitude>
+  </BaseStation>
 </ArrayOfBaseStatuin>
