@@ -215,7 +215,7 @@ namespace Dal
                                select par).FirstOrDefault();
             if (parcel == null)
             {
-              //  throw new IDExistsInTheSystem(p.Id, $"Parcel ID Exists:{p.Id}");
+                throw new IDExistsInTheSystem(p.Id, $"Parcel ID Exists:{p.Id}");
             }
             if(p.TargetId != -1) {
                 parcel.Element("TargetId").Value = p.TargetId.ToString(); 

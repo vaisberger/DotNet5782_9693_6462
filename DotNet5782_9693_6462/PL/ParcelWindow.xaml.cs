@@ -35,6 +35,7 @@ namespace PL
             updatebtn.Visibility = Visibility.Collapsed;
             priortyComboBox.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
+            Dronegrid.Visibility= Visibility.Collapsed;
         }
         public ParcelWindow(BO.ParcelToList p, IBl BL)
         {
@@ -51,7 +52,7 @@ namespace PL
             senderIdTextBox.IsEnabled = false;
             idTextBox.IsEnabled = false;
             weightComboBox.IsEnabled = false;
-
+            Dronegrid.Visibility = Visibility.Collapsed;
         }
 
         private void Cancelbtn_Click(object sender, RoutedEventArgs e)
@@ -85,6 +86,19 @@ namespace PL
             }
       
           MessageBox.Show("yes");
+        }
+
+        private void showdronebtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (parcel.status == BO.Status.Associated || parcel.status == BO.Status.Collected)
+            {
+                BO.Parcel p=bl.GetParcel(parcel.Id);
+                p.droaneParcel.
+            }
+            else if()
+            {
+
+            }
         }
     }
 }
