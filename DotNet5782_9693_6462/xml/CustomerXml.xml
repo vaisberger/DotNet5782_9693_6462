@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCustomer xmlns:local="clr-namespace:PL">
 	<Customer>
-		<ID>6738</ID>
+		<ID>66</ID>
 		<Name>3333</Name>
 		<Phone>222</Phone>
 		<Latitude>21</Latitude>
 		<Longitude>34</Longitude>
 	</Customer>
 	<Customer>
-		<ID></ID>
-		<Name></Name>
-		<Phone></Phone>
-		<Latitude></Latitude>
-		<Longitude></Longitude>
+		<ID>88</ID>
+		<Name>y</Name>
+		<Phone>891</Phone>
+		<Latitude>77</Latitude>
+		<Longitude>11</Longitude>
 	</Customer>
 	<Customer>
-		<ID></ID>
-		<Name></Name>
-		<Phone></Phone>
-		<Latitude></Latitude>
-		<Longitude></Longitude>
+		<ID>12</ID>
+		<Name>t</Name>
+		<Phone>21</Phone>
+		<Latitude>12</Latitude>
+		<Longitude>21</Longitude>
 	</Customer>
 	<Customer>
-		<ID></ID>
-		<Name></Name>
-		<Phone></Phone>
-		<Latitude></Latitude>
-		<Longitude></Longitude>
+		<ID>99</ID>
+		<Name>u</Name>
+		<Phone>0912</Phone>
+		<Latitude>21</Latitude>
+		<Longitude>32</Longitude>
 	</Customer>
 </ArrayOfCustomer>

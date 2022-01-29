@@ -37,6 +37,7 @@ namespace PL
             weightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
             Dronegrid.Visibility= Visibility.Collapsed;
             Customergrid.Visibility= Visibility.Collapsed;
+            Parceldalgrid.Visibility = Visibility.Collapsed;
         }
         public ParcelWindow(BO.ParcelToList p, IBl BL)
         {
@@ -55,6 +56,7 @@ namespace PL
             weightComboBox.IsEnabled = false;
             Dronegrid.Visibility = Visibility.Collapsed;
             Customergrid.Visibility = Visibility.Collapsed;
+            Parceldalgrid.Visibility = Visibility.Collapsed;
         }
 
         public ParcelWindow(IBl BL, BO.ParcelToList p)
@@ -72,6 +74,8 @@ namespace PL
             priortyComboBox.IsEnabled = false;
             Dronegrid.Visibility = Visibility.Collapsed;
             Customergrid.Visibility = Visibility.Collapsed;
+            BO.Parcel BOpar = bl.GetParcel(parcel.Id);
+            Parceldalgrid.DataContext = BOpar;
         }
         private void Cancelbtn_Click(object sender, RoutedEventArgs e)
         {

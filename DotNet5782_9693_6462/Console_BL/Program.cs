@@ -302,7 +302,7 @@ namespace ConsoleUI__BL
             {
                 Id = ID,
                 Name = name,
-                Phone = phone,
+                Phone = int.Parse(phone),
                 location = L,
             };
 

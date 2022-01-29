@@ -44,7 +44,7 @@ namespace BLObject
             DO.Customer customer1 = new DO.Customer();
             customer1.Id = customer.Id;
             customer1.Name = customer.Name;
-            customer1.Phone = customer.Phone;
+            customer1.Phone = customer.Phone.ToString();
             customer1.Latitude = customer.location.Latitude;
             customer1.Longitude = customer.location.Longitude;
             mydale.AddCustomer(customer1);
