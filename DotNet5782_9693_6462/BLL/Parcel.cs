@@ -21,7 +21,7 @@ namespace BO
         public DateTime? Requsted { set; get; }
         public override string ToString()//print
         {
-            return "ID:" + Id + " SenderId: " + Sender + " TargetId: " + Getting + " weight: " + weight + " priorty: " + priority + " Requsted " + Requsted + "droane Parcel:" + droaneParcel + " Scheduled: " + Scheduled + " PickedUp: " + PickedUp + " Delivered: " + Delivered;
+            return "ID:" + Id + " SenderId: " + Sender + " TargetId: " + Getting + " weight: " + weight + " priorty: " + priority + " Requsted " + Requsted + "droane Parcel:" + droneParcel + " Scheduled: " + Scheduled + " PickedUp: " + PickedUp + " Delivered: " + Delivered;
         }
     }
 }

@@ -57,6 +57,22 @@ namespace PL
             Customergrid.Visibility = Visibility.Collapsed;
         }
 
+        public ParcelWindow(IBl BL, BO.ParcelToList p)
+        {
+            parcel = p;
+            DataContext = parcel;
+            this.bl = BL;
+            InitializeComponent();
+            addbtn.Visibility = Visibility.Collapsed;
+            updatebtn.Visibility = Visibility.Collapsed;
+            senderIdTextBox.IsEnabled = false;
+            idTextBox.IsEnabled = false;
+            weightComboBox.IsEnabled = false;
+            targetIdTextBox.IsEnabled = false;
+            priortyComboBox.IsEnabled = false;
+            Dronegrid.Visibility = Visibility.Collapsed;
+            Customergrid.Visibility = Visibility.Collapsed;
+        }
         private void Cancelbtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -114,6 +130,13 @@ namespace PL
             Customergrid.Visibility = Visibility.Visible;
             BO.Parcel p= bl.GetParcel(parcel.Id);
             Customergrid.DataContext = p.Getting;
+        }
+
+        private void showsenderdtn_Click(object sender, RoutedEventArgs e)
+        {
+            Customergrid.Visibility = Visibility.Visible;
+            BO.Parcel p = bl.GetParcel(parcel.Id);
+            Customergrid.DataContext = p.Sender;
         }
     }
 }
