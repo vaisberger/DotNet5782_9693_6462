@@ -55,7 +55,7 @@
     <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
     <RequstedTime>2022-01-23T16:46:38.4708101+02:00</RequstedTime>
     <SenderId>0</SenderId>
-    <TargetId>0</TargetId>
+    <TargetId>78</TargetId>
     <Priorities>Normal</Priorities>
     <Parcelweight>Light</Parcelweight>
     <DroneId>0</DroneId>
@@ -80,6 +80,30 @@
     <RequstedTime>2022-01-23T20:49:53.3117471+02:00</RequstedTime>
     <SenderId>0</SenderId>
     <TargetId>0</TargetId>
+    <Priorities>Normal</Priorities>
+    <Parcelweight>Light</Parcelweight>
+    <DroneId>0</DroneId>
+  </Parcel>
+  <Parcel>
+    <ID>667</ID>
+    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
+    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
+    <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
+    <RequstedTime>2022-01-27T22:45:06.2764915+02:00</RequstedTime>
+    <SenderId>78</SenderId>
+    <TargetId>56</TargetId>
+    <Priorities>Fast</Priorities>
+    <Parcelweight>Medium</Parcelweight>
+    <DroneId>0</DroneId>
+  </Parcel>
+  <Parcel>
+    <ID>67</ID>
+    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
+    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
+    <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
+    <RequstedTime>2022-01-27T22:55:04.8082954+02:00</RequstedTime>
+    <SenderId>67</SenderId>
+    <TargetId>67</TargetId>
     <Priorities>Normal</Priorities>
     <Parcelweight>Light</Parcelweight>
     <DroneId>0</DroneId>

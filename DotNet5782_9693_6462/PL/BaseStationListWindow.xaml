@@ -12,7 +12,7 @@
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="availableChargingStationsColumn" Binding="{Binding AvailableChargingStations}" Header="Available Charging Stations" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="busyChargingStationsColumn" Binding="{Binding BusyChargingStations}" Header="Busy Charging Stations" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="busyChargingStationsColumn" Binding="{Binding BusyChargingStations}" Header="Busy Charging Station" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid>
@@ -20,7 +20,7 @@
             <Button x:Name="AddBaseStation" Content="Add" HorizontalAlignment="Left" Margin="630,380,0,0" VerticalAlignment="Top" Height="23" Width="61" Click="AddBaseStation_Click"/>
             <Button x:Name="ButtonCantent" Content="Cancel" HorizontalAlignment="Left" Margin="710,380,0,21" Width="61" Height="23" Click="ButtonCantent_Click" />
             <Label x:Name="LableFilteringByStations" Content="Filtering by stations" HorizontalAlignment="Left" Margin="57,24,0,0" VerticalAlignment="Top"/>
-            <ComboBox HorizontalAlignment="Left" Margin="180,24,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
+            <ComboBox x:Name="ComboBoxFilteringStation"   HorizontalAlignment="Left" Margin="180,24,0,0" VerticalAlignment="Top" Width="120" Height="25" SelectionChanged="ComboBoxFilteringStation_SelectionChanged"/>
 
         </Grid>
 

@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="prioritycmb" HorizontalAlignment="Center" VerticalAlignment="Center" Width="134" SelectionChanged="comboBox_SelectionChanged1" Height="72" Grid.Column="1"/>
+            <ComboBox x:Name="prioritycmb" HorizontalAlignment="Right" VerticalAlignment="Center" Width="134" SelectionChanged="comboBox_SelectionChanged1" Height="72" Grid.ColumnSpan="3" Margin="0,0,133,0"/>
             <ComboBox x:Name="datecmb" HorizontalAlignment="Center" VerticalAlignment="Center" Width="134" SelectionChanged="comboBox_SelectionChanged" Height="72" Grid.Column="3"/>
             <TextBlock x:Name="prioritytxt" HorizontalAlignment="Center" FontSize="17" TextWrapping="Wrap" VerticalAlignment="Center" Height="68" Width="133"><Run Text="  "/><LineBreak/><Run Text="      Priority :"/></TextBlock>
             <TextBlock x:Name="datestxt" HorizontalAlignment="Left" FontSize="17" TextWrapping="Wrap" VerticalAlignment="Center" Height="68" Width="133" Grid.Column="1" Margin="129,0,0,0" Grid.ColumnSpan="2"><Run Text="  "/><LineBreak/><Run Text="        Date :"/></TextBlock>

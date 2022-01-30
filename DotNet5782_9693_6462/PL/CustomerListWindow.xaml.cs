@@ -23,11 +23,26 @@ namespace PL
         IBl bl;
         public CustomerListWindow(IBl BL)
         {
-            bl = BL;
+           
             InitializeComponent();
-            
+            this.bl = BL;
+            customerDataGrid.DataContext = bl.DisplayCustomerlst();
+            customerDataGrid.IsReadOnly = true;
+          
+
         }
-        
+
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            new CustomerWindow(bl).ShowDialog();
+            customerDataGrid.ItemsSource = bl.DisplayCustomerlst();
+
+        }
+
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 
 }
