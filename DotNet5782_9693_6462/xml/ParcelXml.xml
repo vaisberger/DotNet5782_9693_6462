@@ -1,86 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfParcel xmlns:local="clr-namespace:PL">
+<ArrayOfParcel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parcel>
-    <ID>111</ID>
-    <DroneId>12</DroneId>
-    <DeliveredTime>11 - july - 2000 12:33</DeliveredTime>
-    <ScheduledTime>11 - july - 2000 12:33</ScheduledTime>
-    <PickedUpTime>11 - july - 2000 12:33</PickedUpTime>
-    <RequstedTime>11 - july - 2000 12:33</RequstedTime>
-    <Priorities>Fast</Priorities>
-    <SenderId>55</SenderId>
-    <TargetId>77</TargetId>
-    <Parcelweight>Light</Parcelweight>
-  </Parcel>
-  <Parcel>
-    <ID>22</ID>
-    <DroneId>55</DroneId>
-    <DeliveredTime>11 - july - 2000 12:33</DeliveredTime>
-    <ScheduledTime>11 - july - 2000 12:33</ScheduledTime>
-    <PickedUpTime>11 - july - 2000 12:33</PickedUpTime>
-    <RequstedTime>11 - july - 2000 12:33</RequstedTime>
-    <Priorities>Fast</Priorities>
-    <SenderId>77</SenderId>
-    <TargetId>88</TargetId>
-    <Parcelweight>Light</Parcelweight>
-  </Parcel>
-  <Parcel>
-    <ID>33</ID>
-    <DroneId>77</DroneId>
-    <DeliveredTime>11 - july - 2000 12:33</DeliveredTime>
-    <ScheduledTime>11 - july - 2000 12:33</ScheduledTime>
-    <PickedUpTime>11 - july - 2000 12:33</PickedUpTime>
-    <RequstedTime>11 - july - 2000 12:33</RequstedTime>
-    <Priorities>Normal</Priorities>
-    <SenderId>77</SenderId>
-    <TargetId>33</TargetId>
-    <Parcelweight>Light</Parcelweight>
-  </Parcel>
-  <Parcel>
-    <ID>55</ID>
-    <DroneId>12</DroneId>
-    <DeliveredTime>11 - july - 2000 12:33</DeliveredTime>
-    <ScheduledTime>11 - july - 2000 12:33</ScheduledTime>
-    <PickedUpTime>11 - july - 2000 12:33</PickedUpTime>
-    <RequstedTime>11 - july - 2000 12:33</RequstedTime>
-    <Priorities>Fast</Priorities>
+    <ID>123</ID>
+    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
+    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
+    <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
+    <RequstedTime>2022-01-29T23:11:23.1996201+02:00</RequstedTime>
     <SenderId>66</SenderId>
-    <TargetId>44</TargetId>
-    <Parcelweight>Light</Parcelweight>
-  </Parcel>
-  <Parcel>
-    <ID>77</ID>
-    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
-    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
-    <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
-    <RequstedTime>2022-01-23T16:46:38.4708101+02:00</RequstedTime>
-    <SenderId>0</SenderId>
-    <TargetId>78</TargetId>
+    <TargetId>88</TargetId>
     <Priorities>Normal</Priorities>
-    <Parcelweight>Light</Parcelweight>
+    <Parcelweight>Heavy</Parcelweight>
     <DroneId>0</DroneId>
   </Parcel>
   <Parcel>
-    <ID>66</ID>
+    <ID>88</ID>
     <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
     <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
-    <RequstedTime>2022-01-23T20:44:00.36512+02:00</RequstedTime>
-    <SenderId>0</SenderId>
-    <TargetId>0</TargetId>
-    <Priorities>Normal</Priorities>
-    <Parcelweight>Light</Parcelweight>
+    <RequstedTime>2022-01-29T23:11:50.6330776+02:00</RequstedTime>
+    <SenderId>12</SenderId>
+    <TargetId>99</TargetId>
+    <Priorities>Fast</Priorities>
+    <Parcelweight>Heavy</Parcelweight>
     <DroneId>0</DroneId>
   </Parcel>
   <Parcel>
-    <ID>8</ID>
+    <ID>771</ID>
     <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
     <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
-    <RequstedTime>2022-01-23T20:49:53.3117471+02:00</RequstedTime>
-    <SenderId>0</SenderId>
-    <TargetId>0</TargetId>
-    <Priorities>Normal</Priorities>
+    <RequstedTime>2022-01-29T23:12:08.185127+02:00</RequstedTime>
+    <SenderId>88</SenderId>
+    <TargetId>12</TargetId>
+    <Priorities>Fast</Priorities>
     <Parcelweight>Light</Parcelweight>
     <DroneId>0</DroneId>
   </Parcel>

@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="ParcelWindow" Height="450" Width="800">
     <Grid Margin="0,10,0,0">
-        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="116,88,0,0" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="161*"/>
+            <ColumnDefinition Width="639*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="116,88,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -42,7 +46,7 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
         </Grid>
-        <Grid Margin="0,350,0,0">
+        <Grid Margin="0,350,0,0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -52,12 +56,65 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
         </Grid>
-        <Button x:Name="addbtn" Content="Add Parcel" HorizontalAlignment="Left" Margin="542,373,0,0" VerticalAlignment="Top" Height="27" Width="114" Click="addbtn_Click"/>
-        <Button x:Name="Cancelbtn" Content="Cancel" HorizontalAlignment="Left" Margin="674,373,0,0" VerticalAlignment="Top" Height="27" Width="116" Click="Cancelbtn_Click"/>
-        <Button x:Name="updatebtn" Content="Update parcel" HorizontalAlignment="Left" Margin="414,374,0,0" VerticalAlignment="Top" Width="108" Height="27" Click="updatebtn_Click"/>
-        <Button x:Name="showsenderdtn" Content="Show Sender" HorizontalAlignment="Left" Margin="280,374,0,0" VerticalAlignment="Top" Width="108" Height="27"/>
-        <Button x:Name="showreciverbtn" Content="Show reciver" HorizontalAlignment="Left" Margin="155,374,0,0" VerticalAlignment="Top" Height="27" Width="100"/>
-        <Button x:Name="showdronebtn" Content="Show Drone" HorizontalAlignment="Left" Margin="21,373,0,0" VerticalAlignment="Top" Width="104" Height="28"/>
+        <Button x:Name="addbtn" Content="Add Parcel" HorizontalAlignment="Left" Margin="381,373,0,0" VerticalAlignment="Top" Height="27" Width="114" Click="addbtn_Click" Grid.Column="1"/>
+        <Button x:Name="Cancelbtn" Content="Cancel" HorizontalAlignment="Left" Margin="513,373,0,0" VerticalAlignment="Top" Height="27" Width="116" Click="Cancelbtn_Click" Grid.Column="1"/>
+        <Button x:Name="updatebtn" Content="Update parcel" HorizontalAlignment="Left" Margin="253,374,0,0" VerticalAlignment="Top" Width="108" Height="27" Click="updatebtn_Click" Grid.Column="1"/>
+        <Button x:Name="showsenderdtn" Content="Show Sender" HorizontalAlignment="Left" Margin="119,374,0,0" VerticalAlignment="Top" Width="108" Height="27" Click="showsenderdtn_Click" Grid.Column="1"/>
+        <Button x:Name="showreciverbtn" Content="Show reciver" HorizontalAlignment="Left" Margin="155,374,0,0" VerticalAlignment="Top" Height="27" Width="100" Click="showreciverbtn_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="showdronebtn" Content="Show Drone" HorizontalAlignment="Left" Margin="21,373,0,0" VerticalAlignment="Top" Width="104" Height="28" Click="showdronebtn_Click"/>
+        <Grid x:Name="Dronegrid"  HorizontalAlignment="Left" Height="102" Margin="361,49,0,0" VerticalAlignment="Top" Width="196" Grid.Column="1"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="idtxt" Grid.Row="0" Grid.Column="0" Text="ID :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="batterytxt" Grid.Row="1" Grid.Column="0" Text="Battery :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="locationtxt" Grid.Row="2" Grid.Column="0" Text="Location :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="id" Grid.Row="0" Grid.Column="1" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="battery" Grid.Row="1" Grid.Column="1" Text="{Binding BatteryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="location" Grid.Row="2" Grid.Column="1" Text="{Binding Location , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
 
+        </Grid>
+
+        <Grid x:Name="Parceldalgrid"  HorizontalAlignment="Left" Height="102" Margin="116,248,0,0" VerticalAlignment="Top" Width="196" Grid.ColumnSpan="2"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="requstedtxt" Grid.Row="0" Grid.Column="0" Text="  Requsted :" VerticalAlignment="Center" />
+            <TextBlock x:Name="pickeduptxt" Grid.Row="1" Grid.Column="0" Text="  Pickedup :" VerticalAlignment="Center"/>
+            <TextBlock x:Name="scheduledtxt" Grid.Row="2" Grid.Column="0" Text="  Scheduled :" VerticalAlignment="Center" />
+            <TextBlock x:Name="deliveredtxt" Grid.Row="3" Grid.Column="0" Text="  Delivered :" VerticalAlignment="Center"/>
+            <TextBlock x:Name="Requsted" Grid.Row="0" Grid.Column="1" Text="{Binding Requsted, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  />
+            <TextBlock x:Name="PickedUp" Grid.Row="1" Grid.Column="1" Text="{Binding PickedUp, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  />
+            <TextBlock x:Name="Scheduled" Grid.Row="2" Grid.Column="1" Text="{Binding Scheduled , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  />
+            <TextBlock x:Name="Delivered" Grid.Row="3" Grid.Column="1" Text="{Binding Delivered , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  />
+        </Grid>
+        <Grid x:Name="Customergrid"  HorizontalAlignment="Left" Height="59" Margin="361,168,0,0" VerticalAlignment="Top" Width="187" RenderTransformOrigin="0.492,-0.098" Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="Idtxt" Grid.Row="0" Grid.Column="0" Text="ID :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="nametxt" Grid.Row="1" Grid.Column="0" Text="Name :" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="Id" Grid.Row="0" Grid.Column="1" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="Name" Grid.Row="1" Grid.Column="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+
+        </Grid>
     </Grid>
 </Window>

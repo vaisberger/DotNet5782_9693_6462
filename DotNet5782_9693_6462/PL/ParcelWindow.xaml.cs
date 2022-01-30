@@ -35,6 +35,9 @@ namespace PL
             updatebtn.Visibility = Visibility.Collapsed;
             priortyComboBox.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(BO.Weights));
+            Dronegrid.Visibility= Visibility.Collapsed;
+            Customergrid.Visibility= Visibility.Collapsed;
+            Parceldalgrid.Visibility = Visibility.Collapsed;
         }
         public ParcelWindow(BO.ParcelToList p, IBl BL)
         {
@@ -51,9 +54,29 @@ namespace PL
             senderIdTextBox.IsEnabled = false;
             idTextBox.IsEnabled = false;
             weightComboBox.IsEnabled = false;
-
+            Dronegrid.Visibility = Visibility.Collapsed;
+            Customergrid.Visibility = Visibility.Collapsed;
+            Parceldalgrid.Visibility = Visibility.Collapsed;
         }
 
+        public ParcelWindow(IBl BL, BO.ParcelToList p)
+        {
+            parcel = p;
+            DataContext = parcel;
+            this.bl = BL;
+            InitializeComponent();
+            addbtn.Visibility = Visibility.Collapsed;
+            updatebtn.Visibility = Visibility.Collapsed;
+            senderIdTextBox.IsEnabled = false;
+            idTextBox.IsEnabled = false;
+            weightComboBox.IsEnabled = false;
+            targetIdTextBox.IsEnabled = false;
+            priortyComboBox.IsEnabled = false;
+            Dronegrid.Visibility = Visibility.Collapsed;
+            Customergrid.Visibility = Visibility.Collapsed;
+            BO.Parcel BOpar = bl.GetParcel(parcel.Id);
+            Parceldalgrid.DataContext = BOpar;
+        }
         private void Cancelbtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -85,6 +108,39 @@ namespace PL
             }
       
           MessageBox.Show("yes");
+        }
+
+        private void showdronebtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+            if (parcel.status == BO.Status.Associated || parcel.status == BO.Status.Collected)
+            {
+                Dronegrid.Visibility = Visibility.Visible;
+                BO.Parcel p=bl.GetParcel(parcel.Id);
+                Dronegrid.DataContext = p.droneParcel;
+            }
+            else if(parcel.status==BO.Status.Provided)
+            {
+                MessageBox.Show("The parcel was allready delivered ");
+            }
+            else
+            {
+                MessageBox.Show("The parcel is not Matched to a drone yet");
+            }
+        }
+
+        private void showreciverbtn_Click(object sender, RoutedEventArgs e)
+        {
+            Customergrid.Visibility = Visibility.Visible;
+            BO.Parcel p= bl.GetParcel(parcel.Id);
+            Customergrid.DataContext = p.Getting;
+        }
+
+        private void showsenderdtn_Click(object sender, RoutedEventArgs e)
+        {
+            Customergrid.Visibility = Visibility.Visible;
+            BO.Parcel p = bl.GetParcel(parcel.Id);
+            Customergrid.DataContext = p.Sender;
         }
     }
 }

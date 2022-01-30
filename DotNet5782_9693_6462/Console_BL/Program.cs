@@ -54,7 +54,12 @@ namespace ConsoleUI__BL
                                 Console.WriteLine("please enter the ID and the new model name of the drone to update:");
                                 int id = Convert.ToInt32(Console.ReadLine());
                                 String s = Console.ReadLine();
-                                data.UpdateDrone(id, s);
+                                BO.Drone d = new Drone
+                                {
+                                    Id=id,
+                                    Model=s
+                                };
+                                data.UpdateDrone(d);
                                 break;
                             case 1:
                                 Console.WriteLine("please enter the ID of station to update");
@@ -297,7 +302,7 @@ namespace ConsoleUI__BL
             {
                 Id = ID,
                 Name = name,
-                Phone = phone,
+                Phone = int.Parse(phone),
                 location = L,
             };
 
@@ -314,9 +319,9 @@ namespace ConsoleUI__BL
             int tid= Convert.ToInt32(Console.ReadLine());
             Weights.TryParse(Console.ReadLine(), out Weight);
             Priorities.TryParse(Console.ReadLine(), out Priorty);
-            ParcelCustomer pc1 = new ParcelCustomer();
+            CustomerParcel pc1 = new CustomerParcel();
             pc1.Id = sid;
-            ParcelCustomer pc2 = new ParcelCustomer();
+            CustomerParcel pc2 = new CustomerParcel();
             pc2.Id = tid;
             DateTime d = new DateTime(0,0,0, 0, 0, 0);
             Parcel NewParcel = new Parcel()
@@ -330,7 +335,7 @@ namespace ConsoleUI__BL
                 Scheduled=d,
                 Delivered=d,
                 PickedUp=d,
-                droaneParcel = null,
+                droneParcel = null,
             };
           //  data.AddParcel(NewParcel);                                  // לטפל
         }

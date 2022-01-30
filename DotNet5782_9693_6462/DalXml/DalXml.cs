@@ -215,7 +215,7 @@ namespace Dal
                                select par).FirstOrDefault();
             if (parcel == null)
             {
-              //  throw new IDExistsInTheSystem(p.Id, $"Parcel ID Exists:{p.Id}");
+                throw new IDExistsInTheSystem(p.Id, $"Parcel ID Exists:{p.Id}");
             }
             if(p.TargetId != -1) {
                 parcel.Element("TargetId").Value = p.TargetId.ToString(); 
@@ -390,16 +390,16 @@ namespace Dal
         Customer IDal.DisplayCustomer(int Id)
         {
             XElement customerelem = XMLTools.LoadListFromXMLElement(customerPath);
-            Customer c = ((Customer)(from cust in customerelem.Elements()
+            Customer c = (from cust in customerelem.Elements()
                                where int.Parse(cust.Element("ID").Value) == Id
-                               select new Customer()
+                               select new Customer
                                {
                                    Id = Int32.Parse(cust.Element("ID").Value),
                                    Name = cust.Element("Name").Value,
                                    Phone= cust.Element("Phone").Value,
-                                   Longitude = double.Parse((string)cust.Element("Longitude")),
-                                   Latitude = double.Parse((string)cust.Element("Latitude"))
-                               }).FirstOrDefault());
+                                   Longitude = double.Parse(cust.Element("Longitude").Value),
+                                   Latitude = double.Parse(cust.Element("Latitude").Value)
+                               }).FirstOrDefault();
 
             if (c == null)
             {
@@ -411,21 +411,22 @@ namespace Dal
         Parcel IDal.DisplayParcel(int Id)
         {
             XElement parcelelem = XMLTools.LoadListFromXMLElement(parcelPath);
-            Parcel p = ((Parcel)(from par in parcelelem.Elements()
+            Parcel p = new Parcel();
+            p = (from par in parcelelem.Elements()
                                      where int.Parse(par.Element("ID").Value) == Id
-                                     select new Parcel()
+                                     select new Parcel
                                      {
                                          Id = Int32.Parse(par.Element("ID").Value),
                                          DroneId = Int32.Parse(par.Element("DroneId").Value),
-                                         Delivered = DateTime.Parse(par.Element("DeliverdTime").Value),
+                                         Delivered = DateTime.Parse(par.Element("DeliveredTime").Value),
                                          Scheduled= DateTime.Parse(par.Element("ScheduledTime").Value),
                                          PickedUp= DateTime.Parse(par.Element("PickedUpTime").Value),
                                          Requsted= DateTime.Parse(par.Element("RequstedTime").Value),
                                          priority= (Priorities)Enum.Parse(typeof(Priorities), par.Element("Priorities").Value),
                                          SenderId = Int32.Parse(par.Element("SenderId").Value),
                                          TargetId = Int32.Parse(par.Element("TargetId").Value),
-                                         weight= (Weights)Enum.Parse(typeof(Weights), par.Element("ParcelWeight").Value)
-                                     }).FirstOrDefault());
+                                         weight= (Weights)Enum.Parse(typeof(Weights), par.Element("Parcelweight").Value)
+                                     }).FirstOrDefault();
 
             if (p == null)
             {

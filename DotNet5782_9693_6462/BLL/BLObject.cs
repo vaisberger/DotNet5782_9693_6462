@@ -44,7 +44,7 @@ namespace BLObject
             DO.Customer customer1 = new DO.Customer();
             customer1.Id = customer.Id;
             customer1.Name = customer.Name;
-            customer1.Phone = customer.Phone;
+            customer1.Phone = customer.Phone.ToString();
             customer1.Latitude = customer.location.Latitude;
             customer1.Longitude = customer.location.Longitude;
             mydale.AddCustomer(customer1);
@@ -146,15 +146,49 @@ namespace BLObject
         public BO.Parcel GetParcel(int id)
         {
             BO.Parcel parcel = default;
+            DO.Parcel dalParcel = new DO.Parcel();
+            BO.Drone dr = new BO.Drone();
+            DO.Customer cust = new DO.Customer();
             try
             {
-                DO.Parcel dalParcel = mydale.DisplayParcel(id);
+                dalParcel = mydale.DisplayParcel(id);
             }
             catch (DO.ParcelExeptions custEx)
             {
                 throw new BLParcelExption($"Parcel id {id} was not found", custEx);
             }
-
+            parcel = new BO.Parcel
+            {
+                Id = dalParcel.Id,
+                weight= (BO.Weights)dalParcel.weight,
+                priority= (BO.Priorities)dalParcel.priority,
+                PickedUp=dalParcel.PickedUp,
+                Scheduled=dalParcel.Scheduled,
+                Requsted=dalParcel.Requsted,
+                Delivered=dalParcel.Delivered
+            };
+            dr = drones.FirstOrDefault(x=>x.Id==dalParcel.DroneId);
+            if (dr != null)
+            {
+                parcel.droneParcel = new DroneParcel
+                {
+                    Id = dr.Id,
+                    BatteryStatus = dr.Battery,
+                    Location = dr.location1
+                };
+            }
+            cust = mydale.DisplayCustomer(dalParcel.SenderId);
+            parcel.Sender = new CustomerParcel
+            {
+                Id=cust.Id,
+                Name=cust.Name
+            };
+            cust = mydale.DisplayCustomer(dalParcel.TargetId);
+            parcel.Getting = new CustomerParcel
+            {
+                Id = cust.Id,
+                Name = cust.Name
+            };
             return parcel;
         }
 
@@ -183,8 +217,14 @@ namespace BLObject
             Model = d.Model,
             MaxWeight= (DO.Weights)d.MaxWeight
         };
-
+            try
+            {
                 mydale.UpdateDrone(drone);
+            }
+            catch(DO.IDNotExistsInTheSystem ex)
+            {
+                throw new BO.DroneExistsException("exp", ex);
+            }
             
         }
 
@@ -463,7 +503,7 @@ namespace BLObject
                     TargetId=item.TargetId,
                     weight= (BO.Weights?)item.weight,
                     priority = (BO.Priorities?)item.priority,
-                    //status=
+                    status= BO.Status.Defined
                 });
             }
             return newlst;

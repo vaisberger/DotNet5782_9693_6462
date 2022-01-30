@@ -97,5 +97,14 @@ namespace PL
         {
 
         }
+
+        private void showbtn_Click(object sender, RoutedEventArgs e)
+        {
+            BO.ParcelToList p = (parcelDataGrid.SelectedItem as BO.ParcelToList);
+            if (p != null)
+            {
+                new ParcelWindow(bl,p).ShowDialog();
+            }
+        }
     }
 }
