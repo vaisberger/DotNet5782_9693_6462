@@ -267,10 +267,14 @@ namespace BLObject
         }
 
 
-
+        /// <summary>
+        /// the function that tries to send the drone to charge
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="stationId"></param>
         public void SendDroneToCharge(int id,int? stationId=null)
         {
-            if (stationId != null)
+            if (stationId != null)                      
             {
                 mydale.ChargeDrone(id, stationId);
                 return;
@@ -290,14 +294,14 @@ namespace BLObject
             }
             double battery = d.Battery;
             DO.BaseStation s = DistanceToCharge(id, ref battery);  //the station to charge
-            BO.Drone dr = drones.FirstOrDefault(x => x.Id == id);
-            dr.Battery = battery;
-            dr.location1.Latitude = s.Latitude;
-            dr.location1.Longitude = s.Longitude;
-            dr.status = BO.DroneStatus.Maitenance;
+            d.Battery = battery;
+            d.location1.Latitude = s.Latitude;
+            d.location1.Longitude = s.Longitude;
+            d.status = BO.DroneStatus.Maitenance;
             mydale.ChargeDrone(id, s.Id);
 
         }
+
         private DO.BaseStation DistanceToCharge(int id, ref double battery)
         {
             double dis = 0;
