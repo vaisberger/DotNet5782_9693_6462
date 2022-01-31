@@ -20,6 +20,10 @@ namespace BO
             return "ID: " + Id + " Name: " + Name + "Location" + location + "Available Charging Stations:" + AvailableChargingStations + "Drone In Chargings:" + DroneInChargings;
         }
 
+        public static implicit operator BaseStation(BaseStationList v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

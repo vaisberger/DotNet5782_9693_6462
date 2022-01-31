@@ -19,7 +19,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="ButtonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="706,384,0,0" VerticalAlignment="Top" Height="25" Width="68" Click="ButtonCancel_Click" />
-        <Button x:Name="ButtonAdd" Content="Add" HorizontalAlignment="Left" Margin="619,384,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.259,0.723" Height="25" Width="68" Click="ButtonAdd_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="551,382,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="ButtonAdd" Content="Add" HorizontalAlignment="Left" Margin="620,384,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.259,0.723" Height="25" Width="68" Click="ButtonAdd_Click"/>
+        <Button x:Name="ButtonUpdated" Content="Updated" HorizontalAlignment="Left" Margin="533,384,0,0" VerticalAlignment="Top" Width="68" Height="25" RenderTransformOrigin="0.044,0.622" Click="ButtonUpdated_Click"/>
     </Grid>
 </Window>

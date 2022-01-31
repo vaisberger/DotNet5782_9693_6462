@@ -21,9 +21,10 @@ namespace PL
     public partial class BaseStationListWindow : Window
     {
         IBl bl;
-
+       
         public BaseStationListWindow(IBl BL)
         {
+            
             InitializeComponent();
             this.bl = BL;
             //ComboBoxFilteringStation.ItemsSource = Enum.GetValues(typeof(Vi));
@@ -31,25 +32,7 @@ namespace PL
             baseStationDataGrid.IsReadOnly = true;
         }
 
-        /*public ListParcelWindow(IBl BL)
-        {
-            InitializeComponent();
-            this.bl = BL;
-            datecmb.ItemsSource = Enum.GetValues(typeof(Date));
-            prioritycmb.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
-            weightcmb.ItemsSource = Enum.GetValues(typeof(BO.Weights));
-            parcelDataGrid.DataContext = bl.DisplayParcellst();
-            parcelDataGrid.IsReadOnly = true;
-        }
-        public ListDroneWindow(IBl iBL)
-        {
-            InitializeComponent();
-            this.bL = iBL;
-            cmbStatus.ItemsSource = Enum.GetValues(typeof(BO.DroneStatus));
-            cmbMaxWeight.ItemsSource= Enum.GetValues(typeof(BO.Weights));
-            droneDataGrid.DataContext = bL.DisplayDronelst();
-            droneDataGrid.IsReadOnly = true;
-        }*/
+       
 
 
         private void AddBaseStation_Click(object sender, RoutedEventArgs e)

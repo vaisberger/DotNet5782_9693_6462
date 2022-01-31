@@ -6,39 +6,41 @@ using System.Threading.Tasks;
 using System.Collections;
 using BLObject;
 using BO;
+using Bo;
 
 namespace BLApi
+{
+    public interface IBl
     {
-        public interface IBl
-        {
-            public void AddDrone(Drone drone);
-            public void AddCustomer(Customer customer);
-            public void AddParcel(ParcelToList p);
-            public void AddBaseStation(BaseStation baseStation);
+        public void AddDrone(Drone drone);
+        public void AddCustomer(BO.CustomerList customer);
+        public void AddParcel(ParcelToList p);
+        public void AddBaseStation(BaseStation baseStation);
 
-            public Customer GetCustomer(int id);
-            public Drone GetDrone(int id);
-            public Parcel GetParcel(int id);
-            public BaseStation GetBaseStation(int id);
+        public Customer GetCustomer(int id);
+        public Drone GetDrone(int id);
+        public Parcel GetParcel(int id);
+        public BaseStation GetBaseStation(int id);
 
-            public void UpdateBaseStation(int id, int name = -1, int chargeslots = -1);
-            public void UpdateDrone(Drone d);
-            public void UpdateCustomer(int id, String name = "", String phone = "");
-            public void UpdateParcel(BO.ParcelToList p);
+        public void UpdateBaseStation(int id, int name = -1, int chargeslots = -1);
+        public void UpdateDrone(Drone d);
+        public void UpdateCustomer(int id, String name = "", String phone = "");
+        public void UpdateParcel(BO.ParcelToList p);
 
-            public void SendDroneToCharge(int id,int? stationid=null);
-            public void DischargeDrone(int id, double time);
-            public int MatchDroneToParcel(int id);
-            public void ParcelCollection(int Pid);
-            public void ParcelDelivery(int Pid);
+        public void SendDroneToCharge(int id, int? stationid = null);
+        public void DischargeDrone(int id, double time);
 
-            public IEnumerable DisplayBaseStationlst(Func<DO.BaseStation, bool> p = null);  //   צריך להחזיר רשימה שתודפס לסיים את זה  להחזיר בפונקציות 
-            public IEnumerable DisplayDronelst(Func<Drone,bool> predicate=null);
-            public IEnumerable DisplayCustomerlst();
-            public IEnumerable DisplayParcellst(Func<DO.Parcel, bool> p = null);
-            public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p=null); // רשימה של חבילות שלא שוייכו                                                               
-            public IEnumerable DisplayStationsToCharge(Predicate<BO.BaseStation> s=null);
-      }
+        public int MatchDroneToParcel(int id);
+        public void ParcelCollection(int Pid);
+        public void ParcelDelivery(int Pid);
+
+        public IEnumerable DisplayBaseStationlst(Func<DO.BaseStation, bool> p = null);  //   צריך להחזיר רשימה שתודפס לסיים את זה  להחזיר בפונקציות 
+        public IEnumerable DisplayDronelst(Func<Drone, bool> predicate = null);
+        public IEnumerable DisplayCustomerlst();
+        public IEnumerable DisplayParcellst(Func<DO.Parcel, bool> p = null);
+        public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p = null); // רשימה של חבילות שלא שוייכו                                                               
+        public IEnumerable DisplayStationsToCharge(Predicate<BO.BaseStation> s = null);
     }
+}
 
 

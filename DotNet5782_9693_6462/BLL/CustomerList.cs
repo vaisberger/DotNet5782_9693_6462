@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bo
+namespace BO
 {
-    class CustomerList
+    public class CustomerList
     {
+       
+
         public int Id { get; set; }
         public string Name { get; set; }
         public int Phone { get; set; }

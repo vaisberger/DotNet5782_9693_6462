@@ -43,6 +43,17 @@ namespace PL
         {
             Close();
         }
+
+        private void ButtonUpdated_Click(object sender, RoutedEventArgs e)
+        {
+            BO.CustonerList p = (customerDataGrid.SelectedItem as BO.CustonerList);
+            if (p != null)
+            {
+                new ParcelWindow(p, bl).ShowDialog();
+                customerDataGrid.ItemsSource = bl.DisplayCustomerlst();
+            }
+        }
     }
+   
 
 }
