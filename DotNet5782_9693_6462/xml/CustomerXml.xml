@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfCustomer xmlns:local="clr-namespace:PL">
+<ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Customer>
 		<ID>66</ID>
 		<Name>3333</Name>

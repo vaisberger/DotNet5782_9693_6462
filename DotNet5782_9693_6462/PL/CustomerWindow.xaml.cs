@@ -1,4 +1,5 @@
 ﻿using BLApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,10 @@ namespace PL
     public partial class CustomerWindow : Window
     {
         IBl bl;
-       
         BO.CustonerList customer;
-        public CustomerWindow( IBl BL)//Add
+        
+        //get
+        public CustomerWindow(IBl BL)//Add
         {
             customer = new BO.CustonerList();
             this.bl = BL;
@@ -47,12 +49,25 @@ namespace PL
         {
             Close();
         }
+        /*private void showreciverbtn_Click(object sender, RoutedEventArgs e)
+        {
+            Customergrid.Visibility = Visibility.Visible;
+            BO.Parcel p= bl.GetParcel(parcel.Id);
+            Customergrid.DataContext = p.Getting;
+        }
 
+        private void showsenderdtn_Click(object sender, RoutedEventArgs e)
+        {
+            Customergrid.Visibility = Visibility.Visible;
+            BO.Parcel p = bl.GetParcel(parcel.Id);
+            Customergrid.DataContext = p.Sender;
+        }*/
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //bl.AddCustomer(customer);
+               BO.Customer c = bl.GetCustomer(customer.Id);
+               bl.AddCustomer(c);
             }
             catch
             {
@@ -63,11 +78,12 @@ namespace PL
             Close();
         }
 
-        private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
+       /* private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //bl.UpdateCustomer(customer);
+                BO.Customer c = bl.GetCustomer(customer.Id);
+               // bl.UpdateCustomer(c);
             }
             catch
             {
@@ -75,6 +91,6 @@ namespace PL
             }
 
             MessageBox.Show("yes");
-        }
+        }*/
     }
 }
