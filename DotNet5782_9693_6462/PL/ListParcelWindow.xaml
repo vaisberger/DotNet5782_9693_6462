@@ -36,5 +36,6 @@
         <Button x:Name="addbtn" Content="Add Parcel" HorizontalAlignment="Left" Margin="659,469,0,0" VerticalAlignment="Top" Height="25" Width="131" Click="addbtn_Click"/>
         <Button x:Name="updatebtn" Content="Updated Selected Parcel" HorizontalAlignment="Left" Margin="496,469,0,0" VerticalAlignment="Top" Height="25" Width="137" Click="updatebtn_Click"/>
         <Button x:Name="showbtn" Content="Show Selected Parcel" HorizontalAlignment="Left" Margin="341,469,0,0" VerticalAlignment="Top" Height="25" Width="132" Click="showbtn_Click"/>
+        <Button x:Name="groupbtn" Content="Button" HorizontalAlignment="Left" Margin="212,469,0,0" VerticalAlignment="Top" Height="25" Width="108"/>
     </Grid>
 </Window>
