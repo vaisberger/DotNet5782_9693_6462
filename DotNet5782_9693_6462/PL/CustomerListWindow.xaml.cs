@@ -46,10 +46,10 @@ namespace PL
 
         private void ButtonUpdated_Click(object sender, RoutedEventArgs e)
         {
-            BO.CustonerList p = (customerDataGrid.SelectedItem as BO.CustonerList);
-            if (p != null)
+            BO.CustonerList c = (customerDataGrid.SelectedItem as BO.CustonerList);
+            if (c != null)
             {
-                new ParcelWindow(p, bl).ShowDialog();
+                new CustomerWindow(c, bl).ShowDialog();
                 customerDataGrid.ItemsSource = bl.DisplayCustomerlst();
             }
         }
