@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfParcel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parcel>
+  <ID>771</ID>
+  <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
+  <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
+  <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
+  <RequstedTime>2022-01-29T23:12:08.185127+02:00</RequstedTime>
+  <SenderId>88</SenderId>
+  <TargetId>66</TargetId>
+  <Priorities>Fast</Priorities>
+  <Parcelweight>Light</Parcelweight>
+  <DroneId>0</DroneId>
+  </Parcel>
+  <Parcel>
     <ID>123</ID>
     <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
@@ -18,22 +30,11 @@
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
     <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
     <RequstedTime>2022-01-29T23:11:50.6330776+02:00</RequstedTime>
-    <SenderId>12</SenderId>
-    <TargetId>99</TargetId>
+    <SenderId>88</SenderId>
+    <TargetId>66</TargetId>
     <Priorities>Fast</Priorities>
     <Parcelweight>Heavy</Parcelweight>
     <DroneId>0</DroneId>
   </Parcel>
-  <Parcel>
-    <ID>771</ID>
-    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
-    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
-    <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
-    <RequstedTime>2022-01-29T23:12:08.185127+02:00</RequstedTime>
-    <SenderId>88</SenderId>
-    <TargetId>12</TargetId>
-    <Priorities>Fast</Priorities>
-    <Parcelweight>Light</Parcelweight>
-    <DroneId>0</DroneId>
-  </Parcel>
+
 </ArrayOfParcel>

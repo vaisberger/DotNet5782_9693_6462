@@ -506,7 +506,7 @@ namespace BLObject
                     status= BO.Status.Defined
                 });
             }
-            return newlst;
+            return newlst.ToList();
         }
 
         public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p)

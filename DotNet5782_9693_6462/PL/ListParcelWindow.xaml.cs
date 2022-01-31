@@ -1,6 +1,7 @@
 ﻿using BLApi;
 using Microsoft.VisualBasic;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -105,6 +106,34 @@ namespace PL
             {
                 new ParcelWindow(bl,p).ShowDialog();
             }
+        }
+
+        private void groupreciverbtn_Click(object sender, RoutedEventArgs e)
+        {
+            parcelDataGrid.ItemsSource = bl.DisplayParcellst();
+            List<BO.ParcelToList> pl = new List<BO.ParcelToList>();
+            foreach(var item in bl.DisplayParcellst())
+            {
+                pl.Add((BO.ParcelToList)item);
+            }
+
+            var groupreciver = (from item in pl
+                                group item by item.SenderId into gr
+                                select new
+                                {
+                                    pstr = gr.Key,
+                                    grparcel = gr
+                                });
+
+            List<BO.ParcelToList> datasender = new List<BO.ParcelToList>();
+            foreach(var item in groupreciver)
+            {
+                foreach (var par in item.grparcel)
+                {
+                    datasender.Add(par);
+                }
+            }
+            parcelDataGrid.ItemsSource = datasender.ToList();
         }
     }
 }
