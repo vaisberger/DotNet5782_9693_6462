@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CustomerWindow" Height="450" Width="800">
     <Grid >
-        <Grid x:Name="customergrid"  HorizontalAlignment="Left" Margin="409,177,0,0" VerticalAlignment="Top">
+        <Grid x:Name="customergrid"  HorizontalAlignment="Left" Margin="89,84,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -30,5 +30,8 @@
             <Label Content="Phone:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="phoneTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
+        <Button x:Name="ButtonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="704,369,0,0" VerticalAlignment="Top" Height="28" Width="68" Click="ButtonCancel_Click"/>
+        <Button x:Name="ButtonAdd" Content="Add" HorizontalAlignment="Left" Margin="612,369,0,0" VerticalAlignment="Top" Height="28" Width="68" Click="ButtonAdd_Click"/>
+        <Button x:Name="ButtonUpdate" Content="Update" HorizontalAlignment="Left" Margin="519,369,0,0" VerticalAlignment="Top" Height="28" Width="68" Click="ButtonUpdate_Click"/>
     </Grid>
 </Window>

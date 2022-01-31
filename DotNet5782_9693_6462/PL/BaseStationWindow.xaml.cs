@@ -22,20 +22,25 @@ namespace PL
     {
         IBl bl;
         BO.BaseStation baseStation;
-        
-        public BaseStationWindow(IBl bl)//Add
+      
+        public BaseStationWindow(IBl BL)//Add
         {
             baseStation = new BO.BaseStation();
             this.bl = bl;
             DataContext = baseStation;
             InitializeComponent();
-            
+            ButtonUpdate.Visibility = Visibility.Collapsed;
 
 
         }
-        public BaseStationWindow()
+       
+        public BaseStationWindow(BO.BaseStationList b, IBl BL)//Update
         {
+            baseStation = b;
+            DataContext = baseStation;
+            this.bl = BL;
             InitializeComponent();
+            ButtonAdd.Visibility = Visibility.Collapsed;
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)

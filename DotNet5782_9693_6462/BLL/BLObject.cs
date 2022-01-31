@@ -38,18 +38,18 @@ namespace BLObject
         #endregion
 
         #region Add methods
-        public void AddCustomer(BO.Customer customer)
+        public void AddCustomer(BO.CustomerList customer)
         {
 
             DO.Customer customer1 = new DO.Customer();
             customer1.Id = customer.Id;
             customer1.Name = customer.Name;
             customer1.Phone = customer.Phone.ToString();
-            customer1.Latitude = customer.location.Latitude;
-            customer1.Longitude = customer.location.Longitude;
+            //customer1.Latitude = customer.location.Latitude;
+            //customer1.Longitude = customer.location.Longitude;
             mydale.AddCustomer(customer1);
         }
-
+       
         public void AddDrone(BO.Drone drone)
         {
             try

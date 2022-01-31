@@ -45,7 +45,7 @@ namespace PL
 
         private void BaseStation_Click(object sender, RoutedEventArgs e)
         {
-            BaseStationListWindow wnd = new BaseStationListWindow();
+            BaseStationListWindow wnd = new BaseStationListWindow(mybl);
             wnd.Show();
         }
 

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CustomerListWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="customerDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="344,160,49.6,60" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="customerDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="34,10,183,125" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
@@ -18,5 +18,8 @@
                 <DataGridTextColumn x:Name="phoneColumn" Binding="{Binding Phone}" Header="Phone" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="ButtonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="706,384,0,0" VerticalAlignment="Top" Height="25" Width="68" Click="ButtonCancel_Click" />
+        <Button x:Name="ButtonAdd" Content="Add" HorizontalAlignment="Left" Margin="620,384,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.259,0.723" Height="25" Width="68" Click="ButtonAdd_Click"/>
+        <Button x:Name="ButtonUpdated" Content="Updated" HorizontalAlignment="Left" Margin="533,384,0,0" VerticalAlignment="Top" Width="68" Height="25" RenderTransformOrigin="0.044,0.622" Click="ButtonUpdated_Click"/>
     </Grid>
 </Window>

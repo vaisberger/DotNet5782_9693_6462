@@ -21,24 +21,36 @@ namespace PL
     public partial class BaseStationListWindow : Window
     {
         IBl bl;
-        
-        public BaseStationListWindow()
+       
+        public BaseStationListWindow(IBl BL)
         {
+            
             InitializeComponent();
+            this.bl = BL;
+            //ComboBoxFilteringStation.ItemsSource = Enum.GetValues(typeof(Vi));
+            baseStationDataGrid.DataContext = bl.DisplayBaseStationlst();
+            baseStationDataGrid.IsReadOnly = true;
         }
 
-        
+       
 
 
         private void AddBaseStation_Click(object sender, RoutedEventArgs e)
         {
-            BaseStationWindow wnd = new BaseStationWindow(bl);
-            wnd.Show();
+            new BaseStationWindow(bl).ShowDialog();
+            baseStationDataGrid.ItemsSource = bl.DisplayBaseStationlst();
+
         }
 
         private void ButtonCantent_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void ComboBoxFilteringStation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BO.BaseStation b = (BO.BaseStation)ComboBoxFilteringStation.SelectedItem;
+            baseStationDataGrid.DataContext = bl.DisplayBaseStationlst(baseStation => baseStation.AvailableChargingStations.ToString() == b.ToString());
         }
     }
 }
