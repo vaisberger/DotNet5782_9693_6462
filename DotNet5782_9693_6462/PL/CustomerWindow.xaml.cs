@@ -78,19 +78,29 @@ namespace PL
             Close();
         }
 
-       /* private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
+        private void ButtonUpdated_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                BO.Customer c = bl.GetCustomer(customer.Id);
-               // bl.UpdateCustomer(c);
-            }
-            catch
-            {
-                return;
-            }
 
-            MessageBox.Show("yes");
-        }*/
+        }
+
+        private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        /* private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
+         {
+             try
+             {
+                 BO.Customer c = bl.GetCustomer(customer.Id);
+                // bl.UpdateCustomer(c);
+             }
+             catch
+             {
+                 return;
+             }
+
+             MessageBox.Show("yes");
+         }*/
     }
 }

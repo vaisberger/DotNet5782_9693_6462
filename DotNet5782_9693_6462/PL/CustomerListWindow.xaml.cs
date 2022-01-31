@@ -44,6 +44,8 @@ namespace PL
             Close();
         }
 
+
+
         private void ButtonUpdated_Click(object sender, RoutedEventArgs e)
         {
             BO.CustonerList c = (customerDataGrid.SelectedItem as BO.CustonerList);

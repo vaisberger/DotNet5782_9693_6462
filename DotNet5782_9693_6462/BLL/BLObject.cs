@@ -361,14 +361,27 @@ namespace BLObject
         public int MatchDroneToParcel(int id)
         {
             BO.Drone d = drones.FirstOrDefault(x => x.Id == id);
+            List<DO.Parcel>[] p = new List<DO.Parcel>[2]; //each colum is diffrent priority 1 urgent 2 fast 3 normal
             double battery = d.Battery;
             if (d.status != BO.DroneStatus.Available)
             {
                 throw new BLDroneExption("the drone isnt aviabale");
             }
+
+            foreach(DO.Parcel P in mydale.DisplayParcelUnmatched())
+            {
+                if(P.priority== DO.Priorities.Urgent)
+                {
+                    p[0].Add(P);
+                }else if(P.priority == DO.Priorities.Fast)
+                {
+
+                }
+            }
+
             foreach (DO.Parcel P in mydale.DisplayParcelUnmatched())
             {
-                if (P.priority == DO.Priorities.Urgent && P.weight < (DO.Weights)d.MaxWeight)
+                if (P.priority == DO.Priorities.Urgent && P.weight <= (DO.Weights)d.MaxWeight)
                 {
                     DO.BaseStation bsender = mydale.DisplayStation(P.SenderId);
                     Distance(d, bsender, ref battery);
