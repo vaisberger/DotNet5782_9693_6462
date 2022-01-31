@@ -49,7 +49,8 @@ namespace PL
             BO.CustonerList p = (customerDataGrid.SelectedItem as BO.CustonerList);
             if (p != null)
             {
-                new ParcelWindow(p, bl).ShowDialog();
+              
+                new CustomerWindow(p, bl).ShowDialog();
                 customerDataGrid.ItemsSource = bl.DisplayCustomerlst();
             }
         }

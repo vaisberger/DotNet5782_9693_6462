@@ -13,7 +13,7 @@ namespace BLApi
     public interface IBl
     {
         public void AddDrone(Drone drone);
-        public void AddCustomer(BO.CustomerList customer);
+        public void AddCustomer(Customer customer);
         public void AddParcel(ParcelToList p);
         public void AddBaseStation(BaseStation baseStation);
 
@@ -40,6 +40,7 @@ namespace BLApi
         public IEnumerable DisplayParcellst(Func<DO.Parcel, bool> p = null);
         public IEnumerable DisplayParcelsUnmatched(Predicate<BO.Parcel> p = null); // רשימה של חבילות שלא שוייכו                                                               
         public IEnumerable DisplayStationsToCharge(Predicate<BO.BaseStation> s = null);
+       
     }
 }
 
