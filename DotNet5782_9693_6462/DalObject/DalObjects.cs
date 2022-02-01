@@ -426,6 +426,11 @@ namespace Dal
         {
             throw new NotImplementedException();
         }
+
+        public DroneCharge DisplayDroneCharge(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

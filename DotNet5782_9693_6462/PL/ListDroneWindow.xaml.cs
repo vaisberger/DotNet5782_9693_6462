@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using BO;
 using BLApi;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PL
 {
@@ -72,6 +74,34 @@ namespace PL
         private void Clearfilterbtn_Click(object sender, RoutedEventArgs e)
         {
             droneDataGrid.DataContext = bL.DisplayDronelst();
+        }
+
+        private void groupbtn_Click(object sender, RoutedEventArgs e)
+        {
+            droneDataGrid.ItemsSource = bL.DisplayDronelst();
+            List<BO.Drone> dr = new List<BO.Drone>();
+            foreach (var item in bL.DisplayDronelst())
+            {
+                dr.Add((BO.Drone)item);
+            }
+
+            var groupreciver = (from item in dr
+                                group item by item.status into gr
+                                select new
+                                {
+                                    pstr = gr.Key,
+                                    grdrone = gr
+                                });
+
+            List<BO.Drone> datasender = new List<BO.Drone>();
+            foreach (var item in groupreciver)
+            {
+                foreach (var dro in item.grdrone)
+                {
+                    datasender.Add(dro);
+                }
+            }
+            droneDataGrid.ItemsSource = datasender.ToList();
         }
     }
 }

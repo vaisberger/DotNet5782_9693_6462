@@ -614,6 +614,20 @@ namespace Dal
                         Latitude = double.Parse((string)stat.Element("Latitude"))
                     }).ToList();
         }
+
+        public DroneCharge DisplayDroneCharge(int id)
+        {
+            XElement dronechelem = XMLTools.LoadListFromXMLElement(dronechargePath);
+            DroneCharge d = ((from dr in dronechelem.Elements()
+                               where int.Parse(dr.Element("DroneId").Value) == id
+                               select new DroneCharge()
+                               {
+                                   DroneId = Int32.Parse(dr.Element("DroneId").Value),
+                                   StatioId = Int32.Parse(dr.Element("StationId").Value),
+                                   startcharge = DateTime.Parse(dr.Element("StartCharge").Value)
+                               }).FirstOrDefault());
+            return d;
+        }
         #endregion
 
         /*double[] IDal.PowerConsumptionRequest()

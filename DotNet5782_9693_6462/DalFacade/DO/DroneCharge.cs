@@ -12,7 +12,7 @@ namespace DO
     {
         public int DroneId { set; get; }
         public int StatioId { set; get; }
-        public DateTime? startcharge { set; get; } 
+        public DateTime startcharge { set; get; } 
         public override string ToString()
         {
             return "Droneld: " + DroneId + "StatioId: " + StatioId;

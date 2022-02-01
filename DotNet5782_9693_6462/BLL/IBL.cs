@@ -28,7 +28,7 @@ namespace BLApi
         public void UpdateParcel(BO.ParcelToList p);
 
         public void SendDroneToCharge(int id, int stationid = 0);
-        public void DischargeDrone(int id, DateTime time);
+        public void DischargeDrone(int id, double time);
 
         public int MatchDroneToParcel(int id);
         public void ParcelCollection(int Pid);

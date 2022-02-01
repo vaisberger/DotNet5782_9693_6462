@@ -4,13 +4,13 @@
     <ID>771</ID>
     <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
-    <ScheduledTime>01/02/2022 16:44:35</ScheduledTime>
+    <ScheduledTime>01/02/2022 18:03:24</ScheduledTime>
     <RequstedTime>2022-01-29T23:12:08.185127+02:00</RequstedTime>
     <SenderId>88</SenderId>
     <TargetId>66</TargetId>
     <Priorities>Fast</Priorities>
     <Parcelweight>Light</Parcelweight>
-    <DroneId>1236</DroneId>
+    <DroneId>1234</DroneId>
   </Parcel>
   <Parcel>
     <ID>123</ID>
@@ -28,7 +28,7 @@
     <ID>88</ID>
     <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
-    <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
+    <ScheduledTime>01/02/2022 17:04:10</ScheduledTime>
     <RequstedTime>2022-01-29T23:11:50.6330776+02:00</RequstedTime>
     <SenderId>88</SenderId>
     <TargetId>66</TargetId>

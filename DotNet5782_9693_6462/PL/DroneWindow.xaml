@@ -71,8 +71,8 @@
             <TextBlock x:Name="schedualedtxt" Grid.Row="6" Grid.Column="0" Text="Scheduled :" VerticalAlignment="Center"  FontSize="15"/>
             <TextBlock x:Name="Deliveredtxt" Grid.Row="7" Grid.Column="0" Text="Delivered :" VerticalAlignment="Center"  FontSize="15"/>
             <TextBlock x:Name="id" Grid.Row="0" Grid.Column="1" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
-            <TextBlock x:Name="sender" Grid.Row="1" Grid.Column="1" Text="{Binding SenderId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
-            <TextBlock x:Name="reciver" Grid.Row="2" Grid.Column="1" Text="{Binding TargetId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="sender" Grid.Row="1" Grid.Column="1" Text="{Binding Sender.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
+            <TextBlock x:Name="reciver" Grid.Row="2" Grid.Column="1" Text="{Binding Getting.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
             <TextBlock x:Name="weight" Grid.Row="3" Grid.Column="1" Text="{Binding weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
             <TextBlock x:Name="requsted" Grid.Row="4" Grid.Column="1" Text="{Binding Requsted, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>
             <TextBlock x:Name="pickedUp" Grid.Row="5" Grid.Column="1" Text="{Binding PickedUp, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"  FontSize="15"/>

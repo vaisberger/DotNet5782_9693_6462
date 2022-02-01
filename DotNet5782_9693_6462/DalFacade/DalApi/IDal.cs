@@ -30,6 +30,7 @@ namespace DalApi
         public Drone DisplayDrone(int Id);
         public Customer DisplayCustomer(int Id);
         public Parcel DisplayParcel(int Id);
+        public DroneCharge DisplayDroneCharge(int id);
         public IEnumerable DisplayDroneList();
         public IEnumerable DisplayStationList(Func<BaseStation, bool> p = null);
         public IEnumerable DisplayCustomerList();

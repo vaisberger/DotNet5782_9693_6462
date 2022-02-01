@@ -328,9 +328,9 @@ namespace BLObject
         }
 
 
-        public void DischargeDrone(int id, DateTime n)
+        public void DischargeDrone(int id, double n)
         {
-            BO.Drone d = drones.FirstOrDefault(x => x.Id == id);
+            var d = drones.FirstOrDefault(x => x.Id == id);
             if (d == null)
             {
                 throw new BLDroneExption("the drone was not found");
@@ -341,8 +341,15 @@ namespace BLObject
                 throw new BLDroneExption("the drone was is not charging in the moment");
             }
             d.status = BO.DroneStatus.Available;
-            //double battery = mydale.returnChargerate() * 60 * time;
-            //d.Battery += battery;
+            DO.DroneCharge dr = mydale.DisplayDroneCharge(id);
+            if (d.Battery + (n * 60) > 100)
+            {
+                d.Battery = 100;
+            }
+            else
+            {
+                d.Battery += n * 60;
+            }
             mydale.DischargeDrone(id);
         }
         public int MatchDroneToParcel(int id)
@@ -358,7 +365,7 @@ namespace BLObject
             }
             if(d.status== BO.DroneStatus.Maitenance)
             {
-                DateTime t = DateTime.Now;
+                double t = 1;
                 DischargeDrone(id,t);
             }
             foreach (DO.Parcel P in mydale.DisplayParcelList())
