@@ -38,6 +38,10 @@ namespace BLObject
         #endregion
 
         #region Add methods
+        /// <summary>
+        /// gets a customer from the user and adds it 
+        /// </summary>
+        /// <param name="customer"></param>
         public void AddCustomer(BO.Customer customer)
         {
 
@@ -49,7 +53,11 @@ namespace BLObject
             customer1.Longitude = customer.location.Longitude;
             mydale.AddCustomer(customer1);
         }
-
+        /// <summary>
+        /// gets a drone from the user and adds it and sends it to its
+        /// first charge.
+        /// </summary>
+        /// <param name="drone"></param>
         public void AddDrone(BO.Drone drone)
         {
             try
@@ -89,6 +97,10 @@ namespace BLObject
                 // throw  "couldnt charge";
             }
         }
+        /// <summary>
+        /// gets a parcel from the user and adds it 
+        /// </summary>
+        /// <param name="parcel"></param>
         public void AddParcel(BO.ParcelToList parcel)
         {
             DO.Parcel newparcel = new DO.Parcel();
@@ -103,7 +115,10 @@ namespace BLObject
             newparcel.PickedUp = new DateTime(0001, 01, 01, 00, 00, 00);
             mydale.AddParcel(newparcel);
         }
-
+        /// <summary>
+        /// gets a BaseStation from the user and adds it 
+        /// </summary>
+        /// <param name="baseStation"></param>
         public void AddBaseStation(BO.BaseStation baseStation)          // לא נכון צריך תיקון
         {
             DO.BaseStation baseStation1 = new DO.BaseStation();
@@ -117,6 +132,11 @@ namespace BLObject
         #endregion
 
         #region Get item methods
+        /// <summary>
+        /// Gets a customer by id from list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public BO.Customer GetCustomer(int id)
         {
             BO.Customer customer = default;
@@ -132,7 +152,11 @@ namespace BLObject
             return customer;
         }
 
-
+        /// <summary>
+        /// Gets a drone by id from list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public BO.Drone GetDrone(int id)
         {
             BO.Drone d = drones.FirstOrDefault(x => x.Id == id);
@@ -143,6 +167,12 @@ namespace BLObject
             }
             return d;
         }
+
+        /// <summary>
+        /// Gets a parcel by id from list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public BO.Parcel GetParcel(int id)
         {
             BO.Parcel parcel = default;
@@ -193,7 +223,11 @@ namespace BLObject
         }
 
 
-
+        /// <summary>
+        /// Gets a Basestation by id from list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public BO.BaseStation GetBaseStation(int id)
         {
             BO.BaseStation baseStation = default;
@@ -210,6 +244,12 @@ namespace BLObject
         }
 
         #endregion
+
+        #region Update items
+        /// <summary>
+        /// updates the drones model
+        /// </summary>
+        /// <param name="d"></param>
         public void UpdateDrone(BO.Drone d)
         {
             DO.Drone drone = new DO.Drone
@@ -228,7 +268,12 @@ namespace BLObject
             }
 
         }
-
+        /// <summary>
+        /// updates the name and the charge slots of the basestation
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="chargeslots"></param>
         public void UpdateBaseStation(int id, int name = -1, int chargeslots = -1)
         {
             try
@@ -242,7 +287,12 @@ namespace BLObject
             mydale.UpdateBaseStation(id, name, chargeslots);
         }
 
-
+        /// <summary>
+        /// updates the name and the phone number of the customer
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="phone"></param>
         public void UpdateCustomer(int id, String name = "", String phone = "")
         {
             try
@@ -255,7 +305,10 @@ namespace BLObject
             }
             mydale.UpdateCustomer(id, name, phone);
         }
-
+        /// <summary>
+        /// updates the parcels priority
+        /// </summary>
+        /// <param name="p"></param>
         public void UpdateParcel(BO.ParcelToList p)
         {
             DO.Parcel P = new DO.Parcel
@@ -267,7 +320,9 @@ namespace BLObject
             mydale.UpdateParcel(P);
         }
 
+        #endregion
 
+        #region Charge function
         /// <summary>
         /// the function that tries to send the drone to charge
         /// </summary>
@@ -286,7 +341,7 @@ namespace BLObject
                 throw new BLDroneExption($"Can't send the drone to charge because it is transfering a parcel");
             }
             double battery = d.Battery;
-            DO.BaseStation s = Getcloseststation(id, ref battery,d);  //the station to charge
+            DO.BaseStation s = Getcloseststation(id, ref battery, d);  //the station to charge
             d.Battery = battery;
             d.location1.Latitude = s.Latitude;
             d.location1.Longitude = s.Longitude;
@@ -294,8 +349,14 @@ namespace BLObject
             mydale.ChargeDrone(id, s.Id);
 
         }
-
-        private DO.BaseStation Getcloseststation(int id, ref double battery,BO.Drone D)
+        /// <summary>
+        /// gets the closest station to the drone with aviable charging slots
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="battery"></param>
+        /// <param name="D"></param>
+        /// <returns></returns>
+        private DO.BaseStation Getcloseststation(int id, ref double battery, BO.Drone D)
         {
             double dis = 0;
             double x1 = D.location1.Latitude;
@@ -319,15 +380,19 @@ namespace BLObject
                 }
             }
             BO.Drone d = drones.FirstOrDefault(x => x.Id == id);//the battrey goes down 1% per km
-            if (dis/3 > d.Battery)
+            if (dis / 3 > d.Battery)
             {
                 throw new BLDroneExption("drone cannot be charged its too not enough battery to get to station ");
             }
-            battery = d.Battery - dis/3;
+            battery = d.Battery - dis / 3;
             return b;
         }
 
-
+        /// <summary>
+        /// discharges the drone from the station after n hr
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="n"></param>
         public void DischargeDrone(int id, double n)
         {
             var d = drones.FirstOrDefault(x => x.Id == id);
@@ -352,6 +417,38 @@ namespace BLObject
             }
             mydale.DischargeDrone(id);
         }
+        /// <summary>
+        /// when drone add sends to first charging station
+        /// </summary>
+        /// <returns></returns>
+        private DO.BaseStation firstCharge()
+        {
+            List<DO.BaseStation> b = new List<DO.BaseStation>();
+            foreach (DO.BaseStation item in mydale.DisplayAvailableStation())
+            {
+                b.Add(item);
+            }
+            DO.BaseStation station = null;
+            try
+            {
+                station = b.FirstOrDefault();
+            }
+            catch
+            {
+                station = null;
+            }
+
+            return station;
+        }
+        #endregion
+
+        #region connect drone and parcel function
+        /// <summary>
+        /// connects between a drone and an unmatched parcel with a similar weight
+        /// and the drone can make the round trip
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int MatchDroneToParcel(int id)
         {
             var d = drones.FirstOrDefault(x => x.Id == id);
@@ -363,10 +460,10 @@ namespace BLObject
             {
                 throw new BLDroneExption("the drone isnt aviabale");
             }
-            if(d.status== BO.DroneStatus.Maitenance)
+            if (d.status == BO.DroneStatus.Maitenance)
             {
                 double t = 1;
-                DischargeDrone(id,t);
+                DischargeDrone(id, t);
             }
             foreach (DO.Parcel P in mydale.DisplayParcelList())
             {
@@ -387,19 +484,20 @@ namespace BLObject
                 }
             }
 
-            foreach (DO.Parcel P in mydale.DisplayParcelList(x=>x.DroneId==0))
+            foreach (DO.Parcel P in mydale.DisplayParcelList(x => x.DroneId == 0))
             {
-                if (P.weight <= (DO.Weights)d.MaxWeight) {
+                if (P.weight <= (DO.Weights)d.MaxWeight)
+                {
                     if (P.priority == DO.Priorities.Urgent || p1.Count == 0 && P.priority == DO.Priorities.Fast
                         || p1.Count == 0 && p2.Count == 0 && P.priority == DO.Priorities.Normal)
                     {
                         DO.Customer Csender = mydale.DisplayCustomer(P.SenderId);
                         Distance(d.location1, Csender, ref battery); // if it can get to the sender
                         DO.Customer Creciver = mydale.DisplayCustomer(P.TargetId);
-                        Location l = new Location { Latitude = Csender.Latitude,Longitude=Csender.Longitude };
+                        Location l = new Location { Latitude = Csender.Latitude, Longitude = Csender.Longitude };
                         Distance(l, Creciver, ref battery);
                         double b = battery;
-                        Getcloseststation(id, ref b,d);
+                        Getcloseststation(id, ref b, d);
                         if (0 < b)// if there is enough battery to make the delivery and to charge if needed
                         {
                             d.status = BO.DroneStatus.Shipment;
@@ -419,12 +517,12 @@ namespace BLObject
                                     Id = P.TargetId,
                                     Name = mydale.DisplayCustomer(P.TargetId).Name
                                 },
-                                Collectionstart=new Location
+                                Collectionstart = new Location
                                 {
                                     Latitude = mydale.DisplayCustomer(P.SenderId).Latitude,
                                     Longitude = mydale.DisplayCustomer(P.SenderId).Longitude
                                 },
-                                CollectionDestination= new Location
+                                CollectionDestination = new Location
                                 {
                                     Latitude = mydale.DisplayCustomer(P.TargetId).Latitude,
                                     Longitude = mydale.DisplayCustomer(P.TargetId).Longitude
@@ -441,6 +539,13 @@ namespace BLObject
             }
             return -1;
         }
+        /// <summary>
+        /// gets the distance between to points and the battery needed for the trip
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="c"></param>
+        /// <param name="battery"></param>
+        /// <returns></returns>
         private double Distance(Location d, DO.Customer c, ref double battery)// get the battery needed for that distance
         {
             double x1 = d.Latitude;
@@ -448,10 +553,14 @@ namespace BLObject
             double x2 = c.Latitude;
             double y2 = c.Longitude;
             double dis = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
-            battery -= dis/3;// every 3 km is 1%
+            battery -= dis / 3;// every 3 km is 1%
             return dis;
 
         }
+        /// <summary>
+        /// collects the parcel from the customer
+        /// </summary>
+        /// <param name="Pid"></param>
         public void ParcelCollection(int Pid)
         {
             BO.Drone d = drones.FirstOrDefault(x => x.ParcelIntransfer.Id == Pid);
@@ -469,6 +578,10 @@ namespace BLObject
             d.ParcelIntransfer.status = true;
             mydale.Parcelcollection(Pid, d.Id);
         }
+        /// <summary>
+        /// makes the delivery of the parcel
+        /// </summary>
+        /// <param name="Pid"></param>
         public void ParcelDelivery(int Pid)
         {
             BO.Drone d = drones.FirstOrDefault(x => x.ParcelIntransfer.Id == Pid);
@@ -482,27 +595,9 @@ namespace BLObject
             mydale.ParcelDelivery(P.Id, P.TargetId);
         }
 
-        private DO.BaseStation firstCharge()
-        {
-            List<DO.BaseStation> b = new List<DO.BaseStation>();
-            foreach(DO.BaseStation item in mydale.DisplayAvailableStation())
-            {
-                b.Add(item);
-            }
-            DO.BaseStation station=null;
-            try
-            {
-                station=b.FirstOrDefault();
-            }
-            catch
-            {
-                station = null;
-            }
+        #endregion
 
-            return station;
-        }
-
-
+        #region Display list methods
         public IEnumerable DisplayBaseStationlst(Func<DO.BaseStation, bool> predicate)
         {
             return mydale.DisplayStationList();
@@ -528,7 +623,7 @@ namespace BLObject
         {
             return mydale.DisplayCustomerList();
         }
-        public delegate object Mydelegate(dynamic target);
+      //  public delegate object Mydelegate(dynamic target);
 
         public IEnumerable DisplayParcellst(Func<DO.Parcel, bool> predicate)
         {
@@ -536,6 +631,15 @@ namespace BLObject
             List<BO.ParcelToList> newlst = new List<BO.ParcelToList>();
             foreach (DO.Parcel item in oldlst)
             {
+                BO.Status s;
+                if (item.DroneId != 0)
+                {
+                    s = BO.Status.Associated;
+                }
+                else
+                {
+                    s = BO.Status.Defined;
+                }
                 newlst.Add(new ParcelToList
                 {
                     Id = item.Id,
@@ -543,7 +647,7 @@ namespace BLObject
                     TargetId = item.TargetId,
                     weight = (BO.Weights?)item.weight,
                     priority = (BO.Priorities?)item.priority,
-                    status = BO.Status.Defined
+                    status = s
                 });
             }
             return newlst.ToList();
@@ -558,6 +662,9 @@ namespace BLObject
         {
             return mydale.DisplayAvailableStation();
         }
+        #endregion
+
+        #region Sets drone list
         private void initlizedronelist() //saves all the drones saved in dal to bl drone list
         {
             foreach (DO.Drone dr in mydale.DisplayDroneList())
@@ -583,9 +690,10 @@ namespace BLObject
                 {
                     // throw  "couldnt charge";
                 }
+                
             }
         }
-
+        #endregion
     }
 }
 

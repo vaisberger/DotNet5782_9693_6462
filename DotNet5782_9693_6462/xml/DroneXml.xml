@@ -12,22 +12,12 @@
   </Drone>
   <Drone>
     <Id>1236</Id>
-    <Model>xxx</Model>
+    <Model>xx9</Model>
     <MaxWeight>Light</MaxWeight>
   </Drone>
   <Drone>
     <Id>1237</Id>
     <Model>xx9</Model>
     <MaxWeight>Light</MaxWeight>
-  </Drone>
-  <Drone>
-    <Id>55</Id>
-    <Model>12</Model>
-    <MaxWeight>Heavy</MaxWeight>
-  </Drone>
-  <Drone>
-    <Id>8</Id>
-    <Model />
-    <MaxWeight>Medium</MaxWeight>
   </Drone>
 </ArrayOfDorne>
