@@ -37,7 +37,7 @@ namespace PL
             locationTextBox.IsEnabled = false;
             button3.IsEnabled = false;
             button4.IsEnabled = false;
-            
+            parcelgrid.Visibility = Visibility.Collapsed;
         }
 
         public DroneWindow(BO.Drone dr,IBl Bl) // the constructer to update the drone 
@@ -53,7 +53,7 @@ namespace PL
             statusComboBox.IsEnabled = false;
             drone = dr;
             DataContext = drone;
-            parcelgrid.IsEnabled = false;
+            parcelgrid.Visibility = Visibility.Collapsed;
         }
         private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -124,7 +124,7 @@ namespace PL
                 MessageBox.Show($"Drone {drone.Id} was not matched");
                 return;
             }
-            parcelgrid.Visibility = Visibility.Visible;
+           parcelgrid.Visibility = Visibility.Visible;
            parcelgrid.DataContext= bl.GetParcel(p);
         }
     }

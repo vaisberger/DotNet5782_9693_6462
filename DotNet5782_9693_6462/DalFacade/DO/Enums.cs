@@ -7,7 +7,7 @@ namespace DO
 {
     public enum Weights
     {
-        Light, Medium, Heavy
+        Light=1, Medium=2, Heavy=3
     }
      public enum DroneStatus
      {

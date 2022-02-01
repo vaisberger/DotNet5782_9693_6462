@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfBaseStatuin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-	<BaseStation>
-		<Id>1111</Id>
-		<Name>13</Name>
-		<ChargeSlots>8</ChargeSlots>
-		<Latitude>13.5</Latitude>
-		<Longitude>14.8</Longitude>
-	</BaseStation>
   <BaseStation>
     <Id>1111</Id>
     <Name>13</Name>
-    <ChargeSlots>8</ChargeSlots>
+    <ChargeSlots>3</ChargeSlots>
     <Latitude>13.5</Latitude>
-    <Longitude>14.8</Longitude>
+    <Longitude>16</Longitude>
+  </BaseStation>
+  <BaseStation>
+    <Id>1111</Id>
+    <Name>13</Name>
+    <ChargeSlots>3</ChargeSlots>
+    <Latitude>13.5</Latitude>
+    <Longitude>5</Longitude>
   </BaseStation>
   <BaseStation>
     <Id>1111</Id>

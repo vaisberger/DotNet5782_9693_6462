@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using BLObject;
 using BO;
-using Bo;
+
 
 namespace BLApi
 {
@@ -27,8 +27,8 @@ namespace BLApi
         public void UpdateCustomer(int id, String name = "", String phone = "");
         public void UpdateParcel(BO.ParcelToList p);
 
-        public void SendDroneToCharge(int id, int? stationid = null);
-        public void DischargeDrone(int id, double time);
+        public void SendDroneToCharge(int id, int stationid = 0);
+        public void DischargeDrone(int id, DateTime time);
 
         public int MatchDroneToParcel(int id);
         public void ParcelCollection(int Pid);

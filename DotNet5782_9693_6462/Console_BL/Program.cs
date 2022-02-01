@@ -123,7 +123,7 @@ namespace ConsoleUI__BL
                                 Console.WriteLine("please enter the ID of the drone and time it was charging in hr to discharge");
                                 dID = Convert.ToInt32(Console.ReadLine());
                                 double chc= Convert.ToInt32(Console.ReadLine());
-                                data.DischargeDrone(dID,chc);
+                                data.DischargeDrone(dID,DateTime.Now);
                                 break;
                         }
                         break;

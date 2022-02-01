@@ -50,7 +50,7 @@ namespace PL
         private void ComboBoxFilteringStation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.BaseStation b = (BO.BaseStation)ComboBoxFilteringStation.SelectedItem;
-            baseStationDataGrid.DataContext = bl.DisplayBaseStationlst(baseStation => baseStation.AvailableChargingStations.ToString() == b.ToString());
+           // baseStationDataGrid.DataContext = bl.DisplayBaseStationlst(baseStation => baseStation.AvailableChargingStations.ToString() == b.ToString());
         }
     }
 }

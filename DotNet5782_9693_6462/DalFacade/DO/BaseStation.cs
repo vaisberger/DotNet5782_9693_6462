@@ -13,8 +13,6 @@ namespace DO
         public double Longitude { get; set; }
         public double Latitude { get; set; }
         public int ChargeSlots { get; set; }
-        public object AvailableChargingStations { get; set; }
-
         public override string ToString()//print
         {
             return "ID: " + Id  + " ChargeSlots: " + ChargeSlots + " Name: " + Name;

@@ -1,7 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArryOfDrones xmlns:local="clr-namespace:PL">
+<ArryOfDrones xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <DroneCharge>
-    <DroneId></DroneId>
-    <StatioId></StatioId>
+    <DroneId>1234</DroneId>
+    <StationId>1111</StationId>
+    <StartCharge>2022-02-01T16:48:05.1412669+02:00</StartCharge>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>1235</DroneId>
+    <StationId>1111</StationId>
+    <StartCharge>2022-02-01T16:48:05.1745747+02:00</StartCharge>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>1236</DroneId>
+    <StationId>1111</StationId>
+    <StartCharge>2022-02-01T16:48:05.1844579+02:00</StartCharge>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>1237</DroneId>
+    <StationId>1111</StationId>
+    <StartCharge>2022-02-01T16:48:05.1928767+02:00</StartCharge>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>55</DroneId>
+    <StationId>1111</StationId>
+    <StartCharge>2022-02-01T16:48:05.2013758+02:00</StartCharge>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>8</DroneId>
+    <StationId>1111</StationId>
+    <StartCharge>2022-02-01T16:48:05.2115579+02:00</StartCharge>
   </DroneCharge>
 </ArryOfDrones>
